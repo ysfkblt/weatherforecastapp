@@ -16,7 +16,7 @@ export default function App() {
 		await fetch(
 			`https://api.weatherapi.com/v1/forecast.json?key=f676e0d30686474d99b160351221104&q=${search}&days=1&aqi=no&alerts=no`
 		)
-			.then((response) => response.json())
+			.then((r) => r.json())
 			.then((d) =>
 				setInfo({
 					name: d.location.name,
@@ -97,8 +97,8 @@ export default function App() {
 				<div className='grid overflow-hidden grid-cols-2 grid-rows-2 gap-10 sm:gap-40 sm:mt-72 mt-56 sm:mr-0 mr-4'>
 					<div className='row-span-2 justify-self-end'>
 						<p className='text-end sm:text-9xl text-7xl font-light tracking-tighter'>
-							{info.temp?.current}
-							<span className=' align-top text-lg sm:font-light font-normal sm:text-3xl '>
+							{info.temp?.current}{' '}
+							<span className=' align-top -ml-2 sm:-ml-4 text-lg sm:font-light font-normal sm:text-3xl '>
 								°
 							</span>
 						</p>
