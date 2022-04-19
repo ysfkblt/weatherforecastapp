@@ -1,6 +1,6 @@
 # Weather Forecast App
 
-## You can view the site [**here.**](https://weatherforecastapp-beta.vercel.app/)
+## You can view the site [**here.**](https://ysfkblt.github.io/weatherforecastapp/)
 
 ### -[Create React App](https://github.com/facebook/create-react-app)
 
