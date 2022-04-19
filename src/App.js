@@ -1,14 +1,16 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
 	SearchIcon,
 	ArrowDownIcon,
 	ArrowUpIcon,
 } from '@heroicons/react/outline';
-import background from './background';
+import background, { gradient } from './background';
+import { shuffle } from 'lodash';
 
 export default function App() {
 	const [search, setSearch] = useState('');
 	const [info, setInfo] = useState({});
+	const [grad, setgrad] = useState(null);
 
 	async function Fetch() {
 		await fetch(
@@ -39,6 +41,13 @@ export default function App() {
 	function handleSearch(e) {
 		setSearch(e.target.value);
 	}
+	useEffect(() => {
+		Fetch();
+	}, []);
+
+	useEffect(() => {
+		setgrad(shuffle(gradient).pop());
+	}, []);
 
 	return (
 		<div
@@ -47,7 +56,7 @@ export default function App() {
 					? { backgroundImage: background.clear }
 					: info.condition?.toLowerCase() === 'sunny'
 					? { backgroundImage: background.sunny }
-					: info.condition?.includes('cloudy')
+					: info.condition?.toLowerCase().includes('cloudy')
 					? { backgroundImage: background.cloudy }
 					: info.condition?.toLowerCase().includes('rain') ||
 					  info.condition?.toLowerCase().includes('drizzle')
@@ -57,7 +66,7 @@ export default function App() {
 					? { backgroundImage: background.snow }
 					: info.condition?.toLowerCase().includes('overcast')
 					? { backgroundImage: background.overcast }
-					: { backgroundImage: background.default }
+					: { backgroundImage: grad }
 			}
 			className='flex flex-row  text-black items-center justify-center h-screen bg-center bg-cover select-none'
 		>
