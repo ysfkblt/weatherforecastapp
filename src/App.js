@@ -12,7 +12,7 @@ export default function App() {
 	const [info, setInfo] = useState({});
 	const [grad, setgrad] = useState(null);
 
-	async function Fetch() {
+	async function getData() {
 		await fetch(
 			`https://api.weatherapi.com/v1/forecast.json?key=f676e0d30686474d99b160351221104&q=${search}&days=1&aqi=no&alerts=no`
 		)
@@ -32,7 +32,7 @@ export default function App() {
 	}
 
 	function handleButtonClick() {
-		Fetch();
+		getData();
 	}
 	function handleKeyPress(e) {
 		if (e.key === 'Enter') handleButtonClick();
@@ -42,7 +42,7 @@ export default function App() {
 		setSearch(e.target.value);
 	}
 	useEffect(() => {
-		Fetch();
+		getData();
 	}, []);
 
 	useEffect(() => {
@@ -98,7 +98,7 @@ export default function App() {
 					<div className='row-span-2 justify-self-end'>
 						<p className='text-end sm:text-9xl text-7xl font-light tracking-tighter'>
 							{info.temp?.current}{' '}
-							<span className=' align-top -ml-2 sm:-ml-4 text-lg sm:font-light font-normal sm:text-3xl '>
+							<span className=' align-top -ml-2 sm:-ml-4 text-lg sm:font-light font-normal sm:text-3xl'>
 								°
 							</span>
 						</p>
