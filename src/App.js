@@ -6,6 +6,7 @@ import {
 } from '@heroicons/react/outline';
 import background, { gradient } from './background';
 import { shuffle } from 'lodash';
+import DisplayZone from './Zone';
 
 export default function App() {
 	const [search, setSearch] = useState('');

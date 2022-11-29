@@ -3,7 +3,7 @@ import { addDoc, collection, doc, getDocs } from "firebase/firestore"
 import { db } from "./firebase-config"
 import { storage } from "./firebase-config"
 import { getDownloadURL, listAll, ref, uploadBytes } from "firebase/storage"
-const ImageUpload = () => {
+const Journal = () => {
   const [worms, setWorms] = useState([])
   const [userId, setUserId] = useState("2")
   const [imageToUpload, setImageToUpload] = useState(null)
@@ -13,7 +13,6 @@ const ImageUpload = () => {
   // const [imageUrl, setImageUrl]=useState(null)
   const wormCollection = collection(db, "worms")
   const imageListRef = ref(storage, `${userId}`)
-console.log(worms)
   useEffect(() => {
     const getWorms = async () => {
       const data = await getDocs(wormCollection)
@@ -47,19 +46,29 @@ console.log(worms)
       <div>
         {/* {worms[0].journal.entry1.image} */}
       </div>
-      <div className="imgUpload">
-        <input type="file" onChange={(event) => { setImageToUpload(event.target.files[0]) }} />
-        <label>Notes:</label>
-        <input  value={newNotes} onChange={(event) => { setNewNotes(event.target.value) }} placeholder="Add notes here"/>
-        <input type="date" value={date}onChange={(event) => { setDate(event.target.value) }} />
-        <button onClick={uploadImage}> Upload Entry </button>
-      </div>
+      <div>
 
+      <div> Add new entry:</div>
+      <div className="imgUpload">
+        <input type="date" value={date}onChange={(event) => { setDate(event.target.value) }} />
+        <div>
+
+        <input type="file" onChange={(event) => { setImageToUpload(event.target.files[0]) }} />
+        </div>
+        <div>
+
+        <label>Notes:</label>
+        <input  value={newNotes} onChange={(event) => { setNewNotes(event.target.value) }} placeholder="Add notes here" size={50} style={{height: "7vh"}}/>
+        </div>
+        <button onClick={uploadImage} style={{border: "1px solid black"}}> Upload Entry </button>
+      </div>
+      </div>
+<div> Previous entries:</div>
       <div>{worms.map((worm)=>{
         return (
           <>
           <h2>{worm.title}</h2>
-        <img src={worm.image}/>
+        <img src={worm.image} style={{width: "50vw"}}/>
         <div> Notes:{worm.notes} </div>
         </>
           )
@@ -72,4 +81,4 @@ console.log(worms)
   )
 }
 
-export default ImageUpload
+export default Journal
