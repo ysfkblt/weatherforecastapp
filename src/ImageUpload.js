@@ -1,61 +1,70 @@
 import { useState, useEffect } from "react"
-
-import { storage } from "./firebase-config" 
-import { getDownloadURL, listAll, ref, uploadBytes } from "firebase/storage" 
+import { addDoc, collection, getDocs } from "firebase/firestore"
+import { db } from "./firebase-config"
+import { storage } from "./firebase-config"
+import { getDownloadURL, listAll, ref, uploadBytes } from "firebase/storage"
 const ImageUpload = () => {
-//   const [worm, setWorm] = useState([])
-//   const wormCollection = collection(db, "worms")
-//   useEffect(() => {
-//     const getWorms = async () => {
-//       const data = await getDocs(wormCollection)
-//       console.log(data)
-//     }
-//     getWorms()
-//   }, [])
-  const [userId, setUserId]=useState("2")
+  const [worms, setWorms] = useState([])
+  const [userId, setUserId] = useState("2")
   const [imageToUpload, setImageToUpload] = useState(null)
-  const [imageList,setImageList]=useState([])
-  let count=0
+  const [imageList, setImageList] = useState([])
+  const [newNotes, setNewNotes] = useState(null)
+  const [imageUrl, setImageUrl]=useState(null)
+  const wormCollection = collection(db, "worms")
+  const imageListRef = ref(storage, `${userId}`)
 
-useEffect(()=>{
-listAll(imageListRef).then((response)=>{
-  console.log(count++)
-  console.log(response)
-  response.items.forEach((item)=>{
-    console.log("*****item")
-    console.log(item)
-    getDownloadURL(item).then((url)=> {
-      console.log("*****URL")
-      console.log(url)
-     return setImageList((prev)=>[...prev, url])
+  useEffect(() => {
+    const getWorms = async () => {
+      const data = await getDocs(wormCollection)
+      setWorms((data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))))
+    }
+    getWorms()
+
+    // listAll(imageListRef).then((response) => {
+    //   response.items.forEach((item) => {
+    //     getDownloadURL(item).then((url) => {
+    //       setImageList((prev) => [...prev, url])
+    //     })
+    //   })
+    // })
+  }, [])
+
+  const uploadImage = () => {
+    if (imageToUpload == null) return (addDoc(wormCollection,{image:"", notes:newNotes}))
+    const imageRef = ref(storage, `${userId}/${imageToUpload.name}`)
+    uploadBytes(imageRef, imageToUpload).then((snapshot) => {
+      getDownloadURL(snapshot.ref).then((url) => {
+        setImageList((prev) => [...prev, url])
+        addDoc(wormCollection,{image:url, notes:newNotes})
+      })
     })
-  })
-})
-},[])
-
-const imageListRef=ref(storage, `${userId}`)
-const uploadImage= () =>{
-if (imageToUpload==null) return
-const imageRef= ref(storage, `${userId}/${imageToUpload.name}`)
-uploadBytes(imageRef, imageToUpload).then((snapshot)=> {
-  getDownloadURL(snapshot.ref).then((url)=>{
-
-    setImageList((prev)=> [...prev, url])
-  })
-})
-
-}
+  }
 
   return (
     <>
-      <div className="imgUpload"> 
-    <input type="file" onChange={(event)=> {setImageToUpload(event.target.files[0])}}/>
-    <button onClick={uploadImage}> Upload Image </button>
+      <div>
+        {/* {worms[0].journal.entry1.image} */}
       </div>
-      {imageList.map((url)=> {
-        {console.log(url)}
-        return <img src={url} width={"300"}/>
-      })}
+      <div className="imgUpload">
+        <input type="file" onChange={(event) => { setImageToUpload(event.target.files[0]) }} />
+        <label>Notes:</label>
+        <input  value={newNotes} onChange={(event) => { setNewNotes(event.target.value) }} placeholder="Add notes here"/>
+        <button onClick={uploadImage}> Upload Entry </button>
+      </div>
+
+      <div>{worms.map((worm)=>{
+        return (
+          <>
+          <h2>{worm.id}</h2>
+        <img src={worm.image}/>
+        <div> Notes:{worm.notes} </div>
+        </>
+          )
+      })}</div>
+      {/* show all images in storage folder
+      {imageList.map((url) => {
+        return <img src={url} width={"300"} />
+      })} */}
     </>
   )
 }
