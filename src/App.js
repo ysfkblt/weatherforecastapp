@@ -6,6 +6,7 @@ import {
 } from '@heroicons/react/outline';
 import background, { gradient } from './background';
 import { shuffle } from 'lodash';
+import DisplayZone from './Zone';
 
 export default function App() {
 	const [search, setSearch] = useState('');
@@ -27,6 +28,7 @@ export default function App() {
 						max: d.forecast.forecastday[0].day.maxtemp_c,
 						min: d.forecast.forecastday[0].day.mintemp_c,
 					},
+					zone: d.location.zone,
 				})
 			);
 	}
