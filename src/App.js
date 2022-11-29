@@ -27,6 +27,7 @@ export default function App() {
 						max: d.forecast.forecastday[0].day.maxtemp_c,
 						min: d.forecast.forecastday[0].day.mintemp_c,
 					},
+					zone: d.location.zone,
 				})
 			);
 	}

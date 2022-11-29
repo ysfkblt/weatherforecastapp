@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { addDoc, collection, getDocs } from "firebase/firestore"
+import { addDoc, collection, doc, getDocs } from "firebase/firestore"
 import { db } from "./firebase-config"
 import { storage } from "./firebase-config"
 import { getDownloadURL, listAll, ref, uploadBytes } from "firebase/storage"
@@ -7,12 +7,13 @@ const ImageUpload = () => {
   const [worms, setWorms] = useState([])
   const [userId, setUserId] = useState("2")
   const [imageToUpload, setImageToUpload] = useState(null)
+  const [date,setDate]=useState(null)
   const [imageList, setImageList] = useState([])
   const [newNotes, setNewNotes] = useState(null)
-  const [imageUrl, setImageUrl]=useState(null)
+  // const [imageUrl, setImageUrl]=useState(null)
   const wormCollection = collection(db, "worms")
   const imageListRef = ref(storage, `${userId}`)
-
+console.log(worms)
   useEffect(() => {
     const getWorms = async () => {
       const data = await getDocs(wormCollection)
@@ -35,7 +36,8 @@ const ImageUpload = () => {
     uploadBytes(imageRef, imageToUpload).then((snapshot) => {
       getDownloadURL(snapshot.ref).then((url) => {
         setImageList((prev) => [...prev, url])
-        addDoc(wormCollection,{image:url, notes:newNotes})
+        addDoc(wormCollection,{image:url, notes:newNotes, title:date})
+        setWorms((prev)=> [...prev, {image:url, notes:newNotes, title:date}])
       })
     })
   }
@@ -49,13 +51,14 @@ const ImageUpload = () => {
         <input type="file" onChange={(event) => { setImageToUpload(event.target.files[0]) }} />
         <label>Notes:</label>
         <input  value={newNotes} onChange={(event) => { setNewNotes(event.target.value) }} placeholder="Add notes here"/>
+        <input type="date" value={date}onChange={(event) => { setDate(event.target.value) }} />
         <button onClick={uploadImage}> Upload Entry </button>
       </div>
 
       <div>{worms.map((worm)=>{
         return (
           <>
-          <h2>{worm.id}</h2>
+          <h2>{worm.title}</h2>
         <img src={worm.image}/>
         <div> Notes:{worm.notes} </div>
         </>
