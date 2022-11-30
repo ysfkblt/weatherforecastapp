@@ -1,10 +1,12 @@
-// ! assume we are getting a clean frost zone number
+const userZoneNumber = 3 // ! PLACEHOLDER
+let firstFrostDate = null
+let lastFrostDate = null
 
-// ! frost data. make changes here to change frost dates
-// formatted as MM/DD
+/** ! frost data. make changes here to change frost dates
+ *  zone# : [last frost date, first frost date]
+ *  aka zone#: [start of growing season, end of growing season]
+ */
 const frostZoneMap = {
-//zone# : [last frost date, first frost date]
-//aka zone#: [start of growing season, end of growing season]
   1: ["5/29", "8/29"],
   2: ["5/19", "9/5"],
   3: ["5/9", "9/12"],
@@ -20,13 +22,27 @@ const frostZoneMap = {
   13: ["null", "null"],
 }
 
+function getFrostDates(zoneNum, frostZoneMap) {
+  if (frostZoneMap[zoneNum]) {
+    console.log("===========", zoneNum, ":", frostZoneMap[zoneNum])
+    firstFrostDate = frostZoneMap[zoneNum][1]
+    lastFrostDate = frostZoneMap[zoneNum][0]
+
+    console.log(firstFrostDate, lastFrostDate)
+  } else {
+    // TBD add error handling
+    console.log("ERROR: entered zone does not exist within dataset")
+  }
+}
+
 // Checks if today's date is within a specified frost zone
 // accept start date, end date as a string  DATE FORMAT: "MM/DD"
 // return true if OKAY to plant, return false if NOT GOOD TO PLANT (aka in frost zone time)
 function frostDateCheck(firstFrostDate, lastFrostDate) {
   const dateStr = new Date().toLocaleDateString()
   console.log("today's date: ", dateStr)
-  const [month1, day1, year1] = dateStr.split("/")
+
+  const [month1, day1] = dateStr.split("/")
   const date = new Date(month1 - 1, +day1)
 
   const startStr = firstFrostDate // EX aug 24 = "08/24"
@@ -37,11 +53,17 @@ function frostDateCheck(firstFrostDate, lastFrostDate) {
   const [month3, day3] = endStr.split("/")
   const endDate = new Date(month3 - 1, +day3)
 
+  // checking
   if (date > startDate && date < endDate) {
-    console.log(`✅ date is between start and end dates`)
+    console.log(
+      `✅🌱 today's date is NOT between frost season for your hardiness zone, OK to plant 🌱✅ `
+    )
   } else {
-    console.log(`⛔️ date is NOT between start and end dates`)
+    console.log(
+      `⛔️🧊 today's date is between the frost season for your hardiness zone, do not plant 🧊⛔️`
+    )
   }
 }
 
-frostDateCheck("08/24", "12/30")
+getFrostDates(userZoneNumber, frostZoneMap)
+frostDateCheck(firstFrostDate, lastFrostDate)
