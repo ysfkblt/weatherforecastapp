@@ -1,4 +1,4 @@
-const userZoneNumber = 3 // ! PLACEHOLDER
+const userZoneNumber = 8 // ! PLACEHOLDER
 let firstFrostDate = null
 let lastFrostDate = null
 
@@ -24,11 +24,14 @@ const frostZoneMap = {
 
 function getFrostDates(zoneNum, frostZoneMap) {
   if (frostZoneMap[zoneNum]) {
-    console.log("===========", zoneNum, ":", frostZoneMap[zoneNum])
+    console.log(
+      "user zone and frost dates >>> ",
+      zoneNum,
+      ":",
+      frostZoneMap[zoneNum]
+    )
     firstFrostDate = frostZoneMap[zoneNum][1]
     lastFrostDate = frostZoneMap[zoneNum][0]
-
-    console.log(firstFrostDate, lastFrostDate)
   } else {
     // TBD add error handling
     console.log("ERROR: entered zone does not exist within dataset")
@@ -41,7 +44,6 @@ function getFrostDates(zoneNum, frostZoneMap) {
 function frostDateCheck(firstFrostDate, lastFrostDate) {
   const dateStr = new Date().toLocaleDateString()
   console.log("today's date: ", dateStr)
-
   const [month1, day1] = dateStr.split("/")
   const date = new Date(month1 - 1, +day1)
 
@@ -53,7 +55,7 @@ function frostDateCheck(firstFrostDate, lastFrostDate) {
   const [month3, day3] = endStr.split("/")
   const endDate = new Date(month3 - 1, +day3)
 
-  // checking
+  // checking if current date is between frost dates
   if (date > startDate && date < endDate) {
     console.log(
       `✅🌱 today's date is NOT between frost season for your hardiness zone, OK to plant 🌱✅ `
@@ -67,3 +69,4 @@ function frostDateCheck(firstFrostDate, lastFrostDate) {
 
 getFrostDates(userZoneNumber, frostZoneMap)
 frostDateCheck(firstFrostDate, lastFrostDate)
+// frostDateCheck("11/30", "12/29") //debug testing dates
