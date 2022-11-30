@@ -1,4 +1,4 @@
-const userZoneNumber = 8 // ! PLACEHOLDER
+const userZoneNumber = 9 // ! PLACEHOLDER
 let firstFrostDate = null
 let lastFrostDate = null
 
@@ -25,7 +25,7 @@ const frostZoneMap = {
 function getFrostDates(zoneNum, frostZoneMap) {
   if (frostZoneMap[zoneNum]) {
     console.log(
-      "user zone and frost dates >>> ",
+      "user zone and last and first frosts >>> ",
       zoneNum,
       ":",
       frostZoneMap[zoneNum]
@@ -38,35 +38,47 @@ function getFrostDates(zoneNum, frostZoneMap) {
   }
 }
 
-// Checks if today's date is within a specified frost zone
-// accept start date, end date as a string  DATE FORMAT: "MM/DD"
+// Checks if today's date is within the growing season
 // return true if OKAY to plant, return false if NOT GOOD TO PLANT (aka in frost zone time)
-function frostDateCheck(firstFrostDate, lastFrostDate) {
+function frostDateCheck(lastFrostDate, firstFrostDate) {
   const dateStr = new Date().toLocaleDateString()
   console.log("today's date: ", dateStr)
-  const [month1, day1] = dateStr.split("/")
-  const date = new Date(month1 - 1, +day1)
+  const [month1, day1, year1] = dateStr.split("/")
+  const date = new Date(+year1, month1 - 1, +day1)
 
   const startStr = firstFrostDate // EX aug 24 = "08/24"
   const [month2, day2] = startStr.split("/")
-  const startDate = new Date(month2 - 1, +day2)
+  const endGrowDate = new Date(+year1, month2 - 1, +day2)
 
   const endStr = lastFrostDate //EX dec 30 = "12/30"
   const [month3, day3] = endStr.split("/")
-  const endDate = new Date(month3 - 1, +day3)
+  const startGrowDate = new Date(+year1, month3 - 1, +day3)
 
-  // checking if current date is between frost dates
-  if (date > startDate && date < endDate) {
+  // handling zones 10,11,12,13 which currently have no frost dates.
+  // assume it is okay to plant at any time in these zones
+  if (lastFrostDate === "null" && firstFrostDate === "null") {
+    console.log(
+      "Your hardiness zone does not have typical frost, it is OK to plant 🌱✅"
+    )
+    // return TRUE // okay to plant
+  } else if (date > startGrowDate && date < endGrowDate) {
     console.log(
       `✅🌱 today's date is NOT between frost season for your hardiness zone, OK to plant 🌱✅ `
     )
+    console.log({ date }, { startGrowDate }, { endGrowDate })
+    // return TRUE // okay to plant
   } else {
     console.log(
       `⛔️🧊 today's date is between the frost season for your hardiness zone, do not plant 🧊⛔️`
     )
+    console.log({ date }, { startGrowDate }, { endGrowDate })
+    // return FALSE // not okay to plant
   }
 }
 
 getFrostDates(userZoneNumber, frostZoneMap)
-frostDateCheck(firstFrostDate, lastFrostDate)
+frostDateCheck(lastFrostDate, firstFrostDate)
 // frostDateCheck("11/30", "12/29") //debug testing dates
+
+// todo season checker?
+// todo what exactly we want to return?
