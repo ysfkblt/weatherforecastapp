@@ -2,6 +2,9 @@ import {initializeApp} from "firebase/app"
 import {getFirestore} from "@firebase/firestore"
 import {getStorage} from "firebase/storage"
 import {getDatabase} from "firebase/database"
+import {getAuth} from "firebase/auth"
+
+
 const firebaseConfig = {
     apiKey: "AIzaSyAIJjJthpmTBHfPElnfbClql6f1Owt7Zfg",
     authDomain: "wormseye-d1c52.firebaseapp.com",
@@ -14,7 +17,9 @@ const firebaseConfig = {
   };
 
   const app=initializeApp(firebaseConfig)
+  export const auth=getAuth(app)
   export const storage = getStorage(app)
   export const db=getFirestore(app)
-export const dbReal=getDatabase(app)
+  export const dbReal=getDatabase(app)
+
    

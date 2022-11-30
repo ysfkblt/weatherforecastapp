@@ -17,8 +17,8 @@ root.render(
             {/* <h1>test this is in index.js. components should be below</h1> */}
             {/* <ImageUpload /> */}
             <AppRoutes/>
-            <Database />
-            <DisplayZone />
+            {/* <Database /> */}
+            {/* <DisplayZone /> */}
     </Router>
     //   </React.StrictMode>
 )

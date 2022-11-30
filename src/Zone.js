@@ -24,7 +24,6 @@ const DisplayZone = ({ }) => {
             <span>ENTER ZIP
                 <input type="text" value={zip} onChange={(e) => setZip(e.target.value)} />
             </span>
-            <button onClick={() => setZip(zip)}>Get Zone</button>
             <h1>ZONE--->{zone.zone}</h1>
         </div>
     )
