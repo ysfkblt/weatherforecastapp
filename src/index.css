@@ -4,12 +4,16 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ELEMENTS */
+
 * {
+	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
 	font-family: 'Manrope', sans-serif;
 	font-feature-settings: 'ss01' 1, 'ss03' 1;
 }
+
 body::-webkit-scrollbar {
 	display: none;
 }
@@ -19,4 +23,128 @@ body {
 	scrollbar-width: none;
 }
 
+button {
+	display: inline-block;
+	padding: 0.3em 1em;
+	border: 0.1em solid #272727;
+	margin: 0.3em;
+	border-radius: 0.12em;
+	box-sizing: border-box;
+	text-decoration: none;
+	font-family: "Roboto", sans-serif;
+	font-weight: 300;
+	color: #000000;
+	text-align: center;
+	transition: all 0.2s;
+}
 
+button:hover {
+	color: #ffffff;
+	background-color: #72c17b;
+}
+
+h1 {
+	font-size: 1.5em;
+	font-weight: 200;
+}
+
+/* NAV */
+
+.nav-bar-container {
+	border-bottom: 1px solid black;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+ul.nav-bar-list {
+	list-style: none;
+	width: 75%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+li.nav-bar-link {
+	margin: 5px;
+}
+
+/* AUTH */
+
+div.auth-container {
+	border-bottom: 1px solid black;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+div.auth-signup-container {
+	border-bottom: 1px solid black;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+}
+
+div.auth-login-container {
+	border-bottom: 1px solid black;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+div.auth-current-user-container {
+	border-bottom: 1px solid black;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+/* JOURNAL */
+
+.journal-container {
+	display: flex;
+	flex-direction: column;
+}
+
+.journal-form {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+
+}
+
+input.journal-form-date-input {
+	border: 1px solid grey;
+	border-radius: .3em;
+	margin: 1em 0;
+	padding: .3em;
+}
+
+input.journal-form-file-input {
+	padding: 0.3em 1em;
+	border: 0.1em solid #272727;
+	margin: 0.3em;
+	border-radius: 0.12em;
+	box-sizing: border-box;
+	text-decoration: none;
+	font-family: "Roboto", sans-serif;
+	font-weight: 300;
+	color: #000000;
+	text-align: center;
+	transition: all 0.2s;
+}
+
+.journal-previous-entries-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+
+div.journal {
+	margin: 2em;
+}
