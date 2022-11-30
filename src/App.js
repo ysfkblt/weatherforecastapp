@@ -12,6 +12,8 @@ export default function App() {
 	const [search, setSearch] = useState('');
 	const [info, setInfo] = useState({});
 	const [grad, setgrad] = useState(null);
+	const [zone, setZone] = useState('')
+	const [zip, setZip] = useState('')
 
 	async function getData() {
 		await fetch(
@@ -27,22 +29,40 @@ export default function App() {
 						current: d.current.temp_c,
 						max: d.forecast.forecastday[0].day.maxtemp_c,
 						min: d.forecast.forecastday[0].day.mintemp_c,
-					},
-					zone: d.location.zone,
+					}
 				})
 			);
 	}
 
+	const fetchZone = async (search) => {
+        const response = await fetch(`https://phzmapi.org/${search}.json`)
+        const data = await response.json()
+        return data
+    }
+
+
+    useEffect(() => {
+        async function getZone() {
+            let zoneResults = await fetchZone(zip)
+            setZone(zoneResults)
+        }
+        getZone()
+    }, [zip])
+
+
 	function handleButtonClick() {
 		getData();
 	}
+
 	function handleKeyPress(e) {
 		if (e.key === 'Enter') handleButtonClick();
 	}
 
 	function handleSearch(e) {
 		setSearch(e.target.value);
+		setZip(e.target.value);
 	}
+
 	useEffect(() => {
 		getData();
 	}, []);
@@ -57,18 +77,18 @@ export default function App() {
 				info.condition?.toLowerCase() === 'clear'
 					? { backgroundImage: background.clear }
 					: info.condition?.toLowerCase() === 'sunny'
-					? { backgroundImage: background.sunny }
-					: info.condition?.toLowerCase().includes('cloudy')
-					? { backgroundImage: background.cloudy }
-					: info.condition?.toLowerCase().includes('rain') ||
-					  info.condition?.toLowerCase().includes('drizzle')
-					? { backgroundImage: background.rainy }
-					: info.condition?.toLowerCase().includes('snow') ||
-					  info.condition?.toLowerCase().includes('sleet')
-					? { backgroundImage: background.snow }
-					: info.condition?.toLowerCase().includes('overcast')
-					? { backgroundImage: background.overcast }
-					: { backgroundImage: grad }
+						? { backgroundImage: background.sunny }
+						: info.condition?.toLowerCase().includes('cloudy')
+							? { backgroundImage: background.cloudy }
+							: info.condition?.toLowerCase().includes('rain') ||
+								info.condition?.toLowerCase().includes('drizzle')
+								? { backgroundImage: background.rainy }
+								: info.condition?.toLowerCase().includes('snow') ||
+									info.condition?.toLowerCase().includes('sleet')
+									? { backgroundImage: background.snow }
+									: info.condition?.toLowerCase().includes('overcast')
+										? { backgroundImage: background.overcast }
+										: { backgroundImage: grad }
 			}
 			className='flex flex-row  text-black items-center justify-center h-screen bg-center bg-cover select-none'
 		>
@@ -127,6 +147,10 @@ export default function App() {
 
 					<p className='sm:text-xl text-xs  text-start font-light  whitespace-nowrap  sm:mt-1 sm:ml-1'>
 						{info.country}
+					</p>
+
+					<p className='hardiness-zone sm:text-xl text-xs  text-start font-light  whitespace-nowrap  sm:mt-1 sm:ml-1'>
+						ZONE----{zone.zone}
 					</p>
 				</div>
 			</div>
