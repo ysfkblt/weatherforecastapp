@@ -67,16 +67,17 @@ function frostDateCheck(lastFrostDate, firstFrostDate) {
 
   if (lastFrostDate === "null" && firstFrostDate === "null") {
     console.log("🌱 Your hardiness zone does not have typical frost 🌱")
-    // ! what to suggest for this? same as 
+    // ! what to suggest for this? same as
 
     // return TRUE // okay to plant
-
   } else if (date > lfDate && date < ffDate) {
     // in the growing season, search for how many weeks until FIRST frost
     console.log(`🌱 today is in the growing season for your zone🌱`)
-    console.log({ date }, { lfDate }, { ffDate })
+    // console.log({ date }, { lfDate }, { ffDate })
+
     daysToFirstFrost = (ffDate - date) / MS_IN_A_DAY
     weeksToFirstFrost = Math.floor(daysToFirstFrost / 7) //rounding down...?
+
     console.log(
       `days to first frost: ${daysToFirstFrost} ; weeks to first frost: ${weeksToFirstFrost}`
     )
