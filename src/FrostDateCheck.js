@@ -2,7 +2,23 @@
 
 // ! frost data. make changes here to change frost dates
 // formatted as MM/DD
-const frostZoneMap = {}
+const frostZoneMap = {
+//zone# : [last frost date, first frost date]
+//aka zone#: [start of growing season, end of growing season]
+  1: ["5/29", "8/29"],
+  2: ["5/19", "9/5"],
+  3: ["5/9", "9/12"],
+  4: ["5/4", "9/30"],
+  5: ["4/19", "10/18"],
+  6: ["4/12", "10/25"],
+  7: ["3/29", "11/7"],
+  8: ["3/21", "11/18"],
+  9: ["2/18", "12/5"],
+  10: ["null", "null"],
+  11: ["null", "null"],
+  12: ["null", "null"],
+  13: ["null", "null"],
+}
 
 // Checks if today's date is within a specified frost zone
 // accept start date, end date as a string  DATE FORMAT: "MM/DD"
