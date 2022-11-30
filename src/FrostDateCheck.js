@@ -1,5 +1,5 @@
 const FrostDatecheck = () => {
-  const userZoneNumber = 9 // ! PLACEHOLDER
+  const userZoneNumber = 1 // ! PLACEHOLDER
 
   // initialize
   let firstFrostDate = null
@@ -124,9 +124,22 @@ const FrostDatecheck = () => {
 
   return (
     <>
-      <div></div>
+      <div>
+        <h1>showing something</h1>
+        <p>zone: {plantTimingObject.zone}</p>
+        <p>firstFrost: {plantTimingObject.firstFrost}</p>
+        <p>lastFrost: {plantTimingObject.lastFrost}</p>
+        <p>currentDate: {plantTimingObject.currentDate}</p>
+        <p>frostSeason: {plantTimingObject.frostSeason}</p>
+        <p>daysToFirstFrost: {plantTimingObject.daysToFirstFrost}</p>
+        <p>daysToLastFrost: {plantTimingObject.daysToLastFrost}</p>
+        <p>weeksToFirstFrost: {plantTimingObject.weeksToFirstFrost}</p>
+        <p>weeksToLastFrost: {plantTimingObject.weeksToLastFrost}</p>
+      </div>
     </>
   )
 }
+
+
 
 export default FrostDatecheck
