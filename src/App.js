@@ -35,19 +35,21 @@ export default function App() {
 	}
 
 	const fetchZone = async (search) => {
-        const response = await fetch(`https://phzmapi.org/${search}.json`)
-        const data = await response.json()
-        return data
-    }
+		const response = await fetch(`https://phzmapi.org/${search}.json`)
+		const data = await response.json()
+		return data
+	}
 
 
-    useEffect(() => {
-        async function getZone() {
-            let zoneResults = await fetchZone(zip)
-            setZone(zoneResults)
-        }
-        getZone()
-    }, [zip])
+	useEffect(() => {
+		async function getZone() {
+			let zoneResults = await fetchZone(zip)
+			{zoneResults ? (
+			setZone(zoneResults)
+			) : setZone("")}
+		}
+		getZone()
+	}, [zip])
 
 
 	function handleButtonClick() {
@@ -148,10 +150,11 @@ export default function App() {
 					<p className='sm:text-xl text-xs  text-start font-light  whitespace-nowrap  sm:mt-1 sm:ml-1'>
 						{info.country}
 					</p>
-
-					<p className='hardiness-zone sm:text-xl text-xs  text-start font-light  whitespace-nowrap  sm:mt-1 sm:ml-1'>
-						ZONE----{zone.zone}
-					</p>
+					{zone.zone ? (
+						<p className='hardiness-zone sm:text-xl text-xs  text-start font-light  whitespace-nowrap  sm:mt-1 sm:ml-1'>
+							Hardiness Zone {zone.zone}
+						</p>
+					) : null}
 				</div>
 			</div>
 		</div>

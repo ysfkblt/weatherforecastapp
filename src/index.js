@@ -18,7 +18,7 @@ root.render(
             {/* <ImageUpload /> */}
             <AppRoutes/>
             {/* <Database /> */}
-            <DisplayZone />
+            {/* <DisplayZone /> */}
     </Router>
     //   </React.StrictMode>
 )
