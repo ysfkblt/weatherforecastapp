@@ -4,7 +4,6 @@ import {getStorage} from "firebase/storage"
 import {getDatabase} from "firebase/database"
 import {getAuth} from "firebase/auth"
 
-
 const firebaseConfig = {
     apiKey: "AIzaSyAIJjJthpmTBHfPElnfbClql6f1Owt7Zfg",
     authDomain: "wormseye-d1c52.firebaseapp.com",
