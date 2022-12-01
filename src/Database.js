@@ -12,13 +12,6 @@ const Database = () => {
     console.log(database)
     // id,Species,Name,Color,Type,Seed Stock,Year,Quantity,Method #,Sowing Method,Weeks before last frost,Sowing Depth,Space inch,Life,Transplant To,Comment one,Comment two
     const flowers = [
-        // [1, 'Abrus precatorius', 'Prayer beads', 'yellow', 'vine', 'out', '', '', 1 - 15 - 16, "nick and soak, <2 wks @ 59ºF, rapid germ.", -6, 'covr', 18, 'a', 'fsun', "vine to 30 ft., requires string or wire", ''],
-        // [2, 'Abutilon vitifolium', 'Flowering maple', 'light blue', 'orn', 'out', '', '', 1, "<2 wks @ 68ºF, rapid germ.", -7, 'thin', 18, 'a', 'fsun', "to zone 7, winter indoors", 'spray for whitefly'],
-        // [3, 'Acer ginnala', 'Amur maple', 'yellowish white', 'tree', 'out', '', '', 8, "4 wks @ 75ºF, 4 mos @ 39º, then 68ºF", -17, 'covr', 180, 'p', 'fsun', 'takes more shade than other maples', "moist, well drained soil"],
-        // [4, 'Achillea filipendulina', 'Yarrow', 'white', 'orn', 'out', '', '', 1, "<2 wks @ 68ºF in lite, rapid germ.", -3, 'surf', 15, 'p', 'fsun', "rapid spreader, grow cool, 50", 'plant only to informal areas'],
-        // [5, 'Achillea ptarmica', 'Sneezewort', 'The pearl', 'orn', 'out','','' , 1, "<2 wks @ 68ºF in lite, rapid germ.", -7, 'surf', 10, 'p', 'fsun', 'mulch to protect from severe winters', "divide clumps after 2 - 3 years, grow cool, 50"],
-        // [6, 'Acmella oleracea', 'Eyeball plant', 'yellow-maroon eye', 'orn', 'in', 2000, 'lots', 1, "<2 wks @ 68ºF, rapid germ.", -6, 'thin', 10, 'a', 'psha', 'protect from slugs while young', ''],
-        // [7, 'Acokanthera oblongifolia', 'Wintersweet', 'white', 'vine', 'out', '', '', 1 - 16, "soak seed, <2 wks @ 68ºF, rapid germ.", -6, 'covr', 12, 'a', 'fsha', "very poisonous, Z10 vine to 18 ft.", 'requires string or wire to climb'],
         [1,"Abrus precatorius","Prayer beads","yellow","vine",42384,"nick and soak, <2 wks @ 59ºF, rapid germ.",-6,"covr",18,"a","fsun","vine to 30 ft., requires string or wire",""],
         [2,"Abutilon vitifolium","Flowering maple","light blue","orn",1,"<2 wks @ 68ºF, rapid germ.",-7,"thin",18,"a","fsun","to zone 7, winter indoors","spray for whitefly"],
         [3,"Acer ginnala","Amur maple","yellowish white","tree",8,"4 wks @ 75ºF, 4 mos @ 39º, then 68ºF",-17,"covr",180,"p","fsun","takes more shade than other maples","moist, well drained soil"],
