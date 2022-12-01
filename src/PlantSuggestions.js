@@ -8,7 +8,7 @@
 const PlantSuggestions = () => {
   const userZoneNumber = 8 // ! PLACEHOLDER
 
-  // initialize
+  // initializez
   let firstFrostDate = null
   let lastFrostDate = null
   let daysToFirstFrost = null
