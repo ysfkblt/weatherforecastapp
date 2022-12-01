@@ -1,13 +1,56 @@
 // import { db } from './firebase-config'
 // import { collection, getDocs, query, where } from "firebase/firestore"
 
+import { onAuthStateChanged } from "firebase/auth"
+import { collection, getDocs } from "firebase/firestore"
+import { useEffect, useState } from "react"
+import { auth, db } from "./firebase-config"
+
 // ! TODO, integrate getting actual user zone number
 // ! take out dummy plant data, and connect to real firestore database
 // ! style JSX return
 
-const PlantSuggestions = () => {
-  const userZoneNumber = 8 // ! PLACEHOLDER
+const PlantSuggestions = (props) => {
+  // const userZoneNumber = 8 // ! PLACEHOLDER
+  const [currentUser, setCurrentUser] = useState("")
+  const [userZoneNumber, setUserZoneNumber] = useState(8)
+  const [plantsDbData, setPlantsDbData] = useState([])
+  
+  const {userId}=props
+  // console.log(userId,"********")
+  
+  const wormCollection = collection(db, "worms", "bBx5WyQAWRUY1qP6Vshjj1S2i133", "personal")
+  
+  useEffect(()=>{
+  async function getworms(){
+    const data = await getDocs(wormCollection)
+    let pre_zone=data.docs[0].data().zone
+    let zone = parseInt(pre_zone)
+    setUserZoneNumber(zone)
+  }
+  getworms()
 
+   function plantData(){ 
+     getDocs(colRef)
+      .then((snapshot) => {
+          snapshot.docs.forEach((doc) => {
+            // console.log(doc.data(), "#####")
+            setPlantsDbData((prev)=> [...prev, doc.data()])
+            // , {id : doc.id}
+              // plantsDbData.push({ ...doc.data(), id : doc.id })
+          })
+          return plantsDbData
+      })
+      .catch(err => {
+          console.log(err.message)
+      })
+    }
+
+
+      plantData()
+}, [])
+
+// console.log(plantsDbData)
   // initializezzz
   let firstFrostDate = null
   let lastFrostDate = null
@@ -53,17 +96,17 @@ const PlantSuggestions = () => {
 
   function getFrostDates(zoneNum, frostZoneMap) {
     if (frostZoneMap[zoneNum]) {
-      console.log(
-        "user zone and last and first frosts >>> ",
-        zoneNum,
-        ":",
-        frostZoneMap[zoneNum]
-      )
+      // console.log(
+      //   "user zone and last and first frosts >>> ",
+      //   zoneNum,
+      //   ":",
+      //   frostZoneMap[zoneNum]
+      // )
       firstFrostDate = frostZoneMap[zoneNum][1]
       lastFrostDate = frostZoneMap[zoneNum][0]
     } else {
       // TBD add error handling
-      console.log("ERROR: entered zone does not exist within dataset")
+      // console.log("ERROR: entered zone does not exist within dataset")
     }
   }
 
@@ -71,10 +114,15 @@ const PlantSuggestions = () => {
   // return true if OKAY to plant, return false if NOT GOOD TO PLANT (aka in frost zone time)
   function frostDateCheck(lastFrostDate, firstFrostDate) {
     const dateStr = new Date().toLocaleDateString()
-    console.log("today's date: ", dateStr)
+    // console.log("today's date: ", dateStr)
     plantTimingObject.currentDate = dateStr
     const [month1, day1, year1] = dateStr.split("/")
-    const date = new Date(+year1, month1 - 1, +day1)
+
+    // ! look HERE
+    // const date = new Date(+year1, month1 - 1, +day1) 
+    const date = new Date(+year1, 7, +day1)
+    console.log(date)
+
 
     const startStr = firstFrostDate //EX dec 30 = "12/30"
     const [month2, day2] = startStr.split("/")
@@ -102,9 +150,9 @@ const PlantSuggestions = () => {
       daysToLastFrost = Math.abs(Math.round((lfDate - date) / MS_IN_A_DAY))
       weeksToLastFrost = Math.round(daysToLastFrost / 7) //rounding to nearest INT
 
-      console.log(
-        `days to first frost: ${daysToFirstFrost} ; weeks to first frost: ${weeksToFirstFrost}`
-      )
+      // console.log(
+      //   `days to first frost: ${daysToFirstFrost} ; weeks to first frost: ${weeksToFirstFrost}`
+      // )
 
       // based on the data, when in a growing time zone, weeks to last frost should be a positive number
       plantTimingObject.frostSeason = false
@@ -115,12 +163,12 @@ const PlantSuggestions = () => {
 
       // is the date in a frost season
     } else {
-      console.log(`🧊 today is in the frost season for your zone🧊`)
+      // console.log(`🧊 today is in the frost season for your zone🧊`)
       daysToLastFrost = Math.round(-(lfDateNextYear - date) / MS_IN_A_DAY)
       weeksToLastFrost = Math.round(daysToLastFrost / 7) //rounding to nearest INT
-      console.log(
-        `days to last frost: ${daysToLastFrost} ; weeks to last frost: ${weeksToLastFrost}`
-      )
+      // console.log(
+      //   `days to last frost: ${daysToLastFrost} ; weeks to last frost: ${weeksToLastFrost}`
+      // )
 
       // based on the data, when in a frost zone, weeks to last frost should be a negative number
       plantTimingObject.frostSeason = true
@@ -137,98 +185,85 @@ const PlantSuggestions = () => {
   plantTimingObject.firstFrost = firstFrostDate
   plantTimingObject.lastFrost = lastFrostDate
 
-  console.log(plantTimingObject)
+  // console.log(plantTimingObject)
 
   // ! can delete this, ONCE, we are connected to real/emulated firestore
-  const flowersDummyData = [
-    {
-      id: 1,
-      name: "cherry",
-      life: "a",
-      weeksBeforeLastFrost: -2,
-      method: 1,
-    },
-    {
-      id: 2,
-      name: "strawberry",
-      life: "a",
-      weeksBeforeLastFrost: 4,
-      method: 9,
-    },
-    {
-      id: 3,
-      name: "sunflower",
-      life: "a",
-      weeksBeforeLastFrost: 6,
-      method: 1,
-    },
-    {
-      id: 4,
-      name: "apple",
-      life: "b",
-      weeksBeforeLastFrost: 6,
-      method: 10,
-    },
-    {
-      id: 5,
-      name: "orchid",
-      life: "b",
-      weeksBeforeLastFrost: 4,
-      method: 10,
-    },
-    {
-      id: 6,
-      name: "leaf",
-      life: "a",
-      weeksBeforeLastFrost: 5,
-      method: 10,
-    },
-    {
-      id: 7,
-      name: "this cannot showup ever",
-      life: "p",
-      weeksBeforeLastFrost: 5,
-      method: 1,
-    },
-    {
-      id: 8,
-      name: "orchid plus",
-      life: "b",
-      weeksBeforeLastFrost: -16,
-      method: 10,
-    },
-    {
-      id: 9,
-      name: "leaf plus",
-      life: "a",
-      weeksBeforeLastFrost: -16,
-      method: 10,
-    },
-    {
-      id: 10,
-      name: "safhsdfsdaf",
-      life: "a",
-      weeksBeforeLastFrost: -16,
-      method: 1,
-    },
-  ]
+  // const flowersDummyData = [
+  //   {
+  //     id: 1,
+  //     name: "cherry",
+  //     life: "a",
+  //     weeksBeforeLastFrost: -2,
+  //     method: 1,
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "strawberry",
+  //     life: "a",
+  //     weeksBeforeLastFrost: 4,
+  //     method: 9,
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "sunflower",
+  //     life: "a",
+  //     weeksBeforeLastFrost: 6,
+  //     method: 1,
+  //   },
+  //   {
+  //     id: 4,
+  //     name: "apple",
+  //     life: "b",
+  //     weeksBeforeLastFrost: 6,
+  //     method: 10,
+  //   },
+  //   {
+  //     id: 5,
+  //     name: "orchid",
+  //     life: "b",
+  //     weeksBeforeLastFrost: 4,
+  //     method: 10,
+  //   },
+  //   {
+  //     id: 6,
+  //     name: "leaf",
+  //     life: "a",
+  //     weeksBeforeLastFrost: 5,
+  //     method: 10,
+  //   },
+  //   {
+  //     id: 7,
+  //     name: "this cannot showup ever",
+  //     life: "p",
+  //     weeksBeforeLastFrost: 5,
+  //     method: 1,
+  //   },
+  //   {
+  //     id: 8,
+  //     name: "orchid plus",
+  //     life: "b",
+  //     weeksBeforeLastFrost: -16,
+  //     method: 10,
+  //   },
+  //   {
+  //     id: 9,
+  //     name: "leaf plus",
+  //     life: "a",
+  //     weeksBeforeLastFrost: -16,
+  //     method: 10,
+  //   },
+  //   {
+  //     id: 10,
+  //     name: "safhsdfsdaf",
+  //     life: "a",
+  //     weeksBeforeLastFrost: -16,
+  //     method: 1,
+  //   },
+  // ]
 
   // ! ======== collection reference
-  // const colRef = collection(db, 'plants')
-  // queries
-  // const q = query(colRef, where("life", '==', 'a'))
+  const colRef = collection(db, 'plants')
   // get collection data
-  // getDocs(colRef)
-  //     .then((snapshot) => {
-  //         let plants = []
-  //         snapshot.docs.forEach((doc) => {
-  //             plants.push({ ...doc.data(), id : doc.id })
-  //         })
-  //         console.log(plants)
-  //     })
-  //     .catch(err => {
-  //         console.log(err.message)
-  //     })
 
   // filter based on time of year
   // this fn will provide an array of 5 objects that are the plant suggestions for our user.
@@ -242,6 +277,11 @@ const PlantSuggestions = () => {
   // the array is the whole list of plants from db
   const getPlantSug = (obj, array) => {
     let viablePlantSug = array.filter((x) => x.life === "a" || x.life === "b")
+    // console.log("======== HERE ======")
+    // console.log("this is the array!! ======== ",array)
+    // console.log(viablePlantSug)
+
+
     // This is during frost season
     if (obj.frostSeason) {
       let filteredArr = viablePlantSug.filter(
@@ -252,24 +292,24 @@ const PlantSuggestions = () => {
     // This is during non-frost season
     else {
       // if two months from first frost
+      
       if (obj.weeksToFirstFrost < 9) {
         if (obj.weeksToFirstFrost < 9 && obj.weeksToFirstFrost > 4) {
           let twoMonthTillFrost = viablePlantSug.filter((x) => x.method === 1)
+          // console.log("======= in the growing season")
+          // console.log(twoMonthTillFrost)
           return filterSug(twoMonthTillFrost)
         }
         if (obj.weeksToFirstFrost <= 4 && obj.zone === 9) {
           let oneMonthTillFrost = viablePlantSug.filter((x) => x.method === 8)
-          console.log("in one month with zone 9")
           return filterSug(oneMonthTillFrost)
         }
         if (obj.weeksToFirstFrost <= 4 && obj.zone === 8) {
           let oneMonthTillFrost = viablePlantSug.filter((x) => x.method === 9)
-          console.log("in one month with zone 8")
           return filterSug(oneMonthTillFrost)
         }
         if (obj.weeksToFirstFrost <= 4 && obj.zone <= 7) {
           let oneMonthTillFrost = viablePlantSug.filter((x) => x.method === 10)
-          console.log("in one month with zone 7")
           return filterSug(oneMonthTillFrost)
         }
       }
@@ -286,14 +326,17 @@ const PlantSuggestions = () => {
     }
   }
 
-  // console.log(getPlantSug(plantTimingObject, flowersDummyData))
-  let suggestedPlantsData = getPlantSug(plantTimingObject, flowersDummyData)
+  // console.log(getPlantSug(plantTimingObject, plantsDatabaseData))
+  console.log("=======this is the plants DB data",plantsDbData)
+  let suggestedPlantsData = getPlantSug(plantTimingObject, plantsDbData)
 
   return (
-    <div>
-      <h2> PLANTS Suggestions </h2>
+  
+    <div className="plant-suggestions-container">
+      <h2 className="plant-suggestions-header"> PLANT SUGGESTIONS </h2>
+      {/* <p>Based on your current location's frost zone, here are some plants we think would be happy being planted right now:</p> */}
       {suggestedPlantsData.map((curPlant) => (
-        <div key={curPlant.id}>
+        <div className="plant-suggestions-" key={curPlant.id}>
           <h3>{curPlant.name}</h3>
         </div>
       ))}

@@ -28,10 +28,14 @@ console.log(props.userId,"****")
 				const datas = await getDocs(wormCollection)
                 // console.log(check, "$$$$")
 				if (data1.docs.length === 0) {
-					addDoc(wormIdCollection, { zip: props.userId })
+					addDoc(wormCollection, { 
+						zip: props.zip, 
+						zone:props.zone,
+						coordinates:props.coordinates,
+						  })
 				} 
                 // else if(check)
-                addDoc(wormCollection,{zip:props.zip})
+                addDoc(wormCollection,{zip:props.zip, zone:props.zone })
 			}
 			// await setWorms((datas.docs.map((doc) => ({ ...doc.data(), id: doc.id }))))
 			getworms()

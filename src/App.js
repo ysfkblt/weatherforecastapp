@@ -10,6 +10,7 @@ import DisplayZone from './Zone';
 import { addDoc, collection, getDocs, query, where } from 'firebase/firestore';
 import { db } from './firebase-config';
 import UpdateZipCode from './UserAuth';
+import PlantSuggestions from "./PlantSuggestions";
 
 export default function App(props) {
 	const [search, setSearch] = useState('');
@@ -47,35 +48,35 @@ export default function App(props) {
 		const data = await response.json()
 		return data
 	}
-	
 
-		// const wormIdCollection = collection(db, "worms")
-		// const q = query(wormIdCollection, where("id", "==", props.userId))
-		// const wormCollection = collection(db, "worms", currentChild, "journal")
-		
-		useEffect(() => {
-			async function getZone() {
-				let zoneResults = await fetchZone(search)
-				{
-					zoneResults ? (
-						setZone(zoneResults)
-					) : setZone("")
-				}
+
+	// const wormIdCollection = collection(db, "worms")
+	// const q = query(wormIdCollection, where("id", "==", props.userId))
+	// const wormCollection = collection(db, "worms", currentChild, "journal")
+
+	useEffect(() => {
+		async function getZone() {
+			let zoneResults = await fetchZone(search)
+			{
+				zoneResults ? (
+					setZone(zoneResults)
+				) : setZone("")
 			}
-			getZone()
-			// async function getworms() {
-			// 	const data1 = await getDocs(q)
-			// 	const wormCollection = collection(db, "worms", data1.docs[0].id, "journal")
-			// 	const datas = await getDocs(wormCollection)
-			// 	if (data1.docs.length === 0) {
-			// 		addDoc(wormIdCollection, { id: props.userId })
-			// 	}
-			// 	setCurrentChild(data1.docs[0].id)
-			// }
-			// // await setWorms((datas.docs.map((doc) => ({ ...doc.data(), id: doc.id }))))
-			// getworms()
-		}, [search])
-	
+		}
+		getZone()
+		// async function getworms() {
+		// 	const data1 = await getDocs(q)
+		// 	const wormCollection = collection(db, "worms", data1.docs[0].id, "journal")
+		// 	const datas = await getDocs(wormCollection)
+		// 	if (data1.docs.length === 0) {
+		// 		addDoc(wormIdCollection, { id: props.userId })
+		// 	}
+		// 	setCurrentChild(data1.docs[0].id)
+		// }
+		// // await setWorms((datas.docs.map((doc) => ({ ...doc.data(), id: doc.id }))))
+		// getworms()
+	}, [search])
+
 
 
 	// SEARCH
@@ -102,8 +103,9 @@ export default function App(props) {
 	}, []);
 
 	return (
-	
+
 		<div
+			// Dynamic background from boilerplate
 			style={
 				info.condition?.toLowerCase() === 'clear'
 					? { backgroundImage: background.clear }
@@ -123,13 +125,22 @@ export default function App(props) {
 			}
 			className='flex flex-row  text-black items-center justify-center h-screen bg-center bg-cover select-none'
 		>
-			{props.userId&& zip.length===5?
-			<>
-				<UpdateZipCode userId={props.userId} zip={zip}/>
-				{/* {console.log("WORKING")} */}
-			</>
-				:null				
+			{/* Update user */}
+			{props.userId && zip.length === 5 && zone ?
+				<>
+					<UpdateZipCode
+						userId={props.userId}
+						zip={zip}
+						zone={zone.zone}
+						coordinates={zone.coordinates}
+
+					/>
+					{/* {console.log("WORKING")} */}
+				</>
+				: null
 			}
+
+			{/* Search Bar */}
 			<div className='flex flex-row h-16 sm:h-24   absolute'>
 				<input
 					className='bg-transparent placeholder:text-black text-lg focus:outline-none border-transparent focus:border-transparent focus:ring-0 sm:text-xl font-light self-end mb-1 mr-10'
@@ -153,6 +164,7 @@ export default function App(props) {
 				</div>
 			</div>
 
+			{/* Hidden info display, reveals after search button click */}
 			<div className='grid overflow-hidden grid-cols-2 grid-rows-2 gap-10 sm:gap-40 sm:mt-72 mt-56 sm:mr-0 mr-4'>
 				<div className='row-span-2 justify-self-end'>
 					{info.temp ? (
@@ -192,7 +204,13 @@ export default function App(props) {
 						</p>
 					) : null}
 				</div>
+
+				
+				
+					<PlantSuggestions userId={props.userId} />
+				
 			</div>
+
 		</div>
 	);
 }

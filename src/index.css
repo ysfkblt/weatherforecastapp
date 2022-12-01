@@ -79,7 +79,7 @@ li.nav-bar-link {
 
 
 
-div.auth-container {
+.auth-container {
 	border-bottom: 1px solid black;
 	display: flex;
 	flex-direction: column;
@@ -90,7 +90,7 @@ div.auth-container {
 	position: relative;	
 }
 
-div.auth-signup-container {
+.auth-signup-container {
 	
 	display: flex;
 	justify-content: center;
@@ -101,7 +101,7 @@ div.auth-signup-container {
 
 }
 
-div.auth-login-container {
+.auth-login-container {
 	
 	display: flex;
 	justify-content: center;
@@ -111,7 +111,7 @@ div.auth-login-container {
 	gap: 1em;
 }
 
-div.auth-current-user-container {
+.auth-current-user-container {
 	border-bottom: 1px solid black;
 	display: flex;
 	justify-content: center;
@@ -129,7 +129,6 @@ h3.auth-header {
 	border-radius: 4px;
 	font-size: 16px;
 	background-color: white;
-	/* background-image: url('searchicon.png'); */
 	background-position: 10px 10px; 
 	background-repeat: no-repeat;
 	padding: 12px 20px 12px 40px;
@@ -189,4 +188,17 @@ input.journal-form-file-input {
 
 div.journal {
 	margin: 2em;
+}
+
+/* PLANT SUGGESTIONS */
+
+.plant-suggestions-container {
+	border-bottom: 1px solid black;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	z-index: 1;
+	position: relative;	
 }
