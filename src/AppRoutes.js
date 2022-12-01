@@ -1,5 +1,6 @@
 import { onAuthStateChanged } from "firebase/auth";
 import { collection, getDocs, query, where } from "firebase/firestore";
+import PlantSuggestions from "./PlantSuggestions.js"
 import React, { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import App from "./App";
@@ -33,6 +34,7 @@ const AppRoutes= ()=>{
         <Routes>
 
             <Route path="/signUp" element={<Auth/>}/>
+<Route path="/development" element={<PlantSuggestions />} />
             {user ?<>
             <Route path="/" element={<App userId={user.uid}/>}/>
             <Route path="/journal" element={<Journal userId={user.uid}/>  }/>
