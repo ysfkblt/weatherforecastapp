@@ -4,7 +4,7 @@ import App from "./App"
 import Auth from "./Auth"
 import Home from "./Home"
 import Journal from "./Journal"
-import FrostDatecheck from "./FrostDateCheck"
+import PlantSuggestions from "./PlantSuggestions.js"
 
 const AppRoutes = () => {
   return (
@@ -15,7 +15,7 @@ const AppRoutes = () => {
         <Route path="/signUp" element={<Auth />} />
 
         {/* temporary development route */}
-        <Route path="/development" element={<FrostDatecheck />} />
+        <Route path="/development" element={<PlantSuggestions />} />
       </Routes>
     </>
   )
