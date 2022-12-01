@@ -1,5 +1,5 @@
 const FrostDatecheck = () => {
-  const userZoneNumber = 1 // ! PLACEHOLDER
+  const userZoneNumber = 4 // ! PLACEHOLDER
 
   // initialize
   let firstFrostDate = null
@@ -139,7 +139,5 @@ const FrostDatecheck = () => {
     </>
   )
 }
-
-
 
 export default FrostDatecheck
