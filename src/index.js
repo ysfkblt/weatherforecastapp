@@ -8,6 +8,7 @@ import DisplayZone from "./Zone";
 import App from "./App";
 import Navbar from "./Navbar";
 import AppRoutes from "./AppRoutes";
+import PlantSuggestions from "./PlantSuggestions";
 
 const root = ReactDOM.createRoot(document.getElementById("root"))
 root.render(
@@ -19,6 +20,7 @@ root.render(
             <AppRoutes/>
             {/* <Database /> */}
             {/* <DisplayZone /> */}
+            {/* <PlantSuggestions/> */}
     </Router>
     //   </React.StrictMode>
 )

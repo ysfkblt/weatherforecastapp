@@ -5,8 +5,8 @@ import { storage } from "./firebase-config"
 import { getDownloadURL, listAll, ref, uploadBytes } from "firebase/storage"
 import { onAuthStateChanged } from "firebase/auth"
 import { useParams } from "react-router-dom"
+
 const Journal = (props) => {
-  console.log(props,"######")
   const [worms, setWorms] = useState([])
   const [userId, setUserId] = useState("2")
   const [imageToUpload, setImageToUpload] = useState("")
@@ -20,8 +20,8 @@ const Journal = (props) => {
   //collection connects us to our firestore DB. db is from the firebase-config.js and the 2nd variable is the table name
   const wormCollection = collection(db, "worms", props.userId, "journal")
   const wormIdCollection = collection(db, "worms")
-// console.log(wormCollection)
-// console.log("THIS IS WORM COLLECTION")
+  // console.log(wormCollection)
+  // console.log("THIS IS WORM COLLECTION")
   //ref is for the firebase storage; storage is from the firebase-config.js file and the 2nd variable is folder name
   const imageListRef = ref(storage, `${userId}`)
 
@@ -34,7 +34,6 @@ const Journal = (props) => {
     return loadingData
 }
   useEffect( () => {
-    
     //this helps us remember if we are logged in and able to get the logged in user data
     onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser)
@@ -43,19 +42,17 @@ const Journal = (props) => {
     async function getworms(){ 
       const data1 = await getDocs(q)
       const datas = await getDocs(wormCollection)
+      console.log(datas)
       if ( data1.docs.length===0){
         addDoc(wormCollection, { id:props.userId})
       } 
-        setCurrentChild(data1.docs[0].id)
+        // setCurrentChild(data1.docs[0].id)
       await setWorms((datas.docs.map((doc) => ({ ...doc.data(), id: doc.id }))))
+        }
 
-  
-      // console.log(datas.docs[0].data(), "%%%%%%")
-    }
      getworms()
   }, [])
-// console.log(worms)
-
+console.log(worms)
   const uploadImage = () => {
     //use addDoc to add data to the table; first var is the table name, 2nd is the data you want to add
     if (imageToUpload == null) return (addDoc(wormCollection, { notes: newNotes, date:date}))
@@ -75,7 +72,6 @@ const Journal = (props) => {
   // Get current date
   let newDate = new Date();
   let defaultDate = newDate.toISOString()
-  console.log(defaultDate)
 
   return (
     <div className="journal-container">
