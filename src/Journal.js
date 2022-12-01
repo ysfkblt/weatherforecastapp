@@ -42,13 +42,16 @@ const Journal = () => {
 
   const uploadImage = () => {
     //use addDoc to add data to the table; first var is the table name, 2nd is the data you want to add
-    if (imageToUpload == null) return (addDoc(wormCollection, { image: "", notes: newNotes }))
+    if (imageToUpload == null) return (addDoc(q, {entry:{ image: "", notes: newNotes, date:date} }))
+    //ref is to get the specfic storage folder. first var is from the firebase-config and 2nd is the location/nameofphoto
     const imageRef = ref(storage, `${userId}/${imageToUpload.name}`)
+    //
     uploadBytes(imageRef, imageToUpload).then((snapshot) => {
       getDownloadURL(snapshot.ref).then((url) => {
         // setImageList((prev) => [...prev, url])
-        addDoc(wormCollection, { image: url, notes: newNotes, date: date })
-        setWorms((prev) => [...prev, { image: url, notes: newNotes, date: date }])
+        addDoc(q, {entry:{ image: url, notes: newNotes, date: date }})
+        setWorms((prev) => [...prev, {entry:{ image: url, notes: newNotes, date: date }}])
+        alert("Added!")
       })
     })
   }
