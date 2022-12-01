@@ -31,12 +31,14 @@ const AppRoutes= ()=>{
     return (
         <>
         <Routes>
-            <Route path="/" element={<App/>}/>
+
             <Route path="/signUp" element={<Auth/>}/>
-            {user?
-            <Route path="/journal" element={<Journal userId={user.uid}/>  }/>:null
+            {user ?<>
+            <Route path="/" element={<App userId={user.uid}/>}/>
+            <Route path="/journal" element={<Journal userId={user.uid}/>  }/>
+            </>
+            :  <Route path="/" element={<App/>}/>
         }
-        
         </Routes>
         </>
     )

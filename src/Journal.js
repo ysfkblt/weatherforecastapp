@@ -18,7 +18,7 @@ const Journal = (props) => {
   // const [imageUrl, setImageUrl]=useState(null)
 
   //collection connects us to our firestore DB. db is from the firebase-config.js and the 2nd variable is the table name
-  const wormCollection = collection(db, "worms", currentChild, "journal")
+  const wormCollection = collection(db, "worms", props.userId, "journal")
   const wormIdCollection = collection(db, "worms")
 // console.log(wormCollection)
 // console.log("THIS IS WORM COLLECTION")
@@ -33,7 +33,6 @@ const Journal = (props) => {
     // console.log( loadingData, "*****")  
     return loadingData
 }
-console.log(props.userId,"^^^^^")
   useEffect( () => {
     
     //this helps us remember if we are logged in and able to get the logged in user data
@@ -43,11 +42,9 @@ console.log(props.userId,"^^^^^")
     //getDocs loads all the info from the collection we want. we can put wormCollection for all users data or q for filtered data
     async function getworms(){ 
       const data1 = await getDocs(q)
-      const wormCollection = collection(db, "worms", data1.docs[0].id, "journal")
       const datas = await getDocs(wormCollection)
-      console.log(datas, "******")
       if ( data1.docs.length===0){
-        addDoc(wormIdCollection, { id:props.userId})
+        addDoc(wormCollection, { id:props.userId})
       } 
         setCurrentChild(data1.docs[0].id)
       await setWorms((datas.docs.map((doc) => ({ ...doc.data(), id: doc.id }))))
@@ -61,7 +58,7 @@ console.log(props.userId,"^^^^^")
 
   const uploadImage = () => {
     //use addDoc to add data to the table; first var is the table name, 2nd is the data you want to add
-    if (imageToUpload == null) return (addDoc(wormCollection, { image: "", notes: newNotes, date:date}))
+    if (imageToUpload == null) return (addDoc(wormCollection, { notes: newNotes, date:date}))
     //ref is to get the specfic storage folder. first var is from the firebase-config and 2nd is the location/nameofphoto
     const imageRef = ref(storage, `${userId}/${imageToUpload.name}`)
     //

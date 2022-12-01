@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 
-import { onAuthStateChanged, signOut } from "firebase/auth"
+import { onAuthStateChanged, signOut, updateProfile } from "firebase/auth"
 import { auth, db } from "./firebase-config"
 import { Link, useNavigate, useParams } from "react-router-dom";
 
@@ -11,12 +11,16 @@ const Navbar = () => {
     onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser)
     })
+    // updateProfile(auth.currentUser, {
+    //     displayName:"testing"
+    // })
   },[])
   const logout = async () => {
     await signOut(auth)
   }
+// console.log(user.providerData)
 
-  return (
+return (
     <>
       <nav className="nav-bar-container">
         <ul className="nav-bar-list">
@@ -28,7 +32,6 @@ const Navbar = () => {
               <button className="nav-bar-link" onClick={logout}>Sign out</button>
           </> :
               <li className="nav-bar-link"> <Link to="/signUp"> Log In </Link></li>
-          
 }
           {/* <Link to="/journal">Journal</Link> */}
         </ul>

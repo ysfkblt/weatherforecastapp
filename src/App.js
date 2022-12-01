@@ -7,13 +7,19 @@ import {
 import background, { gradient } from './background';
 import { shuffle } from 'lodash';
 import DisplayZone from './Zone';
+import { addDoc, collection, getDocs, query, where } from 'firebase/firestore';
+import { db } from './firebase-config';
+import UpdateZipCode from './UserAuth';
 
-export default function App() {
+export default function App(props) {
 	const [search, setSearch] = useState('');
 	const [info, setInfo] = useState({});
 	const [grad, setgrad] = useState(null);
 	const [zone, setZone] = useState('')
 	const [zip, setZip] = useState('')
+
+
+	// WEATHER API
 
 	async function getData() {
 		await fetch(
@@ -34,23 +40,45 @@ export default function App() {
 			);
 	}
 
+	// ZONE API
+
 	const fetchZone = async (search) => {
 		const response = await fetch(`https://phzmapi.org/${search}.json`)
 		const data = await response.json()
 		return data
 	}
+	
+
+		// const wormIdCollection = collection(db, "worms")
+		// const q = query(wormIdCollection, where("id", "==", props.userId))
+		// const wormCollection = collection(db, "worms", currentChild, "journal")
+		
+		useEffect(() => {
+			async function getZone() {
+				let zoneResults = await fetchZone(search)
+				{
+					zoneResults ? (
+						setZone(zoneResults)
+					) : setZone("")
+				}
+			}
+			getZone()
+			// async function getworms() {
+			// 	const data1 = await getDocs(q)
+			// 	const wormCollection = collection(db, "worms", data1.docs[0].id, "journal")
+			// 	const datas = await getDocs(wormCollection)
+			// 	if (data1.docs.length === 0) {
+			// 		addDoc(wormIdCollection, { id: props.userId })
+			// 	}
+			// 	setCurrentChild(data1.docs[0].id)
+			// }
+			// // await setWorms((datas.docs.map((doc) => ({ ...doc.data(), id: doc.id }))))
+			// getworms()
+		}, [search])
+	
 
 
-	useEffect(() => {
-		async function getZone() {
-			let zoneResults = await fetchZone(zip)
-			{zoneResults ? (
-			setZone(zoneResults)
-			) : setZone("")}
-		}
-		getZone()
-	}, [zip])
-
+	// SEARCH
 
 	function handleButtonClick() {
 		getData();
@@ -74,6 +102,7 @@ export default function App() {
 	}, []);
 
 	return (
+	
 		<div
 			style={
 				info.condition?.toLowerCase() === 'clear'
@@ -94,6 +123,13 @@ export default function App() {
 			}
 			className='flex flex-row  text-black items-center justify-center h-screen bg-center bg-cover select-none'
 		>
+			{props.userId&& zip.length===5?
+			<>
+				<UpdateZipCode userId={props.userId} zip={zip}/>
+				{/* {console.log("WORKING")} */}
+			</>
+				:null				
+			}
 			<div className='flex flex-row h-16 sm:h-24   absolute'>
 				<input
 					className='bg-transparent placeholder:text-black text-lg focus:outline-none border-transparent focus:border-transparent focus:ring-0 sm:text-xl font-light self-end mb-1 mr-10'
