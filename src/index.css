@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
 
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -36,6 +38,7 @@ button {
 	color: #000000;
 	text-align: center;
 	transition: all 0.2s;
+	min-width: 7em;
 }
 
 button:hover {
@@ -47,6 +50,8 @@ h1 {
 	font-size: 1.5em;
 	font-weight: 200;
 }
+
+
 
 /* NAV */
 
@@ -71,27 +76,39 @@ li.nav-bar-link {
 
 /* AUTH */
 
+
+
+
 div.auth-container {
 	border-bottom: 1px solid black;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	height: 100vh;
+	z-index: 1;
+	position: relative;	
 }
 
 div.auth-signup-container {
-	border-bottom: 1px solid black;
+	
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	margin: 20px;
+	width: 100%;
+	gap: 1em;
 
 }
 
 div.auth-login-container {
-	border-bottom: 1px solid black;
+	
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	margin: 20px;
+	width: 100%;
+	gap: 1em;
 }
 
 div.auth-current-user-container {
@@ -100,6 +117,31 @@ div.auth-current-user-container {
 	justify-content: center;
 	align-items: center;
 }
+
+h3.auth-header {
+	width: 6.5em;
+}
+
+.email-password-input {
+	width: 130px;
+	box-sizing: border-box;
+	border: 2px solid rgb(76, 76, 76);
+	border-radius: 4px;
+	font-size: 16px;
+	background-color: white;
+	/* background-image: url('searchicon.png'); */
+	background-position: 10px 10px; 
+	background-repeat: no-repeat;
+	padding: 12px 20px 12px 40px;
+	transition: width 0.4s ease-in-out;
+	width: 13em;
+}
+
+.email-password-input:focus {
+	border: 3px solid #555;
+}
+
+
 
 /* JOURNAL */
 

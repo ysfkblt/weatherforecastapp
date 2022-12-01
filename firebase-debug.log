@@ -1,0 +1,206 @@
+[debug] [2022-12-01T16:49:56.132Z] ----------------------------------------------------------------------
+[debug] [2022-12-01T16:49:56.132Z] Command:       /Users/gracegao/.nvm/versions/node/v16.16.0/bin/node /Users/gracegao/.nvm/versions/node/v16.16.0/bin/firebase emulators:start
+[debug] [2022-12-01T16:49:56.133Z] CLI Version:   11.16.1
+[debug] [2022-12-01T16:49:56.133Z] Platform:      darwin
+[debug] [2022-12-01T16:49:56.133Z] Node Version:  v16.16.0
+[debug] [2022-12-01T16:49:56.133Z] Time:          Thu Dec 01 2022 11:49:56 GMT-0500 (Eastern Standard Time)
+[debug] [2022-12-01T16:49:56.133Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-12-01T16:49:56.171Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-12-01T16:49:56.172Z] > authorizing via signed-in user (grace5829@gmail.com)
+[debug] [2022-12-01T16:49:56.207Z] java version "17.0.5" 2022-10-18 LTS
+Java(TM) SE Runtime Environment (build 17.0.5+9-LTS-191)
+Java HotSpot(TM) 64-Bit Server VM (build 17.0.5+9-LTS-191, mixed mode, sharing)
+
+[debug] [2022-12-01T16:49:56.209Z] Parsed Java major version: 17
+[info] i  emulators: Starting emulators: auth, functions, firestore, database, hosting, pubsub, storage, eventarc {"metadata":{"emulator":{"name":"hub"},"message":"Starting emulators: auth, functions, firestore, database, hosting, pubsub, storage, eventarc"}}
+[debug] [2022-12-01T16:49:56.864Z] [logging] Logging Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2022-12-01T16:49:56.865Z] [auth] Authentication Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2022-12-01T16:49:56.865Z] [firestore] Firestore Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2022-12-01T16:49:56.865Z] [firestore.websocket] websocket server for firestore only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2022-12-01T16:49:56.865Z] [database] Database Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[warn] ⚠  hosting: Hosting Emulator unable to start on port 5001, starting on 5002 instead. {"metadata":{"emulator":{"name":"hosting"},"message":"Hosting Emulator unable to start on port 5001, starting on 5002 instead."}}
+[debug] [2022-12-01T16:49:56.865Z] [hosting] Hosting Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2022-12-01T16:49:56.865Z] [pubsub] Pub/Sub Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2022-12-01T16:49:56.865Z] [storage] Storage Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2022-12-01T16:49:56.865Z] assigned listening specs for emulators {"user":{"hub":[{"address":"127.0.0.1","family":"IPv4","port":4400},{"address":"::1","family":"IPv6","port":4400}],"ui":[{"address":"127.0.0.1","family":"IPv4","port":1337},{"address":"::1","family":"IPv6","port":1337}],"logging":[{"address":"127.0.0.1","family":"IPv4","port":4500}],"auth":[{"address":"127.0.0.1","family":"IPv4","port":9099}],"firestore":[{"address":"127.0.0.1","family":"IPv4","port":8080}],"firestore.websocket":[{"address":"127.0.0.1","family":"IPv4","port":9150}],"database":[{"address":"127.0.0.1","family":"IPv4","port":9000}],"hosting":[{"address":"127.0.0.1","family":"IPv4","port":5002}],"pubsub":[{"address":"127.0.0.1","family":"IPv4","port":7070}],"storage":[{"address":"127.0.0.1","family":"IPv4","port":9199}]},"metadata":{"message":"assigned listening specs for emulators"}}
+[debug] [2022-12-01T16:49:56.869Z] [hub] writing locator at /var/folders/0c/nqcvzzy13rb32lml5pkw_w3w0000gn/T/hub-wormseye-d1c52.json
+[debug] [2022-12-01T16:49:57.005Z] [functions] Functions Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2022-12-01T16:49:57.006Z] [eventarc] Eventarc Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2022-12-01T16:49:57.006Z] late-assigned ports for functions and eventarc emulators {"user":{"hub":[{"address":"127.0.0.1","family":"IPv4","port":4400},{"address":"::1","family":"IPv6","port":4400}],"ui":[{"address":"127.0.0.1","family":"IPv4","port":1337},{"address":"::1","family":"IPv6","port":1337}],"logging":[{"address":"127.0.0.1","family":"IPv4","port":4500}],"auth":[{"address":"127.0.0.1","family":"IPv4","port":9099}],"firestore":[{"address":"127.0.0.1","family":"IPv4","port":8080}],"firestore.websocket":[{"address":"127.0.0.1","family":"IPv4","port":9150}],"database":[{"address":"127.0.0.1","family":"IPv4","port":9000}],"hosting":[{"address":"127.0.0.1","family":"IPv4","port":5002}],"pubsub":[{"address":"127.0.0.1","family":"IPv4","port":7070}],"storage":[{"address":"127.0.0.1","family":"IPv4","port":9199}],"functions":[{"address":"127.0.0.1","family":"IPv4","port":5001}],"eventarc":[{"address":"127.0.0.1","family":"IPv4","port":9299}]},"metadata":{"message":"late-assigned ports for functions and eventarc emulators"}}
+[info] ✔  functions: Using node@16 from host. {"metadata":{"emulator":{"name":"functions"},"message":"Using node@16 from host."}}
+[debug] [2022-12-01T16:49:57.012Z] defaultcredentials: writing to file /Users/gracegao/.config/firebase/grace5829_gmail_com_application_default_credentials.json
+[debug] [2022-12-01T16:49:57.013Z] Setting GAC to /Users/gracegao/.config/firebase/grace5829_gmail_com_application_default_credentials.json {"metadata":{"emulator":{"name":"functions"},"message":"Setting GAC to /Users/gracegao/.config/firebase/grace5829_gmail_com_application_default_credentials.json"}}
+[debug] [2022-12-01T16:49:57.014Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/wormseye-d1c52/adminSdkConfig [none]
+[debug] [2022-12-01T16:49:57.407Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/wormseye-d1c52/adminSdkConfig 200
+[debug] [2022-12-01T16:49:57.407Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/wormseye-d1c52/adminSdkConfig {"projectId":"wormseye-d1c52","databaseURL":"https://wormseye-d1c52-default-rtdb.firebaseio.com","storageBucket":"wormseye-d1c52.appspot.com","locationId":"us-central"}
+[debug] [2022-12-01T16:49:57.444Z] Ignoring unsupported arg: auto_download {"metadata":{"emulator":{"name":"firestore"},"message":"Ignoring unsupported arg: auto_download"}}
+[debug] [2022-12-01T16:49:57.444Z] Ignoring unsupported arg: single_project_mode_error {"metadata":{"emulator":{"name":"firestore"},"message":"Ignoring unsupported arg: single_project_mode_error"}}
+[debug] [2022-12-01T16:49:57.444Z] Starting Firestore Emulator with command {"binary":"java","args":["-Dgoogle.cloud_firestore.debug_log_level=FINE","-Duser.language=en","-jar","/Users/gracegao/.cache/firebase/emulators/cloud-firestore-emulator-v1.15.1.jar","--host","127.0.0.1","--port",8080,"--websocket_port",9150,"--project_id","wormseye-d1c52","--rules","/Users/gracegao/Documents/JuniorPhase/SeniorPhase/worms-eye-view/firestore.rules","--single_project_mode",true,"--functions_emulator","127.0.0.1:5001"],"optionalArgs":["port","webchannel_port","host","rules","websocket_port","functions_emulator","seed_from_export","project_id","single_project_mode"],"joinArgs":false} {"metadata":{"emulator":{"name":"firestore"},"message":"Starting Firestore Emulator with command {\"binary\":\"java\",\"args\":[\"-Dgoogle.cloud_firestore.debug_log_level=FINE\",\"-Duser.language=en\",\"-jar\",\"/Users/gracegao/.cache/firebase/emulators/cloud-firestore-emulator-v1.15.1.jar\",\"--host\",\"127.0.0.1\",\"--port\",8080,\"--websocket_port\",9150,\"--project_id\",\"wormseye-d1c52\",\"--rules\",\"/Users/gracegao/Documents/JuniorPhase/SeniorPhase/worms-eye-view/firestore.rules\",\"--single_project_mode\",true,\"--functions_emulator\",\"127.0.0.1:5001\"],\"optionalArgs\":[\"port\",\"webchannel_port\",\"host\",\"rules\",\"websocket_port\",\"functions_emulator\",\"seed_from_export\",\"project_id\",\"single_project_mode\"],\"joinArgs\":false}"}}
+[info] i  firestore: Firestore Emulator logging to firestore-debug.log {"metadata":{"emulator":{"name":"firestore"},"message":"Firestore Emulator logging to \u001b[1mfirestore-debug.log\u001b[22m"}}
+[debug] [2022-12-01T16:49:57.963Z] Dec 01, 2022 11:49:57 AM com.google.cloud.datastore.emulator.firestore.websocket.WebSocketServer start
+INFO: Started WebSocket server on ws://127.0.0.1:9150
+ {"metadata":{"emulator":{"name":"firestore"},"message":"Dec 01, 2022 11:49:57 AM com.google.cloud.datastore.emulator.firestore.websocket.WebSocketServer start\nINFO: Started WebSocket server on ws://127.0.0.1:9150\n"}}
+[debug] [2022-12-01T16:49:57.974Z] API endpoint: http:// {"metadata":{"emulator":{"name":"firestore"},"message":"API endpoint: http://"}}
+[debug] [2022-12-01T16:49:57.974Z] 127.0.0.1:8080
+If you are using a library that supports the FIRESTORE_EMULATOR_HOST environment variable, run:
+
+   export FIRESTORE_EMULATOR_HOST=127.0.0.1:8080
+
+Dev App Server is now running.
+
+ {"metadata":{"emulator":{"name":"firestore"},"message":"127.0.0.1:8080\nIf you are using a library that supports the FIRESTORE_EMULATOR_HOST environment variable, run:\n\n   export FIRESTORE_EMULATOR_HOST=127.0.0.1:8080\n\nDev App Server is now running.\n\n"}}
+[info] ✔  firestore: Firestore Emulator UI websocket is running on 9150. {"metadata":{"emulator":{"name":"firestore"},"message":"Firestore Emulator UI websocket is running on 9150."}}
+[debug] [2022-12-01T16:49:58.221Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/wormseye-d1c52 [none]
+[debug] [2022-12-01T16:49:58.486Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/wormseye-d1c52 200
+[debug] [2022-12-01T16:49:58.486Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/wormseye-d1c52 {"projectId":"wormseye-d1c52","projectNumber":"1068806595819","displayName":"WormsEye","name":"projects/wormseye-d1c52","resources":{"hostingSite":"wormseye-d1c52","realtimeDatabaseInstance":"wormseye-d1c52-default-rtdb","storageBucket":"wormseye-d1c52.appspot.com","locationId":"us-central"},"state":"ACTIVE","etag":"1_73255528-f1c5-443f-8ed2-637af9bda800"}
+[debug] [2022-12-01T16:49:58.487Z] database rules config:  [{"instance":"wormseye-d1c52-default-rtdb","rules":"/Users/gracegao/Documents/JuniorPhase/SeniorPhase/worms-eye-view/database.rules.json"}]
+[debug] [2022-12-01T16:49:58.491Z] Ignoring unsupported arg: projectId {"metadata":{"emulator":{"name":"database"},"message":"Ignoring unsupported arg: projectId"}}
+[debug] [2022-12-01T16:49:58.491Z] Ignoring unsupported arg: auto_download {"metadata":{"emulator":{"name":"database"},"message":"Ignoring unsupported arg: auto_download"}}
+[debug] [2022-12-01T16:49:58.491Z] Ignoring unsupported arg: rules {"metadata":{"emulator":{"name":"database"},"message":"Ignoring unsupported arg: rules"}}
+[debug] [2022-12-01T16:49:58.491Z] Starting Database Emulator with command {"binary":"java","args":["-Duser.language=en","-jar","/Users/gracegao/.cache/firebase/emulators/firebase-database-emulator-v4.11.0.jar","--host","127.0.0.1","--port",9000,"--single_project_mode","Warning","--functions_emulator_host","127.0.0.1","--functions_emulator_port",5001],"optionalArgs":["port","host","functions_emulator_port","functions_emulator_host","single_project_mode"],"joinArgs":false} {"metadata":{"emulator":{"name":"database"},"message":"Starting Database Emulator with command {\"binary\":\"java\",\"args\":[\"-Duser.language=en\",\"-jar\",\"/Users/gracegao/.cache/firebase/emulators/firebase-database-emulator-v4.11.0.jar\",\"--host\",\"127.0.0.1\",\"--port\",9000,\"--single_project_mode\",\"Warning\",\"--functions_emulator_host\",\"127.0.0.1\",\"--functions_emulator_port\",5001],\"optionalArgs\":[\"port\",\"host\",\"functions_emulator_port\",\"functions_emulator_host\",\"single_project_mode\"],\"joinArgs\":false}"}}
+[info] i  database: Database Emulator logging to database-debug.log {"metadata":{"emulator":{"name":"database"},"message":"Database Emulator logging to \u001b[1mdatabase-debug.log\u001b[22m"}}
+[debug] [2022-12-01T16:49:59.074Z] 11:49:59.074 [NamespaceSystem-akka.actor.default-dispatcher-4] INFO akka.event.slf4j.Slf4jLogger - Slf4jLogger started
+ {"metadata":{"emulator":{"name":"database"},"message":"11:49:59.074 [NamespaceSystem-akka.actor.default-dispatcher-4] INFO akka.event.slf4j.Slf4jLogger - Slf4jLogger started\n"}}
+[debug] [2022-12-01T16:49:59.171Z] 11:49:59.171 [main] INFO com.firebase.server.forge.App$ - Listening at 127.0.0.1:9000
+ {"metadata":{"emulator":{"name":"database"},"message":"11:49:59.171 [main] INFO com.firebase.server.forge.App$ - Listening at 127.0.0.1:9000\n"}}
+[debug] [2022-12-01T16:50:01.999Z] Ignoring unsupported arg: projectId {"metadata":{"emulator":{"name":"pubsub"},"message":"Ignoring unsupported arg: projectId"}}
+[debug] [2022-12-01T16:50:01.999Z] Ignoring unsupported arg: auto_download {"metadata":{"emulator":{"name":"pubsub"},"message":"Ignoring unsupported arg: auto_download"}}
+[debug] [2022-12-01T16:50:01.999Z] Starting Pub/Sub Emulator with command {"binary":"/Users/gracegao/.cache/firebase/emulators/pubsub-emulator-0.7.1/pubsub-emulator/bin/cloud-pubsub-emulator","args":["--host=127.0.0.1","--port=7070"],"optionalArgs":["port","host"],"joinArgs":true} {"metadata":{"emulator":{"name":"pubsub"},"message":"Starting Pub/Sub Emulator with command {\"binary\":\"/Users/gracegao/.cache/firebase/emulators/pubsub-emulator-0.7.1/pubsub-emulator/bin/cloud-pubsub-emulator\",\"args\":[\"--host=127.0.0.1\",\"--port=7070\"],\"optionalArgs\":[\"port\",\"host\"],\"joinArgs\":true}"}}
+[info] i  pubsub: Pub/Sub Emulator logging to pubsub-debug.log {"metadata":{"emulator":{"name":"pubsub"},"message":"Pub/Sub Emulator logging to \u001b[1mpubsub-debug.log\u001b[22m"}}
+[debug] [2022-12-01T16:50:02.079Z] This is the Google Pub/Sub fake.
+Implementation may be incomplete or differ from the real system.
+ {"metadata":{"emulator":{"name":"pubsub"},"message":"This is the Google Pub/Sub fake.\nImplementation may be incomplete or differ from the real system.\n"}}
+[debug] [2022-12-01T16:50:02.099Z] Dec 01, 2022 11:50:02 AM com.google.cloud.pubsub.testing.v1.Main main
+INFO: IAM integration is disabled. IAM policy methods and ACL checks are not supported
+ {"metadata":{"emulator":{"name":"pubsub"},"message":"Dec 01, 2022 11:50:02 AM com.google.cloud.pubsub.testing.v1.Main main\nINFO: IAM integration is disabled. IAM policy methods and ACL checks are not supported\n"}}
+[debug] [2022-12-01T16:50:02.166Z] SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+ {"metadata":{"emulator":{"name":"pubsub"},"message":"SLF4J: Failed to load class \"org.slf4j.impl.StaticLoggerBinder\".\n"}}
+[debug] [2022-12-01T16:50:02.167Z] SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+ {"metadata":{"emulator":{"name":"pubsub"},"message":"SLF4J: Defaulting to no-operation (NOP) logger implementation\nSLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.\n"}}
+[debug] [2022-12-01T16:50:02.520Z] Dec 01, 2022 11:50:02 AM com.google.cloud.pubsub.testing.v1.Main main
+INFO: Server started, listening on 7070
+ {"metadata":{"emulator":{"name":"pubsub"},"message":"Dec 01, 2022 11:50:02 AM com.google.cloud.pubsub.testing.v1.Main main\nINFO: Server started, listening on 7070\n"}}
+[debug] [2022-12-01T16:50:02.769Z] Ignoring unsupported arg: port {"metadata":{"emulator":{"name":"storage"},"message":"Ignoring unsupported arg: port"}}
+[debug] [2022-12-01T16:50:03.175Z] Temp file directory for storage emulator: /var/folders/0c/nqcvzzy13rb32lml5pkw_w3w0000gn/T/firebase/storage/blobs {"metadata":{"emulator":{"name":"storage"},"message":"Temp file directory for storage emulator: /var/folders/0c/nqcvzzy13rb32lml5pkw_w3w0000gn/T/firebase/storage/blobs"}}
+[debug] [2022-12-01T16:50:03.178Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/wormseye-d1c52/sites 
+[debug] [2022-12-01T16:50:03.745Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/wormseye-d1c52/sites 200
+[debug] [2022-12-01T16:50:03.746Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/wormseye-d1c52/sites {"sites":[{"name":"projects/wormseye-d1c52/sites/wormseye-d1c52","defaultUrl":"https://wormseye-d1c52.web.app","appId":"1:1068806595819:web:cc8a3e73242c32d3094aae","type":"DEFAULT_SITE"}]}
+[debug] [2022-12-01T16:50:03.746Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/wormseye-d1c52/webApps/1:1068806595819:web:cc8a3e73242c32d3094aae/config [none]
+[debug] [2022-12-01T16:50:04.130Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/wormseye-d1c52/webApps/1:1068806595819:web:cc8a3e73242c32d3094aae/config 200
+[debug] [2022-12-01T16:50:04.130Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/wormseye-d1c52/webApps/1:1068806595819:web:cc8a3e73242c32d3094aae/config {"projectId":"wormseye-d1c52","appId":"1:1068806595819:web:cc8a3e73242c32d3094aae","databaseURL":"https://wormseye-d1c52-default-rtdb.firebaseio.com","storageBucket":"wormseye-d1c52.appspot.com","locationId":"us-central","apiKey":"AIzaSyAIJjJthpmTBHfPElnfbClql6f1Owt7Zfg","authDomain":"wormseye-d1c52.firebaseapp.com","messagingSenderId":"1068806595819","measurementId":"G-HCEFKHCFP0"}
+[debug] [2022-12-01T16:50:04.157Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/wormseye-d1c52 [none]
+[debug] [2022-12-01T16:50:04.621Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/wormseye-d1c52 200
+[debug] [2022-12-01T16:50:04.622Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/wormseye-d1c52 {"projectId":"wormseye-d1c52","projectNumber":"1068806595819","displayName":"WormsEye","name":"projects/wormseye-d1c52","resources":{"hostingSite":"wormseye-d1c52","realtimeDatabaseInstance":"wormseye-d1c52-default-rtdb","storageBucket":"wormseye-d1c52.appspot.com","locationId":"us-central"},"state":"ACTIVE","etag":"1_73255528-f1c5-443f-8ed2-637af9bda800"}
+[info] i  hosting[wormseye-d1c52]: Serving hosting files from: public1 {"metadata":{"emulator":{"name":"hosting"},"message":"Serving hosting files from: \u001b[1mpublic1\u001b[22m"}}
+[info] ✔  hosting[wormseye-d1c52]: Local server: http://127.0.0.1:5002 {"metadata":{"emulator":{"name":"hosting"},"message":"Local server: \u001b[4m\u001b[1mhttp://127.0.0.1:5002\u001b[22m\u001b[24m"}}
+[debug] [2022-12-01T16:50:04.699Z] Ignoring unsupported arg: auto_download {"metadata":{"emulator":{"name":"ui"},"message":"Ignoring unsupported arg: auto_download"}}
+[debug] [2022-12-01T16:50:04.699Z] Ignoring unsupported arg: port {"metadata":{"emulator":{"name":"ui"},"message":"Ignoring unsupported arg: port"}}
+[debug] [2022-12-01T16:50:04.699Z] Starting Emulator UI with command {"binary":"node","args":["/Users/gracegao/.cache/firebase/emulators/ui-v1.11.1/server/server.js"],"optionalArgs":[],"joinArgs":false} {"metadata":{"emulator":{"name":"ui"},"message":"Starting Emulator UI with command {\"binary\":\"node\",\"args\":[\"/Users/gracegao/.cache/firebase/emulators/ui-v1.11.1/server/server.js\"],\"optionalArgs\":[],\"joinArgs\":false}"}}
+[info] i  ui: Emulator UI logging to ui-debug.log {"metadata":{"emulator":{"name":"ui"},"message":"Emulator UI logging to \u001b[1mui-debug.log\u001b[22m"}}
+[debug] [2022-12-01T16:50:04.770Z] Web / API server started at 127.0.0.1:1337
+Web / API server started at ::1:1337
+ {"metadata":{"emulator":{"name":"ui"},"message":"Web / API server started at 127.0.0.1:1337\nWeb / API server started at ::1:1337\n"}}
+[info] i  functions: Watching "/Users/gracegao/Documents/JuniorPhase/SeniorPhase/worms-eye-view/functions" for Cloud Functions... {"metadata":{"emulator":{"name":"functions"},"message":"Watching \"/Users/gracegao/Documents/JuniorPhase/SeniorPhase/worms-eye-view/functions\" for Cloud Functions..."}}
+[debug] [2022-12-01T16:50:04.960Z] Validating nodejs source
+[warn] ⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[warn] ⚠  functions: Please note that there will be breaking changes when you upgrade. 
+[debug] [2022-12-01T16:50:05.594Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "lint": "eslint .",
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "firebase-admin": "^10.0.2",
+    "firebase-functions": "^3.18.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "firebase-functions-test": "^0.2.0"
+  },
+  "private": true
+}
+[debug] [2022-12-01T16:50:05.594Z] Building nodejs source
+[debug] [2022-12-01T16:50:05.594Z] Analyzing nodejs backend spec
+[debug] [2022-12-01T16:50:05.598Z] Could not find functions.yaml. Must use http discovery
+[debug] [2022-12-01T16:50:05.925Z] Serving at port 9005
+
+[debug] [2022-12-01T16:50:05.953Z] Got response from /__/functions.yaml {"endpoints":{},"specVersion":"v1alpha1","requiredAPIs":[]}
+[debug] [2022-12-01T16:50:05.956Z] shutdown requested via /__/quitquitquit
+
+[info] ✔  functions: Loaded functions definitions from source: . {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: ."}}
+[debug] [2022-12-01T16:50:05.961Z] >>> [apiv2][query] PUT http://127.0.0.1:9000/.settings/rules.json ns=wormseye-d1c52-default-rtdb
+[debug] [2022-12-01T16:50:05.961Z] >>> [apiv2][body] PUT http://127.0.0.1:9000/.settings/rules.json "{\n  \"rules\": {\n    \".read\": true,\n    \".write\": true\n  }\n}"
+[debug] [2022-12-01T16:50:06.113Z] 11:50:06.113 [NamespaceSystem-akka.actor.default-dispatcher-5] INFO com.firebase.core.namespace.NamespaceActor - wormseye-d1c52-default-rtdb successfully activated FBKV (SurveyIdle(0)) wait: 69ms, init: 0ms
+ {"metadata":{"emulator":{"name":"database"},"message":"11:50:06.113 [NamespaceSystem-akka.actor.default-dispatcher-5] INFO com.firebase.core.namespace.NamespaceActor - wormseye-d1c52-default-rtdb successfully activated FBKV (SurveyIdle(0)) wait: 69ms, init: 0ms\n"}}
+[debug] [2022-12-01T16:50:06.149Z] 11:50:06.149 [NamespaceSystem-blocking-namespace-operation-dispatcher-7] INFO com.firebase.core.namespace.StateManager - Namespace wormseye-d1c52-default-rtdb status Active to Active
+ {"metadata":{"emulator":{"name":"database"},"message":"11:50:06.149 [NamespaceSystem-blocking-namespace-operation-dispatcher-7] INFO com.firebase.core.namespace.StateManager - Namespace wormseye-d1c52-default-rtdb status Active to Active\n"}}
+[debug] [2022-12-01T16:50:06.165Z] <<< [apiv2][status] PUT http://127.0.0.1:9000/.settings/rules.json 200
+[debug] [2022-12-01T16:50:06.165Z] <<< [apiv2][body] PUT http://127.0.0.1:9000/.settings/rules.json {"status":"ok"}
+[info] 
+┌─────────────────────────────────────────────────────────────┐
+│ ✔  All emulators ready! It is now safe to connect your app. │
+│ i  View Emulator UI at http://127.0.0.1:1337/               │
+└─────────────────────────────────────────────────────────────┘
+
+┌────────────────┬────────────────┬─────────────────────────────────┐
+│ Emulator       │ Host:Port      │ View in Emulator UI             │
+├────────────────┼────────────────┼─────────────────────────────────┤
+│ Authentication │ 127.0.0.1:9099 │ http://127.0.0.1:1337/auth      │
+├────────────────┼────────────────┼─────────────────────────────────┤
+│ Functions      │ 127.0.0.1:5001 │ http://127.0.0.1:1337/functions │
+├────────────────┼────────────────┼─────────────────────────────────┤
+│ Firestore      │ 127.0.0.1:8080 │ http://127.0.0.1:1337/firestore │
+├────────────────┼────────────────┼─────────────────────────────────┤
+│ Database       │ 127.0.0.1:9000 │ http://127.0.0.1:1337/database  │
+├────────────────┼────────────────┼─────────────────────────────────┤
+│ Hosting        │ 127.0.0.1:5002 │ n/a                             │
+├────────────────┼────────────────┼─────────────────────────────────┤
+│ Pub/Sub        │ 127.0.0.1:7070 │ n/a                             │
+├────────────────┼────────────────┼─────────────────────────────────┤
+│ Storage        │ 127.0.0.1:9199 │ http://127.0.0.1:1337/storage   │
+├────────────────┼────────────────┼─────────────────────────────────┤
+│ Eventarc       │ 127.0.0.1:9299 │ n/a                             │
+└────────────────┴────────────────┴─────────────────────────────────┘
+  Emulator Hub running at 127.0.0.1:4400
+  Other reserved ports: 4500, 9150
+
+Issues? Report them at https://github.com/firebase/firebase-tools/issues and attach the *-debug.log files.
+ 
+[debug] [2022-12-01T17:07:29.025Z] Dec 01, 2022 12:07:29 PM com.google.cloud.datastore.emulator.firestore.websocket.WebSocketChannelHandler initChannel
+INFO: Connected to new websocket client
+ {"metadata":{"emulator":{"name":"firestore"},"message":"Dec 01, 2022 12:07:29 PM com.google.cloud.datastore.emulator.firestore.websocket.WebSocketChannelHandler initChannel\nINFO: Connected to new websocket client\n"}}
+[debug] [2022-12-01T17:07:29.034Z] Dec 01, 2022 12:07:29 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+INFO: Detected non-HTTP/2 connection.
+ {"metadata":{"emulator":{"name":"firestore"},"message":"Dec 01, 2022 12:07:29 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead\nINFO: Detected non-HTTP/2 connection.\n"}}
+[debug] [2022-12-01T17:07:29.146Z] Dec 01, 2022 12:07:29 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+INFO: Detected HTTP/2 connection.
+ {"metadata":{"emulator":{"name":"firestore"},"message":"Dec 01, 2022 12:07:29 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead\nINFO: Detected HTTP/2 connection.\n"}}
+[debug] [2022-12-01T17:08:09.571Z] 12:08:09.571 [FirebaseWorkerPool-1-1] WARN com.firebase.core.persistence.backend.dummy.EmulatorMetadataPersistence - Multiple projectIds are not recommended in single project mode. Requested 
+namespace wormseye-d1c52, but the emulator is configured for wormseye-d1c52-default-rtdb. To 
+opt-out of single project mode add/set the single_project_mode: false property in 
+the firebase.json emulators config. 
+ {"metadata":{"emulator":{"name":"database"},"message":"12:08:09.571 [FirebaseWorkerPool-1-1] WARN com.firebase.core.persistence.backend.dummy.EmulatorMetadataPersistence - Multiple projectIds are not recommended in single project mode. Requested \nnamespace wormseye-d1c52, but the emulator is configured for wormseye-d1c52-default-rtdb. To \nopt-out of single project mode add/set the single_project_mode: false property in \nthe firebase.json emulators config. \n"}}
+[debug] [2022-12-01T17:08:09.582Z] 12:08:09.581 [NamespaceSystem-akka.actor.default-dispatcher-13] INFO com.firebase.core.namespace.NamespaceActor - wormseye-d1c52 successfully activated FBKV (SurveyIdle(0)) wait: 4ms, init: 0ms
+ {"metadata":{"emulator":{"name":"database"},"message":"12:08:09.581 [NamespaceSystem-akka.actor.default-dispatcher-13] INFO com.firebase.core.namespace.NamespaceActor - wormseye-d1c52 successfully activated FBKV (SurveyIdle(0)) wait: 4ms, init: 0ms\n"}}
+[debug] [2022-12-01T17:08:13.787Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/wormseye-d1c52/adminSdkConfig [none]
+[debug] [2022-12-01T17:08:14.337Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/wormseye-d1c52/adminSdkConfig 200
+[debug] [2022-12-01T17:08:14.337Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/wormseye-d1c52/adminSdkConfig {"projectId":"wormseye-d1c52","databaseURL":"https://wormseye-d1c52-default-rtdb.firebaseio.com","storageBucket":"wormseye-d1c52.appspot.com","locationId":"us-central"}
+[debug] [2022-12-01T17:28:12.977Z] Dec 01, 2022 12:28:12 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+INFO: Detected non-HTTP/2 connection.
+ {"metadata":{"emulator":{"name":"firestore"},"message":"Dec 01, 2022 12:28:12 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead\nINFO: Detected non-HTTP/2 connection.\n"}}
+[debug] [2022-12-01T17:28:44.412Z] Dec 01, 2022 12:28:44 PM com.google.cloud.datastore.emulator.firestore.websocket.WebSocketChannelHandler initChannel
+INFO: Connected to new websocket client
+ {"metadata":{"emulator":{"name":"firestore"},"message":"Dec 01, 2022 12:28:44 PM com.google.cloud.datastore.emulator.firestore.websocket.WebSocketChannelHandler initChannel\nINFO: Connected to new websocket client\n"}}
