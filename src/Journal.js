@@ -14,7 +14,7 @@ const Journal = (props) => {
   const [imageList, setImageList] = useState([])
   const [newNotes, setNewNotes] = useState('')
   const [user, setUser] = useState("")
-  const [currentChild, setCurrentChild]=useState("75IuDVBEC3dlCQuzwYcauSFLt023")
+  const [currentChild, setCurrentChild]=useState(props.userId)
   // const [imageUrl, setImageUrl]=useState(null)
 
   //collection connects us to our firestore DB. db is from the firebase-config.js and the 2nd variable is the table name
@@ -27,30 +27,32 @@ const Journal = (props) => {
 
   //query lets us filter through our database. first variable is the specific table you want access to and the 
   //where takes 3 variables, 1st is the key in the table, 2nd is relation between 1st and 2nd var, 3rd is what you are looking for in the table
-  const q = query(wormIdCollection, where("id", "==", "uAtivizEKFdMwOCZ98PLIYdt4EC3"))
+  const q = query(wormIdCollection, where("id", "==", props.userId))
   async function wormCollectionDocsync(){
     let loadingData=await getDocs(wormCollection)
     // console.log( loadingData, "*****")  
     return loadingData
 }
-// console.log(wormCollectionDocsync())
+console.log(props.userId,"^^^^^")
   useEffect( () => {
+    
     //this helps us remember if we are logged in and able to get the logged in user data
     onAuthStateChanged(auth, (currentUser) => {
-     setUser(currentUser)
+      setUser(currentUser)
     })
     //getDocs loads all the info from the collection we want. we can put wormCollection for all users data or q for filtered data
     async function getworms(){ 
-      const datas = await getDocs(wormCollection)
       const data1 = await getDocs(q)
-      console.log(data1, "******")
+      const wormCollection = collection(db, "worms", data1.docs[0].id, "journal")
+      const datas = await getDocs(wormCollection)
+      console.log(datas, "******")
       if ( data1.docs.length===0){
         addDoc(wormIdCollection, { id:props.userId})
-      } else {
+      } 
         setCurrentChild(data1.docs[0].id)
       await setWorms((datas.docs.map((doc) => ({ ...doc.data(), id: doc.id }))))
 
-      }
+  
       // console.log(datas.docs[0].data(), "%%%%%%")
     }
      getworms()
