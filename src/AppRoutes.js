@@ -2,12 +2,14 @@ import { onAuthStateChanged } from "firebase/auth";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import PlantSuggestions from "./PlantSuggestions.js"
 import React, { useEffect, useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useParams } from "react-router-dom";
 import App from "./App";
 import Auth from "./Auth";
 import { auth, db } from "./firebase-config";
 import Home from "./Home";
 import Journal from "./Journal";
+import Test from "./OneEntry.js";
+import OneEntry from "./OneEntry.js";
 
 const AppRoutes= ()=>{
     const [user, setUser] = useState("")
@@ -33,6 +35,7 @@ const AppRoutes= ()=>{
         <>
         <Routes>
 
+            <Route path="/journal/:entryId" element={<OneEntry userId={user.uid}/>}/>
             <Route path="/signUp" element={<Auth/>}/>
 <Route path="/development" element={<PlantSuggestions />} />
             {user ?<>

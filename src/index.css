@@ -190,6 +190,14 @@ div.journal {
 	margin: 2em;
 }
 
+
+.hidden{
+	visibility: hidden;
+}
+.edit{
+	border: 1px solid black;
+	margin-top: 10px;
+}
 /* PLANT SUGGESTIONS */
 
 .plant-suggestions-container {
@@ -201,4 +209,11 @@ div.journal {
 	height: 100vh;
 	z-index: 1;
 	position: relative;	
+}
+
+
+.test{
+	background-color: #72c17b;
+	height: 100vh;
+	width: 100vw;
 }
