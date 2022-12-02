@@ -121,7 +121,7 @@ const PlantSuggestions = (props) => {
     // ! look HERE
     // const date = new Date(+year1, month1 - 1, +day1) 
     const date = new Date(+year1, 7, +day1)
-    console.log(date)
+    // console.log(date)
 
 
     const startStr = firstFrostDate //EX dec 30 = "12/30"
@@ -135,14 +135,14 @@ const PlantSuggestions = (props) => {
 
     // handling zones 10,11,12,13 which currently have no frost dates.
     if (lastFrostDate === "null" && firstFrostDate === "null") {
-      console.log("🌱 Your hardiness zone does not have typical frost 🌱")
+      // console.log("🌱 Your hardiness zone does not have typical frost 🌱")
       // ! what to suggest for this? same as
       plantTimingObject.frostSeason = false
       // return TRUE // okay to plant
 
       // is the date in a growing season
     } else if (date > lfDate && date < ffDate) {
-      console.log(`🌱 today is in the growing season for your zone🌱`)
+      // console.log(`🌱 today is in the growing season for your zone🌱`)
 
       daysToFirstFrost = Math.round((ffDate - date) / MS_IN_A_DAY)
       weeksToFirstFrost = Math.round(daysToFirstFrost / 7) //rounding to nearest INT
@@ -327,7 +327,7 @@ const PlantSuggestions = (props) => {
   }
 
   // console.log(getPlantSug(plantTimingObject, plantsDatabaseData))
-  console.log("=======this is the plants DB data",plantsDbData)
+  // console.log("=======this is the plants DB data",plantsDbData)
   let suggestedPlantsData = getPlantSug(plantTimingObject, plantsDbData)
 
   return (

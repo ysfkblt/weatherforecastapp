@@ -42,17 +42,17 @@ const Journal = (props) => {
     async function getworms(){ 
       const data1 = await getDocs(q)
       const datas = await getDocs(wormCollection)
-      console.log(datas)
-      if ( data1.docs.length===0){
-        addDoc(wormCollection, { id:props.userId})
-      } 
+      // console.log(datas)
+      // if ( data1.docs.length===0){
+      //   addDoc(wormCollection, { id:props.userId})
+      // } 
         // setCurrentChild(data1.docs[0].id)
       await setWorms((datas.docs.map((doc) => ({ ...doc.data(), id: doc.id }))))
         }
 
      getworms()
   }, [])
-console.log(worms)
+// console.log(worms)
   const uploadImage = () => {
     //use addDoc to add data to the table; first var is the table name, 2nd is the data you want to add
     if (imageToUpload == null) return (addDoc(wormCollection, { notes: newNotes, date:date}))

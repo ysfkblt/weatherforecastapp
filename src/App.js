@@ -9,7 +9,7 @@ import { shuffle } from 'lodash';
 import DisplayZone from './Zone';
 import { addDoc, collection, getDocs, query, where } from 'firebase/firestore';
 import { db } from './firebase-config';
-import UpdateZipCode from './UserAuth';
+import UpdateZipCode from './LocationUpdate';
 import PlantSuggestions from "./PlantSuggestions";
 
 export default function App(props) {
