@@ -6,11 +6,14 @@ import {
 } from '@heroicons/react/outline';
 import background, { gradient } from './background';
 import { shuffle } from 'lodash';
-import DisplayZone from './Zone';
 import { addDoc, collection, getDocs, query, where } from 'firebase/firestore';
 import { db } from './firebase-config';
 import UpdateZipCode from './UserAuth';
 import PlantSuggestions from "./PlantSuggestions";
+import ToggleDark from './toggleDark';
+import { ThemeContext, themes } from './themeContext';
+
+
 
 export default function App(props) {
 	const [search, setSearch] = useState('');
@@ -18,6 +21,8 @@ export default function App(props) {
 	const [grad, setgrad] = useState(null);
 	const [zone, setZone] = useState('')
 	const [zip, setZip] = useState('')
+	const [darkMode, setDarkMode] = useState(true);
+
 
 
 	// WEATHER API
@@ -125,6 +130,21 @@ export default function App(props) {
 			}
 			className='flex flex-row  text-black items-center justify-center h-screen bg-center bg-cover select-none'
 		>
+			{/* DARKMODE */}
+			<header className="App-header">
+				<h1 className="text-warning">Dark/Light mode</h1>
+				<ThemeContext.Consumer>
+					{({ changeTheme }) => (
+						<ToggleDark
+							toggleDark={() => {
+								setDarkMode(!darkMode);
+								changeTheme(darkMode ? themes.light : themes.dark);
+							}}
+						/>
+					)}
+				</ThemeContext.Consumer>
+			</header>
+
 			{/* Update user */}
 			{props.userId && zip.length === 5 && zone ?
 				<>
@@ -205,10 +225,10 @@ export default function App(props) {
 					) : null}
 				</div>
 
-				
-				
-					<PlantSuggestions userId={props.userId} />
-				
+
+
+				<PlantSuggestions userId={props.userId} />
+
 			</div>
 
 		</div>

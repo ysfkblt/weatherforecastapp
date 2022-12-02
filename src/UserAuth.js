@@ -6,7 +6,6 @@ import {
 } from '@heroicons/react/outline';
 import background, { gradient } from './background';
 import { shuffle } from 'lodash';
-import DisplayZone from './Zone';
 import { addDoc, collection, getDocs, query, where } from 'firebase/firestore';
 import { db } from './firebase-config';
 

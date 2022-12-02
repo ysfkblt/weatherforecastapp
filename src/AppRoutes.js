@@ -9,39 +9,39 @@ import { auth, db } from "./firebase-config";
 import Home from "./Home";
 import Journal from "./Journal";
 
-const AppRoutes= ()=>{
+const AppRoutes = () => {
     const [user, setUser] = useState("")
-//     const wormIdCollection = collection(db, "worms")
-//     const [currentChild, setCurrentChild]=useState("")
+    //     const wormIdCollection = collection(db, "worms")
+    //     const [currentChild, setCurrentChild]=useState("")
 
-//     const q = query(wormIdCollection, where("id", "==", user.uid))
+    //     const q = query(wormIdCollection, where("id", "==", user.uid))
 
-    useEffect(()=>{
-      onAuthStateChanged(auth, (currentUser) => {
-        setUser(currentUser)
-      })
-    //   async function data1(){
-    //    let  data= await getDocs(q)
-    //    setCurrentChild(data.docs[0].id)
-    //   }
-    //   data1()
+    useEffect(() => {
+        onAuthStateChanged(auth, (currentUser) => {
+            setUser(currentUser)
+        })
+        //   async function data1(){
+        //    let  data= await getDocs(q)
+        //    setCurrentChild(data.docs[0].id)
+        //   }
+        //   data1()
 
-    },[])
-// console.log(currentChild)
+    }, [])
+    // console.log(currentChild)
 
     return (
         <>
-        <Routes>
+            <Routes>
 
-            <Route path="/signUp" element={<Auth/>}/>
-<Route path="/development" element={<PlantSuggestions />} />
-            {user ?<>
-            <Route path="/" element={<App userId={user.uid}/>}/>
-            <Route path="/journal" element={<Journal userId={user.uid}/>  }/>
-            </>
-            :  <Route path="/" element={<App/>}/>
-        }
-        </Routes>
+                <Route path="/signUp" element={<Auth />} />
+                <Route path="/development" element={<PlantSuggestions />} />
+                {user ? <>
+                    <Route path="/" element={<App userId={user.uid} />} />
+                    <Route path="/journal" element={<Journal userId={user.uid} />} />
+                </>
+                    : <Route path="/" element={<App />} />
+                }
+            </Routes>
         </>
     )
 }
