@@ -128,11 +128,11 @@ export default function App(props) {
 										? { backgroundImage: background.overcast }
 										: { backgroundImage: grad }
 			}
-			className='flex flex-row  text-black items-center justify-center h-screen bg-center bg-cover select-none'
+			className='flex flex-column text-black items-center justify-center h-screen bg-center bg-cover select-none'
 		>
 			{/* DARKMODE */}
 			<header className="App-header">
-				<h1 className="text-warning">Dark/Light mode</h1>
+				
 				<ThemeContext.Consumer>
 					{({ changeTheme }) => (
 						<ToggleDark

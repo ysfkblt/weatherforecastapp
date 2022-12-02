@@ -2,11 +2,11 @@ import React from 'react';
 
 export default function ToggleDark(props) {
     return (
-        <div>
+        <div className="toggle-dark-wrapper">
             <div class="wrapper">
                 <label class="switch">
                     <input
-                    
+
                         type="checkbox"
                         id="checkbox-toggle"
                         onClick={() => {

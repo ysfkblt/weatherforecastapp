@@ -1,6 +1,7 @@
 import React from "react"
 import ReactDOM from "react-dom/client"
 import "./index.css"
+import "./toggleDark.css"
 import { BrowserRouter as Router } from 'react-router-dom';
 import Navbar from "./Navbar";
 import AppRoutes from "./AppRoutes";
