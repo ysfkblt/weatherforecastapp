@@ -14,6 +14,8 @@ import { update } from 'firebase/database';
 
 export default function UpdateZipCode(props){
 
+	const {userId}=props
+console.log(props.userId)
 
 		const wormIdCollection = collection(db, "worms")
 		const q = query(wormIdCollection, where("id", "==", props.userId))
@@ -25,16 +27,17 @@ export default function UpdateZipCode(props){
 			async function getworms() {
 				const data1 = await getDocs(q)
 				const datas = await getDocs(wormCollection)
-				const userPersonal= doc(db, "worms", props.userId, "personal", datas.docs[0].id)
+				console.log(datas)
 				console.log(datas.docs)
 				if (datas.docs.length === 0) {
 					addDoc(wormCollection, { 
 						zip: props.zip, 
 						zone:props.zone,
 						coordinates:props.coordinates
-						  })
+					})
 				} 
                 else {
+					const userPersonal= doc(db, "worms", props.userId, "personal", datas.docs[0].id)
 					await updateDoc(userPersonal, {	
 						zip: props.zip, 
 						zone:props.zone,

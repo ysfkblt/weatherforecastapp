@@ -19,7 +19,7 @@ const PlantSuggestions = (props) => {
   const {userId}=props
   // console.log(userId,"********")
   
-  const wormCollection = collection(db, "worms", "bBx5WyQAWRUY1qP6Vshjj1S2i133", "personal")
+  const wormCollection = collection(db, "worms", userId, "personal")
   
   useEffect(()=>{
   async function getworms(){
