@@ -2,9 +2,9 @@ import React from 'react';
 
 export default function ToggleDark(props) {
     return (
-        <div className="toggle-dark-wrapper">
-            <div class="wrapper">
-                <label class="switch">
+        <div classNameName="toggle-dark-wrapper">
+            <div className="wrapper">
+                <label className="switch">
                     <input
 
                         type="checkbox"
@@ -13,34 +13,34 @@ export default function ToggleDark(props) {
                             props.toggleDark();
                         }}
                     />
-                    <span class="slider">
-                        <div class="fish">
-                            <div class="body"></div>
-                            <div class="eye"></div>
-                            <div class="tail"></div>
+                    <span className="slider">
+                        <div className="fish">
+                            <div className="body"></div>
+                            <div className="eye"></div>
+                            <div className="tail"></div>
                         </div>
                     </span>
-                    <span class="wave"> </span>
-                    <div class="boat">
-                        <div class="bottom"></div>
-                        <div class="mast"></div>
-                        <div class="rectangle-sm"></div>
-                        <div class="rectangle-lg"></div>
+                    <span className="wave"> </span>
+                    <div className="boat">
+                        <div className="bottom"></div>
+                        <div className="mast"></div>
+                        <div className="rectangle-sm"></div>
+                        <div className="rectangle-lg"></div>
                     </div>
-                    <div class="sky">
-                        <div class="sun">
-                            <div class="outer"></div>
-                            <div class="inner"></div>
+                    <div className="sky">
+                        <div className="sun">
+                            <div className="outer"></div>
+                            <div className="inner"></div>
                         </div>
-                        <div class="cloud cloud1">
-                            <div class="rect"></div>
-                            <div class="circle circle-lg"></div>
-                            <div class="circle circle-sm"></div>
+                        <div className="cloud cloud1">
+                            <div className="rect"></div>
+                            <div className="circle circle-lg"></div>
+                            <div className="circle circle-sm"></div>
                         </div>
-                        <div class="cloud cloud2">
-                            <div class="rect"></div>
-                            <div class="circle circle-lg"></div>
-                            <div class="circle circle-sm"></div>
+                        <div className="cloud cloud2">
+                            <div className="rect"></div>
+                            <div className="circle circle-lg"></div>
+                            <div className="circle circle-sm"></div>
                         </div>
                     </div>
                 </label>
