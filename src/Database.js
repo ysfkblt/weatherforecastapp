@@ -7,7 +7,7 @@ import { onValue, ref, getDatabase } from "firebase/database"
 const Database = () => {
     const database = getDatabase()
     const [plants, setPlants] = useState([])
-    const plantsCollection = collection(db, "plants")
+    const plantsCollection = collection(db, "insideplants")
 
     console.log(database)
     // id,Species,Name,Color,Type,Seed Stock,Year,Quantity,Method #,Sowing Method,Weeks before last frost,Sowing Depth,Space inch,Life,Transplant To,Comment one,Comment two

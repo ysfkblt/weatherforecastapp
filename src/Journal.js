@@ -16,8 +16,7 @@ const Journal = (props) => {
   const [newNotes, setNewNotes] = useState('')
   const [user, setUser] = useState("")
   const [updateNotes, setUpdateNotes]=useState("")
-  const [status, setStatus]=useState("hidden")
-  const [status2, setStatus2]=useState("")
+  const [search, setSearch]=useState("")
   // const [imageUrl, setImageUrl]=useState(null)
 const {userId}=props
   //collection connects us to our firestore DB. db is from the firebase-config.js and the 2nd variable is the table name
@@ -51,16 +50,24 @@ const {userId}=props
   }, [])
 // console.log(worms)
   const uploadImage = async () => {
-    const datas = await getDocs(wormCollection)
+    let datas = await getDocs(wormCollection)
     //use addDoc to add data to the table; first var is the table name, 2nd is the data you want to add
-    if (imageToUpload == null) return (addDoc(wormCollection, { notes: newNotes, date:date}))
+    if (imageToUpload == null){
+      addDoc(wormCollection, { notes: newNotes, date:date})
+      setWorms((prev) => [...prev, { notes: newNotes, date: date}])
+      setWorms((datas.docs.map((doc) => ({ ...doc.data(), id: doc.id }))))
+      return 
+    }
     //ref is to get the specfic storage folder. first var is from the firebase-config and 2nd is the location/nameofphoto
     const imageRef = ref(storage, `${userId}/${imageToUpload.name}`)
     uploadBytes(imageRef, imageToUpload).then((snapshot) => {
-      getDownloadURL(snapshot.ref).then((url) => {
-        addDoc(wormCollection, { image: url, notes: newNotes, date: date })
-        setWorms((datas.docs.map((doc) => ({ ...doc.data(), id: doc.id }))))
-        // setWorms((prev) => [...prev, { image: url, notes: newNotes, date: date}])
+       datas = getDocs(wormCollection)
+
+      getDownloadURL(snapshot.ref).then(async (url) => {
+       const newDoc= await addDoc(wormCollection, { image: url, notes: newNotes, date: date })
+       console.log(newDoc, "*****")
+        setWorms((prev) => [...prev, { id:newDoc.id,image: url, notes: newNotes, date: date}])
+        // setWorms((datas.docs.map((doc) => ({ ...doc.data(), id: doc.id}))))
         console.log(worms)
       })
     })
@@ -101,13 +108,31 @@ async function deleteNotes(entry){
 }
 
 
-  // Get current date
+worms.sort((a,b)=>{
+  let da = new Date(a.date),
+  db = new Date(b.date);
+return da - db
+})
+
+
+  function searchPage(keyWord){
+    console.log(keyWord)
+    const result= worms.filter((worm)=>{
+      let notes=worm.notes.split(" ")
+      console.log(notes, "NOTESSS")
+  return notes.includes(keyWord)
+})
+setWorms(result)  
+}
+// searchPage("test")
+// Get current date
   let newDate = new Date();
   let defaultDate = newDate.toISOString()
 
   return (
   
     <div className="journal-container">
+            <input className="journal-search" value={search} onChange={(event) => { setSearch(event.target.value); searchPage(event.target.value) }} placeholder="Search..." size={50} style={{ height: "7vh" }} />
       <div className="journal-form">
         <h1 className="journal-form-heading"> Add new entry:</h1>
         <div className="imgUpload">
@@ -126,8 +151,7 @@ async function deleteNotes(entry){
       <div className="journal-previous-entries-container">
         <p className="journal-previous-entries-heading"> Previous entries: </p>
         <div>
-          {
-          worms
+          {worms
           ?
                   worms.map((entryData, index)=>{
                       return (
