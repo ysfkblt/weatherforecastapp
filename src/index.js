@@ -18,7 +18,7 @@ root.render(
             {/* <h1>test this is in index.js. components should be below</h1> */}
             {/* <ImageUpload /> */}
             <AppRoutes/>
-            {/* <Database /> */}
+            <Database />
             {/* <DisplayZone /> */}
             {/* <PlantSuggestions/> */}
     </Router>

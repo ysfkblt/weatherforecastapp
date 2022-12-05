@@ -47,18 +47,18 @@ const PlantSuggestions = (props) => {
     plantData()
 
 
-    function housePlantData(){ 
-      getDocs(colRef2)
-        .then((snapshot) => {
-          snapshot.docs.forEach((doc) => {
-            setHousePlantsDbData((prev)=> [...prev, doc.data()])
-          })
-          return housePlantsDbData
-        })
-        .catch(err => {
-          console.log(err.message)
-        })
-    }
+    // function housePlantData(){ 
+    //   getDocs(colRef2)
+    //     .then((snapshot) => {
+    //       snapshot.docs.forEach((doc) => {
+    //         setHousePlantsDbData((prev)=> [...prev, doc.data()])
+    //       })
+    //       return housePlantsDbData
+    //     })
+    //     .catch(err => {
+    //       console.log(err.message)
+    //     })
+    // }
 
     // housePlantData()
   }, [])
@@ -251,7 +251,7 @@ const PlantSuggestions = (props) => {
   ]
 
   // ! ======== collection reference
-  const colRef = collection(db, 'plants' {where 'life', '==', 'a'})
+  const colRef = collection(db, 'plants')
   const colRef2 = collection(db, 'housePlants')
   // get collection data
 
@@ -338,7 +338,7 @@ const PlantSuggestions = (props) => {
       <div>{suggestedHousePlantsData.map((curPlant) => (
         <div className="plant-suggestion" key={curPlant.id}>
           <div><h3>Name: {curPlant.name}, <h3 className="italics">({curPlant.species})</h3></h3></div>
-          <div><img src={curPlant.name} className="plantSugImg" /></div>
+          <div><img src={curPlant.id} className="plantSugImg" /></div>
         </div>
       ))}</div>
       </div>
