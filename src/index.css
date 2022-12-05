@@ -216,14 +216,27 @@ div.journal {
 /* PLANT SUGGESTIONS */
 
 .plant-suggestions-container {
-	border-bottom: 1px solid black;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	height: 100vh;
 	z-index: 1;
-	position: relative;
+	/* position: relative;	 */
+}
+
+.plant-suggestion {
+	border-bottom: 1px solid black;
+}
+
+.italics {
+	font-style: italic;
+}
+
+.plantSugImg {
+	width: 20vw;
+	height: 20vw;
+	border: 1px solid black;
 }
 
 /* CONTEXT THEMES / DARKMODE */
