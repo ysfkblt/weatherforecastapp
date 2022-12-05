@@ -15,6 +15,7 @@ const PlantSuggestions = (props) => {
   const [currentUser, setCurrentUser] = useState("")
   const [userZoneNumber, setUserZoneNumber] = useState(8)
   const [plantsDbData, setPlantsDbData] = useState([])
+  const [housePlantsDbData, setHousePlantsDbData] = useState([])
   
   const {userId}=props
   // console.log(userId,"********")
@@ -22,35 +23,46 @@ const PlantSuggestions = (props) => {
   const wormCollection = collection(db, "worms", "bBx5WyQAWRUY1qP6Vshjj1S2i133", "personal")
   
   useEffect(()=>{
-  async function getworms(){
-    const data = await getDocs(wormCollection)
-    let pre_zone=data.docs[0].data().zone
-    let zone = parseInt(pre_zone)
-    setUserZoneNumber(zone)
-  }
-  getworms()
+    async function getworms(){
+      const data = await getDocs(wormCollection)
+      let pre_zone=data.docs[0].data().zone
+      let zone = parseInt(pre_zone)
+      setUserZoneNumber(zone)
+    }
+    getworms()
 
-   function plantData(){ 
-     getDocs(colRef)
-      .then((snapshot) => {
+    function plantData(){ 
+      getDocs(colRef)
+        .then((snapshot) => {
           snapshot.docs.forEach((doc) => {
-            // console.log(doc.data(), "#####")
             setPlantsDbData((prev)=> [...prev, doc.data()])
-            // , {id : doc.id}
-              // plantsDbData.push({ ...doc.data(), id : doc.id })
           })
           return plantsDbData
-      })
-      .catch(err => {
+        })
+        .catch(err => {
           console.log(err.message)
-      })
+        })
     }
 
+    plantData()
 
-      plantData()
-}, [])
 
-// console.log(plantsDbData)
+    function housePlantData(){ 
+      getDocs(colRef2)
+        .then((snapshot) => {
+          snapshot.docs.forEach((doc) => {
+            setHousePlantsDbData((prev)=> [...prev, doc.data()])
+          })
+          return housePlantsDbData
+        })
+        .catch(err => {
+          console.log(err.message)
+        })
+    }
+
+    // housePlantData()
+  }, [])
+
   // initializezzz
   let firstFrostDate = null
   let lastFrostDate = null
@@ -114,13 +126,13 @@ const PlantSuggestions = (props) => {
   // return true if OKAY to plant, return false if NOT GOOD TO PLANT (aka in frost zone time)
   function frostDateCheck(lastFrostDate, firstFrostDate) {
     const dateStr = new Date().toLocaleDateString()
-    // console.log("today's date: ", dateStr)
+    console.log("today's date: ", dateStr)
     plantTimingObject.currentDate = dateStr
     const [month1, day1, year1] = dateStr.split("/")
 
     // ! look HERE
     // const date = new Date(+year1, month1 - 1, +day1) 
-    const date = new Date(+year1, 7, +day1)
+    const date = new Date(+year1, 3, 24)
     console.log(date)
 
 
@@ -184,85 +196,63 @@ const PlantSuggestions = (props) => {
   plantTimingObject.zone = userZoneNumber
   plantTimingObject.firstFrost = firstFrostDate
   plantTimingObject.lastFrost = lastFrostDate
-
-  // console.log(plantTimingObject)
-
-  // ! can delete this, ONCE, we are connected to real/emulated firestore
-  // const flowersDummyData = [
-  //   {
-  //     id: 1,
-  //     name: "cherry",
-  //     life: "a",
-  //     weeksBeforeLastFrost: -2,
-  //     method: 1,
-  //   },
-  //   {
-  //     id: 2,
-  //     name: "strawberry",
-  //     life: "a",
-  //     weeksBeforeLastFrost: 4,
-  //     method: 9,
-  //   },
-  //   {
-  //     id: 3,
-  //     name: "sunflower",
-  //     life: "a",
-  //     weeksBeforeLastFrost: 6,
-  //     method: 1,
-  //   },
-  //   {
-  //     id: 4,
-  //     name: "apple",
-  //     life: "b",
-  //     weeksBeforeLastFrost: 6,
-  //     method: 10,
-  //   },
-  //   {
-  //     id: 5,
-  //     name: "orchid",
-  //     life: "b",
-  //     weeksBeforeLastFrost: 4,
-  //     method: 10,
-  //   },
-  //   {
-  //     id: 6,
-  //     name: "leaf",
-  //     life: "a",
-  //     weeksBeforeLastFrost: 5,
-  //     method: 10,
-  //   },
-  //   {
-  //     id: 7,
-  //     name: "this cannot showup ever",
-  //     life: "p",
-  //     weeksBeforeLastFrost: 5,
-  //     method: 1,
-  //   },
-  //   {
-  //     id: 8,
-  //     name: "orchid plus",
-  //     life: "b",
-  //     weeksBeforeLastFrost: -16,
-  //     method: 10,
-  //   },
-  //   {
-  //     id: 9,
-  //     name: "leaf plus",
-  //     life: "a",
-  //     weeksBeforeLastFrost: -16,
-  //     method: 10,
-  //   },
-  //   {
-  //     id: 10,
-  //     name: "safhsdfsdaf",
-  //     life: "a",
-  //     weeksBeforeLastFrost: -16,
-  //     method: 1,
-  //   },
-  // ]
+ 
+  const housePlantDummyData = [
+    {
+      id: 1,
+      name: "Basil",
+      species: "species name"
+    },
+    {
+      id: 2,
+      name: "Mint",
+      species: "species name"
+    },
+    {
+      id: 3,
+      name: "Cactus",
+      species: "species name"
+    },
+    {
+      id: 4,
+      name: "Peace Lily",
+      species: "species name"
+    },
+    {
+      id: 5,
+      name: "orchid",
+      species: "species name"
+    },
+    {
+      id: 6,
+      name: "Aloe",
+      species: "species name"
+    },
+    {
+      id: 7,
+      name: "Fiddle Leaf Fig",
+      species: "species name"
+    },
+    {
+      id: 8,
+      name: "orchid plus",
+      species: "species name"
+    },
+    {
+      id: 9,
+      name: "zz plant",
+      species: "species name"
+    },
+    {
+      id: 10,
+      name: "Rosemary",
+      species: "species name"
+    },
+  ]
 
   // ! ======== collection reference
-  const colRef = collection(db, 'plants')
+  const colRef = collection(db, 'plants' {where 'life', '==', 'a'})
+  const colRef2 = collection(db, 'housePlants')
   // get collection data
 
   // filter based on time of year
@@ -321,6 +311,7 @@ const PlantSuggestions = (props) => {
             x.weeksBeforeLastFrost === obj.weeksToLastFrost + 1 ||
             x.weeksBeforeLastFrost === obj.weeksToLastFrost - 1
         )
+        console.log("plantsNonFrost", plantsNonFrost)
         return filterSug(plantsNonFrost)
       }
     }
@@ -328,18 +319,31 @@ const PlantSuggestions = (props) => {
 
   // console.log(getPlantSug(plantTimingObject, plantsDatabaseData))
   console.log("=======this is the plants DB data",plantsDbData)
+  console.log(plantTimingObject)
   let suggestedPlantsData = getPlantSug(plantTimingObject, plantsDbData)
+  // let suggestedHousePlantsData = filterSug(housePlantsDbData)
+  let suggestedHousePlantsData = filterSug(housePlantDummyData)
 
   return (
   
     <div className="plant-suggestions-container">
-      <h2 className="plant-suggestions-header"> PLANT SUGGESTIONS </h2>
-      {/* <p>Based on your current location's frost zone, here are some plants we think would be happy being planted right now:</p> */}
-      {suggestedPlantsData.map((curPlant) => (
-        <div className="plant-suggestions-" key={curPlant.id}>
-          <h3>{curPlant.name}</h3>
+      <h2 className="plant-suggestions-header">TODAY'S PLANT SUGGESTIONS</h2>
+      {(suggestedPlantsData.length > 0) ? (suggestedPlantsData.map((curPlant) => (
+        <div className="plant-suggestion" key={curPlant.id}>
+          <div><h3>Name: {curPlant.name}, <h3 className="italics">({curPlant.species})</h3></h3></div>
+          <div><img src={curPlant.name} className="plantSugImg" /></div>
         </div>
-      ))}
+      ))) : (<><div>
+      <h3>If you are wanting to plant today, we suggest indoor plants:</h3>
+      <div>{suggestedHousePlantsData.map((curPlant) => (
+        <div className="plant-suggestion" key={curPlant.id}>
+          <div><h3>Name: {curPlant.name}, <h3 className="italics">({curPlant.species})</h3></h3></div>
+          <div><img src={curPlant.name} className="plantSugImg" /></div>
+        </div>
+      ))}</div>
+      </div>
+      </>)}
+      
     </div>
   )
 }
