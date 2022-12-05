@@ -98,6 +98,7 @@ console.log(props.userId)
 	function handleSearch(e) {
 		setSearch(e.target.value);
 		setZip(e.target.value);
+		handleButtonClick();
 	}
 
 	useEffect(() => {

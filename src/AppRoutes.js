@@ -15,9 +15,8 @@ const AppRoutes = () => {
     const [user, setUser] = useState("")
     //     const wormIdCollection = collection(db, "worms")
     //     const [currentChild, setCurrentChild]=useState("")
-
     //     const q = query(wormIdCollection, where("id", "==", user.uid))
-console.log(user.uid, "FROM APPROUTES")
+    // console.log(user, "FROM APPROUTES")
     useEffect(() => {
         onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser)
