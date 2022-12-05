@@ -2,12 +2,15 @@ import { useState, useEffect } from 'react';
 
 import { addDoc, collection, getDocs, query, where } from 'firebase/firestore';
 import { db } from './firebase-config';
+import { update } from 'firebase/database';
 
 
 export default function UpdateZipCode(props) {
 	const [currentChild, setCurrentChild] = useState(props.userId)
 	console.log(props.userId, "****")
 
+	const {userId}=props
+console.log(props.userId)
 
 	const wormIdCollection = collection(db, "worms")
 	const q = query(wormIdCollection, where("id", "==", props.userId))

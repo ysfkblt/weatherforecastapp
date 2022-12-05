@@ -203,6 +203,14 @@ div.journal {
 	margin: 2em;
 }
 
+
+.hidden{
+	visibility: hidden;
+}
+.edit{
+	border: 1px solid black;
+	margin-top: 10px;
+}
 /* PLANT SUGGESTIONS */
 
 .plant-suggestions-container {

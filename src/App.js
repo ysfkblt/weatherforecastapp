@@ -8,7 +8,7 @@ import background, { gradient } from './background';
 import { shuffle } from 'lodash';
 import { addDoc, collection, getDocs, query, where } from 'firebase/firestore';
 import { db } from './firebase-config';
-import UpdateZipCode from './UserAuth';
+import UpdateZipCode from './LocationUpdate';
 import PlantSuggestions from "./PlantSuggestions";
 import ToggleDark from './toggleDark';
 import { ThemeContext, themes } from './themeContext';
@@ -26,7 +26,7 @@ export default function App(props) {
 
 
 	// WEATHER API
-
+	
 	async function getData() {
 		await fetch(
 			`https://api.weatherapi.com/v1/forecast.json?key=f676e0d30686474d99b160351221104&q=${search}&days=1&aqi=no&alerts=no`
@@ -146,16 +146,14 @@ export default function App(props) {
 			</header>
 
 			{/* Update user */}
-			{props.userId && zip.length === 5 && zone ?
+			{userId && zip.length === 5 && zone ?
 				<>
 					<UpdateZipCode
-						userId={props.userId}
+						userId={userId}
 						zip={zip}
 						zone={zone.zone}
 						coordinates={zone.coordinates}
-
 					/>
-					{/* {console.log("WORKING")} */}
 				</>
 				: null
 			}
