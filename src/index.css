@@ -2,9 +2,9 @@
 
 @import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
 
-@tailwind base;
+/* @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities; */
 
 /* ELEMENTS */
 
@@ -51,7 +51,20 @@ h1 {
 	font-weight: 200;
 }
 
+.app-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+}
 
+.root {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
 
 /* NAV */
 
@@ -211,9 +224,8 @@ div.journal {
 	position: relative;	
 }
 
+/* DARKMODE */
 
-.test{
-	background-color: #72c17b;
-	height: 100vh;
-	width: 100vw;
-}
+.white-content {
+	background: #e4e4e4;
+  }
