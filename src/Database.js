@@ -1,14 +1,12 @@
 import { useState, useEffect } from "react"
-import { addDoc, collection, getDocs } from "firebase/firestore"
-import { db, dbReal } from "./firebase-config"
-import { storage } from "./firebase-config"
-import { getDownloadURL, listAll, uploadBytes } from "firebase/storage"
-import { onValue, ref, getDatabase } from "firebase/database"
+import { collection } from "firebase/firestore"
+import { db } from "./firebase-config"
+import { getDatabase } from "firebase/database"
 
 const Database = () => {
     const database = getDatabase()
-    const [plants, setPlants] = useState([])
-    const [housePlants, setHousePlants] = useState([])
+    // const [plants, setPlants] = useState([])
+    // const [housePlants, setHousePlants] = useState([])
     const plantsCollection = collection(db, "plants")
     const housePlantsCollection = collection(db, "housePlants")
 

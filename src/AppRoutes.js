@@ -11,6 +11,7 @@ import Journal from "./Journal"
 import Test from "./OneEntry.js"
 import OneEntry from "./OneEntry.js"
 import AllPlantsView from "./AllPlantsView"
+import SinglePlantView from "./SinglePlantView"
 
 const AppRoutes = () => {
   const [user, setUser] = useState("")
@@ -35,6 +36,7 @@ const AppRoutes = () => {
       <Routes>
         <Route path="/signUp" element={<Auth />} />
         <Route path="/development" element={<AllPlantsView />} />
+        <Route path="/development/:plantId" element={<SinglePlantView />} />
         {user ? (
           <>
             <Route path="/" element={<App userId={user.uid} />} />

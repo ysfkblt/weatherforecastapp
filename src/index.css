@@ -272,5 +272,23 @@ div.journal {
 /* All Plants  */
 
 .allPlantsImg{
-	height: 10vh;
+	height: 14vh;
+}
+.allPlantsArea{
+	display: flex;
+	flex-wrap: wrap;
+}
+.singlePlant{
+	border: 1px solid white;
+	width: 23vw;
+	height: 30vh;
+	margin: 1vw;
+	align-content: center;
+}
+.singlePlantName{
+	font-size: 1.5rem;
+}
+.singlePlant img{
+	display: flex;
+	align-items: center;
 }
