@@ -50,7 +50,8 @@ const {userId}=props
      getworms()
   }, [])
 // console.log(worms)
-  const uploadImage = () => {
+  const uploadImage = async () => {
+    const datas = await getDocs(wormCollection)
     //use addDoc to add data to the table; first var is the table name, 2nd is the data you want to add
     if (imageToUpload == null) return (addDoc(wormCollection, { notes: newNotes, date:date}))
     //ref is to get the specfic storage folder. first var is from the firebase-config and 2nd is the location/nameofphoto
@@ -58,27 +59,36 @@ const {userId}=props
     uploadBytes(imageRef, imageToUpload).then((snapshot) => {
       getDownloadURL(snapshot.ref).then((url) => {
         addDoc(wormCollection, { image: url, notes: newNotes, date: date })
-        setWorms((prev) => [...prev, { image: url, notes: newNotes, date: date}])
+        setWorms((datas.docs.map((doc) => ({ ...doc.data(), id: doc.id }))))
+        // setWorms((prev) => [...prev, { image: url, notes: newNotes, date: date}])
+        console.log(worms)
       })
     })
   }
 
 
 // allow users to see the input box to edit notes
-function editNotes(entry){
+function editNotes(entry, index){
   setUpdateNotes(entry.notes)
-  setStatus("")
-  setStatus2("hidden")
+  const editInputArea=document.querySelectorAll(".editArea")
+  const currentEditInputArea=editInputArea[index]
+  currentEditInputArea.classList.toggle("show")        
+
+  // setStatus("")
+  // setStatus2("hidden")
 }
 // submit the updated notes
 
-async function submitEdit(entry){
+async function submitEdit(entry, index){
+  const editInputArea=document.querySelectorAll(".editArea")
+  const currentEditInputArea=editInputArea[index]
+  currentEditInputArea.classList.toggle("show")        
+
   const data=doc(db, "worms", props.userId, "journal", entry.id)
   await updateDoc(data, {notes:updateNotes})
   const datas = await getDocs(wormCollection)
   await setWorms((datas.docs.map((doc) => ({ ...doc.data(), id: doc.id }))))
-setStatus("hidden")
-setStatus2("")
+
 }
 
 async function deleteNotes(entry){
@@ -129,14 +139,14 @@ async function deleteNotes(entry){
                       <div >
                         {entryData.notes}  
                         {/* <Link to={`/journal/${entryData.id}`}> */}
-                        <button onClick={(event)=>editNotes(entryData)} >Edit</button>
+                        <button onClick={(event)=>editNotes(entryData, index)} >Edit</button>
                         {/* </Link> */}
                       </div>
                       {// assign attribute? or id? 
                       }
-                      <span className={index}>
+                      <span className="editArea">
                       <input className="edit" value={updateNotes} onChange={(event) => { setUpdateNotes(event.target.value) }} placeholder="Update notes here" size={50} style={{ height: "7vh" }} />
-                      <button onClick={(event)=>submitEdit(entryData)}>Submit</button>
+                      <button onClick={(event)=>submitEdit(entryData, index)}>Submit</button>
                       </span>
                       </div>)
                     }

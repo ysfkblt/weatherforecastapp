@@ -45,10 +45,24 @@ const PlantSuggestions = (props) => {
           console.log(err.message)
       })
     }
-
-
       plantData()
 }, [])
+
+//getting image 
+// const fetchImage = async(search)=>{
+//   const res=await fetch(`https://serpapi.com/playground?q=${"house"}&tbs=itp%3Aphotos%2Cisz%3Al&tbm=isch&device=desktop`)
+//  const {images_results}= await res.json()
+// return images_results
+// }
+
+// console.log(fetchImage("rose"))
+
+const fetchZone = async (search) => {
+  const response = await fetch(`https://phzmapi.org/${search}.json`)
+  const data = await response.json()
+  return data
+}
+
 
 // console.log(plantsDbData)
   // initializezzz
