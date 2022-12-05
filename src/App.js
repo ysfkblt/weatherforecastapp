@@ -24,7 +24,7 @@ export default function App(props) {
 	const [userId, setUserId] = useState('')
 	const [darkMode, setDarkMode] = useState(true);
 
-console.log(props.userId)
+	console.log(props.userId)
 
 	// WEATHER API
 	
