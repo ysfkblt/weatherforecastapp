@@ -18,7 +18,6 @@ const PlantSuggestions = (props) => {
   const [housePlantsDbData, setHousePlantsDbData] = useState([])
   
   const {userId}=props
-  console.log(userId,"********")
   
   const wormCollection = collection(db, "worms", userId, "personal")
   

@@ -8,6 +8,7 @@ import Auth from "./Auth";
 import { auth, db } from "./firebase-config";
 import Home from "./Home";
 import Journal from "./Journal";
+import Footer from './Footer';
 import Test from "./OneEntry.js";
 import OneEntry from "./OneEntry.js";
 
@@ -33,11 +34,10 @@ const AppRoutes = () => {
     return (
         <>
             <Routes>
-
                 <Route path="/signUp" element={<Auth />} />
-                <Route path="/development" element={<PlantSuggestions />} />
+                {<Route path="/dev" element={<><Footer /></>} />}
                 {user ? <>
-                    <Route path="/" element={<App userId={user.uid} />} />
+                    <Route path="/" element={<><App userId={user.uid} /><Footer userId={user.uid} /></>} />
                     <Route path="/journal" element={<Journal userId={user.uid} />} />
                 </>
                     : <Route path="/" element={<App />} />

@@ -268,3 +268,26 @@ div.journal {
 .zone12-content {
 	background-color: #9b51e0;
 }
+
+
+/* BOTTOM / FOOTER NAV */
+.footer-container{
+	overflow: hidden;
+	border: solid black 1px;
+	padding: 1vh 5vw 3vh 5vw;
+	width: 100vw;
+	position: fixed;
+	bottom: 0;
+	background-color: white;
+}
+
+.footer-list {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+}
+
+.footer-link {
+	list-style: none;
+	font-size: 3vh;
+}
