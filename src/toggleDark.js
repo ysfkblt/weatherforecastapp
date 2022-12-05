@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function ToggleDark(props) {
     return (
-        <div classNameName="toggle-dark-wrapper">
+        <div className="toggle-dark-wrapper">
             <div className="wrapper">
                 <label className="switch">
                     <input
