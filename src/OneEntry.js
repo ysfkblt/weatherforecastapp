@@ -1,7 +1,7 @@
 import { collection, doc, getDocs, query, updateDoc, where } from 'firebase/firestore';
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Popup from 'reactjs-popup';
+// import Popup from 'reactjs-popup';
 import { db } from './firebase-config';
 
 

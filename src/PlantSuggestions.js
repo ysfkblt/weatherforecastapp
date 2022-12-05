@@ -17,18 +17,21 @@ const PlantSuggestions = (props) => {
   const [plantsDbData, setPlantsDbData] = useState([])
   
   const {userId}=props
-  // console.log(userId,"********")
+  console.log(userId,"********")
   
   const wormCollection = collection(db, "worms", userId, "personal")
   
   useEffect(()=>{
-  async function getworms(){
-    const data = await getDocs(wormCollection)
-    let pre_zone=data.docs[0].data().zone
-    let zone = parseInt(pre_zone)
-    setUserZoneNumber(zone)
-  }
-  getworms()
+    if (props.userId!=="NA"){
+
+      async function getworms(){
+        const data = await getDocs(wormCollection)
+        let pre_zone=data.docs[0].data().zone
+        let zone = parseInt(pre_zone)
+        setUserZoneNumber(zone)
+      }
+      getworms()
+    }
 
    function plantData(){ 
      getDocs(colRef)
