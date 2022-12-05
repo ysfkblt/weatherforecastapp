@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* This file is being used to style the Dark Mode slider */
 
 body {
     margin: 0;

@@ -4,10 +4,11 @@ import { auth, db } from "./firebase-config"
 import { storage } from "./firebase-config"
 import { connectStorageEmulator, getDownloadURL, listAll, ref, uploadBytes } from "firebase/storage"
 import { onAuthStateChanged } from "firebase/auth"
-import { Link, useParams } from "react-router-dom"
-import Popup from 'reactjs-popup'
-import Test from "./OneEntry"
-import OneEntry from "./OneEntry"
+// import { Link, useParams } from "react-router-dom"
+// import Popup from 'reactjs-popup'
+// import Test from "./OneEntry"
+// import OneEntry from "./OneEntry"
+
 const Journal = (props) => {
   const [worms, setWorms] = useState([])
   // const [userId, setUserId] = useState("2")
