@@ -2,9 +2,9 @@
 
 @import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
 
-@tailwind base;
+/* @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities; */
 
 /* ELEMENTS */
 
@@ -51,7 +51,7 @@ h1 {
 	font-weight: 200;
 }
 
-.app-wrapper {
+.app-container {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -59,7 +59,12 @@ h1 {
 	height: 100vh;
 }
 
-
+.root {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
 
 /* NAV */
 
