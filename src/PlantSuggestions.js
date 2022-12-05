@@ -18,18 +18,21 @@ const PlantSuggestions = (props) => {
   const [housePlantsDbData, setHousePlantsDbData] = useState([])
   
   const {userId}=props
-  // console.log(userId,"********")
+  console.log(userId,"********")
   
-  const wormCollection = collection(db, "worms", "bBx5WyQAWRUY1qP6Vshjj1S2i133", "personal")
+  const wormCollection = collection(db, "worms", userId, "personal")
   
   useEffect(()=>{
-    async function getworms(){
-      const data = await getDocs(wormCollection)
-      let pre_zone=data.docs[0].data().zone
-      let zone = parseInt(pre_zone)
-      setUserZoneNumber(zone)
+    if (props.userId!=="NA"){
+
+      async function getworms(){
+        const data = await getDocs(wormCollection)
+        let pre_zone=data.docs[0].data().zone
+        let zone = parseInt(pre_zone)
+        setUserZoneNumber(zone)
+      }
+      getworms()
     }
-    getworms()
 
     function plantData(){ 
       getDocs(colRef)
@@ -147,14 +150,14 @@ const PlantSuggestions = (props) => {
 
     // handling zones 10,11,12,13 which currently have no frost dates.
     if (lastFrostDate === "null" && firstFrostDate === "null") {
-      console.log("🌱 Your hardiness zone does not have typical frost 🌱")
+      // console.log("🌱 Your hardiness zone does not have typical frost 🌱")
       // ! what to suggest for this? same as
       plantTimingObject.frostSeason = false
       // return TRUE // okay to plant
 
       // is the date in a growing season
     } else if (date > lfDate && date < ffDate) {
-      console.log(`🌱 today is in the growing season for your zone🌱`)
+      // console.log(`🌱 today is in the growing season for your zone🌱`)
 
       daysToFirstFrost = Math.round((ffDate - date) / MS_IN_A_DAY)
       weeksToFirstFrost = Math.round(daysToFirstFrost / 7) //rounding to nearest INT
@@ -318,8 +321,7 @@ const PlantSuggestions = (props) => {
   }
 
   // console.log(getPlantSug(plantTimingObject, plantsDatabaseData))
-  console.log("=======this is the plants DB data",plantsDbData)
-  console.log(plantTimingObject)
+  // console.log("=======this is the plants DB data",plantsDbData)
   let suggestedPlantsData = getPlantSug(plantTimingObject, plantsDbData)
   // let suggestedHousePlantsData = filterSug(housePlantsDbData)
   let suggestedHousePlantsData = filterSug(housePlantDummyData)

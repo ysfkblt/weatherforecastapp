@@ -15,6 +15,8 @@
 		"react-dom": "^18.0.0",
 		"react-router-dom": "^6.4.2",
 		"react-scripts": "5.0.0",
+		"reactstrap": "^9.1.5",
+		"reactjs-popup": "^2.0.6",
 		"web-vitals": "^2.1.4"
 	},
 	"scripts": {
@@ -23,7 +25,8 @@
 		"start": "react-scripts start",
 		"build": "react-scripts build",
 		"test": "react-scripts test",
-		"eject": "react-scripts eject"
+		"eject": "react-scripts eject",
+		"dev": "react-scripts start"
 	},
 	"eslintConfig": {
 		"extends": [
@@ -47,6 +50,5 @@
 		"autoprefixer": "^10.4.4",
 		"postcss": "^8.4.12",
 		"tailwindcss": "^3.0.23"
-	},
-	"homepage": "https://ysfkblt.github.io/weatherforecastapp"
+	}
 }

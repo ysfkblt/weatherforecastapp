@@ -6,11 +6,14 @@ import {
 } from '@heroicons/react/outline';
 import background, { gradient } from './background';
 import { shuffle } from 'lodash';
-import DisplayZone from './Zone';
 import { addDoc, collection, getDocs, query, where } from 'firebase/firestore';
 import { db } from './firebase-config';
-import UpdateZipCode from './UserAuth';
+import UpdateZipCode from './LocationUpdate';
 import PlantSuggestions from "./PlantSuggestions";
+import ToggleDark from './toggleDark';
+import { ThemeContext, themes } from './themeContext';
+
+
 
 export default function App(props) {
 	const [search, setSearch] = useState('');
@@ -18,10 +21,13 @@ export default function App(props) {
 	const [grad, setgrad] = useState(null);
 	const [zone, setZone] = useState('')
 	const [zip, setZip] = useState('')
+	const [userId, setUserId] = useState('')
+	const [darkMode, setDarkMode] = useState(true);
 
+console.log(props.userId)
 
 	// WEATHER API
-
+	
 	async function getData() {
 		await fetch(
 			`https://api.weatherapi.com/v1/forecast.json?key=f676e0d30686474d99b160351221104&q=${search}&days=1&aqi=no&alerts=no`
@@ -92,6 +98,7 @@ export default function App(props) {
 	function handleSearch(e) {
 		setSearch(e.target.value);
 		setZip(e.target.value);
+		handleButtonClick();
 	}
 
 	useEffect(() => {
@@ -123,31 +130,44 @@ export default function App(props) {
 										? { backgroundImage: background.overcast }
 										: { backgroundImage: grad }
 			}
-			className='flex flex-row  text-black items-center justify-center h-screen bg-center bg-cover select-none'
+			className='h-screen w-screen bg-cover bg-center bg-no-repeat bg-fixed'
 		>
+			{/* DARKMODE */}
+			<header className="App-header">
+				
+				<ThemeContext.Consumer>
+					{({ changeTheme }) => (
+						<ToggleDark
+							toggleDark={() => {
+								setDarkMode(!darkMode);
+								changeTheme(darkMode ? themes.light : themes.dark);
+							}}
+						/>
+					)}
+				</ThemeContext.Consumer>
+			</header>
+
 			{/* Update user */}
-			{props.userId && zip.length === 5 && zone ?
+			{userId && zip.length === 5 && zone ?
 				<>
 					<UpdateZipCode
-						userId={props.userId}
+						userId={userId}
 						zip={zip}
 						zone={zone.zone}
 						coordinates={zone.coordinates}
-
 					/>
-					{/* {console.log("WORKING")} */}
 				</>
 				: null
 			}
 
 			{/* Search Bar */}
-			<div className='flex flex-row h-16 sm:h-24   absolute'>
+			<div className='flex justify-center items-center h-1/4'>
 				<input
-					className='bg-transparent placeholder:text-black text-lg focus:outline-none border-transparent focus:border-transparent focus:ring-0 sm:text-xl font-light self-end mb-1 mr-10'
+					className='w-1/2 sm:w-1/3 h-16 sm:h-24 bg-transparent text-white text-1xl sm:text-4xl text-center rounded-l-lg focus:outline-none'
 					type='text'
 					spellCheck='false'
 					value={search}
-					placeholder='please enter location'
+					placeholder='enter zip code'
 					onChange={handleSearch}
 					onFocus={(e) => (e.target.placeholder = '')}
 					onBlur={(e) =>
@@ -205,10 +225,13 @@ export default function App(props) {
 					) : null}
 				</div>
 
-				
-				
-					<PlantSuggestions userId={props.userId} />
-				
+
+							{props.userId?
+							
+				<PlantSuggestions userId={props.userId} /> : 
+				<PlantSuggestions userId={"NA"} /> 
+							}	
+
 			</div>
 
 		</div>

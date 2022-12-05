@@ -2,9 +2,9 @@
 
 @import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
 
-@tailwind base;
+/* @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities; */
 
 /* ELEMENTS */
 
@@ -51,7 +51,20 @@ h1 {
 	font-weight: 200;
 }
 
+.app-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+}
 
+.root {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
 
 /* NAV */
 
@@ -87,11 +100,11 @@ li.nav-bar-link {
 	align-items: center;
 	height: 100vh;
 	z-index: 1;
-	position: relative;	
+	position: relative;
 }
 
 .auth-signup-container {
-	
+
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -102,7 +115,7 @@ li.nav-bar-link {
 }
 
 .auth-login-container {
-	
+
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -129,7 +142,7 @@ h3.auth-header {
 	border-radius: 4px;
 	font-size: 16px;
 	background-color: white;
-	background-position: 10px 10px; 
+	background-position: 10px 10px;
 	background-repeat: no-repeat;
 	padding: 12px 20px 12px 40px;
 	transition: width 0.4s ease-in-out;
@@ -190,6 +203,16 @@ div.journal {
 	margin: 2em;
 }
 
+
+.hidden {
+	visibility: hidden;
+}
+
+.edit {
+	border: 1px solid black;
+	margin-top: 10px;
+}
+
 /* PLANT SUGGESTIONS */
 
 .plant-suggestions-container {
@@ -214,4 +237,34 @@ div.journal {
 	width: 20vw;
 	height: 20vw;
 	border: 1px solid black;
+}
+
+/* CONTEXT THEMES / DARKMODE */
+
+.white-content {
+	background: #e4e4e4;
+}
+
+.zone7-content {
+	background-color: #72c17b;
+}
+
+.zone8-content {
+	background-color: #f2c94c;
+}
+
+.zone9-content {
+	background-color: #f2994a;
+}
+
+.zone10-content {
+	background-color: #eb5757;
+}
+
+.zone11-content {
+	background-color: #2f80ed;
+}
+
+.zone12-content {
+	background-color: #9b51e0;
 }
