@@ -24,7 +24,7 @@ export default function App(props) {
 	const [userId, setUserId] = useState('')
 	const [darkMode, setDarkMode] = useState(true);
 
-
+console.log(props.userId)
 
 	// WEATHER API
 	
@@ -225,8 +225,11 @@ export default function App(props) {
 				</div>
 
 
-
-				<PlantSuggestions userId={props.userId} />
+							{props.userId?
+							
+				<PlantSuggestions userId={props.userId} /> : 
+				<PlantSuggestions userId={"NA"} /> 
+							}	
 
 			</div>
 
