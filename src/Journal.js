@@ -114,16 +114,28 @@ worms.sort((a,b)=>{
 return da - db
 })
 
-
-  function searchPage(keyWord){
-    console.log(keyWord)
-    const result= worms.filter((worm)=>{
-      let notes=worm.notes.split(" ")
-      console.log(notes, "NOTESSS")
-  return notes.includes(keyWord)
-})
-setWorms(result)  
+async function reloadData(){
+  const datas = await getDocs(wormCollection)
+  await setWorms((datas.docs.map((doc) => ({ ...doc.data(), id: doc.id }))))
 }
+  async function searchPage(keyWord){
+    console.log(keyWord,"KEYWORD")
+    let result=[]
+    const datas = await getDocs(wormCollection)
+    await setWorms((datas.docs.map((doc) => ({ ...doc.data(), id: doc.id }))))
+   if(keyWord.length>0){ 
+    console.log(worms,"UPDATED WORMS")
+     result= worms.filter(worm=>{
+  if( worm.notes.includes(keyWord)) {
+    return worm
+  }
+})}
+if (result.length>0){
+  setWorms(result)  
+} else if (keyWord.length>0){
+  alert("Cannot find matching entry")
+}
+} 
 // searchPage("test")
 // Get current date
   let newDate = new Date();
@@ -132,7 +144,8 @@ setWorms(result)
   return (
   
     <div className="journal-container">
-            <input className="journal-search" value={search} onChange={(event) => { setSearch(event.target.value); searchPage(event.target.value) }} placeholder="Search..." size={50} style={{ height: "7vh" }} />
+            <input className="journal-search" value={search} onChange={ (event)=>{ setSearch(event.target.value); searchPage(event.target.value)}} placeholder="Search..." size={50} />
+            {/* <button onClick={(event)=> searchPage(search)}>Search</button> */}
       <div className="journal-form">
         <h1 className="journal-form-heading"> Add new entry:</h1>
         <div className="imgUpload">
