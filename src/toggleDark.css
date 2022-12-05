@@ -91,6 +91,8 @@ a {
     border-radius: 50px;
     z-index: 100;
     overflow: hidden;
+    height: 30px;
+    width: 80px;
 }
 .wrapper .switch .slider:after,
 .wrapper .switch .slider:before {
