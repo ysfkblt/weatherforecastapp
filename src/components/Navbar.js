@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react"
-
-import { onAuthStateChanged, signOut, updateProfile } from "firebase/auth"
-import { auth, db } from "./firebase-config"
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { onAuthStateChanged, signOut } from "firebase/auth"
+import { auth } from "../database/firebase-config"
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [user, setUser] = useState("")
@@ -11,14 +10,11 @@ const Navbar = () => {
     onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser)
     })
-    // updateProfile(auth.currentUser, {
-    //     displayName:"testing"
-    // })
+   
   },[])
   const logout = async () => {
     await signOut(auth)
   }
-// console.log(user.providerData)
 
 return (
     <>
@@ -33,7 +29,6 @@ return (
           </> :
               <li className="nav-bar-link"> <Link to="/signUp"> Log In </Link></li>
 }
-          {/* <Link to="/journal">Journal</Link> */}
         </ul>
       </nav>
     </>

@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react"
-import { onAuthStateChanged } from "firebase/auth"
 import { collection, getDocs } from "firebase/firestore"
-import { auth, db } from "./firebase-config"
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { db } from "../database/firebase-config"
+import { Link } from "react-router-dom";
 
 const AllPlants = () => {
   const [plants, setPlants] = useState([])

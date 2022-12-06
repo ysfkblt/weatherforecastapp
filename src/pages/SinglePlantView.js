@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react"
-import { onAuthStateChanged } from "firebase/auth"
 import { collection, getDocs, query, where } from "firebase/firestore"
 import { useParams } from "react-router-dom"
-import { auth, db } from "./firebase-config" // STEP 1
+import { db } from "../database/firebase-config" // STEP 1
 
 /** ========= firestore DB querying for one item in a collection =====================
 // 1. import the db connection to the firestore as configured earlier
@@ -53,6 +52,7 @@ const SinglePlantView = () => {
             <img
               src="https://www.world-grain.com/ext/resources/2022/09/21/Wheat_photo-cred-Adobe-stock_E-2.jpg?t=1663769040&width=1080"
               className="allPlantsImg"
+              alt="plant"
             />{" "}
             IMAGE IS JUST HARDCODED - TEMPORARY
           </div>{" "}

@@ -13,3 +13,5 @@ export const ThemeContext = createContext({
   theme: themes.dark, // default value
   changeTheme: () => { },
 });
+
+// export default ThemeContext

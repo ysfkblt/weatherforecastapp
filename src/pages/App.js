@@ -1,19 +1,11 @@
 import { useState, useEffect } from 'react';
-import {
-	SearchIcon,
-	ArrowDownIcon,
-	ArrowUpIcon,
-} from '@heroicons/react/outline';
-import background, { gradient } from './background';
+import { SearchIcon, ArrowDownIcon, ArrowUpIcon } from '@heroicons/react/outline';
+import background, { gradient } from '../components/background';
 import { shuffle } from 'lodash';
-import { addDoc, collection, getDocs, query, where } from 'firebase/firestore';
-import { db } from './firebase-config';
-import UpdateZipCode from './LocationUpdate';
-import PlantSuggestions from "./PlantSuggestions";
-import ToggleDark from './toggleDark';
-import { ThemeContext, themes } from './themeContext';
-
-
+import UpdateZipCode from '../components/LocationUpdate';
+import PlantSuggestions from "../components/PlantSuggestions";
+import ToggleDark from '../components/toggleDark';
+import { ThemeContext, themes } from '../components/themeContext';
 
 export default function App(props) {
 	const [search, setSearch] = useState('');

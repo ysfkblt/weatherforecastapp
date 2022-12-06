@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { onAuthStateChanged, signOut, updateProfile } from "firebase/auth"
-import { auth, db } from "./firebase-config"
+import { auth, db } from "../database/firebase-config"
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 const Footer = () => {

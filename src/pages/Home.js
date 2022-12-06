@@ -4,11 +4,10 @@ import {
 	ArrowDownIcon,
 	ArrowUpIcon,
 } from '@heroicons/react/outline';
-import background, { gradient } from './background';
+import background, { gradient } from '../components/background';
 import { shuffle } from 'lodash';
 const Home = () => {
   
-// Delete?
 
     return (
       <>
