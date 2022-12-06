@@ -204,8 +204,12 @@ div.journal {
 }
 
 
-.hidden {
-	visibility: hidden;
+.editArea{
+display: none;
+}
+.show{
+    display: block;
+
 }
 
 .edit {

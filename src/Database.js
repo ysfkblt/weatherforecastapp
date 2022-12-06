@@ -5,8 +5,9 @@ import { getDatabase } from "firebase/database"
 
 const Database = () => {
     const database = getDatabase()
-    // const [plants, setPlants] = useState([])
-    // const [housePlants, setHousePlants] = useState([])
+    const [plants, setPlants] = useState([])
+
+    const [housePlants, setHousePlants] = useState([])
     const plantsCollection = collection(db, "plants")
     const housePlantsCollection = collection(db, "housePlants")
 
