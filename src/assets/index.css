@@ -258,9 +258,7 @@ display: none;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	height: 100vh;
-	z-index: 1;
-	/* position: relative;	 */
+	border: 1px solid red;
 }
 
 .plant-suggestion {
