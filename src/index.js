@@ -5,6 +5,8 @@ import "./toggleDark.css"
 import { BrowserRouter as Router } from 'react-router-dom';
 import Navbar from "./Navbar";
 import AppRoutes from "./AppRoutes";
+import Footer from './Footer';
+import Database from "./Database";
 import ThemeContextWrapper from "./themeContextWrapper";
 
 const root = ReactDOM.createRoot(document.getElementById("root"))
@@ -20,6 +22,7 @@ root.render(
                 {/* <h1>test this is in index.js. components should be below</h1> */}
                 {/* <ImageUpload /> */}
                 <AppRoutes />
+                {/* <Footer /> */}
                 {/* <Database /> */}
                 {/* <DisplayZone /> */}
                 {/* <PlantSuggestions/> */}

@@ -317,6 +317,53 @@ display: none;
 	background-color: #9b51e0;
 }
 
+/* All Plants  */
+
+.allPlantsImg{
+	height: 14vh;
+}
+.allPlantsArea{
+	display: flex;
+	flex-wrap: wrap;
+}
+.singlePlant{
+	border: 1px solid white;
+	width: 23vw;
+	height: 30vh;
+	margin: 1vw;
+	align-content: center;
+}
+.singlePlantName{
+	font-size: 1.5rem;
+}
+.singlePlant img{
+	display: flex;
+	align-items: center;
+}
+
+
+/* BOTTOM / FOOTER NAV */
+.footer-container{
+	overflow: hidden;
+	border: solid black 1px;
+	padding: 1vh 5vw 3vh 5vw;
+	width: 100vw;
+	position: fixed;
+	bottom: 0;
+	background-color: white;
+}
+
+.footer-list {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+}
+
+.footer-link {
+	list-style: none;
+	font-size: 3vh;
+}
+
 /* SEARCH */
 
 .search-container {

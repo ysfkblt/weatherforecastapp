@@ -18,10 +18,35 @@ const PlantSuggestions = (props) => {
   const [housePlantsDbData, setHousePlantsDbData] = useState([])
   
   const {userId}=props
-  console.log(userId,"********")
   
   const wormCollection = collection(db, "worms", userId, "personal")
   
+  function plantData(){ 
+    getDocs(colRef)
+    .then((snapshot) => {
+      snapshot.docs.forEach((doc) => {
+        setPlantsDbData((prev)=> [...prev, doc.data()])
+      })
+      return plantsDbData
+    })
+    .catch(err => {
+      console.log(err.message)
+    })
+  }
+  
+  function housePlantData(){ 
+    getDocs(colRef2)
+    .then((snapshot) => {
+      snapshot.docs.forEach((doc) => {
+        setHousePlantsDbData((prev)=> [...prev, doc.data()])
+      })
+      return housePlantsDbData
+    })
+    .catch(err => {
+      console.log(err.message)
+    })
+  }
+
   useEffect(()=>{
     if (props.userId!=="NA"){
 
@@ -65,22 +90,7 @@ const fetchZone = async (search) => {
 
 // console.log(plantsDbData)
     plantData()
-
-
-    // function housePlantData(){ 
-    //   getDocs(colRef2)
-    //     .then((snapshot) => {
-    //       snapshot.docs.forEach((doc) => {
-    //         setHousePlantsDbData((prev)=> [...prev, doc.data()])
-    //       })
-    //       return housePlantsDbData
-    //     })
-    //     .catch(err => {
-    //       console.log(err.message)
-    //     })
-    // }
-
-    // housePlantData()
+    housePlantData()
   }, [])
 
   // initializezzz
@@ -105,11 +115,6 @@ const fetchZone = async (search) => {
 
   const MS_IN_A_DAY = 24 * 60 * 60 * 1000 //hours * minutes * seconds * milliseconds
 
-  // todo ? get more specific data for EX 9a,9b
-  /** ! frost data. make changes here to change frost dates
-   *  zone# : [last frost date, first frost date]
-   *  aka zone#: [start of growing season, end of growing season]
-   */
   const frostZoneMap = {
     1: ["5/29", "8/29"],
     2: ["5/19", "9/5"],
@@ -123,7 +128,7 @@ const fetchZone = async (search) => {
     10: ["null", "null"],
     11: ["null", "null"],
     12: ["null", "null"],
-    13: ["null", "null"],
+    13: ["null", "null"]
   }
 
   function getFrostDates(zoneNum, frostZoneMap) {
@@ -155,11 +160,9 @@ const fetchZone = async (search) => {
     const date = new Date(+year1, 3, 24)
     console.log(date)
 
-
     const startStr = firstFrostDate //EX dec 30 = "12/30"
     const [month2, day2] = startStr.split("/")
     const ffDate = new Date(+year1, month2 - 1, +day2)
-
     const endStr = lastFrostDate // EX aug 24 = "08/24"
     const [month3, day3] = endStr.split("/")
     const lfDate = new Date(+year1, month3 - 1, +day3)
