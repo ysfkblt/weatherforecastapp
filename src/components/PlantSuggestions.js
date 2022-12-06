@@ -1,10 +1,9 @@
 // import { db } from './firebase-config'
 // import { collection, getDocs, query, where } from "firebase/firestore"
 
-import { onAuthStateChanged } from "firebase/auth"
 import { collection, getDocs } from "firebase/firestore"
 import { useEffect, useState } from "react"
-import { auth, db } from "./firebase-config"
+import { db } from "../database/firebase-config"
 
 // ! TODO, integrate getting actual user zone number
 // ! take out dummy plant data, and connect to real firestore database
@@ -12,7 +11,6 @@ import { auth, db } from "./firebase-config"
 
 const PlantSuggestions = (props) => {
   // const userZoneNumber = 8 // ! PLACEHOLDER
-  const [currentUser, setCurrentUser] = useState("")
   const [userZoneNumber, setUserZoneNumber] = useState(8)
   const [plantsDbData, setPlantsDbData] = useState([])
   const [housePlantsDbData, setHousePlantsDbData] = useState([])
@@ -59,18 +57,6 @@ const PlantSuggestions = (props) => {
       getworms()
     }
 
-    function plantData(){ 
-      getDocs(colRef)
-        .then((snapshot) => {
-          snapshot.docs.forEach((doc) => {
-            setPlantsDbData((prev)=> [...prev, doc.data()])
-          })
-          return plantsDbData
-        })
-        .catch(err => {
-          console.log(err.message)
-        })
-    }
 
 //getting image 
 // const fetchImage = async(search)=>{
@@ -81,14 +67,12 @@ const PlantSuggestions = (props) => {
 
 // console.log(fetchImage("rose"))
 
-const fetchZone = async (search) => {
-  const response = await fetch(`https://phzmapi.org/${search}.json`)
-  const data = await response.json()
-  return data
-}
+    const fetchZone = async (search) => {
+      const response = await fetch(`https://phzmapi.org/${search}.json`)
+      const data = await response.json()
+      return data
+    }
 
-
-// console.log(plantsDbData)
     plantData()
     housePlantData()
   }, [])

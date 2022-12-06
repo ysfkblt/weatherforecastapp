@@ -1,13 +1,13 @@
 import React from "react"
 import ReactDOM from "react-dom/client"
-import "./index.css"
-import "./toggleDark.css"
+import "./assets/index.css"
+import "./assets/toggleDark.css"
 import { BrowserRouter as Router } from 'react-router-dom';
-import Navbar from "./Navbar";
-import AppRoutes from "./AppRoutes";
-import Footer from './Footer';
-import Database from "./Database";
-import ThemeContextWrapper from "./themeContextWrapper";
+import Navbar from "./components/Navbar";
+import AppRoutes from "./pages/AppRoutes";
+import Footer from './components/Footer';
+import Database from "./database/Database";
+import ThemeContextWrapper from "./components/themeContextWrapper";
 
 const root = ReactDOM.createRoot(document.getElementById("root"))
 root.render(
