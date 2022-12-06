@@ -375,9 +375,7 @@ display: none;
 /* SEARCH */
 
 .search-container {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	grid-template-rows: 1fr;
+	display: flex;
 	align-items: center;
 	justify-content: center;
 	height: 10vh;
@@ -394,7 +392,7 @@ display: none;
 .search-input {
 	border-radius: 10px;
 	height: 2em;
-	background: transparent;
+	background: rgba(255, 255, 255, 0.5);
 	text-align: center;
 }
 
@@ -431,7 +429,6 @@ display: none;
 	font-size: 1em;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr 1fr;
-	grid-template-rows: 1fr 1fr;
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;

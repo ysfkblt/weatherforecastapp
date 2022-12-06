@@ -89,16 +89,14 @@ const Search = () => {
       {/* Hidden info display, reveals after search button click */}
 
       <div className="search-results-container">
-      
         <div className="search-results-temp">
           {info.temp ? (
-           
             <p className="search-results-temp-text">
               {info.temp?.current}
-              
               <span className="search-results-temp-text-degrees">
-                °
+                °f
               </span>
+              
             </p>
           ) : null}
         </div>
