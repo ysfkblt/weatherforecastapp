@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react"
 import { collection, getDocs } from "firebase/firestore"
-import { db } from "../database/firebase-config"
+import { db } from "../../database/firebase-config"
 import { Link } from "react-router-dom";
+import Checkbox from "./checkboxes"
+
 
 const AllPlants = () => {
   const [plants, setPlants] = useState([])
+  const [filterOptions, setFilterOptions] = useState([])
   const plantCollection = collection(db, "plants")
 
   useEffect(() => {
@@ -14,8 +17,75 @@ const AllPlants = () => {
     }
     getPlants()
   }, [])
-  console.log(plants)
+
+  function checkedBox(event){
+    // if(event.checked===false){event.checked=true} else {event.checked=false}
+    // console.log(event.checked)
+    if(!document.getElementById(event).checked){
+      // console.log(event)
+      // let tempFilteredOption = filterOptions
+      // tempFilteredOption.push(event)
+      // setFilterOptions(tempFilteredOption)
+         let tempFilterOption =  filterOptions.filter((option) => option !== event)
+      setFilterOptions(tempFilterOption) 
+      console.log(filterOptions)
+    }
+    else { 
+      let tempFilteredOption = filterOptions
+      tempFilteredOption.push(event)
+      setFilterOptions(tempFilteredOption)
+      console.log(filterOptions)
+
+      // let tempFilterOption =  filterOptions.filter((option) => option !== event)
+      // setFilterOptions(tempFilterOption) 
+    }
+  }
+
+  async function resetPlants(){
+    const data = await getDocs(plantCollection)
+    await setPlants(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+  }
+
+  async function onSubmit(evt){
+    if (filterOptions.length === 0) {
+      resetPlants()
+    }
+    else {
+      //  const data = await getDocs(plantCollection)
+      // await setPlants(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+      await resetPlants()
+      console.log(plants)
+      let newPlants = plants.filter((plant) => filterOptions.includes(plant.type))
+      setPlants(newPlants)
+      console.log(newPlants)
+    }
+  }
+
+  const plantTypes=["grain", "grass", "herb", "house", "orn", "shrb", "shrub", "tree", "vege", "vine"]
+
   return (
+  <>
+    <div className="filterArea"> 
+     <div><h4>Filter:</h4></div>
+     <div>
+      <div><h4>Plant Type</h4></div>
+      {plantTypes.map((type)=><Checkbox type={type} handleChange={checkedBox} />)
+
+      }
+      {/* <div><input type="checkbox" onChange={(event)=>checkedBox(event.target.value)} value="grain" id="grain"/>Grain</div>
+      <div><input type="checkbox" onChange={(event)=>checkedBox(event.target.value)} value="herb" id="herb" />Herb</div>
+      <div><input type="checkbox" onChange={(event)=>checkedBox(event.target.value)} value="grass" id="grass"/>Grass</div>
+      <div><input type="checkbox" onChange={(event)=>checkedBox(event.target.value)} value="tree" id="tree" />Tree</div>
+      <div><input type="checkbox" onChange={(event)=>checkedBox(event.target.value)} value="house" id="house" />House</div>
+      <div><input type="checkbox" onChange={(event)=>checkedBox(event.target.value)} value="ornamental" id="ornamental" />Ornamental</div>
+      <div><input type="checkbox" onChange={(event)=>checkedBox(event.target.value)} value="shrub" id="shrub" />Shrub</div>
+      <div><input type="checkbox" onChange={(event)=>checkedBox(event.target.value)} value="vegetable" id="vegetable" />Vegetable</div>
+      <div><input type="checkbox" onChange={(event)=>checkedBox(event.target.value)} value="vine" id="vine" />Vine</div> */}
+     </div>
+     <button onClick={(evt)=>{onSubmit(evt)}}>submit</button>
+     <button>clear</button>
+    </div>
+
     <div className="allPlantsArea">
       {plants
         ? plants.map((plant) => {
@@ -118,7 +188,7 @@ const AllPlants = () => {
           })
         : null}
     </div>
-  )
+    </>)
 }
 
 export default AllPlants

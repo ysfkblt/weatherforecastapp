@@ -340,7 +340,10 @@ display: none;
 	display: flex;
 	align-items: center;
 }
-
+.filterArea{
+	width: 100vw;
+	display: block;
+}
 
 /* BOTTOM / FOOTER NAV */
 .footer-container{
