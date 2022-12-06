@@ -66,6 +66,23 @@ h1 {
 	align-items: center;
 }
 
+input,
+span,
+label,
+textarea {
+  font-family: 'Ubuntu', sans-serif;
+  display: block;
+  margin: 10px;
+  padding: 5px;
+  border: none;
+  font-size: 22px;
+}
+
+textarea:focus,
+input:focus {
+  outline: 0;
+}
+
 /* NAV */
 
 .nav-bar-container {
@@ -87,10 +104,20 @@ li.nav-bar-link {
 	margin: 5px;
 }
 
+/* HEADER */
+
+.header-container {
+	border-bottom: 1px solid black;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 10vh;
+}
+
+
+
 /* AUTH */
-
-
-
 
 .auth-container {
 	border-bottom: 1px solid black;
@@ -153,7 +180,15 @@ h3.auth-header {
 	border: 3px solid #555;
 }
 
+/* HOME HEADER */
 
+.home-header {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: fit-content;
+}
 
 /* JOURNAL */
 
@@ -197,7 +232,6 @@ input.journal-form-file-input {
 	justify-content: space-evenly;
 	align-items: center;
 }
-
 
 div.journal {
 	margin: 2em;
@@ -243,7 +277,17 @@ display: none;
 	border: 1px solid black;
 }
 
-/* CONTEXT THEMES / DARKMODE */
+ /* DARKMODE */
+
+ .toggle-dark-wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+
+}
+
+/* CONTEXT THEMES */
 
 .white-content {
 	background: #e4e4e4;
@@ -318,4 +362,22 @@ display: none;
 .footer-link {
 	list-style: none;
 	font-size: 3vh;
+}
+
+/* SEARCH */
+
+.search-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 30vh;
+	z-index: 1;
+	position: relative;
+}
+
+.search-input {
+	width: 50%;
+	border-radius: 10px;
+	height: 2em;
 }
