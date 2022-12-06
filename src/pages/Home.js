@@ -183,39 +183,48 @@ const Home = (props) => {
           ) : null}
         </div>
 
-
-        <div className="row-span-2  sm:mt-3 mt-2  justify-self-start truncate">
-          <p className=" text-start sm:text-3xl font-light sm:pb-1 sm:ml-1">
+        {/* row-span-2  sm:mt-3 mt-2  justify-self-start truncate */}
+        <div className="search-results-sub-container">
+          {/* text-start sm:text-3xl font-light sm:pb-1 sm:ml-1 */}
+          <p className="search-results-condition-text">
             {info.condition}
           </p>
           {info.temp ? (
-            <p className="sm:text-2xl  text-start font-light">
-              <ArrowUpIcon className="sm:h-4  h-2 inline-flex align-middle" />
+            // sm:text-2xl  text-start font-light
+            <p className="search-results-temp-range">
+              {/* sm:h-4  h-2 inline-flex align-middle */}
+              <div className="search-results-temp-range-icon" >
+                <i class="fa fa-arrow-up" aria-hidden="true"></i>
+              </div>
               {info.temp?.max}
-              <span className="align-top font-normal sm:text-base text-xs">
+              {/* align-top font-normal sm:text-base text-xs */}
+              <span className="search-results-temp-range-degrees">
                 °
               </span>{" "}
-              <ArrowDownIcon className="sm:h-4 h-2 inline-flex align-middle" />
+              <ArrowDownIcon className="search-results-temp-range-icon" />
               {info.temp?.min}
-              <span className="align-top font-normal sm:text-base text-xs">
+              {/* align-top font-normal sm:text-base text-xs */}
+              <span className="search-results-temp-range-degrees">
                 °
               </span>
             </p>
           ) : null}
 
-          <p className="sm:text-xl text-xs  text-start font-light  whitespace-nowrap  sm:mt-1 sm:ml-1">
+          {/* sm:text-xl text-xs  text-start font-light  whitespace-nowrap  sm:mt-1 sm:ml-1 */}
+          <p className="search-results-location">
             {info.country}
           </p>
-          {zone.zone ? <p className="">Hardiness Zone {zone.zone}</p> : null}
+          {zone.zone ? <p className="search-results-zone">
+            Hardiness Zone {zone.zone}</p> : null}
         </div>
       </div>
 
       {props.userId ? (
-          <PlantSuggestions userId={props.userId} />
-        ) : (
-          <PlantSuggestions userId={"NA"} />
-        )}
-        
+        <PlantSuggestions userId={props.userId} />
+      ) : (
+        <PlantSuggestions userId={"NA"} />
+      )}
+
     </div>
   )
 }

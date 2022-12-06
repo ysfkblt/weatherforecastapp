@@ -14,43 +14,43 @@ const PlantSuggestions = (props) => {
   const [userZoneNumber, setUserZoneNumber] = useState(8)
   const [plantsDbData, setPlantsDbData] = useState([])
   const [housePlantsDbData, setHousePlantsDbData] = useState([])
-  
-  const {userId}=props
-  
+
+  const { userId } = props
+
   const wormCollection = collection(db, "worms", userId, "personal")
-  
-  function plantData(){ 
+
+  function plantData() {
     getDocs(colRef)
-    .then((snapshot) => {
-      snapshot.docs.forEach((doc) => {
-        setPlantsDbData((prev)=> [...prev, doc.data()])
+      .then((snapshot) => {
+        snapshot.docs.forEach((doc) => {
+          setPlantsDbData((prev) => [...prev, doc.data()])
+        })
+        return plantsDbData
       })
-      return plantsDbData
-    })
-    .catch(err => {
-      console.log(err.message)
-    })
+      .catch(err => {
+        console.log(err.message)
+      })
   }
-  
-  function housePlantData(){ 
+
+  function housePlantData() {
     getDocs(colRef2)
-    .then((snapshot) => {
-      snapshot.docs.forEach((doc) => {
-        setHousePlantsDbData((prev)=> [...prev, doc.data()])
+      .then((snapshot) => {
+        snapshot.docs.forEach((doc) => {
+          setHousePlantsDbData((prev) => [...prev, doc.data()])
+        })
+        return housePlantsDbData
       })
-      return housePlantsDbData
-    })
-    .catch(err => {
-      console.log(err.message)
-    })
+      .catch(err => {
+        console.log(err.message)
+      })
   }
 
-  useEffect(()=>{
-    if (props.userId!=="NA"){
+  useEffect(() => {
+    if (props.userId !== "NA") {
 
-      async function getworms(){
+      async function getworms() {
         const data = await getDocs(wormCollection)
-        let pre_zone=data.docs[0].data().zone
+        let pre_zone = data.docs[0].data().zone
         let zone = parseInt(pre_zone)
         setUserZoneNumber(zone)
       }
@@ -58,14 +58,14 @@ const PlantSuggestions = (props) => {
     }
 
 
-//getting image 
-// const fetchImage = async(search)=>{
-//   const res=await fetch(`https://serpapi.com/playground?q=${"house"}&tbs=itp%3Aphotos%2Cisz%3Al&tbm=isch&device=desktop`)
-//  const {images_results}= await res.json()
-// return images_results
-// }
+    //getting image 
+    // const fetchImage = async(search)=>{
+    //   const res=await fetch(`https://serpapi.com/playground?q=${"house"}&tbs=itp%3Aphotos%2Cisz%3Al&tbm=isch&device=desktop`)
+    //  const {images_results}= await res.json()
+    // return images_results
+    // }
 
-// console.log(fetchImage("rose"))
+    // console.log(fetchImage("rose"))
 
     const fetchZone = async (search) => {
       const response = await fetch(`https://phzmapi.org/${search}.json`)
@@ -203,7 +203,7 @@ const PlantSuggestions = (props) => {
   plantTimingObject.zone = userZoneNumber
   plantTimingObject.firstFrost = firstFrostDate
   plantTimingObject.lastFrost = lastFrostDate
- 
+
   const housePlantDummyData = [
     {
       id: 1,
@@ -289,7 +289,7 @@ const PlantSuggestions = (props) => {
     // This is during non-frost season
     else {
       // if two months from first frost
-      
+
       if (obj.weeksToFirstFrost < 9) {
         if (obj.weeksToFirstFrost < 9 && obj.weeksToFirstFrost > 4) {
           let twoMonthTillFrost = viablePlantSug.filter((x) => x.method === 1)
@@ -331,7 +331,7 @@ const PlantSuggestions = (props) => {
   let suggestedHousePlantsData = filterSug(housePlantDummyData)
 
   return (
-  
+
     <div className="plant-suggestions-container">
       <h2 className="plant-suggestions-header">TODAY'S PLANT SUGGESTIONS</h2>
       {(suggestedPlantsData.length > 0) ? (suggestedPlantsData.map((curPlant) => (
@@ -339,17 +339,20 @@ const PlantSuggestions = (props) => {
           <div><h3>Name: {curPlant.name}, <h3 className="italics">({curPlant.species})</h3></h3></div>
           <div><img src={curPlant.name} className="plantSugImg" /></div>
         </div>
-      ))) : (<><div>
-      <h3>If you are wanting to plant today, we suggest indoor plants:</h3>
-      <div>{suggestedHousePlantsData.map((curPlant) => (
-        <div className="plant-suggestion" key={curPlant.id}>
-          <div><h3>Name: {curPlant.name}, <h3 className="italics">({curPlant.species})</h3></h3></div>
-          <div><img src={curPlant.id} className="plantSugImg" /></div>
+      ))) : (<>
+        <div>
+          <h3 className="plant-suggestions-subheading">If you are wanting to plant today, we suggest indoor plants:</h3>
+          <div>{suggestedHousePlantsData.map((curPlant) => (
+            <div className="plant-suggestion" key={curPlant.id}>
+              <div><h3>Name: {curPlant.name}, <h3 className="italics">({curPlant.species})</h3></h3></div>
+              <div><img src={curPlant.id} className="plantSugImg" /></div>
+            </div>
+          ))}
+          </div>
         </div>
-      ))}</div>
-      </div>
-      </>)}
-      
+      </>
+      )}
+
     </div>
   )
 }

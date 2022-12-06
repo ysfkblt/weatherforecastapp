@@ -11,9 +11,7 @@
 }
 .wrapper .switch {
     position: absolute;
-    left: 50%;
-    top: 60%;
-    transform: translate(-40%, -40%);
+ 
     width: 60px;
     height: 30px;
 }
@@ -30,10 +28,10 @@
     display: none;
 }
 .wrapper .switch .wave:after {
-    width: 30px;
+    width: 28px;
     height: 3px;
     top: 3px;
-    left: 0;
+    left: 4px;
     opacity: 0.4;
 }
 .wrapper .switch .wave:after,
@@ -44,7 +42,7 @@
     position: absolute;
 }
 .wrapper .switch .wave:before {
-    width: 35px;
+    width: 30px;
     height: 2px;
     top: 10px;
     left: 30%;
@@ -238,7 +236,7 @@
 }
 .wrapper .switch input:checked + .slider:after,
 .wrapper .switch input:checked + .slider:before {
-    transform: translateX(50px);
+    transform: translateX(20px);
 }
 .wrapper .switch input:checked ~ .boat {
     top: -25%;
