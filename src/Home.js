@@ -102,26 +102,27 @@ export default function App(props) {
   }, []);
 
   return (
-
-    <div // Dynamic background from boilerplate 
-      className='home-view-container'
-      style={
-        info.condition?.toLowerCase() === 'clear'
-          ? { backgroundImage: background.clear }
-          : info.condition?.toLowerCase() === 'sunny'
-            ? { backgroundImage: background.sunny }
-            : info.condition?.toLowerCase().includes('cloudy')
-              ? { backgroundImage: background.cloudy }
-              : info.condition?.toLowerCase().includes('rain') ||
-                info.condition?.toLowerCase().includes('drizzle')
-                ? { backgroundImage: background.rainy }
-                : info.condition?.toLowerCase().includes('snow') ||
-                  info.condition?.toLowerCase().includes('sleet')
-                  ? { backgroundImage: background.snow }
-                  : info.condition?.toLowerCase().includes('overcast')
-                    ? { backgroundImage: background.overcast }
-                    : { backgroundImage: grad }
-      }>
+// Dynamic Background
+  <div
+			style={
+				info.condition?.toLowerCase() === 'clear'
+					? { backgroundImage: background.clear }
+					: info.condition?.toLowerCase() === 'sunny'
+					? { backgroundImage: background.sunny }
+					: info.condition?.toLowerCase().includes('cloudy')
+					? { backgroundImage: background.cloudy }
+					: info.condition?.toLowerCase().includes('rain') ||
+					  info.condition?.toLowerCase().includes('drizzle')
+					? { backgroundImage: background.rainy }
+					: info.condition?.toLowerCase().includes('snow') ||
+					  info.condition?.toLowerCase().includes('sleet')
+					? { backgroundImage: background.snow }
+					: info.condition?.toLowerCase().includes('overcast')
+					? { backgroundImage: background.overcast }
+					: { backgroundImage: grad }
+			}
+			className='flex flex-row  text-black items-center justify-center h-screen bg-center bg-cover select-none'
+		>
 
       {/* DARKMODE */}
       <header className="header-container">
@@ -151,64 +152,63 @@ export default function App(props) {
       }
 
       {/* Search Bar */}
-      <div className='search-container'>
-        <input
-          className='search-input'
-          type='text'
-          spellCheck='false'
-          value={search}
-          placeholder='enter zip code'
-          onChange={handleSearch}
-          onFocus={(e) => (e.target.placeholder = '')}
-          onBlur={(e) =>
-            (e.target.placeholder = 'please enter location')
-          }
-          onKeyPress={handleKeyPress}
-        />
+      <div className='flex flex-row h-16 sm:h-24   absolute'>
+				<input
+					className='bg-transparent placeholder:text-black text-lg focus:outline-none border-transparent focus:border-transparent focus:ring-0 sm:text-xl font-light self-end mb-1 mr-10'
+					type='text'
+					spellCheck='false'
+					value={search}
+					placeholder='please enter location'
+					onChange={handleSearch}
+					onFocus={(e) => (e.target.placeholder = '')}
+					onBlur={(e) =>
+						(e.target.placeholder = 'please enter location')
+					}
+					onKeyPress={handleKeyPress}
+				/>
 
-        {/* Previous Tailwind css: self-end mb-1 */}
-        <div className=''>
-          <SearchIcon
-            className=''
-            onClick={handleButtonClick}
-          />
-        </div>
-      </div>
+				<div className='self-end mb-1  '>
+					<SearchIcon
+						className='cursor-pointer h-6 sm:h-7 opacity-70'
+						onClick={handleButtonClick}
+					/>
+				</div>
+			</div>
 
       {/* Hidden info display, reveals after search button click */}
-      <div className=''>
-        <div className=''>
-          {info.temp ? (
-            <p className=''>
-              {info.temp?.current}
-              <span className=' '>
-                °
-              </span>
-            </p>
-          ) : null}
-        </div>
-        <div className=''>
-          <p className=' '>
-            {info.condition}
-          </p>
-          {info.temp ? (
-            <p className=''>
-              <ArrowUpIcon className='s' />
-              {info.temp?.max}
-              <span className=''>
-                °
-              </span>{' '}
-              <ArrowDownIcon className='' />
-              {info.temp?.min}
-              <span className=''>
-                °
-              </span>
-            </p>
-          ) : null}
+      <div className='grid overflow-hidden grid-cols-2 grid-rows-2 gap-10 sm:gap-40 sm:mt-72 mt-56 sm:mr-0 mr-4'>
+				<div className='row-span-2 justify-self-end'>
+					{info.temp ? (
+						<p className='text-end sm:text-9xl text-7xl font-light tracking-tighter'>
+							{info.temp?.current}
+							<span className=' align-top  text-lg sm:font-light font-normal sm:text-3xl'>
+								°
+							</span>
+						</p>
+					) : null}
+				</div>
+				<div className='row-span-2  sm:mt-3 mt-2  justify-self-start truncate'>
+					<p className=' text-start sm:text-3xl font-light sm:pb-1 sm:ml-1'>
+						{info.condition}
+					</p>
+					{info.temp ? (
+						<p className='sm:text-2xl  text-start font-light'>
+							<ArrowUpIcon className='sm:h-4  h-2 inline-flex align-middle' />
+							{info.temp?.max}
+							<span className='align-top font-normal sm:text-base text-xs'>
+								°
+							</span>{' '}
+							<ArrowDownIcon className='sm:h-4 h-2 inline-flex align-middle' />
+							{info.temp?.min}
+							<span className='align-top font-normal sm:text-base text-xs'>
+								°
+							</span>
+						</p>
+					) : null}
 
-          <p className=''>
-            {info.country}
-          </p>
+					<p className='sm:text-xl text-xs  text-start font-light  whitespace-nowrap  sm:mt-1 sm:ml-1'>
+						{info.country}
+					</p>
           {zone.zone ? (
             <p className=''>
               Hardiness Zone {zone.zone}
