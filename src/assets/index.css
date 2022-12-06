@@ -258,7 +258,7 @@ display: none;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	border: 1px solid red;
+	/* border: 1px solid red; */
 	width: 80%;
 	margin: 3em auto;
 }
@@ -291,7 +291,7 @@ display: none;
  .toggle-dark-wrapper {
 	display: flex;
 	justify-content: baseline;
-	border: 1px solid green;
+	/* border: 1px solid green; */
 	height: 100%;
 	width: 100%;
 
@@ -337,10 +337,12 @@ display: none;
 	flex-wrap: wrap;
 }
 .singlePlant{
+	display: flex;
+	flex-direction: column;
 	border: 1px solid white;
 	width: 23vw;
 	height: 30vh;
-	margin: 1vw;
+	margin: 2em;
 	align-content: center;
 }
 .singlePlantName{
@@ -382,13 +384,14 @@ display: none;
 	justify-content: center;
 	align-items: center;
 	height: 10vh;
-	border: 1px solid blue;
+	/* border: 1px solid blue; */
 }
 
 .search-input {
 	width: 50%;
 	border-radius: 10px;
 	height: 2em;
+	background: transparent;
 }
 
 .search-icon {
@@ -401,7 +404,7 @@ display: none;
 	grid-template-columns: 1fr 1fr 1fr;
 	justify-content: center;
 	align-items: center;
-	border: 1px solid purple;
+	/* border: 1px solid purple; */
 }
 
 .search-results-temp-text {
