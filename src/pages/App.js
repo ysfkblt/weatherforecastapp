@@ -11,6 +11,7 @@ import PlantSuggestions from "../components/PlantSuggestions"
 import ToggleDark from "../components/toggleDark"
 import { ThemeContext, themes } from "../components/themeContext"
 import Home from "./Home.js"
+import Footer from "../components/Footer"
 
 export default function App(props) {
   const [search, setSearch] = useState("")
@@ -104,6 +105,7 @@ export default function App(props) {
   return (
     <>
       <Home userId={userId} />
+      <Footer />
     </>
   )
 }

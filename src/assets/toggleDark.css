@@ -6,8 +6,8 @@
 
 .wrapper {
     position: relative;
-    width: 20%;
-    height: 50%;
+    width: 10%;
+    height: 100%;
 }
 .wrapper .switch {
     position: absolute;
@@ -134,11 +134,11 @@
     transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 .wrapper .switch .sky .sun .outer {
-    background: #e77b21;
-    width: 12px;
-    height: 12px;
+    background: #f6f6f6;
+    width: 18px;
+    height: 18px;
     position: absolute;
-    top: 127px;
+    top: 135px;
     right: 52px;
     border-radius: 5px;
     z-index: 1;
@@ -149,9 +149,9 @@
     position: absolute;
     top: 0;
     left: 0;
-    height: 12px;
-    width: 12px;
-    background: #e77b21;
+    height: 18px;
+    width: 18px;
+    background: #ffffff;
     border-radius: 5px;
     z-index: 1;
 }
@@ -224,10 +224,7 @@
 .wrapper .switch input:checked + .slider {
     background-color: transparent;
 }
-.wrapper .switch input:checked + .slider .fish {
-    -webkit-animation: fishMovement 4s linear infinite;
-    animation: fishMovement 4s linear infinite;
-}
+
 .wrapper .switch input:checked ~ .wave {
     background-color: #010a0f;
     display: block;
@@ -238,13 +235,7 @@
 .wrapper .switch input:checked + .slider:before {
     transform: translateX(20px);
 }
-.wrapper .switch input:checked ~ .boat {
-    top: -25%;
-    opacity: 1;
-    z-index: -1;
-    -webkit-animation: boatMovement 3s linear infinite alternate;
-    animation: boatMovement 3s linear infinite alternate;
-}
+
 .wrapper .switch input:checked ~ .sky {
     transform: scale(1);
     opacity: 1;
@@ -257,69 +248,8 @@
     -webkit-animation: swingCloud 10s linear infinite;
     animation: swingCloud 10s linear infinite;
 }
-.wrapper .switch .boat {
-    position: absolute;
-    top: 100%;
-    left: 25%;
-    width: 40px;
-    height: 100px;
-    transition: all 0.6s cubic-bezier(0.68, -0.6, 0.32, 1.6);
-    opacity: 0;
-}
-.wrapper .switch .boat .bottom {
-    border-top: 15px solid #d64242;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    height: 0;
-    width: 36px;
-    border-radius: 2px;
-    left: 3px;
-}
-.wrapper .switch .boat .bottom:after {
-    content: "";
-    width: 25px;
-    border-top: 4px solid #000;
-    border-left: 3px solid transparent;
-    border-right: 3px solid transparent;
-    height: 0;
-    position: absolute;
-    top: 3px;
-    left: 2px;
-    opacity: 0.2;
-}
-.wrapper .switch .boat .mast {
-    position: absolute;
-    width: 3px;
-    height: 25px;
-    background: #6f4914;
-    left: 60%;
-    bottom: 100%;
-    z-index: 2;
-}
-.wrapper .switch .boat .rectangle-sm {
-    width: 0;
-    height: 0;
-    border-top: 15px solid transparent;
-    border-left: 10px solid #d6d6d6;
-    border-right: 10px solid transparent;
-    border-radius: 0 0 0 0;
-    position: absolute;
-    left: 70%;
-    bottom: 105%;
-    z-index: 2;
-}
-.wrapper .switch .boat .rectangle-lg {
-    width: 0;
-    height: 0;
-    border-top: 25px solid transparent;
-    border-left: 10px solid transparent;
-    border-right: 15px solid #d6d6d6;
-    border-radius: 0 0 0 0;
-    position: absolute;
-    left: -5%;
-    bottom: 105%;
-    z-index: 2;
-}
+
+
 .wrapper a {
     color: #fff;
     padding: 15px;
@@ -331,50 +261,9 @@
 svg {
     display: none;
 }
-@-webkit-keyframes fishMovement {
-    60% {
-        transform: translate(-50%, 50%);
-    }
-    65% {
-        transform: translate(50%, 50%);
-    }
-    to {
-        transform: translate(100px, 50%);
-    }
-}
-@keyframes fishMovement {
-    60% {
-        transform: translate(-50%, 50%);
-    }
-    65% {
-        transform: translate(50%, 50%);
-    }
-    to {
-        transform: translate(100px, 50%);
-    }
-}
-@-webkit-keyframes boatMovement {
-    30% {
-        transform: rotate(-5deg);
-    }
-    60% {
-        transform: rotate(5deg);
-    }
-    to {
-        transform: rotate(0);
-    }
-}
-@keyframes boatMovement {
-    30% {
-        transform: rotate(-5deg);
-    }
-    60% {
-        transform: rotate(5deg);
-    }
-    to {
-        transform: rotate(0);
-    }
-}
+
+
+
 @-webkit-keyframes twinkling {
     30% {
         opacity: 0.4;
@@ -399,25 +288,7 @@ svg {
         transform: scale(1);
     }
 }
-@-webkit-keyframes rotateSun {
-    to {
-        transform: rotate(1turn);
-    }
-}
-@keyframes rotateSun {
-    to {
-        transform: rotate(1turn);
-    }
-}
-@-webkit-keyframes swingCloud {
-    50% {
-        transform: translateX(50px);
-    }
-}
-@keyframes swingCloud {
-    50% {
-        transform: translateX(50px);
-    }
-}
+
+
 /*# sourceMappingURL=main.f030ba68.chunk.css.map */
 

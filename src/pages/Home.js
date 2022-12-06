@@ -1,15 +1,16 @@
 import { useState, useEffect } from "react"
-import {
-  SearchIcon,
-  ArrowDownIcon,
-  ArrowUpIcon,
-} from "@heroicons/react/outline"
 import background, { gradient } from "../components/background"
 import { shuffle } from "lodash"
 import UpdateZipCode from "../components/LocationUpdate"
 import PlantSuggestions from "../components/PlantSuggestions"
 import ToggleDark from "../components/toggleDark"
 import { ThemeContext, themes } from "../components/themeContext"
+import { onAuthStateChanged, signOut } from "firebase/auth"
+import { auth } from "../database/firebase-config"
+import { Link } from "react-router-dom"
+import Search from "../components/Search"
+import { handleButtonClick, handleKeyPress, handleSearch } from "../components/Search"
+
 
 const Home = (props) => {
   const [search, setSearch] = useState("")
@@ -145,79 +146,15 @@ const Home = (props) => {
       ) : null}
 
       {/* Search Bar */}
-      <div className="search-container">
-        <input
-          className="search-input"
-          type="text"
-          spellCheck="false"
-          value={search}
-          placeholder="please enter location"
+      <div>
+        <Search
+          handleKeyPress={handleKeyPress}
+          handleButtonClick={handleButtonClick}
           onChange={handleSearch}
-          onFocus={(e) => (e.target.placeholder = "")}
-          onBlur={(e) => (e.target.placeholder = "please enter location")}
-          onKeyPress={handleKeyPress}
         />
-
-        <div className="search-icon-container">
-          <button className="search-icon" onClick={handleButtonClick}>
-            <i class="fa fa-search fa-2x" aria-hidden="true"></i>
-          </button>
-        </div>
       </div>
 
-      {/* Hidden info display, reveals after search button click */}
-
-      {/* grid overflow-hidden grid-cols-2 grid-rows-2 gap-10 sm:gap-40 sm:mt-72 mt-56 sm:mr-0 mr-4 */}
-      <div className="search-results-container">
-        {/* row-span-2 justify-self-end */}
-        <div className="search-results-temp">
-          {info.temp ? (
-            // text-end sm:text-9xl text-7xl font-light tracking-tighter
-            <p className="search-results-temp-text">
-              {info.temp?.current}
-              {/*  align-top  text-lg sm:font-light font-normal sm:text-3xl */}
-              <span className="search-results-temp-text-degrees">
-                °
-              </span>
-            </p>
-          ) : null}
-        </div>
-
-        {/* row-span-2  sm:mt-3 mt-2  justify-self-start truncate */}
-        <div className="search-results-sub-container">
-          {/* text-start sm:text-3xl font-light sm:pb-1 sm:ml-1 */}
-          <p className="search-results-condition-text">
-            {info.condition}
-          </p>
-          {info.temp ? (
-            // sm:text-2xl  text-start font-light
-            <p className="search-results-temp-range">
-              {/* sm:h-4  h-2 inline-flex align-middle */}
-              <div className="search-results-temp-range-icon" >
-                <i class="fa fa-arrow-up" aria-hidden="true"></i>
-              </div>
-              {info.temp?.max}
-              {/* align-top font-normal sm:text-base text-xs */}
-              <span className="search-results-temp-range-degrees">
-                °
-              </span>{" "}
-              <ArrowDownIcon className="search-results-temp-range-icon" />
-              {info.temp?.min}
-              {/* align-top font-normal sm:text-base text-xs */}
-              <span className="search-results-temp-range-degrees">
-                °
-              </span>
-            </p>
-          ) : null}
-
-          {/* sm:text-xl text-xs  text-start font-light  whitespace-nowrap  sm:mt-1 sm:ml-1 */}
-          <p className="search-results-location">
-            {info.country}
-          </p>
-          {zone.zone ? <p className="search-results-zone">
-            Hardiness Zone {zone.zone}</p> : null}
-        </div>
-      </div>
+      {/* Plant Suggestions */}
 
       {props.userId ? (
         <PlantSuggestions userId={props.userId} />
@@ -226,6 +163,7 @@ const Home = (props) => {
       )}
 
     </div>
+
   )
 }
 

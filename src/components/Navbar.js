@@ -10,8 +10,8 @@ const Navbar = () => {
     onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser)
     })
-   
   },[])
+
   const logout = async () => {
     await signOut(auth)
   }

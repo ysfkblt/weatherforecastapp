@@ -43,7 +43,6 @@ button {
 
 button:hover {
 	color: #ffffff;
-	background-color: #72c17b;
 }
 
 h1 {
@@ -108,11 +107,7 @@ li.nav-bar-link {
 
 .header-container {
 	border-bottom: 1px solid black;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	height: 10vh;
+	height: 4em;
 }
 
 
@@ -291,6 +286,7 @@ display: none;
  .toggle-dark-wrapper {
 	display: flex;
 	justify-content: baseline;
+	align-items: center;
 	/* border: 1px solid green; */
 	height: 100%;
 	width: 100%;
@@ -379,29 +375,45 @@ display: none;
 /* SEARCH */
 
 .search-container {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 1fr;
 	align-items: center;
+	justify-content: center;
 	height: 10vh;
 	/* border: 1px solid blue; */
 }
 
+.search-input-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
 .search-input {
-	width: 50%;
 	border-radius: 10px;
 	height: 2em;
 	background: transparent;
+	text-align: center;
 }
 
 .search-icon {
 	background: transparent;
 	border: none;
+
+}
+
+.search-icon-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
 }
 
 .search-results-container {
 	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-columns: 1fr 1fr;
 	justify-content: center;
 	align-items: center;
 	/* border: 1px solid purple; */
