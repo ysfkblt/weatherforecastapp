@@ -279,9 +279,11 @@ display: none;
 
  .toggle-dark-wrapper {
 	display: flex;
-	justify-content: center;
+	justify-content: first baseline;
 	align-items: center;
-
+	border: 1px solid green;
+	height: 100%;
+	width: 100%;
 
 }
 
@@ -366,16 +368,28 @@ display: none;
 
 .search-container {
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 	justify-content: center;
 	align-items: center;
-	height: 30vh;
-	z-index: 1;
-	position: relative;
+	height: 10vh;
+	border: 1px solid blue;
 }
 
 .search-input {
 	width: 50%;
 	border-radius: 10px;
 	height: 2em;
+}
+
+.search-icon {
+	background: transparent;
+	border: none;
+}
+
+.search-results-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	border: 1px solid purple;
 }

@@ -1,41 +1,12 @@
 /* This file is being used to style the Dark Mode slider */
 
-body {
-    margin: 0;
-    font-family: "Poppins", sans-serif;
-    font-size: 0.875rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #525f7f;
-    text-align: left;
-    background-color: #1e1e2f;
-}
-code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
-}
-a {
-    color: grey;
-    font-weight: 800;
-}
-
-.App {
-    text-align: center;
-}
-.App-header {
-    min-height: 30vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-}
 .white-content {
     background: #e4e4e4;
 }
 
 .wrapper {
     position: relative;
-    width: 100%;
+    width: 20%;
     height: 50%;
 }
 .wrapper .switch {
@@ -43,7 +14,7 @@ a {
     left: 50%;
     top: 60%;
     transform: translate(-40%, -40%);
-    width: 80px;
+    width: 60px;
     height: 30px;
 }
 .wrapper .switch input {
@@ -54,15 +25,15 @@ a {
     top: 0;
     left: 0;
     border-radius: 40px;
-    width: 80px;
-    height: 30px;
+    width: 42px;
+    height: 20px;
     display: none;
 }
 .wrapper .switch .wave:after {
-    width: 80px;
+    width: 30px;
     height: 3px;
     top: 3px;
-    left: 20%;
+    left: 0;
     opacity: 0.4;
 }
 .wrapper .switch .wave:after,
@@ -91,15 +62,15 @@ a {
     border-radius: 50px;
     z-index: 100;
     overflow: hidden;
-    height: 30px;
-    width: 80px;
+    height: 20px;
+    width: 45px;
 }
 .wrapper .switch .slider:after,
 .wrapper .switch .slider:before {
     position: absolute;
     content: "";
-    height: 22px;
-    width: 22px;
+    height: 12px;
+    width: 12px;
     left: 5px;
     bottom: 5px;
     border-radius: 30px;
@@ -166,11 +137,13 @@ a {
 }
 .wrapper .switch .sky .sun .outer {
     background: #e77b21;
-    width: 50px;
-    height: 50px;
+    width: 12px;
+    height: 12px;
     position: absolute;
-    top: -11px;
+    top: 127px;
+    right: 52px;
     border-radius: 5px;
+    z-index: 1;
 }
 .wrapper .switch .sky .sun .outer:after,
 .wrapper .switch .sky .sun .outer:before {
@@ -178,10 +151,11 @@ a {
     position: absolute;
     top: 0;
     left: 0;
-    height: 50px;
-    width: 50px;
+    height: 12px;
+    width: 12px;
     background: #e77b21;
     border-radius: 5px;
+    z-index: 1;
 }
 .wrapper .switch .sky .sun .outer:before {
     transform: rotate(30deg);
@@ -197,6 +171,7 @@ a {
     background-color: #ffd65a;
     top: -12px;
     overflow: hidden;
+    z-index: 1;
 }
 .wrapper .switch .sky .sun .inner:before {
     content: "";
@@ -207,6 +182,7 @@ a {
     left: 3 px;
     top: 15px;
     background: #ffc631;
+    z-index: 1;
 }
 .wrapper .switch .sky .cloud {
     position: absolute;
@@ -255,7 +231,7 @@ a {
     animation: fishMovement 4s linear infinite;
 }
 .wrapper .switch input:checked ~ .wave {
-    background-color: #3398d9;
+    background-color: #010a0f;
     display: block;
     -webkit-filter: url(#wave);
     filter: url(#wave);
@@ -297,12 +273,13 @@ a {
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
     height: 0;
-    width: 40px;
+    width: 36px;
     border-radius: 2px;
+    left: 3px;
 }
 .wrapper .switch .boat .bottom:after {
     content: "";
-    width: 50px;
+    width: 25px;
     border-top: 4px solid #000;
     border-left: 3px solid transparent;
     border-right: 3px solid transparent;
@@ -315,10 +292,11 @@ a {
 .wrapper .switch .boat .mast {
     position: absolute;
     width: 3px;
-    height: 35px;
+    height: 25px;
     background: #6f4914;
-    left: 70%;
+    left: 60%;
     bottom: 100%;
+    z-index: 2;
 }
 .wrapper .switch .boat .rectangle-sm {
     width: 0;
@@ -328,8 +306,9 @@ a {
     border-right: 10px solid transparent;
     border-radius: 0 0 0 0;
     position: absolute;
-    left: 80%;
-    bottom: 110%;
+    left: 70%;
+    bottom: 105%;
+    z-index: 2;
 }
 .wrapper .switch .boat .rectangle-lg {
     width: 0;
@@ -339,8 +318,9 @@ a {
     border-right: 15px solid #d6d6d6;
     border-radius: 0 0 0 0;
     position: absolute;
-    left: 5%;
-    bottom: 110%;
+    left: -5%;
+    bottom: 105%;
+    z-index: 2;
 }
 .wrapper a {
     color: #fff;
@@ -442,3 +422,4 @@ svg {
     }
 }
 /*# sourceMappingURL=main.f030ba68.chunk.css.map */
+

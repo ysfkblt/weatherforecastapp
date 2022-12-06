@@ -103,20 +103,20 @@ const Home = (props) => {
         info.condition?.toLowerCase() === "clear"
           ? { backgroundImage: background.clear }
           : info.condition?.toLowerCase() === "sunny"
-          ? { backgroundImage: background.sunny }
-          : info.condition?.toLowerCase().includes("cloudy")
-          ? { backgroundImage: background.cloudy }
-          : info.condition?.toLowerCase().includes("rain") ||
-            info.condition?.toLowerCase().includes("drizzle")
-          ? { backgroundImage: background.rainy }
-          : info.condition?.toLowerCase().includes("snow") ||
-            info.condition?.toLowerCase().includes("sleet")
-          ? { backgroundImage: background.snow }
-          : info.condition?.toLowerCase().includes("overcast")
-          ? { backgroundImage: background.overcast }
-          : { backgroundImage: grad }
+            ? { backgroundImage: background.sunny }
+            : info.condition?.toLowerCase().includes("cloudy")
+              ? { backgroundImage: background.cloudy }
+              : info.condition?.toLowerCase().includes("rain") ||
+                info.condition?.toLowerCase().includes("drizzle")
+                ? { backgroundImage: background.rainy }
+                : info.condition?.toLowerCase().includes("snow") ||
+                  info.condition?.toLowerCase().includes("sleet")
+                  ? { backgroundImage: background.snow }
+                  : info.condition?.toLowerCase().includes("overcast")
+                    ? { backgroundImage: background.overcast }
+                    : { backgroundImage: grad }
       }
-      className="flex flex-row  text-black items-center justify-center h-screen bg-center bg-cover select-none"
+      className="home-view-container"
     >
       {/* DARKMODE */}
       <header className="header-container">
@@ -145,9 +145,9 @@ const Home = (props) => {
       ) : null}
 
       {/* Search Bar */}
-      <div className="flex flex-row h-16 sm:h-24   absolute">
+      <div className="search-container">
         <input
-          className="bg-transparent placeholder:text-black text-lg focus:outline-none border-transparent focus:border-transparent focus:ring-0 sm:text-xl font-light self-end mb-1 mr-10"
+          className="search-input"
           type="text"
           spellCheck="false"
           value={search}
@@ -158,26 +158,32 @@ const Home = (props) => {
           onKeyPress={handleKeyPress}
         />
 
-        <div className="self-end mb-1  ">
-          <SearchIcon
-            className="cursor-pointer h-6 sm:h-7 opacity-70"
-            onClick={handleButtonClick}
-          />
+        <div className="search-icon-container">
+          <button className="search-icon" onClick={handleButtonClick}>
+            <i class="fa fa-search fa-2x" aria-hidden="true"></i>
+          </button>
         </div>
       </div>
 
       {/* Hidden info display, reveals after search button click */}
-      <div className="grid overflow-hidden grid-cols-2 grid-rows-2 gap-10 sm:gap-40 sm:mt-72 mt-56 sm:mr-0 mr-4">
-        <div className="row-span-2 justify-self-end">
+
+      {/* grid overflow-hidden grid-cols-2 grid-rows-2 gap-10 sm:gap-40 sm:mt-72 mt-56 sm:mr-0 mr-4 */}
+      <div className="search-results-container">
+        {/* row-span-2 justify-self-end */}
+        <div className="search-results-temp">
           {info.temp ? (
-            <p className="text-end sm:text-9xl text-7xl font-light tracking-tighter">
+            // text-end sm:text-9xl text-7xl font-light tracking-tighter
+            <p className="search-results-temp-text">
               {info.temp?.current}
-              <span className=" align-top  text-lg sm:font-light font-normal sm:text-3xl">
+              {/*  align-top  text-lg sm:font-light font-normal sm:text-3xl */}
+              <span className="search-results-temp-text-degrees">
                 °
               </span>
             </p>
           ) : null}
         </div>
+
+
         <div className="row-span-2  sm:mt-3 mt-2  justify-self-start truncate">
           <p className=" text-start sm:text-3xl font-light sm:pb-1 sm:ml-1">
             {info.condition}
@@ -202,13 +208,14 @@ const Home = (props) => {
           </p>
           {zone.zone ? <p className="">Hardiness Zone {zone.zone}</p> : null}
         </div>
+      </div>
 
-        {props.userId ? (
+      {props.userId ? (
           <PlantSuggestions userId={props.userId} />
         ) : (
           <PlantSuggestions userId={"NA"} />
         )}
-      </div>
+        
     </div>
   )
 }
