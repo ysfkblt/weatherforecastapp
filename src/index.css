@@ -204,8 +204,12 @@ div.journal {
 }
 
 
-.hidden {
-	visibility: hidden;
+.editArea{
+display: none;
+}
+.show{
+    display: block;
+
 }
 
 .edit {
@@ -267,6 +271,30 @@ div.journal {
 
 .zone12-content {
 	background-color: #9b51e0;
+}
+
+/* All Plants  */
+
+.allPlantsImg{
+	height: 14vh;
+}
+.allPlantsArea{
+	display: flex;
+	flex-wrap: wrap;
+}
+.singlePlant{
+	border: 1px solid white;
+	width: 23vw;
+	height: 30vh;
+	margin: 1vw;
+	align-content: center;
+}
+.singlePlantName{
+	font-size: 1.5rem;
+}
+.singlePlant img{
+	display: flex;
+	align-items: center;
 }
 
 

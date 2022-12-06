@@ -6,6 +6,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import Navbar from "./Navbar";
 import AppRoutes from "./AppRoutes";
 import Footer from './Footer';
+import Database from "./Database";
 import ThemeContextWrapper from "./themeContextWrapper";
 
 const root = ReactDOM.createRoot(document.getElementById("root"))
