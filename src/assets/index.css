@@ -1,0 +1,383 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
+
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
+
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+
+/* ELEMENTS */
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	font-family: 'Manrope', sans-serif;
+	font-feature-settings: 'ss01' 1, 'ss03' 1;
+}
+
+body::-webkit-scrollbar {
+	display: none;
+}
+
+body {
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
+
+button {
+	display: inline-block;
+	padding: 0.3em 1em;
+	border: 0.1em solid #272727;
+	margin: 0.3em;
+	border-radius: 0.12em;
+	box-sizing: border-box;
+	text-decoration: none;
+	font-family: "Roboto", sans-serif;
+	font-weight: 300;
+	color: #000000;
+	text-align: center;
+	transition: all 0.2s;
+	min-width: 7em;
+}
+
+button:hover {
+	color: #ffffff;
+	background-color: #72c17b;
+}
+
+h1 {
+	font-size: 1.5em;
+	font-weight: 200;
+}
+
+.app-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+}
+
+.root {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+input,
+span,
+label,
+textarea {
+  font-family: 'Ubuntu', sans-serif;
+  display: block;
+  margin: 10px;
+  padding: 5px;
+  border: none;
+  font-size: 22px;
+}
+
+textarea:focus,
+input:focus {
+  outline: 0;
+}
+
+/* NAV */
+
+.nav-bar-container {
+	border-bottom: 1px solid black;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+ul.nav-bar-list {
+	list-style: none;
+	width: 75%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+li.nav-bar-link {
+	margin: 5px;
+}
+
+/* HEADER */
+
+.header-container {
+	border-bottom: 1px solid black;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 10vh;
+}
+
+
+
+/* AUTH */
+
+.auth-container {
+	border-bottom: 1px solid black;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	z-index: 1;
+	position: relative;
+}
+
+.auth-signup-container {
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 20px;
+	width: 100%;
+	gap: 1em;
+
+}
+
+.auth-login-container {
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 20px;
+	width: 100%;
+	gap: 1em;
+}
+
+.auth-current-user-container {
+	border-bottom: 1px solid black;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+h3.auth-header {
+	width: 6.5em;
+}
+
+.email-password-input {
+	width: 130px;
+	box-sizing: border-box;
+	border: 2px solid rgb(76, 76, 76);
+	border-radius: 4px;
+	font-size: 16px;
+	background-color: white;
+	background-position: 10px 10px;
+	background-repeat: no-repeat;
+	padding: 12px 20px 12px 40px;
+	transition: width 0.4s ease-in-out;
+	width: 13em;
+}
+
+.email-password-input:focus {
+	border: 3px solid #555;
+}
+
+/* HOME HEADER */
+
+.home-header {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: fit-content;
+}
+
+/* JOURNAL */
+
+.journal-container {
+	display: flex;
+	flex-direction: column;
+}
+
+.journal-form {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+
+}
+
+input.journal-form-date-input {
+	border: 1px solid grey;
+	border-radius: .3em;
+	margin: 1em 0;
+	padding: .3em;
+}
+
+input.journal-form-file-input {
+	padding: 0.3em 1em;
+	border: 0.1em solid #272727;
+	margin: 0.3em;
+	border-radius: 0.12em;
+	box-sizing: border-box;
+	text-decoration: none;
+	font-family: "Roboto", sans-serif;
+	font-weight: 300;
+	color: #000000;
+	text-align: center;
+	transition: all 0.2s;
+}
+
+.journal-previous-entries-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+div.journal {
+	margin: 2em;
+}
+
+
+.editArea{
+display: none;
+}
+.show{
+    display: block;
+
+}
+
+.edit {
+	border: 1px solid black;
+	margin-top: 10px;
+}
+
+/* PLANT SUGGESTIONS */
+
+.plant-suggestions-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	z-index: 1;
+	/* position: relative;	 */
+}
+
+.plant-suggestion {
+	border-bottom: 1px solid black;
+}
+
+.italics {
+	font-style: italic;
+}
+
+.plantSugImg {
+	width: 20vw;
+	height: 20vw;
+	border: 1px solid black;
+}
+
+ /* DARKMODE */
+
+ .toggle-dark-wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+
+}
+
+/* CONTEXT THEMES */
+
+.white-content {
+	background: #e4e4e4;
+}
+
+.zone7-content {
+	background-color: #72c17b;
+}
+
+.zone8-content {
+	background-color: #f2c94c;
+}
+
+.zone9-content {
+	background-color: #f2994a;
+}
+
+.zone10-content {
+	background-color: #eb5757;
+}
+
+.zone11-content {
+	background-color: #2f80ed;
+}
+
+.zone12-content {
+	background-color: #9b51e0;
+}
+
+/* All Plants  */
+
+.allPlantsImg{
+	height: 14vh;
+}
+.allPlantsArea{
+	display: flex;
+	flex-wrap: wrap;
+}
+.singlePlant{
+	border: 1px solid white;
+	width: 23vw;
+	height: 30vh;
+	margin: 1vw;
+	align-content: center;
+}
+.singlePlantName{
+	font-size: 1.5rem;
+}
+.singlePlant img{
+	display: flex;
+	align-items: center;
+}
+
+
+/* BOTTOM / FOOTER NAV */
+.footer-container{
+	overflow: hidden;
+	border: solid black 1px;
+	padding: 1vh 5vw 3vh 5vw;
+	width: 100vw;
+	position: fixed;
+	bottom: 0;
+	background-color: white;
+}
+
+.footer-list {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+}
+
+.footer-link {
+	list-style: none;
+	font-size: 3vh;
+}
+
+/* SEARCH */
+
+.search-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 30vh;
+	z-index: 1;
+	position: relative;
+}
+
+.search-input {
+	width: 50%;
+	border-radius: 10px;
+	height: 2em;
+}
