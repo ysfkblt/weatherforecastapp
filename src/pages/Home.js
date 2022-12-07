@@ -21,6 +21,7 @@ const Home = (props) => {
   const [userId, setUserId] = useState("")
   const [darkMode, setDarkMode] = useState(true)
 
+
   async function getData() {
     await fetch(
       `https://api.weatherapi.com/v1/forecast.json?key=f676e0d30686474d99b160351221104&q=${search}&days=1&aqi=no&alerts=no`
@@ -119,7 +120,7 @@ const Home = (props) => {
       }
       className="home-view-container"
     >
-      {/* DARKMODE */}
+      {/* DARKMODE
       <header className="header-container">
         <ThemeContext.Consumer>
           {({ changeTheme }) => (
@@ -131,7 +132,7 @@ const Home = (props) => {
             />
           )}
         </ThemeContext.Consumer>
-      </header>
+      </header> */}
 
       {/* Update user */}
       {userId && zip.length === 5 && zone ? (
