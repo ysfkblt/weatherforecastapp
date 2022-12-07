@@ -23,11 +23,12 @@ return (
           <li className="nav-bar-link"> <Link to="/"  > Home </Link></li>
           {user? 
           <>
-              <li className="nav-bar-link"> <Link to="/journal" > Journal </Link></li>
-              <li className="nav-bar-link">{user.email}</li>
-              <button className="nav-bar-link" onClick={logout}>Sign out</button>
+              <li className="nav-bar-link nav-bar-link-home"> <Link to="/journal" > Journal </Link></li>
+              
+              <li className="nav-bar-link nav-bar-link-email">{user.email}</li>
+              <button className="nav-bar-link nav-bar-link-signout" onClick={logout}>Sign out</button>
           </> :
-              <li className="nav-bar-link"> <Link to="/signUp"> Log In </Link></li>
+              <li className="nav-bar-link nav-bar-link"> <Link to="/signUp"> Log In </Link></li>
 }
         </ul>
       </nav>
