@@ -59,10 +59,8 @@ h1 {
 }
 
 .root {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+	width: 100%;
+	height: 100%;
 }
 
 input,
@@ -80,6 +78,10 @@ textarea {
 textarea:focus,
 input:focus {
 	outline: 0;
+}
+
+html { 
+	width : 100%
 }
 
 /* NAV */
@@ -264,6 +266,10 @@ h3.auth-header {
 
 /* HOME HEADER */
 
+.home-view-container {
+	background-size: contain
+}
+
 .home-header {
 	display: flex;
 	flex-direction: column;
@@ -443,11 +449,10 @@ div.journal {
 
 
 /* FOOTER NAV */
+
 .footer-container {
-	overflow: hidden;
-	border: solid black 1px;
-	padding: 1vh 5vw 3vh 5vw;
-	width: 100vw;
+	padding: 1.5vh;
+	width: 100%;
 	position: fixed;
 	bottom: 0;
 	background-color: white;
