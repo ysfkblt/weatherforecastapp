@@ -345,6 +345,12 @@ display: none;
 	display: block;
 }
 
+.filteringCon {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+}
+
 /* BOTTOM / FOOTER NAV */
 .footer-container{
 	overflow: hidden;
