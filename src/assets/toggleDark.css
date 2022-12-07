@@ -1,49 +1,18 @@
 /* This file is being used to style the Dark Mode slider */
 
-body {
-    margin: 0;
-    font-family: "Poppins", sans-serif;
-    font-size: 0.875rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #525f7f;
-    text-align: left;
-    background-color: #1e1e2f;
-}
-code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
-}
-a {
-    color: grey;
-    font-weight: 800;
-}
-
-.App {
-    text-align: center;
-}
-.App-header {
-    min-height: 30vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-}
 .white-content {
     background: #e4e4e4;
 }
 
 .wrapper {
     position: relative;
-    width: 100%;
-    height: 50%;
+    width: 10%;
+    height: 100%;
 }
 .wrapper .switch {
     position: absolute;
-    left: 50%;
-    top: 60%;
-    transform: translate(-40%, -40%);
-    width: 80px;
+ 
+    width: 60px;
     height: 30px;
 }
 .wrapper .switch input {
@@ -54,15 +23,15 @@ a {
     top: 0;
     left: 0;
     border-radius: 40px;
-    width: 80px;
-    height: 30px;
+    width: 42px;
+    height: 20px;
     display: none;
 }
 .wrapper .switch .wave:after {
-    width: 80px;
+    width: 28px;
     height: 3px;
     top: 3px;
-    left: 20%;
+    left: 4px;
     opacity: 0.4;
 }
 .wrapper .switch .wave:after,
@@ -73,7 +42,7 @@ a {
     position: absolute;
 }
 .wrapper .switch .wave:before {
-    width: 35px;
+    width: 30px;
     height: 2px;
     top: 10px;
     left: 30%;
@@ -86,20 +55,20 @@ a {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #e74a42;
+    background-color: #dfddd2;
     transition: all 1.4s;
     border-radius: 50px;
     z-index: 100;
     overflow: hidden;
-    height: 30px;
-    width: 80px;
+    height: 20px;
+    width: 45px;
 }
 .wrapper .switch .slider:after,
 .wrapper .switch .slider:before {
     position: absolute;
     content: "";
-    height: 22px;
-    width: 22px;
+    height: 12px;
+    width: 12px;
     left: 5px;
     bottom: 5px;
     border-radius: 30px;
@@ -165,12 +134,14 @@ a {
     transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 .wrapper .switch .sky .sun .outer {
-    background: #e77b21;
-    width: 50px;
-    height: 50px;
+    background: #f6f6f6;
+    width: 18px;
+    height: 18px;
     position: absolute;
-    top: -11px;
+    top: 135px;
+    right: 52px;
     border-radius: 5px;
+    z-index: 1;
 }
 .wrapper .switch .sky .sun .outer:after,
 .wrapper .switch .sky .sun .outer:before {
@@ -178,10 +149,11 @@ a {
     position: absolute;
     top: 0;
     left: 0;
-    height: 50px;
-    width: 50px;
-    background: #e77b21;
+    height: 18px;
+    width: 18px;
+    background: #ffffff;
     border-radius: 5px;
+    z-index: 1;
 }
 .wrapper .switch .sky .sun .outer:before {
     transform: rotate(30deg);
@@ -197,6 +169,7 @@ a {
     background-color: #ffd65a;
     top: -12px;
     overflow: hidden;
+    z-index: 1;
 }
 .wrapper .switch .sky .sun .inner:before {
     content: "";
@@ -207,6 +180,7 @@ a {
     left: 3 px;
     top: 15px;
     background: #ffc631;
+    z-index: 1;
 }
 .wrapper .switch .sky .cloud {
     position: absolute;
@@ -250,27 +224,18 @@ a {
 .wrapper .switch input:checked + .slider {
     background-color: transparent;
 }
-.wrapper .switch input:checked + .slider .fish {
-    -webkit-animation: fishMovement 4s linear infinite;
-    animation: fishMovement 4s linear infinite;
-}
+
 .wrapper .switch input:checked ~ .wave {
-    background-color: #3398d9;
+    background-color: #010a0f;
     display: block;
     -webkit-filter: url(#wave);
     filter: url(#wave);
 }
 .wrapper .switch input:checked + .slider:after,
 .wrapper .switch input:checked + .slider:before {
-    transform: translateX(50px);
+    transform: translateX(20px);
 }
-.wrapper .switch input:checked ~ .boat {
-    top: -25%;
-    opacity: 1;
-    z-index: -1;
-    -webkit-animation: boatMovement 3s linear infinite alternate;
-    animation: boatMovement 3s linear infinite alternate;
-}
+
 .wrapper .switch input:checked ~ .sky {
     transform: scale(1);
     opacity: 1;
@@ -283,65 +248,8 @@ a {
     -webkit-animation: swingCloud 10s linear infinite;
     animation: swingCloud 10s linear infinite;
 }
-.wrapper .switch .boat {
-    position: absolute;
-    top: 100%;
-    left: 25%;
-    width: 40px;
-    height: 100px;
-    transition: all 0.6s cubic-bezier(0.68, -0.6, 0.32, 1.6);
-    opacity: 0;
-}
-.wrapper .switch .boat .bottom {
-    border-top: 15px solid #d64242;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    height: 0;
-    width: 40px;
-    border-radius: 2px;
-}
-.wrapper .switch .boat .bottom:after {
-    content: "";
-    width: 50px;
-    border-top: 4px solid #000;
-    border-left: 3px solid transparent;
-    border-right: 3px solid transparent;
-    height: 0;
-    position: absolute;
-    top: 3px;
-    left: 2px;
-    opacity: 0.2;
-}
-.wrapper .switch .boat .mast {
-    position: absolute;
-    width: 3px;
-    height: 35px;
-    background: #6f4914;
-    left: 70%;
-    bottom: 100%;
-}
-.wrapper .switch .boat .rectangle-sm {
-    width: 0;
-    height: 0;
-    border-top: 15px solid transparent;
-    border-left: 10px solid #d6d6d6;
-    border-right: 10px solid transparent;
-    border-radius: 0 0 0 0;
-    position: absolute;
-    left: 80%;
-    bottom: 110%;
-}
-.wrapper .switch .boat .rectangle-lg {
-    width: 0;
-    height: 0;
-    border-top: 25px solid transparent;
-    border-left: 10px solid transparent;
-    border-right: 15px solid #d6d6d6;
-    border-radius: 0 0 0 0;
-    position: absolute;
-    left: 5%;
-    bottom: 110%;
-}
+
+
 .wrapper a {
     color: #fff;
     padding: 15px;
@@ -353,50 +261,9 @@ a {
 svg {
     display: none;
 }
-@-webkit-keyframes fishMovement {
-    60% {
-        transform: translate(-50%, 50%);
-    }
-    65% {
-        transform: translate(50%, 50%);
-    }
-    to {
-        transform: translate(100px, 50%);
-    }
-}
-@keyframes fishMovement {
-    60% {
-        transform: translate(-50%, 50%);
-    }
-    65% {
-        transform: translate(50%, 50%);
-    }
-    to {
-        transform: translate(100px, 50%);
-    }
-}
-@-webkit-keyframes boatMovement {
-    30% {
-        transform: rotate(-5deg);
-    }
-    60% {
-        transform: rotate(5deg);
-    }
-    to {
-        transform: rotate(0);
-    }
-}
-@keyframes boatMovement {
-    30% {
-        transform: rotate(-5deg);
-    }
-    60% {
-        transform: rotate(5deg);
-    }
-    to {
-        transform: rotate(0);
-    }
-}
+
+
+
 @-webkit-keyframes twinkling {
     30% {
         opacity: 0.4;
@@ -421,24 +288,7 @@ svg {
         transform: scale(1);
     }
 }
-@-webkit-keyframes rotateSun {
-    to {
-        transform: rotate(1turn);
-    }
-}
-@keyframes rotateSun {
-    to {
-        transform: rotate(1turn);
-    }
-}
-@-webkit-keyframes swingCloud {
-    50% {
-        transform: translateX(50px);
-    }
-}
-@keyframes swingCloud {
-    50% {
-        transform: translateX(50px);
-    }
-}
+
+
 /*# sourceMappingURL=main.f030ba68.chunk.css.map */
+

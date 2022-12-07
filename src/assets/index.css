@@ -25,7 +25,11 @@ body {
 	scrollbar-width: none;
 }
 
-button {
+a {
+	text-decoration: none;
+}
+
+button, input.button {
 	display: inline-block;
 	padding: 0.3em 1em;
 	border: 0.1em solid #272727;
@@ -43,7 +47,6 @@ button {
 
 button:hover {
 	color: #ffffff;
-	background-color: #72c17b;
 }
 
 h1 {
@@ -60,27 +63,41 @@ h1 {
 }
 
 .root {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+	width: 100%;
+	height: 100%;
 }
 
 input,
 span,
 label,
 textarea {
-  font-family: 'Ubuntu', sans-serif;
-  display: block;
-  margin: 10px;
-  padding: 5px;
-  border: none;
-  font-size: 22px;
+	font-family: 'Ubuntu', sans-serif;
+	display: block;
+	margin: 10px;
+	padding: 5px;
+	border: none;
+	font-size: 22px;
+	
 }
 
 textarea:focus,
 input:focus {
-  outline: 0;
+	outline: 0;
+}
+
+textarea {
+	width: 100%;
+	height: 50%;
+	padding: 12px 20px;
+	box-sizing: border-box;
+	border: 2px solid #ccc;
+	border-radius: 4px;
+	background-color: #f8f8f8;
+	resize: none;
+}
+
+html { 
+	width : 100%
 }
 
 /* NAV */
@@ -90,6 +107,7 @@ input:focus {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	height: 2em;
 }
 
 ul.nav-bar-list {
@@ -108,11 +126,7 @@ li.nav-bar-link {
 
 .header-container {
 	border-bottom: 1px solid black;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	height: 10vh;
+	height: 4em;
 }
 
 
@@ -130,33 +144,26 @@ li.nav-bar-link {
 	position: relative;
 }
 
-.auth-signup-container {
+.auth-signup-container,  .auth-login-container {
 
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	margin: 20px;
-	width: 100%;
+	width: 60%;
+	height: 40%;
 	gap: 1em;
+	border: 2px solid grey;
+	border-radius: 10px;
+	background-color: white;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 
-}
-
-.auth-login-container {
-
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin: 20px;
-	width: 100%;
-	gap: 1em;
 }
 
 .auth-current-user-container {
-	border-bottom: 1px solid black;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	font-size: 1.5em;
 }
+
 
 h3.auth-header {
 	width: 6.5em;
@@ -180,7 +187,98 @@ h3.auth-header {
 	border: 3px solid #555;
 }
 
+/* SEARCH */
+
+.search-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 20vh;
+	/* border: 1px solid blue; */
+}
+
+.search-input-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+.search-input {
+	border-radius: 10px;
+	height: 2em;
+	background: rgba(255, 255, 255, 0.5);
+	text-align: center;
+}
+
+.search-icon {
+	background: transparent;
+	border: none;
+
+}
+
+.search-icon-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+.search-results-container {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	justify-content: center;
+	align-items: center;
+	/* border: 1px solid purple; */
+}
+
+.search-results-temp-text {
+	font-size: 4em;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+.search-results-sub-container {
+	font-size: 1em;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+.search-results-temp-range {
+	font-size: 1em;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+.search-results-temp-range-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.search-results-temp-range-degrees {
+	font-size: 1em;
+}
+
+.search-results-zone {
+	grid-column-start: 2;
+}
+
+.search-results-location {
+	grid-column-start: 3;
+}
+
 /* HOME HEADER */
+
+.home-view-container {
+	background-size: contain
+}
 
 .home-header {
 	display: flex;
@@ -195,14 +293,39 @@ h3.auth-header {
 .journal-container {
 	display: flex;
 	flex-direction: column;
+	justify-content: center;
+}
+
+.imgUpload {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.journal-notes-container {
+	padding: .5em;
+	display: flex;
+	align-items: center;
+}
+
+.journal-notes-image-upload-button {
+height: 4em;
 }
 
 .journal-form {
 	display: flex;
 	flex-direction: column;
-	justify-content: space-evenly;
 	align-items: center;
+}
 
+input.journal-notes-input {
+	border: 1px solid grey;
+	border-radius: .3em;
+	padding: .3em;
+	width: 100%;
+	margin-bottom: 4em;
+	border: 1px solid grey;
 }
 
 input.journal-form-date-input {
@@ -214,7 +337,7 @@ input.journal-form-date-input {
 
 input.journal-form-file-input {
 	padding: 0.3em 1em;
-	border: 0.1em solid #272727;
+	border: 0.1em solid grey;
 	margin: 0.3em;
 	border-radius: 0.12em;
 	box-sizing: border-box;
@@ -231,18 +354,62 @@ input.journal-form-file-input {
 	flex-direction: column;
 	justify-content: space-evenly;
 	align-items: center;
+	border: 1px solid grey;
+	margin: 1em;
 }
+
+.journal-previous-entries-heading {
+	font-size: 1.5em;
+	margin: 1em;
+	border-bottom: 1px solid grey;
+}
+
+.journal-previous-entries {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+	border: 2px solid grey;
+	margin: 1em;
+	border-radius: 0.5em;
+	width: 50vw;
+	background-color: #72c17b16;
+}
+
+.journal-previous-entries-date {
+	font-size: 1em;
+}
+
+.journal-previous-entries-notes {
+	font-size: 1em;
+	width: 80%;
+	height: 10em;
+	background-color: #9b51e00f;
+}
+
+.journal-previous-entries-image {
+	margin: 1em;
+	min-width: 100px;
+	min-height: 100px;
+	max-width: 800px;
+	max-height: 800px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
+}
+
+
 
 div.journal {
 	margin: 2em;
 }
 
 
-.editArea{
-display: none;
+.editArea {
+	display: none;
 }
-.show{
-    display: block;
+
+.show {
+	display: block;
 
 }
 
@@ -258,13 +425,22 @@ display: none;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	height: 100vh;
-	z-index: 1;
-	/* position: relative;	 */
+	/* border: 1px solid red; */
+	width: 80%;
+	margin: 3em auto;
+}
+
+.plant-suggestions-header {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.plant-suggestions-subheading {
+	font-size: 1em;
 }
 
 .plant-suggestion {
 	border-bottom: 1px solid black;
+	margin: 1em;
 }
 
 .italics {
@@ -277,13 +453,16 @@ display: none;
 	border: 1px solid black;
 }
 
- /* DARKMODE */
+/* DARKMODE */
 
- .toggle-dark-wrapper {
+.toggle-dark-wrapper {
 	display: flex;
-	justify-content: center;
+	justify-content: baseline;
 	align-items: center;
-
+	top: 12px;
+	height: 100%;
+	width: 100%;
+	position: relative;
 
 }
 
@@ -317,26 +496,32 @@ display: none;
 	background-color: #9b51e0;
 }
 
-/* All Plants  */
+/* ALL PLANTS  */
 
-.allPlantsImg{
+.allPlantsImg {
 	height: 14vh;
 }
-.allPlantsArea{
+
+.allPlantsArea {
 	display: flex;
 	flex-wrap: wrap;
 }
-.singlePlant{
+
+.singlePlant {
+	display: flex;
+	flex-direction: column;
 	border: 1px solid white;
 	width: 23vw;
 	height: 30vh;
-	margin: 1vw;
+	margin: 2em;
 	align-content: center;
 }
-.singlePlantName{
+
+.singlePlantName {
 	font-size: 1.5rem;
 }
-.singlePlant img{
+
+.singlePlant img {
 	display: flex;
 	align-items: center;
 }
@@ -351,12 +536,11 @@ display: none;
 	justify-content: space-evenly;
 }
 
-/* BOTTOM / FOOTER NAV */
-.footer-container{
-	overflow: hidden;
-	border: solid black 1px;
-	padding: 1vh 5vw 3vh 5vw;
-	width: 100vw;
+/* FOOTER NAV */
+
+.footer-container {
+	padding: .5em;
+	width: 100%;
 	position: fixed;
 	bottom: 0;
 	background-color: white;
@@ -370,23 +554,20 @@ display: none;
 
 .footer-link {
 	list-style: none;
-	font-size: 3vh;
+	font-size: 1.5em;
 }
 
-/* SEARCH */
-
-.search-container {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	height: 30vh;
-	z-index: 1;
-	position: relative;
+.footer-link a {
+	text-decoration: none;
+	color: black;
 }
 
-.search-input {
-	width: 50%;
-	border-radius: 10px;
-	height: 2em;
-}
+/* RESPONSIVE */
+
+@media only screen and (max-width: 400px) {
+	body {
+	  background-color: lightblue;
+	}
+  }
+ 
+

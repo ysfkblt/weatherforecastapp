@@ -38,26 +38,40 @@ const Auth = () => {
   }
 
   return (
-        <div className="auth-container">
-          <div className="auth-signup-container">
-            <input className="email-password-input" type="text" placeholder="Email..." value={registerEmail} onChange={(event) => { setRegisterEmail(event.target.value) }} />
-            <input className="email-password-input" type="text" placeholder="Password..." value={registerPassword} onChange={(event) => { setRegisterPassword(event.target.value) }} />
-            <button onClick={register}>Sign Up </button>
+    <div className="auth-container">
+       {currentUser ?
+        <div className="auth-current-user-container">
+          <h4>User Logged In:{currentUser.email}</h4>
+          <div>
+            <button onClick={logout}>Sign out</button>
           </div>
-          <div className="auth-login-container">
-            <input className="email-password-input" type="text" placeholder="Email..." value={loginEmail} onChange={(event) => { setLoginEmail(event.target.value) }} />
-            <input className="email-password-input" placeholder="Password..." type="text" value={loginPassword} onChange={(event) => { setLoginPassword(event.target.value) }} />
-            <button onClick={login}>Login</button>
-          </div>
-          {currentUser ?
-            <div className="auth-current-user-container">
-              <h4>User Logged In:{currentUser.email}</h4>
-              <div>
-                <button onClick={logout}>Sign out</button>
-              </div>
-            </div> : null
-          }
+        </div> : <div className="auth-current-user-container">
+          <h4>Please Login or Signup</h4>
         </div>
+      }
+      {/* SIGN UP */}
+      <div className="auth-signup-container">
+        <div className="auth-signup-form">
+          <h3>Sign Up</h3>
+          <input className="email-password-input" type="text" placeholder="Email..." value={registerEmail} onChange={(event) => { setRegisterEmail(event.target.value) }} />
+          <input className="email-password-input" type="text" placeholder="Password..." value={registerPassword} onChange={(event) => { setRegisterPassword(event.target.value) }} />
+          <button onClick={register}>Sign Up </button>
+        </div>
+      </div>
+
+      {/* LOGIN */}
+
+      <div className="auth-login-container">
+      <div className="auth-login-form">
+        <h3>Login</h3>
+        <input className="email-password-input" type="text" placeholder="Email..." value={loginEmail} onChange={(event) => { setLoginEmail(event.target.value) }} />
+        <input className="email-password-input" placeholder="Password..." type="text" value={loginPassword} onChange={(event) => { setLoginPassword(event.target.value) }} />
+        <button onClick={login}>Login</button>
+        </div>
+      </div>
+
+     
+    </div>
   )
 }
 

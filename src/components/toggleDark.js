@@ -15,19 +15,14 @@ export default function ToggleDark(props) {
                         }}
                     />
                     <span className="slider">
-                        <div className="fish">
-                            <div className="body"></div>
-                            <div className="eye"></div>
-                            <div className="tail"></div>
-                        </div>
                     </span>
                     <span className="wave"> </span>
-                    <div className="boat">
+                    {/* <div className="boat">
                         <div className="bottom"></div>
                         <div className="mast"></div>
                         <div className="rectangle-sm"></div>
                         <div className="rectangle-lg"></div>
-                    </div>
+                    </div> */}
                     <div className="sky">
                         <div className="sun">
                             <div className="outer"></div>
