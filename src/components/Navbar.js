@@ -24,18 +24,9 @@ return (
     <>
       <nav className="nav-bar-container">
            {/* DARKMODE */}
-      <header className="header-container">
-        <ThemeContext.Consumer>
-          {({ changeTheme }) => (
-            <ToggleDark
-              toggleDark={() => {
-                setDarkMode(!darkMode)
-                changeTheme(darkMode ? themes.light : themes.dark)
-              }}
-            />
-          )}
-        </ThemeContext.Consumer>
-      </header>
+    
+       
+
         <ul className="nav-bar-list">
           {user? 
           <>

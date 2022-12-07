@@ -10,6 +10,7 @@ import { auth } from "../database/firebase-config"
 import { Link } from "react-router-dom"
 import Search from "../components/Search"
 import { handleButtonClick, handleKeyPress, handleSearch } from "../components/Search"
+import Journal from "./Journal"
 
 
 const Home = (props) => {
@@ -20,6 +21,8 @@ const Home = (props) => {
   const [zip, setZip] = useState("")
   const [userId, setUserId] = useState("")
   const [darkMode, setDarkMode] = useState(true)
+
+
 
 
   async function getData() {
@@ -120,19 +123,20 @@ const Home = (props) => {
       }
       className="home-view-container"
     >
-      {/* DARKMODE
-      <header className="header-container">
-        <ThemeContext.Consumer>
-          {({ changeTheme }) => (
-            <ToggleDark
-              toggleDark={() => {
-                setDarkMode(!darkMode)
-                changeTheme(darkMode ? themes.light : themes.dark)
-              }}
-            />
-          )}
-        </ThemeContext.Consumer>
-      </header> */}
+
+      <ThemeContext.Consumer>
+        {({ changeTheme }) => (
+          <ToggleDark
+            toggleDark={() => {
+              setDarkMode(!darkMode)
+              changeTheme(darkMode ? themes.light : themes.dark)
+            }}
+          />
+        )}
+      </ThemeContext.Consumer>
+
+      
+
 
       {/* Update user */}
       {userId && zip.length === 5 && zone ? (
