@@ -25,6 +25,10 @@ body {
 	scrollbar-width: none;
 }
 
+a {
+	text-decoration: none;
+}
+
 button, input.button {
 	display: inline-block;
 	padding: 0.3em 1em;
@@ -533,7 +537,7 @@ div.journal {
 /* FOOTER NAV */
 
 .footer-container {
-	padding: 1.5vh;
+	padding: .5em;
 	width: 100%;
 	position: fixed;
 	bottom: 0;
@@ -548,7 +552,12 @@ div.journal {
 
 .footer-link {
 	list-style: none;
-	font-size: 3vh;
+	font-size: 1.5em;
+}
+
+.footer-link a {
+	text-decoration: none;
+	color: black;
 }
 
 /* RESPONSIVE */
