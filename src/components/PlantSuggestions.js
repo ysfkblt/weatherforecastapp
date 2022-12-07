@@ -162,7 +162,7 @@ const PlantSuggestions = (props) => {
 
       // is the date in a growing season
     } else if (date > lfDate && date < ffDate) {
-      // console.log(`🌱 today is in the growing season for your zone🌱`)
+      console.log(`🌱 today is in the growing season for your zone🌱`)
 
       daysToFirstFrost = Math.round((ffDate - date) / MS_IN_A_DAY)
       weeksToFirstFrost = Math.round(daysToFirstFrost / 7) //rounding to nearest INT
@@ -170,9 +170,9 @@ const PlantSuggestions = (props) => {
       daysToLastFrost = Math.abs(Math.round((lfDate - date) / MS_IN_A_DAY))
       weeksToLastFrost = Math.round(daysToLastFrost / 7) //rounding to nearest INT
 
-      // console.log(
-      //   `days to first frost: ${daysToFirstFrost} ; weeks to first frost: ${weeksToFirstFrost}`
-      // )
+      console.log(
+        `days to first frost: ${daysToFirstFrost} ; weeks to first frost: ${weeksToFirstFrost}`
+      )
 
       // based on the data, when in a growing time zone, weeks to last frost should be a positive number
       plantTimingObject.frostSeason = false
@@ -183,7 +183,7 @@ const PlantSuggestions = (props) => {
 
       // is the date in a frost season
     } else {
-      // console.log(`🧊 today is in the frost season for your zone🧊`)
+      console.log(`🧊 today is in the frost season for your zone🧊`)
       daysToLastFrost = Math.round(-(lfDateNextYear - date) / MS_IN_A_DAY)
       weeksToLastFrost = Math.round(daysToLastFrost / 7) //rounding to nearest INT
       // console.log(
@@ -199,7 +199,6 @@ const PlantSuggestions = (props) => {
 
   getFrostDates(userZoneNumber, frostZoneMap)
   frostDateCheck(lastFrostDate, firstFrostDate)
-  // frostDateCheck("1/8", "12/15") //debug testing dates
 
   plantTimingObject.zone = userZoneNumber
   plantTimingObject.firstFrost = firstFrostDate
@@ -277,7 +276,7 @@ const PlantSuggestions = (props) => {
     let viablePlantSug = array.filter((x) => x.life === "a" || x.life === "b")
     // console.log("======== HERE ======")
     // console.log("this is the array!! ======== ",array)
-    // console.log(viablePlantSug)
+    // console.log("viable plant suggestions: ",viablePlantSug)
 
     // This is during frost season
     if (obj.frostSeason) {
@@ -329,6 +328,10 @@ const PlantSuggestions = (props) => {
   let suggestedPlantsData = getPlantSug(plantTimingObject, plantsDbData)
   // let suggestedHousePlantsData = filterSug(housePlantsDbData)
   let suggestedHousePlantsData = filterSug(housePlantDummyData)
+
+console.log("suggested plants",suggestedPlantsData)
+console.log("suggested house plants",suggestedHousePlantsData)
+
 
   return (
     <div className="plant-suggestions-container">
