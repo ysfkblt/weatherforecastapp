@@ -468,3 +468,11 @@ div.journal {
 	list-style: none;
 	font-size: 3vh;
 }
+
+/* RESPONSIVE */
+
+@media only screen and (max-width: 400px) {
+	body {
+	  background-color: lightblue;
+	}
+  }
