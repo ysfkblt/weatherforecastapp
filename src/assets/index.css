@@ -161,11 +161,9 @@ li.nav-bar-link {
 }
 
 .auth-current-user-container {
-	border-bottom: 1px solid black;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	font-size: 1.5em;
 }
+
 
 h3.auth-header {
 	width: 6.5em;

@@ -39,6 +39,16 @@ const Auth = () => {
 
   return (
     <div className="auth-container">
+       {currentUser ?
+        <div className="auth-current-user-container">
+          <h4>User Logged In:{currentUser.email}</h4>
+          <div>
+            <button onClick={logout}>Sign out</button>
+          </div>
+        </div> : <div className="auth-current-user-container">
+          <h4>Please Login or Signup</h4>
+        </div>
+      }
       {/* SIGN UP */}
       <div className="auth-signup-container">
         <div className="auth-signup-form">
@@ -60,14 +70,7 @@ const Auth = () => {
         </div>
       </div>
 
-      {currentUser ?
-        <div className="auth-current-user-container">
-          <h4>User Logged In:{currentUser.email}</h4>
-          <div>
-            <button onClick={logout}>Sign out</button>
-          </div>
-        </div> : null
-      }
+     
     </div>
   )
 }
