@@ -106,11 +106,11 @@ const PlantSuggestions = (props) => {
     6: ["4/12", "10/25"],
     7: ["3/29", "11/7"],
     8: ["3/21", "11/18"],
-    9: ["2/18", "12/5"],
-    10: ["null", "null"],
-    11: ["null", "null"],
-    12: ["null", "null"],
-    13: ["null", "null"],
+    9: ["3/21", "11/18"], // ! faking data to make it work for these zones which have no typical frost. // was ["2/18", "12/5"],
+    10: ["3/21", "11/18"], // ! https://frostdate.com/zone/10b/ // ["1/31", "12/15"]
+    11: ["3/21", "11/18"], // ! faking data to make it work for these zones which have no typical frost. mostly only parts of florida and hawaii. https://frostdate.com/zone/10b/
+    12: ["3/21", "11/18"], // ! faking data to make it work for these zones which have no typical frost. mostly only parts of florida and hawaii
+    13: ["3/21", "11/18"], // ! faking data to make it work for these zones which have no typical frost. mostly only parts of florida and hawaii
   }
 
   function getFrostDates(zoneNum, frostZoneMap) {
@@ -132,8 +132,11 @@ const PlantSuggestions = (props) => {
   // Checks if today's date is within the growing season
   // return true if OKAY to plant, return false if NOT GOOD TO PLANT (aka in frost zone time)
   function frostDateCheck(lastFrostDate, firstFrostDate) {
+    console.log(
+      "START OF FUNCTION //////////////////////////////////////////////"
+    )
+
     const dateStr = new Date().toLocaleDateString()
-    plantTimingObject.currentDate = dateStr
     const [month1, day1, year1] = dateStr.split("/")
 
     // date control
@@ -143,7 +146,8 @@ const PlantSuggestions = (props) => {
     const date = new Date(+year1, 6, 1) // ! SUMMER JUL 1
     // const date = new Date(+year1, 9, 1)              // ! FALL   OCT 1
 
-    console.log(date)
+    plantTimingObject.currentDate = date
+    // console.log(date)
 
     const startStr = firstFrostDate //EX dec 30 = "12/30"
     const [month2, day2] = startStr.split("/")
@@ -275,8 +279,8 @@ const PlantSuggestions = (props) => {
   const getPlantSug = (obj, array) => {
     let viablePlantSug = array.filter((x) => x.life === "a" || x.life === "b")
     // console.log("======== HERE ======")
-    // console.log("this is the array!! ======== ",array)
-    // console.log("viable plant suggestions: ",viablePlantSug)
+    console.log("this is the array!! ======== ", array)
+    console.log("viable plant suggestions: ", viablePlantSug)
 
     // This is during frost season
     if (obj.frostSeason) {
@@ -287,51 +291,89 @@ const PlantSuggestions = (props) => {
     }
     // This is during non-frost season
     else {
-      // if two months from first frost
+      // if two months less than... from first frost
 
       if (obj.weeksToFirstFrost < 9) {
         if (obj.weeksToFirstFrost < 9 && obj.weeksToFirstFrost > 4) {
           let twoMonthTillFrost = viablePlantSug.filter((x) => x.method === 1)
-          // console.log("======= in the growing season")
-          // console.log(twoMonthTillFrost)
+          console.log("WHERE AM I ????? IF 1")
+
           return filterSug(twoMonthTillFrost)
         }
         if (obj.weeksToFirstFrost <= 4 && obj.zone === 9) {
           let oneMonthTillFrost = viablePlantSug.filter((x) => x.method === 8)
+          console.log("WHERE AM I ????? IF 2")
           return filterSug(oneMonthTillFrost)
         }
         if (obj.weeksToFirstFrost <= 4 && obj.zone === 8) {
           let oneMonthTillFrost = viablePlantSug.filter((x) => x.method === 9)
+          console.log("WHERE AM I ????? IF 3")
           return filterSug(oneMonthTillFrost)
         }
         if (obj.weeksToFirstFrost <= 4 && obj.zone <= 7) {
           let oneMonthTillFrost = viablePlantSug.filter((x) => x.method === 10)
+          console.log("WHERE AM I ????? IF 4")
           return filterSug(oneMonthTillFrost)
         }
       }
+
+      // summer
+      // PLANTS
+      // weeksBeforelastFrost target is +15. +17/+13
+
+      // in or greater than zone 8
+      // and between 10 and 23 weeks to last frost
+
+      // if target > 25, then suggest the 25wblf plants
+
       // Suggestions of plants for non-frost period
       else {
-        let plantsNonFrost = viablePlantSug.filter(
-          (x) =>
-            x.weeksBeforeLastFrost === obj.weeksToLastFrost ||
-            x.weeksBeforeLastFrost === obj.weeksToLastFrost + 1 ||
-            x.weeksBeforeLastFrost === obj.weeksToLastFrost - 1
-        )
-        console.log("plantsNonFrost", plantsNonFrost)
-        return filterSug(plantsNonFrost)
+        if (
+          obj.zone >= 8 &&
+          obj.weeksToLastFrost > 10 &&
+          obj.weeksToLastFrost < 29
+        ) {
+          let plantsNonFrost = viablePlantSug.filter(
+            (x) => x.weeksBeforeLastFrost > 0 && x.weeksBeforeLastFrost < 23
+          )
+          // console.log("obj weeks to last frost ", obj.weeksToLastFrost)
+          // console.log("plantsNonFrost", plantsNonFrost)
+          return filterSug(plantsNonFrost)
+        } else if (
+          obj.zone >= 8 &&
+          obj.weeksToLastFrost > 28 &&
+          obj.weeksToLastFrost < 35
+        ) {
+          let plantsNonFrost = viablePlantSug.filter(
+            (x) => x.weeksBeforeLastFrost === 25
+          )
+          console.log("obj weeks to last frost ", obj.weeksToLastFrost)
+          console.log("plantsNonFrost", plantsNonFrost)
+          return filterSug(plantsNonFrost)
+        } else {
+          let plantsNonFrost = viablePlantSug.filter(
+            (x) =>
+              x.weeksBeforeLastFrost === obj.weeksToLastFrost ||
+              x.weeksBeforeLastFrost === obj.weeksToLastFrost + 1 ||
+              x.weeksBeforeLastFrost === obj.weeksToLastFrost - 1
+          )
+          console.log("obj weeks to last frost ", obj.weeksToLastFrost)
+          console.log("plantsNonFrost", plantsNonFrost)
+          return filterSug(plantsNonFrost)
+        }
       }
     }
   }
 
   // console.log(getPlantSug(plantTimingObject, plantsDatabaseData))
-  // console.log("=======this is the plants DB data",plantsDbData)
+  // console.log("=======this is the plants DB data", plantsDbData)
   let suggestedPlantsData = getPlantSug(plantTimingObject, plantsDbData)
   // let suggestedHousePlantsData = filterSug(housePlantsDbData)
   let suggestedHousePlantsData = filterSug(housePlantDummyData)
 
-console.log("suggested plants",suggestedPlantsData)
-console.log("suggested house plants",suggestedHousePlantsData)
-
+  console.log("======= timing object: ", plantTimingObject)
+  console.log("suggested plants", suggestedPlantsData)
+  console.log("suggested house plants", suggestedHousePlantsData)
 
   return (
     <div className="plant-suggestions-container">
