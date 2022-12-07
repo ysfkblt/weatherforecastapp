@@ -144,25 +144,20 @@ li.nav-bar-link {
 	position: relative;
 }
 
-.auth-signup-container {
+.auth-signup-container,  .auth-login-container {
 
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	margin: 20px;
-	width: 100%;
+	width: 60%;
+	height: 40%;
 	gap: 1em;
+	border: 2px solid grey;
+	border-radius: 10px;
+	background-color: white;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 
-}
-
-.auth-login-container {
-
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin: 20px;
-	width: 100%;
-	gap: 1em;
 }
 
 .auth-current-user-container {
@@ -200,7 +195,7 @@ h3.auth-header {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	height: 10vh;
+	height: 20vh;
 	/* border: 1px solid blue; */
 }
 
