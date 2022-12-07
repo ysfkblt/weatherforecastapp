@@ -71,7 +71,7 @@ const Search = () => {
           type="text"
           spellCheck="false"
           value={search}
-          placeholder="please enter location"
+          placeholder="please enter zip"
           onChange={handleSearch}
           onFocus={(e) => (e.target.placeholder = "")}
           onBlur={(e) => (e.target.placeholder = "please enter location")}
@@ -103,23 +103,20 @@ const Search = () => {
 
        
         <div className="search-results-sub-container">
-         
           <p className="search-results-condition-text">
             {info.condition}
           </p>
           {info.temp ? (
-           
             <p className="search-results-temp-range">
-              
+
               <div className="search-results-temp-range-icon" >
                 <i class="fa fa-arrow-up" aria-hidden="true"></i>
               </div>
               {info.temp?.max}
-             
+
               <span className="search-results-temp-range-degrees">
                 °
               </span>{" "}
-
               <div className="search-results-temp-range-icon">
                 <i class="fa fa-arrow-down" aria-hidden="true"></i>
               </div>
@@ -131,7 +128,6 @@ const Search = () => {
               </span>
             </p>
           ) : null}
-
          
           <p className="search-results-location">
             {info.country}
