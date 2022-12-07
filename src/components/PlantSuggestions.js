@@ -14,58 +14,56 @@ const PlantSuggestions = (props) => {
   const [userZoneNumber, setUserZoneNumber] = useState(8)
   const [plantsDbData, setPlantsDbData] = useState([])
   const [housePlantsDbData, setHousePlantsDbData] = useState([])
-  
-  const {userId}=props
-  
+
+  const { userId } = props
+
   const wormCollection = collection(db, "worms", userId, "personal")
-  
-  function plantData(){ 
+
+  function plantData() {
     getDocs(colRef)
-    .then((snapshot) => {
-      snapshot.docs.forEach((doc) => {
-        setPlantsDbData((prev)=> [...prev, doc.data()])
+      .then((snapshot) => {
+        snapshot.docs.forEach((doc) => {
+          setPlantsDbData((prev) => [...prev, doc.data()])
+        })
+        return plantsDbData
       })
-      return plantsDbData
-    })
-    .catch(err => {
-      console.log(err.message)
-    })
+      .catch((err) => {
+        console.log(err.message)
+      })
   }
-  
-  function housePlantData(){ 
+
+  function housePlantData() {
     getDocs(colRef2)
-    .then((snapshot) => {
-      snapshot.docs.forEach((doc) => {
-        setHousePlantsDbData((prev)=> [...prev, doc.data()])
+      .then((snapshot) => {
+        snapshot.docs.forEach((doc) => {
+          setHousePlantsDbData((prev) => [...prev, doc.data()])
+        })
+        return housePlantsDbData
       })
-      return housePlantsDbData
-    })
-    .catch(err => {
-      console.log(err.message)
-    })
+      .catch((err) => {
+        console.log(err.message)
+      })
   }
 
-  useEffect(()=>{
-    if (props.userId!=="NA"){
-
-      async function getworms(){
+  useEffect(() => {
+    if (props.userId !== "NA") {
+      async function getworms() {
         const data = await getDocs(wormCollection)
-        let pre_zone=data.docs[0].data().zone
+        let pre_zone = data.docs[0].data().zone
         let zone = parseInt(pre_zone)
         setUserZoneNumber(zone)
       }
       getworms()
     }
 
+    //getting image
+    // const fetchImage = async(search)=>{
+    //   const res=await fetch(`https://serpapi.com/playground?q=${"house"}&tbs=itp%3Aphotos%2Cisz%3Al&tbm=isch&device=desktop`)
+    //  const {images_results}= await res.json()
+    // return images_results
+    // }
 
-//getting image 
-// const fetchImage = async(search)=>{
-//   const res=await fetch(`https://serpapi.com/playground?q=${"house"}&tbs=itp%3Aphotos%2Cisz%3Al&tbm=isch&device=desktop`)
-//  const {images_results}= await res.json()
-// return images_results
-// }
-
-// console.log(fetchImage("rose"))
+    // console.log(fetchImage("rose"))
 
     const fetchZone = async (search) => {
       const response = await fetch(`https://phzmapi.org/${search}.json`)
@@ -112,7 +110,7 @@ const PlantSuggestions = (props) => {
     10: ["null", "null"],
     11: ["null", "null"],
     12: ["null", "null"],
-    13: ["null", "null"]
+    13: ["null", "null"],
   }
 
   function getFrostDates(zoneNum, frostZoneMap) {
@@ -135,13 +133,16 @@ const PlantSuggestions = (props) => {
   // return true if OKAY to plant, return false if NOT GOOD TO PLANT (aka in frost zone time)
   function frostDateCheck(lastFrostDate, firstFrostDate) {
     const dateStr = new Date().toLocaleDateString()
-    console.log("today's date: ", dateStr)
     plantTimingObject.currentDate = dateStr
     const [month1, day1, year1] = dateStr.split("/")
 
-    // ! look HERE
-    // const date = new Date(+year1, month1 - 1, +day1) 
-    const date = new Date(+year1, 3, 24)
+    // date control
+    // const date = new Date(+year1, month1 - 1, +day1) // ! toggle this for TODAYS DATE
+    // const date = new Date(+year1, 0, 2)              // ! WINTER JAN 2
+    // const date = new Date(+year1, 3, 1)              // ! SPRING APR 1
+    const date = new Date(+year1, 6, 1) // ! SUMMER JUL 1
+    // const date = new Date(+year1, 9, 1)              // ! FALL   OCT 1
+
     console.log(date)
 
     const startStr = firstFrostDate //EX dec 30 = "12/30"
@@ -203,63 +204,63 @@ const PlantSuggestions = (props) => {
   plantTimingObject.zone = userZoneNumber
   plantTimingObject.firstFrost = firstFrostDate
   plantTimingObject.lastFrost = lastFrostDate
- 
+
   const housePlantDummyData = [
     {
       id: 1,
       name: "Basil",
-      species: "species name"
+      species: "species name",
     },
     {
       id: 2,
       name: "Mint",
-      species: "species name"
+      species: "species name",
     },
     {
       id: 3,
       name: "Cactus",
-      species: "species name"
+      species: "species name",
     },
     {
       id: 4,
       name: "Peace Lily",
-      species: "species name"
+      species: "species name",
     },
     {
       id: 5,
       name: "orchid",
-      species: "species name"
+      species: "species name",
     },
     {
       id: 6,
       name: "Aloe",
-      species: "species name"
+      species: "species name",
     },
     {
       id: 7,
       name: "Fiddle Leaf Fig",
-      species: "species name"
+      species: "species name",
     },
     {
       id: 8,
       name: "orchid plus",
-      species: "species name"
+      species: "species name",
     },
     {
       id: 9,
       name: "zz plant",
-      species: "species name"
+      species: "species name",
     },
     {
       id: 10,
       name: "Rosemary",
-      species: "species name"
+      species: "species name",
     },
   ]
 
   // ! ======== collection reference
-  const colRef = collection(db, 'plants')
-  const colRef2 = collection(db, 'housePlants')
+  const colRef = collection(db, "plants")
+  const colRef2 = collection(db, "housePlants")
   // get collection data
 
   // filter based on time of year
@@ -278,7 +279,6 @@ const PlantSuggestions = (props) => {
     // console.log("this is the array!! ======== ",array)
     // console.log(viablePlantSug)
 
-
     // This is during frost season
     if (obj.frostSeason) {
       let filteredArr = viablePlantSug.filter(
@@ -289,7 +289,7 @@ const PlantSuggestions = (props) => {
     // This is during non-frost season
     else {
       // if two months from first frost
-      
+
       if (obj.weeksToFirstFrost < 9) {
         if (obj.weeksToFirstFrost < 9 && obj.weeksToFirstFrost > 4) {
           let twoMonthTillFrost = viablePlantSug.filter((x) => x.method === 1)
@@ -331,25 +331,46 @@ const PlantSuggestions = (props) => {
   let suggestedHousePlantsData = filterSug(housePlantDummyData)
 
   return (
-  
     <div className="plant-suggestions-container">
       <h2 className="plant-suggestions-header">TODAY'S PLANT SUGGESTIONS</h2>
-      {(suggestedPlantsData.length > 0) ? (suggestedPlantsData.map((curPlant) => (
-        <div className="plant-suggestion" key={curPlant.id}>
-          <div><h3>Name: {curPlant.name}, <h3 className="italics">({curPlant.species})</h3></h3></div>
-          <div><img src={curPlant.name} className="plantSugImg" /></div>
-        </div>
-      ))) : (<><div>
-      <h3>If you are wanting to plant today, we suggest indoor plants:</h3>
-      <div>{suggestedHousePlantsData.map((curPlant) => (
-        <div className="plant-suggestion" key={curPlant.id}>
-          <div><h3>Name: {curPlant.name}, <h3 className="italics">({curPlant.species})</h3></h3></div>
-          <div><img src={curPlant.id} className="plantSugImg" /></div>
-        </div>
-      ))}</div>
-      </div>
-      </>)}
-      
+      {suggestedPlantsData.length > 0 ? (
+        suggestedPlantsData.map((curPlant) => (
+          <div className="plant-suggestion" key={curPlant.id}>
+            <div>
+              <h3>
+                Name: {curPlant.name},{" "}
+                <h3 className="italics">({curPlant.species})</h3>
+              </h3>
+            </div>
+            <div>
+              <img src={curPlant.name} className="plantSugImg" />
+            </div>
+          </div>
+        ))
+      ) : (
+        <>
+          <div>
+            <h3>
+              If you are wanting to plant today, we suggest indoor plants:
+            </h3>
+            <div>
+              {suggestedHousePlantsData.map((curPlant) => (
+                <div className="plant-suggestion" key={curPlant.id}>
+                  <div>
+                    <h3>
+                      Name: {curPlant.name},{" "}
+                      <h3 className="italics">({curPlant.species})</h3>
+                    </h3>
+                  </div>
+                  <div>
+                    <img src={curPlant.id} className="plantSugImg" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </>
+      )}
     </div>
   )
 }
