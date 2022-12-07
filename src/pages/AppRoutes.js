@@ -4,7 +4,7 @@ import { Route, Routes } from "react-router-dom"
 import App from "./App"
 import { auth } from "../database/firebase-config"
 import Journal from "./Journal"
-import AllPlantsView from "./AllPlantsView"
+import AllPlantsView from "./allPlants/AllPlantsView"
 import SinglePlantView from "./SinglePlantView"
 import Auth from "../components/Auth"
 

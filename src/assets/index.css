@@ -525,7 +525,16 @@ div.journal {
 	display: flex;
 	align-items: center;
 }
+.filterArea{
+	width: 100vw;
+	display: block;
+}
 
+.filteringCon {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+}
 
 /* FOOTER NAV */
 
