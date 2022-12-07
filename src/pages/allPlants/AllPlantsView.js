@@ -3,6 +3,7 @@ import { collection, getDocs } from "firebase/firestore"
 import { db } from "../../database/firebase-config"
 import { Link } from "react-router-dom";
 import Checkbox from "./checkboxes"
+import flowers2 from '../../database/plantDatabase'
 
 
 const AllPlants = () => {
@@ -13,44 +14,111 @@ const AllPlants = () => {
   const [filterLightOptions, setfilterLightOptions] = useState([])
   const plantCollection = collection(db, "plants")
 
+
   useEffect(() => {
-    async function getPlants() {
-      const data = await getDocs(plantCollection)
-      await setPlants(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
-      await setPlantsBackUp(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
-    }
-    getPlants()
+    setPlants(flowers2)
+    setPlantsBackUp(flowers2)
+  //   async function getPlants() {
+  //     const data = await getDocs(plantCollection)
+  //     await setPlants(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+  //     await setPlantsBackUp(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+  //   }
+  //   getPlants()
   }, [])
 
-  function checkedBox(event){
+// THIS IS FN FOR SETTING THE TYPE (grass, herb, etc) CONDITION IN FILTER
+  function checkedBoxType(event){
     if(!document.getElementById(event).checked){
-         let tempFilterOption =  filterTypeOptions.filter((option) => option !== event)
+      let tempFilterOption =  filterTypeOptions.filter((option) => option !== event)
       setfilterTypeOptions(tempFilterOption) 
-      console.log(filterTypeOptions)
+      console.log("filterTypeOptions", filterTypeOptions)
     }
     else { 
       let tempFilteredOption = filterTypeOptions
       tempFilteredOption.push(event)
       setfilterTypeOptions(tempFilteredOption)
+      console.log("filterTypeOptions", filterTypeOptions)
     }
   }
 
-  async function resetPlants(){
-    const data = await getDocs(plantCollection)
-    await setPlants(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
-  }
-
-  async function onSubmit(evt){
-    if (filterTypeOptions.length === 0) {
-      resetPlants()
+  // THIS IS FN FOR SETTING THE LIFE TYPE (annual, biannual, ) IN FILTER
+  function checkedBoxLife(event){
+    if(!document.getElementById(event).checked){
+      let tempFilterLifeOption =  filterLifeOptions.filter((option) => option !== event)
+      setfilterLifeOptions(tempFilterLifeOption) 
+      console.log("filterLifeOptions", filterLifeOptions)
     }
     else {
-      let newPlants = plantsBackUp.filter((plant) => filterTypeOptions.includes(plant.type))
-      setPlants(newPlants)
+      let tempFilteredLifeOption = filterLifeOptions
+      tempFilteredLifeOption.push(event)
+      setfilterLifeOptions(tempFilteredLifeOption)
+      console.log("filterLifeOptions", filterLifeOptions)
     }
   }
 
-  const plantTypes=["grain", "grass", "herb", "house", "orn", "shrb", "shrub", "tree", "vege", "vine"]
+  // THIS IS FN FOR SETTING THE LIGHT CONDITION (fullsun, shade) IN FILTER
+  function checkedBoxLight(event){
+    if(!document.getElementById(event).checked){
+         let tempFilterLightOption =  filterLightOptions.filter((option) => option !== event)
+      setfilterLightOptions(tempFilterLightOption) 
+      console.log("filterLightOptions", filterLightOptions)
+    }
+    else {
+      let tempFilterLightOption = filterLightOptions
+      tempFilterLightOption.push(event)
+      setfilterLightOptions(tempFilterLightOption)
+      console.log(filterLightOptions)
+    }
+  }
+
+
+  async function onSubmit(evt){
+    console.log("light", filterLightOptions.length)
+    console.log("life", filterLifeOptions.length)
+    console.log("type", filterTypeOptions.length)
+    if ((filterTypeOptions.length === 0) && (filterLifeOptions.length === 0) && (filterLightOptions.length === 0)) {
+      setPlants(plantsBackUp)
+    }
+    else 
+      if ((filterTypeOptions.length > 0) && (filterLifeOptions.length === 0) && (filterLightOptions.length === 0))
+        {
+          let newPlants = plantsBackUp.filter((plant) => filterTypeOptions.includes(plant.type))
+          setPlants(newPlants)
+        }
+      else if ((filterTypeOptions.length === 0) && (filterLifeOptions.length > 0) && (filterLightOptions.length === 0))
+        {let newPlants = plantsBackUp.filter((plant) =>  filterLifeOptions.includes(plant.life) )
+          setPlants(newPlants)
+        }
+      else if ((filterTypeOptions.length === 0) && (filterLifeOptions.length === 0) && (filterLightOptions.length > 0))
+        {
+          let newPlants = plantsBackUp.filter((plant) => filterLightOptions.includes(plant.transplantTo))
+          setPlants(newPlants)
+        }
+      else if ((filterTypeOptions.length === 0) && (filterLifeOptions.length > 0) && (filterLightOptions.length > 0))
+        {
+          let newPlants = plantsBackUp.filter((plant) =>  (filterLifeOptions.includes(plant.life) && filterLightOptions.includes(plant.transplantTo)))
+          setPlants(newPlants)
+        }
+      else if ((filterTypeOptions.length > 0) && (filterLifeOptions.length > 0) && (filterLightOptions.length === 0))
+        {
+          let newPlants = plantsBackUp.filter((plant) => (filterTypeOptions.includes(plant.type) && filterLifeOptions.includes(plant.life)))
+          console.log("new plants", newPlants)
+          setPlants(newPlants)
+        }
+      else if ((filterTypeOptions.length > 0) && (filterLifeOptions.length === 0) && (filterLightOptions.length > 0))
+        {
+          let newPlants = plantsBackUp.filter((plant) =>  filterTypeOptions.includes(plant.type) && filterLightOptions.includes(plant.transplantTo))
+          setPlants(newPlants)
+        }      
+      else {
+        let newPlants = plantsBackUp.filter((plant) => filterTypeOptions.includes(plant.type) && filterLifeOptions.includes(plant.life) && filterLightOptions.includes(plant.transplantTo))
+        setPlants(newPlants)
+      }
+    
+  }
+    
+
+  const plantTypes=["grain", "grass", "herb", "house", "orn", "shrub", "tree", "vege", "vine"]
   const plantLife=["a", "b", "p", "other"]
   const transplantTo = ["fsun", "psun", "psha", "fsha"]
   
@@ -62,17 +130,17 @@ const AllPlants = () => {
 
       <div> 
       <h4>Plant Type</h4>
-      {plantTypes.map((type)=><Checkbox type={type} handleChange={checkedBox} />)}
+      {plantTypes.map((type)=><Checkbox type={type} handleChange={checkedBoxType} />)}
       </div>
 
       <div>
       <h4>Plant Life</h4>
-      {plantLife.map((life)=><Checkbox type={life} handleChange={checkedBox} />)}
+      {plantLife.map((life)=><Checkbox type={life} handleChange={checkedBoxLife} />)}
       </div>
 
       <div>
       <h4>Light Conditions</h4>
-      {transplantTo.map((light)=><Checkbox type={light} handleChange={checkedBox} />)}
+      {transplantTo.map((light)=><Checkbox type={light} handleChange={checkedBoxLight} />)}
       </div>
 
      </div>
@@ -85,7 +153,9 @@ const AllPlants = () => {
         ? plants.map((plant) => {
             return (
               <div className="singlePlant" key={plant.id}>
-                <div className="singlePlantName">{plant.name}</div>
+                <div className="singlePlantName">{plant.name} </div>
+                <div className="singlePlantName">{plant.life} </div>
+                <div className="singlePlantName">{plant.transplantTo} </div>
                
                 {plant.type === "grain" ? (
                   <>
@@ -126,14 +196,6 @@ const AllPlants = () => {
                       className="allPlantsImg"
                     /></Link>
                     <div>"Ornamental"</div>
-                  </>
-                ) : plant.type === "shrb" ? (
-                  <>
-                  <Link to={`/development/${plant.id}`}> <img
-                      src="https://i.pinimg.com/736x/a4/fa/d6/a4fad6f233cf74495f72f6ccc126f643.jpg"
-                      className="allPlantsImg"
-                    /></Link>
-                    <div>"Shrub"</div>
                   </>
                 ) : plant.type === "shrub" ? (
                   <>

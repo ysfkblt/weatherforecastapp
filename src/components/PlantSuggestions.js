@@ -5,6 +5,7 @@ import { collection, getDocs } from "firebase/firestore"
 import { useEffect, useState } from "react"
 import { db } from "../database/firebase-config"
 
+
 // ! TODO, integrate getting actual user zone number
 // ! take out dummy plant data, and connect to real firestore database
 // ! style JSX return
