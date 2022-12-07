@@ -16,14 +16,14 @@ const AllPlants = () => {
 
 
   useEffect(() => {
-    setPlants(flowers2)
-    setPlantsBackUp(flowers2)
-  //   async function getPlants() {
-  //     const data = await getDocs(plantCollection)
-  //     await setPlants(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
-  //     await setPlantsBackUp(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
-  //   }
-  //   getPlants()
+    // setPlants(flowers2)
+    // setPlantsBackUp(flowers2)
+    async function getPlants() {
+      const data = await getDocs(plantCollection)
+      await setPlants(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+      await setPlantsBackUp(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+    }
+    getPlants()
   }, [])
 
 // THIS IS FN FOR SETTING THE TYPE (grass, herb, etc) CONDITION IN FILTER
