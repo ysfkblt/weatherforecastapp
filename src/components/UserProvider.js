@@ -1,5 +1,7 @@
 // This is the User Provider for the app. It is used to store the user state and provide it to the rest of the app.
 // It does this by using the useContext hook to create a user state and a setUser function.
+// React providers are used to provide state to the rest of the app.
+
 
 import { createContext, useContext, useState, useEffect } from "react"
 import { onAuthStateChanged } from "firebase/auth"

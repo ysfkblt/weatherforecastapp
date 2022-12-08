@@ -25,8 +25,10 @@ const AppRoutes = () => {
         <Route path="/signUp" element={<Auth />} />
         <Route path="/development" element={<AllPlantsView />} />
         <Route path="/development/:plantId" element={<SinglePlantView />} />
+        <Route path="/user" element={<User />} />
         {user ? (
           <>
+            <Route path="/" element={<App userId={user.uid} />} />
             <Route path="/" element={<App userId={user.uid} />} />
             <Route path="/journal" element={<Journal userId={user.uid} />} />
           </>
