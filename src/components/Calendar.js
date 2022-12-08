@@ -14,29 +14,30 @@ const Calendar = () => {
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <StaticDatePicker
         // mask='____/__/__'
-        variant='static'
-        orientation='portrait'
+        // variant='static'
+        orientation='landscape'
+        openTo='day'
         value={value}
-        disableFuture
+        // disableFuture
         onChange={(newValue) => setValue(newValue)}
         renderInput={(params) => {
           <TextField {...params} />;
         }}
-        renderDay={(day, _value, DayComponentProps) => {
-          const isSelected =
-            !DayComponentProps.outsideCurrentMonth &&
-            highlightedDays.indexOf(day.getDate()) >= 0;
+        // renderDay={(day, _value, DayComponentProps) => {
+        //   const isSelected =
+        //     !DayComponentProps.outsideCurrentMonth &&
+        //     highlightedDays.indexOf(day.getDate()) >= 0;
 
-          return (
-            <Badge
-              key={day.toString()}
-              overlap='circular'
-              badgeContent={isSelected ? <CheckIcon color='red' /> : undefined}
-            >
-              <PickersDay {...DayComponentProps} />
-            </Badge>
-          );
-        }}
+        //   return (
+        //     <Badge
+        //       key={day.toString()}
+        //       overlap='circular'
+        //       badgeContent={isSelected ? <CheckIcon color='red' /> : undefined}
+        //     >
+        //       <PickersDay {...DayComponentProps} />
+        //     </Badge>
+        //   );
+        // }}
       />
     </LocalizationProvider>
   );

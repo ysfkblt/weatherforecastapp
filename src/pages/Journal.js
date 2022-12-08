@@ -126,14 +126,8 @@ const Journal = (props) => {
   return (
 
     <div className="journal-container">
-<<<<<<< HEAD
-    
-            <input className="journal-search" value={search} onChange={ (event)=>{ setSearch(event.target.value); searchPage(event.target.value)}} placeholder="Search..." size={50} />
-            {/* <button onClick={(event)=> searchPage(search)}>Search</button> */}
-=======
       <input className="journal-search" value={search} onChange={(event) => { setSearch(event.target.value); searchPage(event.target.value) }} placeholder="Search..." size={50} />
       {/* <button onClick={(event)=> searchPage(search)}>Search</button> */}
->>>>>>> c0be93659980bd5dcfda1d4dc74b9a61efb07c8a
       <div className="journal-form">
         <h1 className="journal-form-heading"> Add new entry:</h1>
         <div className="imgUpload">

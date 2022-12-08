@@ -22,14 +22,9 @@ const Home = (props) => {
   const [userId, setUserId] = useState("")
   const [darkMode, setDarkMode] = useState(true)
 
-<<<<<<< HEAD
-  console.log("TESTING ZONE",zone)
-  console.log("TESTING ZIP",zip)
-=======
 
 
 
->>>>>>> c0be93659980bd5dcfda1d4dc74b9a61efb07c8a
   async function getData() {
     await fetch(
       `https://api.weatherapi.com/v1/forecast.json?key=f676e0d30686474d99b160351221104&q=${search}&days=1&aqi=no&alerts=no`
@@ -144,11 +139,10 @@ const Home = (props) => {
 
 
       {/* Update user */}
-      {props.userId && zip.length === 5 && zone ? (
+      {userId && zip.length === 5 && zone ? (
         <>
-        {console.log("WORKING")}
           <UpdateZipCode
-            userId={props.userId}
+            userId={userId}
             zip={zip}
             zone={zone.zone}
             coordinates={zone.coordinates}
@@ -165,51 +159,6 @@ const Home = (props) => {
         />
       </div>
 
-<<<<<<< HEAD
-      {/* Hidden info display, reveals after search button click */}
-      <div className="grid overflow-hidden grid-cols-2 grid-rows-2 gap-10 sm:gap-40 sm:mt-72 mt-56 sm:mr-0 mr-4">
-        <div className="row-span-2 justify-self-end">
-          {info.temp ? (
-            <p className="text-end sm:text-9xl text-7xl font-light tracking-tighter">
-              {info.temp?.current}
-              <span className=" align-top  text-lg sm:font-light font-normal sm:text-3xl">
-                °
-              </span>
-            </p>
-          ) : null}
-        </div>
-        <div className="row-span-2  sm:mt-3 mt-2  justify-self-start truncate">
-          <p className=" text-start sm:text-3xl font-light sm:pb-1 sm:ml-1">
-            {info.condition}
-          </p>
-          {info.temp ? (
-            <p className="sm:text-2xl  text-start font-light">
-              <ArrowUpIcon className="sm:h-4  h-2 inline-flex align-middle" />
-              {info.temp?.max}
-              <span className="align-top font-normal sm:text-base text-xs">
-                °
-              </span>{" "}
-              <ArrowDownIcon className="sm:h-4 h-2 inline-flex align-middle" />
-              {info.temp?.min}
-              <span className="align-top font-normal sm:text-base text-xs">
-                °
-              </span>
-            </p>
-          ) : null}
-
-          <p className="sm:text-xl text-xs  text-start font-light  whitespace-nowrap  sm:mt-1 sm:ml-1">
-            {info.country}
-          </p>
-          {zone.zone ? <p className="">Hardiness Zone {zone.zone}</p> : null}
-        </div>
-
-        {props.userId ? (
-          <PlantSuggestions userId={props.userId} zip={zip}/>
-        ) : (
-          <PlantSuggestions userId={"NA"} />
-        )}
-      </div>
-=======
       
       {/* Plant Suggestions */}
 
@@ -219,7 +168,6 @@ const Home = (props) => {
         <PlantSuggestions userId={"NA"} />
       )}
 
->>>>>>> c0be93659980bd5dcfda1d4dc74b9a61efb07c8a
     </div>
 
   )

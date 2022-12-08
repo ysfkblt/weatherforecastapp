@@ -56,6 +56,17 @@ const Search = () => {
         });
     }, []);
 
+    useEffect(() => {
+      async function getZone() {
+        let zoneResults = await fetchZone(search)
+        {
+          zoneResults ? setZone(zoneResults) : setZone("")
+        }
+      }
+      getZone() 
+    }, [search])
+  
+
     const logout = async () => {
         await signOut(auth);
     };
