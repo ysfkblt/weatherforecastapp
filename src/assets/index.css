@@ -544,6 +544,7 @@ div.journal {
 	position: fixed;
 	bottom: 0;
 	background-color: white;
+	z-index: 5;
 }
 
 .footer-list {

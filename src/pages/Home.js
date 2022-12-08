@@ -159,6 +159,7 @@ const Home = (props) => {
         />
       </div>
 
+      
       {/* Plant Suggestions */}
 
       {props.userId ? (
