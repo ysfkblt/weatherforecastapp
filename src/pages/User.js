@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom"
 import { collection, addDoc, getDocs, query, where, updateDoc, doc } from "firebase/firestore"
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth"
 import { auth, db } from "../database/firebase-config"
-import { UserContext } from "../providers/UserProvider"
+import { UserContext } from "../components/UserProvider"
 import { storage } from "../database/firebase-config"
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage"
 
@@ -45,7 +45,7 @@ const User = () => {
     // the document will have the email and name of the user
     // we are also using the signInWithEmailAndPassword function from firebase to sign in the user
     // once the user is signed in we are using the setUser function from the UserContext to set the user state
-    // we are also using the useHistory hook to redirect the user to the home page
+    // we are also using the useNavigate hook to redirect the user to the home page
     async function register() {
         try {
             const userCredential = await createUserWithEmailAndPassword(auth, registerEmail, registerPassword)
@@ -55,7 +55,7 @@ const User = () => {
             })
             await signInWithEmailAndPassword(auth, registerEmail, registerPassword)
             setUser(userCredential.user)
-            history.push("/")
+            navigate.push("/")
         } catch (error) {
             console.log(error)
         }
@@ -64,12 +64,12 @@ const User = () => {
     // here we are using the signInWithEmailAndPassword function from firebase
     // to sign in the user with the email and password provided
     // once the user is signed in we are using the setUser function from the UserContext to set the user state
-    // we are also using the useHistory hook to redirect the user to the home page
+    // we are also using the useNavigate hook to redirect the user to the home page
     async function login() {
         try {
             const userCredential = await signInWithEmailAndPassword(auth, loginEmail, loginPassword)
             setUser(userCredential.user)
-            history.push("/")
+            navigate.push("/")
         } catch (error) {
             console.log(error)
         }
@@ -78,12 +78,12 @@ const User = () => {
     // here we are using the signOut function from firebase
     // to sign out the user
     // once the user is signed out we are using the setUser function from the UserContext to set the user state to null
-    // we are also using the useHistory hook to redirect the user to the home page
+    // we are also using the useNavigate hook to redirect the user to the home page
     async function logout() {
         try {
             await signOut(auth)
             setUser(null)
-            history.push("/")
+            navigate.push("/")
         } catch (error) {
             console.log(error)
         }
