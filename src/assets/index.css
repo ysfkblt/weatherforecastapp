@@ -129,6 +129,75 @@ li.nav-bar-link {
 	height: 4em;
 }
 
+/* USER */
+
+.user-container {
+	border-bottom: 1px solid black;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	z-index: 1;
+	position: relative;
+}
+
+.user-profile-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 20px;
+	width: 60%;
+	height: 40%;
+	gap: 1em;
+	border: 2px solid grey;
+	border-radius: 10px;
+	background-color: white;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.user-profile-picture-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.user-profile-container h3 {
+	width: 6.5em;
+}
+
+.user-profile-container input {
+	width: 130px;
+	box-sizing: border-box;
+	border: 2px solid rgb(76, 76, 76);
+	border-radius: 4px;
+	font-size: 16px;
+	background-color: white;
+	background-position: 10px 10px;
+	background-repeat: no-repeat;
+	padding: 12px 20px 12px 40px;
+	
+	width: 13em;
+}
+
+.user-profile-container button {
+	width: 130px;
+	box-sizing: border-box;
+	border: 2px solid rgb(76, 76, 76);
+	border-radius: 4px;
+	font-size: 16px;
+	background-color: white;
+	background-position: 10px 10px;
+	background-repeat: no-repeat;
+	padding: 12px 20px 12px 40px;
+	
+	width: 13em;
+}
+
+
+
 
 
 /* AUTH */
