@@ -3,6 +3,7 @@ import { collection, getDocs, query, where } from "firebase/firestore"
 import { useParams } from "react-router-dom"
 import { db } from "../database/firebase-config" // STEP 1
 import { forceWebSockets } from "firebase/database"
+import AddFavorite from "../components/AddFavorite"
 
 /** ========= firestore DB querying for one item in a collection =====================
 // 1. import the db connection to the firestore as configured earlier
@@ -13,10 +14,11 @@ import { forceWebSockets } from "firebase/database"
 // 6. additional parsing of the data to make it a normal object. not super sure how ...doc.data() exactly works
 // OUTPUT: the useState singlePlant is now a single plant object, as in the database.
  */
-const SinglePlantView = () => {
+const SinglePlantView = (props) => {
   const [singlePlant, setSinglePlant] = useState([])
   const { plantId } = useParams() // STEP 2
   const plantCollection = collection(db, "plants") //STEP 3
+  const {userId} = props
 
   // STEP 4
   // const fireStoreQuery = query(plantCollection, where("id", "==", plantId)) // this method is WRONG, it looks only IN the document. the id in the document is a number.
@@ -25,17 +27,6 @@ const SinglePlantView = () => {
     plantCollection,
     where("__name__", "==", plantId)
   )
-
-  const whenToPlant = {
-    "< -4" : "Winter",
-    "-4--1" : "Spring before last frost",
-    "0-2" : "Spring just after last frost",
-    "3-8" : "Late Spring",
-    "9-12" : "Early Summer",
-    "12-18" : "Summer",
-    "19-24" : "Late Summer/Early Fall",
-    "25" : "Fall"
-  }
 
   useEffect(() => {
     async function getSinglePlant() {
@@ -94,6 +85,7 @@ const SinglePlantView = () => {
                                   (((singlePlant[0].weeksBeforeLastFrost >= 19) && (singlePlant[0].weeksBeforeLastFrost <= 24)) ? 
                                     "Late Summer" : "Fall"))))))
               }</li>
+              <li><button onClick={()=>{AddFavorite(plantId, userId)}}>favorite</button></li>
             </ul>
           </div>
         </div>
