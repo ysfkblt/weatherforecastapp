@@ -16,12 +16,15 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage"
 import { storage } from "../database/firebase-config"
 import { UserContext } from "../components/UserProvider"
 import { useUser } from "../components/UserProvider"
+import { set } from "firebase/database"
 
 
 const User = () => {
     const [currentUser, setCurrentUser] = useState("")
+    const [updatedDisplayName, setUpdatedDisplayName] = useState("")
     const [profilePicture, setProfilePicture] = useState("")
     const [profilePictureUrl, setProfilePictureUrl] = useState("")
+    const [newDisplayName, setNewDisplayName] = useState("")
     useEffect(() => {
         onAuthStateChanged(auth, (currentUser) => {
             setCurrentUser(currentUser)
@@ -34,7 +37,7 @@ const User = () => {
             setProfilePictureUrl(currentUser.photoURL)
         }
     }, [currentUser])
-
+console.log(currentUser)
     
     async function uploadProfilePicture() {
         try {
@@ -50,12 +53,24 @@ const User = () => {
             console.log(error)
         }
     }
-
+async function updateDisplayName(){
+    try {
+       setUpdatedDisplayName(newDisplayName)
+        updateProfile(currentUser,{
+            displayName:newDisplayName
+        })
+        console.log("CURRENT USER",currentUser)
+    } catch (error) {
+        console.log(error)
+    }
+}
 
     return (
         <div className="user-container">
             <div className="user-profile-container">
-                <h1>{currentUser.displayName}'s Profile</h1>
+                <h1>{updatedDisplayName===""?currentUser.displayName: updatedDisplayName}'s Profile</h1>
+                <input className="newDisplayName" value={newDisplayName} onChange={(event) => { setNewDisplayName(event.target.value) }} placeholder="Update Display Name" size={90} style={{ height: "7vh" }} />
+                <button onClick={(event)=>updateDisplayName()}>Update Display Name</button>
                 <img src={profilePictureUrl} width={90}/>
                 <div className="user-profile-picture-container">
                     {/* <img src={profilePictureUrl} alt="profile picture" /> */}

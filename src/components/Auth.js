@@ -21,28 +21,25 @@ const Auth = () => {
       setCurrentUser(currentUser)
     })
   }, [])
-  // console.log(currentUser)
+  console.log(currentUser)
   const register = async () => {
     try {
-      await createUserWithEmailAndPassword(auth, registerEmail, registerPassword)
-        .then(function (result) {
-          // const imageRef = ref(storage, `${result.user.uid}/${profileImage.name}`)
+      let result=await createUserWithEmailAndPassword(auth, registerEmail, registerPassword)
+        // .then(function (result) {
+          const imageRef = ref(storage, `${result.user.uid}/${profileImage.name}`)
           // let URL = ""
-          //  uploadBytes(imageRef, profileImage).then((snapshot) => {
-          //   getDownloadURL(snapshot.ref).then(async (url) => {
-          //     URL = url
-          //   })
-          // })
-          // console.log(result.user, "CURRENT USER")
+          // await uploadBytes(imageRef, profileImage)
+          //   const downloadURL=getDownloadURL(imageRef)
+          // setProfileImageURL(downloadURL)
           return updateProfile(result.user, {
             displayName: document.getElementById("name").value,
-            photoURL: "https://static.vecteezy.com/system/resources/previews/008/480/928/original/flower-cartoon-in-flat-style-png.png",
+            photoURL: "https://img.freepik.com/premium-vector/cute-little-worm-cartoon-character_188253-3950.jpg?w=2000",
           }
 
           ).catch(function (error) {
             console.log(error);
           });
-        })
+        // })
     } catch (error) {
       console.log(error.message)
 
@@ -80,7 +77,7 @@ const Auth = () => {
           <input className="email-password-input" type="text" placeholder="Password..." value={registerPassword} onChange={(event) => { setRegisterPassword(event.target.value) }} />
           <input className="email-password-input" id="name" type="text" placeholder="Display Name..." value={registerDisplayName} onChange={(event) => { setRegisterDisplayName(event.target.value) }} />
           {/* <input className="email-password-input" id="phoneNumber"type="text" placeholder="Phone Number..." value={registerPassword} onChange={(event) => { setRegisterPassword(event.target.value) }} /> */}
-          <input className="journal-form-file-input button" id="image" type="file" onChange={(event) => { setProfileImage(event.target.files[0]) }} />
+          {/* <input className="journal-form-file-input button" id="image" type="file" onChange={(event) => { setProfileImage(event.target.files[0]) }} /> */}
           <button onClick={register}>Sign Up </button>
         </div>
       </div>
