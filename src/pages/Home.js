@@ -1,15 +1,17 @@
 import { useState, useEffect } from "react"
-import {
-  SearchIcon,
-  ArrowDownIcon,
-  ArrowUpIcon,
-} from "@heroicons/react/outline"
 import background, { gradient } from "../components/background"
 import { shuffle } from "lodash"
 import UpdateZipCode from "../components/LocationUpdate"
 import PlantSuggestions from "../components/PlantSuggestions"
 import ToggleDark from "../components/toggleDark"
 import { ThemeContext, themes } from "../components/themeContext"
+import { onAuthStateChanged, signOut } from "firebase/auth"
+import { auth } from "../database/firebase-config"
+import { Link } from "react-router-dom"
+import Search from "../components/Search"
+import { handleButtonClick, handleKeyPress, handleSearch } from "../components/Search"
+import Journal from "./Journal"
+
 
 const Home = (props) => {
   const [search, setSearch] = useState("")
@@ -20,8 +22,14 @@ const Home = (props) => {
   const [userId, setUserId] = useState("")
   const [darkMode, setDarkMode] = useState(true)
 
+<<<<<<< HEAD
   console.log("TESTING ZONE",zone)
   console.log("TESTING ZIP",zip)
+=======
+
+
+
+>>>>>>> c0be93659980bd5dcfda1d4dc74b9a61efb07c8a
   async function getData() {
     await fetch(
       `https://api.weatherapi.com/v1/forecast.json?key=f676e0d30686474d99b160351221104&q=${search}&days=1&aqi=no&alerts=no`
@@ -105,34 +113,35 @@ const Home = (props) => {
         info.condition?.toLowerCase() === "clear"
           ? { backgroundImage: background.clear }
           : info.condition?.toLowerCase() === "sunny"
-          ? { backgroundImage: background.sunny }
-          : info.condition?.toLowerCase().includes("cloudy")
-          ? { backgroundImage: background.cloudy }
-          : info.condition?.toLowerCase().includes("rain") ||
-            info.condition?.toLowerCase().includes("drizzle")
-          ? { backgroundImage: background.rainy }
-          : info.condition?.toLowerCase().includes("snow") ||
-            info.condition?.toLowerCase().includes("sleet")
-          ? { backgroundImage: background.snow }
-          : info.condition?.toLowerCase().includes("overcast")
-          ? { backgroundImage: background.overcast }
-          : { backgroundImage: grad }
+            ? { backgroundImage: background.sunny }
+            : info.condition?.toLowerCase().includes("cloudy")
+              ? { backgroundImage: background.cloudy }
+              : info.condition?.toLowerCase().includes("rain") ||
+                info.condition?.toLowerCase().includes("drizzle")
+                ? { backgroundImage: background.rainy }
+                : info.condition?.toLowerCase().includes("snow") ||
+                  info.condition?.toLowerCase().includes("sleet")
+                  ? { backgroundImage: background.snow }
+                  : info.condition?.toLowerCase().includes("overcast")
+                    ? { backgroundImage: background.overcast }
+                    : { backgroundImage: grad }
       }
-      className="flex flex-row  text-black items-center justify-center h-screen bg-center bg-cover select-none"
+      className="home-view-container"
     >
-      {/* DARKMODE */}
-      <header className="header-container">
-        <ThemeContext.Consumer>
-          {({ changeTheme }) => (
-            <ToggleDark
-              toggleDark={() => {
-                setDarkMode(!darkMode)
-                changeTheme(darkMode ? themes.light : themes.dark)
-              }}
-            />
-          )}
-        </ThemeContext.Consumer>
-      </header>
+
+      <ThemeContext.Consumer>
+        {({ changeTheme }) => (
+          <ToggleDark
+            toggleDark={() => {
+              setDarkMode(!darkMode)
+              changeTheme(darkMode ? themes.light : themes.dark)
+            }}
+          />
+        )}
+      </ThemeContext.Consumer>
+
+      
+
 
       {/* Update user */}
       {props.userId && zip.length === 5 && zone ? (
@@ -148,27 +157,15 @@ const Home = (props) => {
       ) : null}
 
       {/* Search Bar */}
-      <div className="flex flex-row h-16 sm:h-24   absolute">
-        <input
-          className="bg-transparent placeholder:text-black text-lg focus:outline-none border-transparent focus:border-transparent focus:ring-0 sm:text-xl font-light self-end mb-1 mr-10"
-          type="text"
-          spellCheck="false"
-          value={search}
-          placeholder="please enter location"
+      <div>
+        <Search
+          handleKeyPress={handleKeyPress}
+          handleButtonClick={handleButtonClick}
           onChange={handleSearch}
-          onFocus={(e) => (e.target.placeholder = "")}
-          onBlur={(e) => (e.target.placeholder = "please enter location")}
-          onKeyPress={handleKeyPress}
         />
-
-        <div className="self-end mb-1  ">
-          <SearchIcon
-            className="cursor-pointer h-6 sm:h-7 opacity-70"
-            onClick={handleButtonClick}
-          />
-        </div>
       </div>
 
+<<<<<<< HEAD
       {/* Hidden info display, reveals after search button click */}
       <div className="grid overflow-hidden grid-cols-2 grid-rows-2 gap-10 sm:gap-40 sm:mt-72 mt-56 sm:mr-0 mr-4">
         <div className="row-span-2 justify-self-end">
@@ -212,7 +209,19 @@ const Home = (props) => {
           <PlantSuggestions userId={"NA"} />
         )}
       </div>
+=======
+      
+      {/* Plant Suggestions */}
+
+      {props.userId ? (
+        <PlantSuggestions userId={props.userId} />
+      ) : (
+        <PlantSuggestions userId={"NA"} />
+      )}
+
+>>>>>>> c0be93659980bd5dcfda1d4dc74b9a61efb07c8a
     </div>
+
   )
 }
 

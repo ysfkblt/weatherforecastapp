@@ -21,9 +21,22 @@ const PlantSuggestions = (props) => {
   
   function plantData(){ 
     getDocs(colRef)
+<<<<<<< HEAD
     .then((snapshot) => {
       snapshot.docs.forEach((doc) => {
         setPlantsDbData((prev)=> [...prev, doc.data()])
+=======
+      .then((snapshot) => {
+        snapshot.docs.forEach((doc) => {
+          setPlantsDbData((prev) => [...prev, doc.data()])
+        })
+        return plantsDbData
+      })
+
+      .catch(err => {
+
+        console.log(err.message)
+>>>>>>> c0be93659980bd5dcfda1d4dc74b9a61efb07c8a
       })
       return plantsDbData
     })
@@ -34,9 +47,22 @@ const PlantSuggestions = (props) => {
   
   function housePlantData(){ 
     getDocs(colRef2)
+<<<<<<< HEAD
     .then((snapshot) => {
       snapshot.docs.forEach((doc) => {
         setHousePlantsDbData((prev)=> [...prev, doc.data()])
+=======
+      .then((snapshot) => {
+        snapshot.docs.forEach((doc) => {
+          setHousePlantsDbData((prev) => [...prev, doc.data()])
+        })
+        return housePlantsDbData
+      })
+
+      .catch(err => {
+
+        console.log(err.message)
+>>>>>>> c0be93659980bd5dcfda1d4dc74b9a61efb07c8a
       })
       return housePlantsDbData
     })
@@ -45,10 +71,19 @@ const PlantSuggestions = (props) => {
     })
   }
 
+<<<<<<< HEAD
   useEffect(()=>{
     if (props.userId!=="NA"){
 
       async function getworms(){
+=======
+  useEffect(() => {
+    if (props.userId !== "NA") {
+
+
+
+      async function getworms() {
+>>>>>>> c0be93659980bd5dcfda1d4dc74b9a61efb07c8a
         const data = await getDocs(wormCollection)
         let pre_zone=data.docs[0].data().zone
         let zone = parseInt(pre_zone)
@@ -59,6 +94,27 @@ const PlantSuggestions = (props) => {
       getworms()
     }
 
+<<<<<<< HEAD
+=======
+    //getting image
+    // const fetchImage = async(search)=>{
+    //   const res=await fetch(`https://serpapi.com/playground?q=${"house"}&tbs=itp%3Aphotos%2Cisz%3Al&tbm=isch&device=desktop`)
+    //  const {images_results}= await res.json()
+    // return images_results
+    // }
+
+
+    //getting image 
+    // const fetchImage = async(search)=>{
+    //   const res=await fetch(`https://serpapi.com/playground?q=${"house"}&tbs=itp%3Aphotos%2Cisz%3Al&tbm=isch&device=desktop`)
+    //  const {images_results}= await res.json()
+    // return images_results
+    // }
+
+
+    // console.log(fetchImage("rose"))
+
+>>>>>>> c0be93659980bd5dcfda1d4dc74b9a61efb07c8a
     const fetchZone = async (search) => {
       const response = await fetch(`https://phzmapi.org/${search}.json`)
       const data = await response.json()
@@ -280,8 +336,16 @@ const PlantSuggestions = (props) => {
     }
     // This is during non-frost season
     else {
+<<<<<<< HEAD
       // if two months from first frost
       
+=======
+
+
+      // if two months less than... from first frost
+
+
+>>>>>>> c0be93659980bd5dcfda1d4dc74b9a61efb07c8a
       if (obj.weeksToFirstFrost < 9) {
         if (obj.weeksToFirstFrost < 9 && obj.weeksToFirstFrost > 4) {
           let twoMonthTillFrost = viablePlantSug.filter((x) => x.method === 1)
@@ -323,6 +387,7 @@ const PlantSuggestions = (props) => {
   let suggestedHousePlantsData = filterSug(housePlantDummyData)
 
   return (
+<<<<<<< HEAD
   
     <div className="plant-suggestions-container">
       <h2 className="plant-suggestions-header">TODAY'S PLANT SUGGESTIONS</h2>
@@ -342,6 +407,50 @@ const PlantSuggestions = (props) => {
       </div>
       </>)}
       
+=======
+
+    <div className="plant-suggestions-container">
+      <h2 className="plant-suggestions-header">TODAY'S PLANT SUGGESTIONS</h2>
+      {suggestedPlantsData.length > 0 ? (
+        suggestedPlantsData.map((curPlant) => (
+          <div className="plant-suggestion" key={curPlant.id}>
+            <div>
+              <h3>
+                Name: {curPlant.name},{" "}
+                <h3 className="italics">({curPlant.species})</h3>
+              </h3>
+            </div>
+            <div>
+              <img src={curPlant.name} className="plantSugImg" />
+            </div>
+          </div>
+        ))
+      ) : (
+        <>
+          <div>
+            <h3>
+              If you are wanting to plant today, we suggest indoor plants:
+            </h3>
+            <div>
+              {suggestedHousePlantsData.map((curPlant) => (
+                <div className="plant-suggestion" key={curPlant.id}>
+                  <div>
+                    <h3>
+                      Name: {curPlant.name},{" "}
+                      <h3 className="italics">({curPlant.species})</h3>
+                    </h3>
+                  </div>
+                  <div>
+                    <img src={curPlant.id} className="plantSugImg" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </>
+      )}
+
+>>>>>>> c0be93659980bd5dcfda1d4dc74b9a61efb07c8a
     </div>
   )
 }
