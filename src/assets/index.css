@@ -390,3 +390,9 @@ display: none;
 	border-radius: 10px;
 	height: 2em;
 }
+
+/* FAVORITES */
+
+.favoritePlant {
+	width: 200px;
+}

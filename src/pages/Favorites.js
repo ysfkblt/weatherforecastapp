@@ -43,8 +43,6 @@ const Favorites = (props) => {
         let toBeNewFavorites = userFavorites.filter(x => (x.plantId !== thisPlantsId))
         setUserFavorites(toBeNewFavorites)
     }
-    
-    console.log(userFavoritesData)
 
     return (
         <div className="favorites-container">
@@ -60,7 +58,7 @@ const Favorites = (props) => {
                   <h3 className="italics">({curPlant.species})</h3>
                 </div>
                 <div>
-                  <img src={curPlant.name} className="plantSugImg" />
+                  <img src="https://watchandlearn.scholastic.com/content/dam/classroom-magazines/watchandlearn/videos/animals-and-plants/plants/what-are-plants-/What-Are-Plants.jpg" className="favoritePlant" />
                 </div>
                 <div>
                     <button onClick={()=>{removeFavorite(curPlant.id)}}>remove</button>

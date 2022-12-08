@@ -25,7 +25,7 @@ const Journal = (props) => {
   const q = query(wormIdCollection, where("id", "==", userId))
 
   async function wormCollectionDocsync(){
-    let loadingData=await getDocs(wormCollection)
+    let loadingData = await getDocs(wormCollection)
     return loadingData
 }
   useEffect( () => {
