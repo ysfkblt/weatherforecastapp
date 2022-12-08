@@ -250,7 +250,59 @@ display: none;
 	border: 1px solid black;
 	margin-top: 10px;
 }
+.css-u0soqy-MuiPickerStaticWrapper-root {
+	box-shadow: 3px 2px 10px 5px #888888 !important;
+  }
+  
+  .css-hlj6pa-MuiDialogActions-root {
+	display: none !important;
+  }
+  
+  .css-j88s13-MuiPickersToolbar-root-MuiDatePickerToolbar-root
+	.MuiPickersToolbar-penIconButton {
+	display: none !important;
+  }
+  
+  .css-j88s13-MuiPickersToolbar-root-MuiDatePickerToolbar-root {
+	padding: 0 !important;
+  }
+  
+  .css-hq2kpw-MuiGrid-root-MuiPickersToolbar-content {
+	justify-content: center !important;
+	background-color: orange;
+	padding: 1rem;
+  }
+  
+  .css-1hbyad5-MuiTypography-root {
+	display: none !important;
+  }
+  
+  .css-bkrceb-MuiButtonBase-root-MuiPickersDay-root.Mui-selected {
+	background-color: orange !important;
+  }
+  
+  .css-195y93z-MuiButtonBase-root-MuiPickersDay-root.Mui-selected {
+	background-color: orange !important;
+	color: black !important;
+  }
+  .css-195y93z-MuiButtonBase-root-MuiPickersDay-root:not(.Mui-selected) {
+	border-color: transparent !important;
+	color: orange;
+  }
+  
+  .css-144dnr3-MuiBadge-badge {
+	color: green;
+  }
+  
+  .css-1n2mv2k {
+	background-color: #f4f4f4;
+	margin-bottom: 1rem;
+  }
 
+  .css-ghi3gg-MuiDayPicker-weekContainer {
+	width: 10px;
+
+  }
 /* PLANT SUGGESTIONS */
 
 .plant-suggestions-container {

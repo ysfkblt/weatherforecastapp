@@ -7,10 +7,10 @@ import Journal from "./Journal"
 import AllPlantsView from "./allPlants/AllPlantsView"
 import SinglePlantView from "./SinglePlantView"
 import Auth from "../components/Auth"
+import Calendar from "../components/Calendar"
 
 const AppRoutes = () => {
   const [user, setUser] = useState("")
- 
   useEffect(() => {
     onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser)
@@ -21,6 +21,7 @@ const AppRoutes = () => {
     <>
       <Routes>
         <Route path="/signUp" element={<Auth />} />
+        <Route path="/calendar" element={<Calendar />} />
         <Route path="/development" element={<AllPlantsView />} />
         <Route path="/development/:plantId" element={<SinglePlantView />} />
         {user ? (

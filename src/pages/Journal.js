@@ -4,6 +4,7 @@ import { auth, db } from "../database/firebase-config"
 import { storage } from "../database/firebase-config"
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage"
 import { onAuthStateChanged } from "firebase/auth"
+import Calendar from "../components/Calendar"
 // import { Link, useParams } from "react-router-dom"
 // import Popup from 'reactjs-popup'
 
@@ -30,9 +31,9 @@ const Journal = (props) => {
 }
   useEffect( () => {
     //this helps us remember if we are logged in and able to get the logged in user data
-    onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser)
-    })
+    // onAuthStateChanged(auth, (currentUser) => {
+    //   setUser(currentUser)
+    // })
     //getDocs loads all the info from the collection we want. we can put wormCollection for all users data or q for filtered data
     async function getworms(){ 
       // const data1 = await getDocs(q)
@@ -124,6 +125,7 @@ if (result.length>0){
   return (
   
     <div className="journal-container">
+    
             <input className="journal-search" value={search} onChange={ (event)=>{ setSearch(event.target.value); searchPage(event.target.value)}} placeholder="Search..." size={50} />
             {/* <button onClick={(event)=> searchPage(search)}>Search</button> */}
       <div className="journal-form">

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import { collection, getDocs, query, where } from "firebase/firestore"
 import { useParams } from "react-router-dom"
 import { db } from "../database/firebase-config" // STEP 1
+import Images from "../database/images"
 
 /** ========= firestore DB querying for one item in a collection =====================
 // 1. import the db connection to the firestore as configured earlier
@@ -44,6 +45,7 @@ const SinglePlantView = () => {
 
   return (
     <div>
+      <Images/>
       {singlePlant.length ? (
         <div className="single-plant-view-main-container">
           <h2>{singlePlant[0].name}</h2>

@@ -20,6 +20,8 @@ const Home = (props) => {
   const [userId, setUserId] = useState("")
   const [darkMode, setDarkMode] = useState(true)
 
+  console.log("TESTING ZONE",zone)
+  console.log("TESTING ZIP",zip)
   async function getData() {
     await fetch(
       `https://api.weatherapi.com/v1/forecast.json?key=f676e0d30686474d99b160351221104&q=${search}&days=1&aqi=no&alerts=no`
@@ -133,10 +135,11 @@ const Home = (props) => {
       </header>
 
       {/* Update user */}
-      {userId && zip.length === 5 && zone ? (
+      {props.userId && zip.length === 5 && zone ? (
         <>
+        {console.log("WORKING")}
           <UpdateZipCode
-            userId={userId}
+            userId={props.userId}
             zip={zip}
             zone={zone.zone}
             coordinates={zone.coordinates}
@@ -204,7 +207,7 @@ const Home = (props) => {
         </div>
 
         {props.userId ? (
-          <PlantSuggestions userId={props.userId} />
+          <PlantSuggestions userId={props.userId} zip={zip}/>
         ) : (
           <PlantSuggestions userId={"NA"} />
         )}
