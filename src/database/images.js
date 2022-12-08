@@ -5,6 +5,12 @@ import { createClient } from 'pexels';
 
 
 function Images () {
+    const [image, setImage]= useState("")
+    const client = createClient('563492ad6f91700001000001f640d146419b4a78aaa2af0160487147');
+    const query = 'Nature';
+    
+    client.photos.search({ query, per_page: 1 }).then(photos => {console.log(photos) });
+
     // const [images, setImages]=useState([])
     // async function image(){
     //    let images2= await client.photos.search({ query, per_page: 1 }).then(photos => {...})
@@ -13,21 +19,24 @@ function Images () {
     // const [loading, setLoading] = useState(true)
     // const [images, setImages] = useState([])
     // const [query, setQuery] = useState("nature")
-    const url = "https://api.pexels.com/v1/search"
+    // const url = "https://cors-anywhere.herokuapp.com/https://api.pexels.com/v1/search"
 
     // const getPhotos = async () => {
-    //     setLoading(true)
-         fetch(url, {
-            headers: {
-                Authorition: "563492ad6f91700001000001f640d146419b4a78aaa2af0160487147"
-            },
-        })
-    
+    // //     setLoading(true)
+    //     const res= fetch(url, {
+    //         headers: {
+    //             // Access_Control_Allow_Origin: "https://api.pexels.com/v1/search",
 
-        // useEffect(() => {
-        //     getPhotos()
-        // }, [])
-        console.log( "TESTING")
+    //             Authorition: "563492ad6f91700001000001f640d146419b4a78aaa2af0160487147"
+    //         },
+    //     })
+    //     const data= await res.json()
+    //     return data
+    // }
+
+    //     useEffect(() => {
+    //         getPhotos()
+    //     }, [])
         return (
             <>
 

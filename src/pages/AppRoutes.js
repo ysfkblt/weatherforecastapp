@@ -8,7 +8,7 @@ import AllPlantsView from "./allPlants/AllPlantsView"
 import SinglePlantView from "./SinglePlantView"
 import Auth from "../components/Auth"
 import Calendar from "../components/Calendar"
-
+import Images from "../database/images"
 const AppRoutes = () => {
   const [user, setUser] = useState("")
   useEffect(() => {
@@ -21,6 +21,7 @@ const AppRoutes = () => {
     <>
       <Routes>
         <Route path="/signUp" element={<Auth />} />
+        <Route path="/images" element={<Images />} />
         <Route path="/calendar" element={<Calendar />} />
         <Route path="/development" element={<AllPlantsView />} />
         <Route path="/development/:plantId" element={<SinglePlantView />} />

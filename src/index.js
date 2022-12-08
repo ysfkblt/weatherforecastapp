@@ -14,7 +14,7 @@ root.render(
     // Theme context wrapper is used to provide the theme context to all the components it does this by wrapping the components in the ThemeContext.Provider
     // The provider is located in the themeContextWrapper.js file
     // You can edit the theme in the toggleDark.css file
-    
+
     <ThemeContextWrapper>
         <React.StrictMode>
             <Router>
