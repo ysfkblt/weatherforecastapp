@@ -512,8 +512,8 @@ div.journal {
 	flex-direction: column;
 	border: 1px solid white;
 	width: 23vw;
-	height: 30vh;
-	margin: 2em;
+	height: 45vh;
+	margin: 1vw;
 	align-content: center;
 }
 
@@ -570,5 +570,12 @@ div.journal {
 	  background-color: lightblue;
 	}
   }
+
+/* FAVORITES */
+
+.favoritePlant {
+	width: 200px;
+}
+
  
 
