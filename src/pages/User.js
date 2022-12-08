@@ -26,9 +26,14 @@ const User = () => {
         onAuthStateChanged(auth, (currentUser) => {
             setCurrentUser(currentUser)
         })
-    
     }
     , [])
+
+    useEffect(() => {
+        if (currentUser) {
+            setProfilePictureUrl(currentUser.photoURL)
+        }
+    }, [currentUser])
 
     
     async function uploadProfilePicture() {
@@ -51,7 +56,7 @@ const User = () => {
         <div className="user-container">
             <div className="user-profile-container">
                 <h1>{currentUser.displayName}'s Profile</h1>
-                <img src={currentUser.photoURL} width={90}/>
+                <img src={profilePictureUrl} width={90}/>
                 <div className="user-profile-picture-container">
                     {/* <img src={profilePictureUrl} alt="profile picture" /> */}
                     <input type="file" onChange={(event) => { setProfilePicture(event.target.files[0]) }} />
