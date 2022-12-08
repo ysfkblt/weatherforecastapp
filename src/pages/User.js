@@ -10,7 +10,7 @@
 
 import React, { useState, useEffect, useContext } from "react"
 import { useNavigate } from "react-router-dom"
-import { onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth"
+import { onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth"
 import { auth } from "../database/firebase-config"
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage"
 import { storage } from "../database/firebase-config"
@@ -22,11 +22,11 @@ const User = () => {
     const [currentUser, setCurrentUser] = useState("")
     const [profilePicture, setProfilePicture] = useState("")
     const [profilePictureUrl, setProfilePictureUrl] = useState("")
-
     useEffect(() => {
         onAuthStateChanged(auth, (currentUser) => {
             setCurrentUser(currentUser)
         })
+    
     }
     , [])
 
@@ -37,6 +37,10 @@ const User = () => {
             await uploadBytes(storageRef, profilePicture)
             const downloadUrl = await getDownloadURL(storageRef)
             setProfilePictureUrl(downloadUrl)
+            updateProfile(currentUser,{
+                photoURL:downloadUrl
+            })
+            console.log("CURRENT USER",currentUser)
         } catch (error) {
             console.log(error)
         }
@@ -46,9 +50,10 @@ const User = () => {
     return (
         <div className="user-container">
             <div className="user-profile-container">
-                <h1>User Profile</h1>
+                <h1>{currentUser.displayName}'s Profile</h1>
+                <img src={currentUser.photoURL} width={90}/>
                 <div className="user-profile-picture-container">
-                    <img src={profilePictureUrl} alt="profile picture" />
+                    {/* <img src={profilePictureUrl} alt="profile picture" /> */}
                     <input type="file" onChange={(event) => { setProfilePicture(event.target.files[0]) }} />
                     <button onClick={uploadProfilePicture}>Upload Profile Picture</button>
                 </div>
