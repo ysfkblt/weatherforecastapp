@@ -7,6 +7,8 @@ import Journal from "./Journal"
 import AllPlantsView from "./allPlants/AllPlantsView"
 import SinglePlantView from "./SinglePlantView"
 import Auth from "../components/Auth"
+import User from "./User"
+
 
 const AppRoutes = () => {
   const [user, setUser] = useState("")
