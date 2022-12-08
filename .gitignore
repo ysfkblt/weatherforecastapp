@@ -11,6 +11,10 @@
 # production
 /build
 
+# config files
+# vvvvvvvvvvvvvv UN COMMENT THIS OUT FOR REAL PRODUCTION, OTHERWISE WE NEED THE TEAM TO HAVE ACCESS
+# firebase-config.js
+
 # misc
 .DS_Store
 .env.local
