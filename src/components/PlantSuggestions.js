@@ -28,7 +28,9 @@ const PlantSuggestions = (props) => {
         })
         return plantsDbData
       })
-      .catch((err) => {
+
+      .catch(err => {
+
         console.log(err.message)
       })
   }
@@ -41,13 +43,18 @@ const PlantSuggestions = (props) => {
         })
         return housePlantsDbData
       })
-      .catch((err) => {
+
+      .catch(err => {
+
         console.log(err.message)
       })
   }
 
   useEffect(() => {
     if (props.userId !== "NA") {
+
+
+
       async function getworms() {
         const data = await getDocs(wormCollection)
         let pre_zone = data.docs[0].data().zone
@@ -63,6 +70,15 @@ const PlantSuggestions = (props) => {
     //  const {images_results}= await res.json()
     // return images_results
     // }
+
+
+    //getting image 
+    // const fetchImage = async(search)=>{
+    //   const res=await fetch(`https://serpapi.com/playground?q=${"house"}&tbs=itp%3Aphotos%2Cisz%3Al&tbm=isch&device=desktop`)
+    //  const {images_results}= await res.json()
+    // return images_results
+    // }
+
 
     // console.log(fetchImage("rose"))
 
@@ -292,7 +308,10 @@ const PlantSuggestions = (props) => {
     }
     // This is during non-frost season
     else {
+
+
       // if two months less than... from first frost
+
 
       if (obj.weeksToFirstFrost < 9) {
         if (obj.weeksToFirstFrost < 9 && obj.weeksToFirstFrost > 4) {
@@ -377,6 +396,7 @@ const PlantSuggestions = (props) => {
   console.log("suggested house plants", suggestedHousePlantsData)
 
   return (
+
     <div className="plant-suggestions-container">
       <h2 className="plant-suggestions-header">TODAY'S PLANT SUGGESTIONS</h2>
       {suggestedPlantsData.length > 0 ? (
@@ -417,6 +437,7 @@ const PlantSuggestions = (props) => {
           </div>
         </>
       )}
+
     </div>
   )
 }
