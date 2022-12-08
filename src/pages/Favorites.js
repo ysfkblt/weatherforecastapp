@@ -25,6 +25,7 @@ const Favorites = (props) => {
             await setUserFavorites(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
         }
         getFavorites()
+
     }, [])
 
     let favoritePlantData = []
@@ -36,13 +37,14 @@ const Favorites = (props) => {
     matchFavorites()
 
     const removeFavorite = (thisPlantsId) => {
-        let userFavoritesArray = []
-        userFavorites.forEach(plant => userFavoritesArray.push(plant.plantId))
         let toBeDeletedData = userFavorites.filter(x => (x.plantId === thisPlantsId))
+        console.log(userFavorites)
         DeleteFavorite(toBeDeletedData, userId)
-        setUserFavorites(userFavoritesArray.filter(x => (x.plantId !== thisPlantsId)))
-        console.log("this is plants", plants)
+        let toBeNewFavorites = userFavorites.filter(x => (x.plantId !== thisPlantsId))
+        setUserFavorites(toBeNewFavorites)
     }
+    
+    console.log(userFavoritesData)
 
     return (
         <div className="favorites-container">
