@@ -637,9 +637,9 @@ div.journal {
 	align-items: center;
 	border: 1px solid rgb(0, 0, 0);
 	width: 30vw;
-	height: 45vh;
 	margin: 1vw;
 	align-content: center;
+	padding: 1em;
 }
 
 .filterColumn {
@@ -653,8 +653,8 @@ div.journal {
 }
 
 .singlePlant img {
-	display: flex;
-	align-items: center;
+	width: 100%;
+	height: 100%;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 .filterArea{
@@ -671,6 +671,8 @@ div.journal {
 	flex-direction: row;
 	justify-content: space-evenly;
 }
+
+
 
 .checkbox-container {
 	border: 1px solid grey;
@@ -716,11 +718,140 @@ input[type="checkbox"] {
 
 /* RESPONSIVE */
 
-@media only screen and (max-width: 400px) {
-	body {
-	  background-color: lightblue;
+@media screen and (max-width: 768px) {
+	.plant-suggestions-container {
+		width: 90%;
 	}
-  }
+	.plant-suggestions-header {
+		font-size: 1.5em;
+	}
+	.plant-suggestions-subheading {
+		font-size: 1em;
+	}
+	.individual-plant-suggestion {
+		margin: 1em;
+	}
+	.plantSugImg {
+		width: 40vw;
+		height: 40vw;
+	}
+	.allPlantsImg {
+		height: 20vh;
+	}
+	.singlePlant {
+		width: 40vw;
+		margin: 1vw;
+	}
+
+
+	.single-plant-container {
+		width: 90%;
+		height: 100%;
+		border: 1px solid blue;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
+	
+
+	.allPlantsArea {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		align-items: center;
+		flex-direction: row;
+	}
+	.filterArea {
+		width: 90%;
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
+		border: 1px solid grey;
+		padding: 1em;
+	}
+	.filteringCon {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-evenly;
+	}
+	.checkbox-container {
+		border: 1px solid grey;
+		width: 100%;
+		gap: 1em;
+		display: flex;
+	}
+	.checkbox-container:hover {
+		background-color: #9b51e00f;
+	}
+	.singlePlantName {
+		font-size: 1.5rem;
+	}
+	.plant-suggestions-container {
+		width: 90%;
+	}
+	.plant-suggestions-header {
+		font-size: 1.5em;
+	}
+	.plant-suggestions-subheading {
+		font-size: 1em;
+	}
+	.individual-plant-suggestion {
+		margin: 1em;
+	}
+	.plantSugImg {
+		width: 40vw;
+		height: 40vw;
+	}
+	.allPlantsImg {
+		height: 20vh;
+	}
+	.singlePlant {
+
+		width: 80vw;
+		margin: 1vw;
+	}
+	
+	.allPlantsArea {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		align-items: center;
+		flex-direction: row;
+	}
+	.filterArea {
+		width: 90%;
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
+		border: 1px solid grey;
+		padding: 1em;
+	}
+	.filteringCon {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-evenly;
+	}
+
+	.checkbox-container {
+		border: 1px solid grey;
+		width: 100%;
+		gap: 1em;
+		display: flex;
+		margin: .3em;
+	}
+
+	.checkbox-container:hover {
+		background-color: #9b51e00f;
+	}
+
+	.singlePlantName {
+		font-size: 1.5rem;
+	}
+
+}
+
+
 
 /* FAVORITES */
 

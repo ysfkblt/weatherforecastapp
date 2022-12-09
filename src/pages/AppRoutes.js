@@ -11,6 +11,7 @@ import User from "./User"
 import { addDoc, collection, doc } from "firebase/firestore"
 
 import Favorites from "./Favorites"
+import GardenPlotViz from "./GardenPlotViz"
 
 const AppRoutes = () => {
   const [user, setUser] = useState("")
@@ -33,12 +34,27 @@ const AppRoutes = () => {
       <Routes>
         {user ? (
           <>
-            <Route path="/allplants" element={<AllPlantsView userId={user.uid} />} />
-            <Route path="/allplants/:plantId" element={<SinglePlantView userId={user.uid} />} />
+            <Route
+              path="/allplants"
+              element={<AllPlantsView userId={user.uid} />}
+            />
+            <Route
+              path="/allplants/:plantId"
+              element={<SinglePlantView userId={user.uid} />}
+            />
             <Route path="/" element={<App userId={user.uid} user={user} />} />
             <Route path="/journal" element={<Journal userId={user.uid} />} />
+<<<<<<< HEAD
             <Route path="/favorites" element={<Favorites userId={user.uid} />} />
             <Route path="/user" element={<User user={user}/>} />
+=======
+            <Route
+              path="/favorites"
+              element={<Favorites userId={user.uid} />}
+            />
+            <Route path="/user" element={<User />} />
+            <Route path="/garden" element={<GardenPlotViz />} />
+>>>>>>> 2351f424b6238c35c9b008b6a88aee0b388ef473
           </>
         ) : (
           <>
@@ -47,8 +63,7 @@ const AppRoutes = () => {
             <Route path="/allplants/:plantId" element={<SinglePlantView />} />
             <Route path="/signUp" element={<Auth />} />
           </>
-        )
-      }
+        )}
       </Routes>
     </>
   )
