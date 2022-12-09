@@ -19,7 +19,6 @@ const AppRoutes = () => {
       setUser(currentUser)
     })
   }, [])
-
   return (
     <>
       <Routes>
@@ -27,18 +26,19 @@ const AppRoutes = () => {
         <Route path="/development" element={<AllPlantsView />} />
         <Route path="/development/:plantId" element={<SinglePlantView />} />
         <Route path="/user" element={<User />} />
-        <Route path="/development" element={<AllPlantsView userId={user.uid} />} />
-        <Route path="/development/:plantId" element={<SinglePlantView userId={user.uid} />} />
+        <Route path="/" element={<App />} />
+        <Route path="/development" element={<AllPlantsView />} />
+          <Route path="/development/:plantId" element={<SinglePlantView  />} />
         {user ? (
           <>
-            <Route path="/" element={<App userId={user.uid} />} />
-            <Route path="/" element={<App userId={user.uid} />} />
+          <Route path="/development" element={<AllPlantsView userId={user.uid} />} />
+          <Route path="/development/:plantId" element={<SinglePlantView userId={user.uid} />} />
+            <Route path="/" element={<App userId={user.uid} user={user}/>} />
             <Route path="/journal" element={<Journal userId={user.uid} />} />
             <Route path="/favorites" element={<Favorites userId={user.uid} />} />
           </>
-        ) : (
-          <Route path="/" element={<App />} />
-        )}
+        ) : null
+        }
       </Routes>
     </>
   )

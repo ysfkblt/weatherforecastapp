@@ -19,13 +19,10 @@ const Home = (props) => {
   const [grad, setgrad] = useState(null)
   const [zone, setZone] = useState("")
   const [zip, setZip] = useState("")
+  const [user, setUser] = useState("")
   const [userId, setUserId] = useState("")
   const [darkMode, setDarkMode] = useState(true)
   
-
-
-
-
   async function getData() {
     await fetch(
       `https://api.weatherapi.com/v1/forecast.json?key=f676e0d30686474d99b160351221104&q=${search}&days=1&aqi=no&alerts=no`
@@ -58,6 +55,10 @@ const Home = (props) => {
   // const wormCollection = collection(db, "worms", currentChild, "journal")
 
   useEffect(() => {
+    onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser)
+    })
+
     async function getZone() {
       let zoneResults = await fetchZone(search)
       {
@@ -122,9 +123,10 @@ const Home = (props) => {
                     ? { backgroundImage: background.overcast }
                     : { backgroundImage: grad }
       }
-      className="home-view-container"
-    >
+      className="home-view-container">
 
+        
+      <div className="top-home-page-row">
       <ThemeContext.Consumer>
         {({ changeTheme }) => (
           <ToggleDark
@@ -158,8 +160,11 @@ const Home = (props) => {
           handleButtonClick={handleButtonClick}
           onChange={handleSearch}
         />
-      </div>
-
+      </div></div>
+      <div className="welcome-user">
+      {(user ? (<div>Welcome <Link to="/user">{user.displayName}!</Link></div>) :
+        "Welcome!")}
+        </div>
       
       {/* Plant Suggestions */}
 

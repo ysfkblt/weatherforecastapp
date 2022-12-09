@@ -68,15 +68,30 @@ const AllPlants = (props) => {
       let tempFilterLightOption = filterLightOptions
       tempFilterLightOption.push(event)
       setfilterLightOptions(tempFilterLightOption)
-      console.log(filterLightOptions)
+      // console.log(filterLightOptions)
     }
   }
 
+  function reset() {
+    console.log('clicked');
+    for (let i=0; i<filterLifeOptions.length;i++){
+      document.getElementById(filterLifeOptions[i]).checked=false;
+    }
+    for (let i=0; i<filterLightOptions.length;i++){
+      document.getElementById(filterLightOptions[i]).checked=false;
+    }
+    for (let i=0; i<filterTypeOptions.length;i++){
+      document.getElementById(filterTypeOptions[i]).checked=false;
+    }
+    setfilterLightOptions([])
+    setfilterLifeOptions([])
+    setfilterTypeOptions([])
+  }
 
-  async function onSubmit(evt){
-    console.log("light", filterLightOptions.length)
-    console.log("life", filterLifeOptions.length)
-    console.log("type", filterTypeOptions.length)
+  async function onSubmit(evt) {
+    // console.log("light", filterLightOptions.length)
+    // console.log("life", filterLifeOptions.length)
+    // console.log("type", filterTypeOptions.length)
     if ((filterTypeOptions.length === 0) && (filterLifeOptions.length === 0) && (filterLightOptions.length === 0)) {
       setPlants(plantsBackUp)
     }
@@ -115,7 +130,6 @@ const AllPlants = (props) => {
         let newPlants = plantsBackUp.filter((plant) => filterTypeOptions.includes(plant.type) && filterLifeOptions.includes(plant.life) && filterLightOptions.includes(plant.transplantTo))
         setPlants(newPlants)
       }
-    
   }
 
 
@@ -148,7 +162,7 @@ const AllPlants = (props) => {
 
      </div>
      <button onClick={(evt)=>{onSubmit(evt)}}>submit</button>
-     <button>clear</button>
+     <button onClick={(evt)=>{reset(evt)}}>clear</button>
     </div>
 
     <div className="allPlantsArea">

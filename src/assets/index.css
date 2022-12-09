@@ -357,6 +357,16 @@ h3.auth-header {
 	height: fit-content;
 }
 
+.top-home-page-row {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+}
+
+.welcome-user {
+	margin: 20px
+}
+
 /* JOURNAL */
 
 .journal-container {
@@ -494,9 +504,14 @@ div.journal {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	/* border: 1px solid red; */
 	width: 80%;
 	margin: 3em auto;
+	padding: 5vw 0vw;
+	gap: 1em;
+	border: 2px solid grey;
+	border-radius: 10px;
+	background-color: white;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .plant-suggestions-header {
@@ -507,7 +522,7 @@ div.journal {
 	font-size: 1em;
 }
 
-.plant-suggestion {
+.individual-plant-suggestion {
 	border-bottom: 1px solid black;
 	margin: 1em;
 }
@@ -646,5 +661,21 @@ div.journal {
 	width: 200px;
 }
 
+.favorites-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 20px;
+	width: 60%;
+	height: 40%;
+	gap: 1em;
+	border: 2px solid grey;
+	border-radius: 10px;
+	background-color: white;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
  
-
+.plant-list-favorites {
+	border: 1px black;
+}

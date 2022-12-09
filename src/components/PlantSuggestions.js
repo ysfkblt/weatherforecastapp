@@ -149,9 +149,9 @@ const PlantSuggestions = (props) => {
   // Checks if today's date is within the growing season
   // return true if OKAY to plant, return false if NOT GOOD TO PLANT (aka in frost zone time)
   function frostDateCheck(lastFrostDate, firstFrostDate) {
-    console.log(
-      "START OF FUNCTION //////////////////////////////////////////////"
-    )
+    // console.log(
+    //   "START OF FUNCTION //////////////////////////////////////////////"
+    // )
 
     const dateStr = new Date().toLocaleDateString()
     const [month1, day1, year1] = dateStr.split("/")
@@ -183,7 +183,7 @@ const PlantSuggestions = (props) => {
 
       // is the date in a growing season
     } else if (date > lfDate && date < ffDate) {
-      console.log(`🌱 today is in the growing season for your zone🌱`)
+      // console.log(`🌱 today is in the growing season for your zone🌱`)
 
       daysToFirstFrost = Math.round((ffDate - date) / MS_IN_A_DAY)
       weeksToFirstFrost = Math.round(daysToFirstFrost / 7) //rounding to nearest INT
@@ -191,9 +191,9 @@ const PlantSuggestions = (props) => {
       daysToLastFrost = Math.abs(Math.round((lfDate - date) / MS_IN_A_DAY))
       weeksToLastFrost = Math.round(daysToLastFrost / 7) //rounding to nearest INT
 
-      console.log(
-        `days to first frost: ${daysToFirstFrost} ; weeks to first frost: ${weeksToFirstFrost}`
-      )
+      // console.log(
+      //   `days to first frost: ${daysToFirstFrost} ; weeks to first frost: ${weeksToFirstFrost}`
+      // )
 
       // based on the data, when in a growing time zone, weeks to last frost should be a positive number
       plantTimingObject.frostSeason = false
@@ -204,7 +204,7 @@ const PlantSuggestions = (props) => {
 
       // is the date in a frost season
     } else {
-      console.log(`🧊 today is in the frost season for your zone🧊`)
+      // console.log(`🧊 today is in the frost season for your zone🧊`)
       daysToLastFrost = Math.round(-(lfDateNextYear - date) / MS_IN_A_DAY)
       weeksToLastFrost = Math.round(daysToLastFrost / 7) //rounding to nearest INT
       // console.log(
@@ -296,8 +296,8 @@ const PlantSuggestions = (props) => {
   const getPlantSug = (obj, array) => {
     let viablePlantSug = array.filter((x) => x.life === "a" || x.life === "b")
     // console.log("======== HERE ======")
-    console.log("this is the array!! ======== ", array)
-    console.log("viable plant suggestions: ", viablePlantSug)
+    // console.log("this is the array!! ======== ", array)
+    // console.log("viable plant suggestions: ", viablePlantSug)
 
     // This is during frost season
     if (obj.frostSeason) {
@@ -367,8 +367,8 @@ const PlantSuggestions = (props) => {
           let plantsNonFrost = viablePlantSug.filter(
             (x) => x.weeksBeforeLastFrost === 25
           )
-          console.log("obj weeks to last frost ", obj.weeksToLastFrost)
-          console.log("plantsNonFrost", plantsNonFrost)
+          // console.log("obj weeks to last frost ", obj.weeksToLastFrost)
+          // console.log("plantsNonFrost", plantsNonFrost)
           return filterSug(plantsNonFrost)
         } else {
           let plantsNonFrost = viablePlantSug.filter(
@@ -377,8 +377,8 @@ const PlantSuggestions = (props) => {
               x.weeksBeforeLastFrost === obj.weeksToLastFrost + 1 ||
               x.weeksBeforeLastFrost === obj.weeksToLastFrost - 1
           )
-          console.log("obj weeks to last frost ", obj.weeksToLastFrost)
-          console.log("plantsNonFrost", plantsNonFrost)
+          // console.log("obj weeks to last frost ", obj.weeksToLastFrost)
+          // console.log("plantsNonFrost", plantsNonFrost)
           return filterSug(plantsNonFrost)
         }
       }
@@ -391,9 +391,9 @@ const PlantSuggestions = (props) => {
   // let suggestedHousePlantsData = filterSug(housePlantsDbData)
   let suggestedHousePlantsData = filterSug(housePlantDummyData)
 
-  console.log("======= timing object: ", plantTimingObject)
-  console.log("suggested plants", suggestedPlantsData)
-  console.log("suggested house plants", suggestedHousePlantsData)
+  // console.log("======= timing object: ", plantTimingObject)
+  // console.log("suggested plants", suggestedPlantsData)
+  // console.log("suggested house plants", suggestedHousePlantsData)
 
   return (
 
@@ -401,12 +401,10 @@ const PlantSuggestions = (props) => {
       <h2 className="plant-suggestions-header">TODAY'S PLANT SUGGESTIONS</h2>
       {suggestedPlantsData.length > 0 ? (
         suggestedPlantsData.map((curPlant) => (
-          <div className="plant-suggestion" key={curPlant.id}>
+          <div className="individual-plant-suggestion" key={curPlant.id}>
             <div>
-              <h3>
-                Name: {curPlant.name},{" "}
-                <h3 className="italics">({curPlant.species})</h3>
-              </h3>
+              <h3>Name: {curPlant.name},{" "}</h3>
+              <h3 className="italics">({curPlant.species})</h3>
             </div>
             <div>
               <img src={curPlant.name} className="plantSugImg" />
@@ -416,17 +414,13 @@ const PlantSuggestions = (props) => {
       ) : (
         <>
           <div>
-            <h3>
-              If you are wanting to plant today, we suggest indoor plants:
-            </h3>
+            <h3>If you are wanting to plant today, we suggest indoor plants:</h3>
             <div>
               {suggestedHousePlantsData.map((curPlant) => (
                 <div className="plant-suggestion" key={curPlant.id}>
                   <div>
-                    <h3>
-                      Name: {curPlant.name},{" "}
-                      <h3 className="italics">({curPlant.species})</h3>
-                    </h3>
+                    <h3>Name: {curPlant.name}</h3>
+                    <h3 className="italics">({curPlant.species})</h3>
                   </div>
                   <div>
                     <img src={curPlant.id} className="plantSugImg" />

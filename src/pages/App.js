@@ -12,7 +12,7 @@ export default function App(props) {
   
   return (
     <>
-      <Home userId={userId} />
+      <Home userId={userId} user={props.user}/>
     </>
   )
 }

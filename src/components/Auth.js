@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react"
-import { collection } from "firebase/firestore"
+import { addDoc, collection, doc } from "firebase/firestore"
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth"
 import { auth, db } from "../database/firebase-config"
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage"
 import { storage } from "../database/firebase-config"
+import { useNavigate } from "react-router-dom"
 
 const Auth = () => {
   const [registerEmail, setRegisterEmail] = useState("")
+  const [registerZipcode, setRegisterZipcode] = useState("")
+  const [zone, setZone] = useState("")
   const [registerPassword, setRegisterPassword] = useState("")
   const [registerDisplayName, setRegisterDisplayName] = useState("")
   const [loginEmail, setLoginEmail] = useState("")
@@ -15,22 +18,32 @@ const Auth = () => {
   const [profileImage, setProfileImage] = useState("")
   const [profileImageURL, setProfileImageURL] = useState("")
   const wormCollection = collection(db, "worms")
+  const navigate = useNavigate()
 
   useEffect(() => {
     onAuthStateChanged(auth, (currentUser) => {
       setCurrentUser(currentUser)
     })
   }, [])
-  console.log(currentUser)
   const register = async () => {
     try {
       let result=await createUserWithEmailAndPassword(auth, registerEmail, registerPassword)
         // .then(function (result) {
-          const imageRef = ref(storage, `${result.user.uid}/${profileImage.name}`)
+          // const imageRef = ref(storage, `${result.user.uid}/${profileImage.name}`)
           // let URL = ""
           // await uploadBytes(imageRef, profileImage)
           //   const downloadURL=getDownloadURL(imageRef)
           // setProfileImageURL(downloadURL)
+          let datas= await fetchZone(registerZipcode)
+          {
+            datas ? setZone(datas) : setZone("")
+          }
+          const wormCollection = collection(db, "worms", result.user.uid, "personal")
+          addDoc(wormCollection, { zipcode:registerZipcode, zone: datas.zone,
+            coordinates: datas.coordinates, })
+
+          // const data = doc(db, "worms", result.user.uid, "personal")
+
           return updateProfile(result.user, {
             displayName: document.getElementById("name").value,
             photoURL: "https://img.freepik.com/premium-vector/cute-little-worm-cartoon-character_188253-3950.jpg?w=2000",
@@ -48,6 +61,8 @@ const Auth = () => {
   const login = async () => {
     try {
       const user = await signInWithEmailAndPassword(auth, loginEmail, loginPassword)
+      navigate('/')
+
     } catch (error) {
       console.log(error.message)
     }
@@ -55,7 +70,14 @@ const Auth = () => {
 
   const logout = async () => {
     await signOut(auth)
+    navigate('/')
+
   }
+  const fetchZone = async (search) => {
+    const response = await fetch(`https://phzmapi.org/${search}.json`);
+    const data = await response.json();
+    return data;
+};
 
   return (
     <div className="auth-container">
@@ -75,6 +97,7 @@ const Auth = () => {
           <h3>Sign Up</h3>
           <input className="email-password-input" type="text" placeholder="Email..." value={registerEmail} onChange={(event) => { setRegisterEmail(event.target.value) }} />
           <input className="email-password-input" type="text" placeholder="Password..." value={registerPassword} onChange={(event) => { setRegisterPassword(event.target.value) }} />
+          <input className="email-password-input" type="text" placeholder="Zipcode..." value={registerZipcode} onChange={(event) => { setRegisterZipcode(event.target.value) }} />
           <input className="email-password-input" id="name" type="text" placeholder="Display Name..." value={registerDisplayName} onChange={(event) => { setRegisterDisplayName(event.target.value) }} />
           {/* <input className="email-password-input" id="phoneNumber"type="text" placeholder="Phone Number..." value={registerPassword} onChange={(event) => { setRegisterPassword(event.target.value) }} /> */}
           {/* <input className="journal-form-file-input button" id="image" type="file" onChange={(event) => { setProfileImage(event.target.files[0]) }} /> */}
