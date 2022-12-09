@@ -198,9 +198,9 @@ const AllPlants = (props) => {
           ? plants.map((plant) => {
             return (
               <div className="singlePlant" key={plant.id}>
-                <div className="singlePlantName">{plant.name} </div>
-                <div className="singlePlantName">{plant.life} </div>
-                <div className="singlePlantName">{plant.transplantTo} </div>
+                <div className="singlePlantName">Species: {plant.name} </div>
+                <div className="singlePlantlife">Life: {plant.life} </div>
+                <div className="singlePlantTransportTo">Transplant to: {plant.transplantTo} </div>
 
                 {plant.type === "grain" ? (
                   <div className="single-plant-container">
