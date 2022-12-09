@@ -46,9 +46,9 @@ const Home = (props) => {
           country: d.location.country,
           condition: d.current.condition.text,
           temp: {
-            current: d.current.temp_c,
-            max: d.forecast.forecastday[0].day.maxtemp_c,
-            min: d.forecast.forecastday[0].day.mintemp_c,
+            current: d.current.temp_f,
+            max: d.forecast.forecastday[0].day.maxtemp_f,
+            min: d.forecast.forecastday[0].day.mintemp_f,
           },
         })
       )
