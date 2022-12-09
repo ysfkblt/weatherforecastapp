@@ -53,6 +53,7 @@ const plotRows = plotWidth / gridSpacing
 // SHAPES
 let shapeSpawnLocationX = 50
 let shapeSpawnLocationY = 50
+let textSizeForPlant = 12
 
 // UI Button
 let createPlantButtonX = plotLength - 300
@@ -235,39 +236,39 @@ function gardenPlotSketch(p) {
         // console.log(this)
 
         p.fill(235, 189, 104)
-        p.textSize(16)
+        p.textSize(textSizeForPlant)
         p.text(`grain: ${this.userPlantInput}`, this.x, this.y + 65)
       } else if (this.plantType === "grass") {
         p.fill(0, 82, 33)
-        p.textSize(16)
+        p.textSize(textSizeForPlant)
         p.text(`grass: ${this.userPlantInput}`, this.x, this.y + 65)
       } else if (this.plantType === "herb") {
         p.fill(103, 133, 74)
-        p.textSize(16)
+        p.textSize(textSizeForPlant)
         p.text(`herb: ${this.userPlantInput}`, this.x, this.y + 65)
       } else if (this.plantType === "house") {
         p.fill(104, 70, 129)
-        p.textSize(16)
+        p.textSize(textSizeForPlant)
         p.text(`house: ${this.userPlantInput}`, this.x, this.y + 65)
       } else if (this.plantType === "orn") {
         p.fill(161, 49, 51)
-        p.textSize(16)
+        p.textSize(textSizeForPlant)
         p.text(`orn: ${this.userPlantInput}`, this.x, this.y + 65)
       } else if (this.plantType === "shrub") {
         p.fill(213, 184, 190)
-        p.textSize(16)
+        p.textSize(textSizeForPlant)
         p.text(`shrub: ${this.userPlantInput}`, this.x, this.y + 65)
       } else if (this.plantType === "tree") {
         p.fill(165, 100, 77)
-        p.textSize(16)
+        p.textSize(textSizeForPlant)
         p.text(`tree: ${this.userPlantInput}`, this.x, this.y + 65)
       } else if (this.plantType === "vege") {
         p.fill(231, 24, 55)
-        p.textSize(16)
+        p.textSize(textSizeForPlant)
         p.text(`vege: ${this.userPlantInput}`, this.x, this.y + 65)
       } else if (this.plantType === "vine") {
         p.fill(138, 205, 222)
-        p.textSize(16)
+        p.textSize(textSizeForPlant)
         p.text(`vine: ${this.userPlantInput}`, this.x, this.y + 65)
       }
 
