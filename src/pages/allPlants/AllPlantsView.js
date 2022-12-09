@@ -15,8 +15,9 @@ const AllPlants = (props) => {
   const [filterLifeOptions, setfilterLifeOptions] = useState([])
   const [filterLightOptions, setfilterLightOptions] = useState([])
   const [userFavorites, setUserFavorites] = useState([])
-  const plantCollection = collection(db, "testPlants")
-  const {userId} = props
+  const plantCollection = collection(db, "plants")
+  const { userId } = props
+
 
   console.log(plants)
 
@@ -54,16 +55,16 @@ const AllPlants = (props) => {
     DeleteFavorite(toBeDeletedData, userId)
     let toBeNewFavorites = userFavorites.filter(x => (x.plantId !== thisPlantsId))
     setUserFavorites(toBeNewFavorites)
-}
+  }
 
-// THIS IS FN FOR SETTING THE TYPE (grass, herb, etc) CONDITION IN FILTER
-  function checkedBoxType(event){
-    if(!document.getElementById(event).checked){
-      let tempFilterOption =  filterTypeOptions.filter((option) => option !== event)
-      setfilterTypeOptions(tempFilterOption) 
+  // THIS IS FN FOR SETTING THE TYPE (grass, herb, etc) CONDITION IN FILTER
+  function checkedBoxType(event) {
+    if (!document.getElementById(event).checked) {
+      let tempFilterOption = filterTypeOptions.filter((option) => option !== event)
+      setfilterTypeOptions(tempFilterOption)
       console.log("filterTypeOptions", filterTypeOptions)
     }
-    else { 
+    else {
       let tempFilteredOption = filterTypeOptions
       tempFilteredOption.push(event)
       setfilterTypeOptions(tempFilteredOption)
@@ -72,10 +73,10 @@ const AllPlants = (props) => {
   }
 
   // THIS IS FN FOR SETTING THE LIFE TYPE (annual, biannual, ) IN FILTER
-  function checkedBoxLife(event){
-    if(!document.getElementById(event).checked){
-      let tempFilterLifeOption =  filterLifeOptions.filter((option) => option !== event)
-      setfilterLifeOptions(tempFilterLifeOption) 
+  function checkedBoxLife(event) {
+    if (!document.getElementById(event).checked) {
+      let tempFilterLifeOption = filterLifeOptions.filter((option) => option !== event)
+      setfilterLifeOptions(tempFilterLifeOption)
       console.log("filterLifeOptions", filterLifeOptions)
     }
     else {
@@ -87,10 +88,10 @@ const AllPlants = (props) => {
   }
 
   // THIS IS FN FOR SETTING THE LIGHT CONDITION (fullsun, shade) IN FILTER
-  function checkedBoxLight(event){
-    if(!document.getElementById(event).checked){
-         let tempFilterLightOption =  filterLightOptions.filter((option) => option !== event)
-      setfilterLightOptions(tempFilterLightOption) 
+  function checkedBoxLight(event) {
+    if (!document.getElementById(event).checked) {
+      let tempFilterLightOption = filterLightOptions.filter((option) => option !== event)
+      setfilterLightOptions(tempFilterLightOption)
       console.log("filterLightOptions", filterLightOptions)
     }
     else {
@@ -103,14 +104,14 @@ const AllPlants = (props) => {
 
   function reset() {
     console.log('clicked');
-    for (let i=0; i<filterLifeOptions.length;i++){
-      document.getElementById(filterLifeOptions[i]).checked=false;
+    for (let i = 0; i < filterLifeOptions.length; i++) {
+      document.getElementById(filterLifeOptions[i]).checked = false;
     }
-    for (let i=0; i<filterLightOptions.length;i++){
-      document.getElementById(filterLightOptions[i]).checked=false;
+    for (let i = 0; i < filterLightOptions.length; i++) {
+      document.getElementById(filterLightOptions[i]).checked = false;
     }
-    for (let i=0; i<filterTypeOptions.length;i++){
-      document.getElementById(filterTypeOptions[i]).checked=false;
+    for (let i = 0; i < filterTypeOptions.length; i++) {
+      document.getElementById(filterTypeOptions[i]).checked = false;
     }
     setfilterLightOptions([])
     setfilterLifeOptions([])
@@ -124,37 +125,32 @@ const AllPlants = (props) => {
     if ((filterTypeOptions.length === 0) && (filterLifeOptions.length === 0) && (filterLightOptions.length === 0)) {
       setPlants(plantsBackUp)
     }
-    else 
-      if ((filterTypeOptions.length > 0) && (filterLifeOptions.length === 0) && (filterLightOptions.length === 0))
-        {
-          let newPlants = plantsBackUp.filter((plant) => filterTypeOptions.includes(plant.type))
-          setPlants(newPlants)
-        }
-      else if ((filterTypeOptions.length === 0) && (filterLifeOptions.length > 0) && (filterLightOptions.length === 0))
-        {let newPlants = plantsBackUp.filter((plant) =>  filterLifeOptions.includes(plant.life) )
-          setPlants(newPlants)
-        }
-      else if ((filterTypeOptions.length === 0) && (filterLifeOptions.length === 0) && (filterLightOptions.length > 0))
-        {
-          let newPlants = plantsBackUp.filter((plant) => filterLightOptions.includes(plant.transplantTo))
-          setPlants(newPlants)
-        }
-      else if ((filterTypeOptions.length === 0) && (filterLifeOptions.length > 0) && (filterLightOptions.length > 0))
-        {
-          let newPlants = plantsBackUp.filter((plant) =>  (filterLifeOptions.includes(plant.life) && filterLightOptions.includes(plant.transplantTo)))
-          setPlants(newPlants)
-        }
-      else if ((filterTypeOptions.length > 0) && (filterLifeOptions.length > 0) && (filterLightOptions.length === 0))
-        {
-          let newPlants = plantsBackUp.filter((plant) => (filterTypeOptions.includes(plant.type) && filterLifeOptions.includes(plant.life)))
-          console.log("new plants", newPlants)
-          setPlants(newPlants)
-        }
-      else if ((filterTypeOptions.length > 0) && (filterLifeOptions.length === 0) && (filterLightOptions.length > 0))
-        {
-          let newPlants = plantsBackUp.filter((plant) =>  filterTypeOptions.includes(plant.type) && filterLightOptions.includes(plant.transplantTo))
-          setPlants(newPlants)
-        }      
+    else
+      if ((filterTypeOptions.length > 0) && (filterLifeOptions.length === 0) && (filterLightOptions.length === 0)) {
+        let newPlants = plantsBackUp.filter((plant) => filterTypeOptions.includes(plant.type))
+        setPlants(newPlants)
+      }
+      else if ((filterTypeOptions.length === 0) && (filterLifeOptions.length > 0) && (filterLightOptions.length === 0)) {
+        let newPlants = plantsBackUp.filter((plant) => filterLifeOptions.includes(plant.life))
+        setPlants(newPlants)
+      }
+      else if ((filterTypeOptions.length === 0) && (filterLifeOptions.length === 0) && (filterLightOptions.length > 0)) {
+        let newPlants = plantsBackUp.filter((plant) => filterLightOptions.includes(plant.transplantTo))
+        setPlants(newPlants)
+      }
+      else if ((filterTypeOptions.length === 0) && (filterLifeOptions.length > 0) && (filterLightOptions.length > 0)) {
+        let newPlants = plantsBackUp.filter((plant) => (filterLifeOptions.includes(plant.life) && filterLightOptions.includes(plant.transplantTo)))
+        setPlants(newPlants)
+      }
+      else if ((filterTypeOptions.length > 0) && (filterLifeOptions.length > 0) && (filterLightOptions.length === 0)) {
+        let newPlants = plantsBackUp.filter((plant) => (filterTypeOptions.includes(plant.type) && filterLifeOptions.includes(plant.life)))
+        console.log("new plants", newPlants)
+        setPlants(newPlants)
+      }
+      else if ((filterTypeOptions.length > 0) && (filterLifeOptions.length === 0) && (filterLightOptions.length > 0)) {
+        let newPlants = plantsBackUp.filter((plant) => filterTypeOptions.includes(plant.type) && filterLightOptions.includes(plant.transplantTo))
+        setPlants(newPlants)
+      }
       else {
         let newPlants = plantsBackUp.filter((plant) => filterTypeOptions.includes(plant.type) && filterLifeOptions.includes(plant.life) && filterLightOptions.includes(plant.transplantTo))
         setPlants(newPlants)
@@ -162,53 +158,62 @@ const AllPlants = (props) => {
   }
 
 
-  const plantTypes=["grain", "grass", "herb", "house", "orn", "shrub", "tree", "vege", "vine"]
-  const plantLife=["a", "b", "p", "other"]
+  const plantTypes = ["grain", "grass", "herb", "house", "orn", "shrub", "tree", "vege", "vine"]
+  const plantLife = ["a", "b", "p", "other"]
   const transplantTo = ["fsun", "psun", "psha", "fsha"]
-  
+
   return (
-  <>
-    <div className="filterArea">
-     <div><h4>Filter:</h4></div>
-     <div className="filteringCon">
+    <div className="all-plants-container">
+      <div className="filterArea">
+        <h4 className="filterTitle">Filter</h4>
+        <div className="filteringCon">
 
-      <div> 
-      <h4>Plant Type</h4>
-      {plantTypes.map((type)=><Checkbox type={type} handleChange={checkedBoxType} />)}
+          <div className="filtering">
+            <h4 className="filteringTitle">Plant Type</h4>
+            <div className="filterColumn">
+              {plantTypes.map((type) => <Checkbox type={type} handleChange={checkedBoxType} />)}
+            </div>
+          </div>
+
+          <div className="filtering">
+            <h4 className="filteringTitle">Plant Life</h4>
+            <div className="filterColumn">
+              {plantLife.map((life) => <Checkbox type={life} handleChange={checkedBoxLife} />)}
+            </div>
+          </div>
+
+          <div className="filtering">
+            <h4 className="filteringTitle">Transplant To</h4>
+            <div className="filterColumn">
+              {transplantTo.map((light) => <Checkbox type={light} handleChange={checkedBoxLight} />)}
+            </div>
+          </div>
+
+        </div>
+        <button className="all-plants-button" onClick={(evt) => { onSubmit(evt) }}>submit</button>
+        <button className="all-plants-button" onClick={(evt) => { reset(evt) }}>clear</button>
       </div>
 
-      <div>
-      <h4>Plant Life</h4>
-      {plantLife.map((life)=><Checkbox type={life} handleChange={checkedBoxLife} />)}
-      </div>
 
-      <div>
-      <h4>Light Conditions</h4>
-      {transplantTo.map((light)=><Checkbox type={light} handleChange={checkedBoxLight} />)}
-      </div>
 
-     </div>
-     <button onClick={(evt)=>{onSubmit(evt)}}>submit</button>
-     <button onClick={(evt)=>{reset(evt)}}>clear</button>
-    </div>
-
-    
-
-    <div className="allPlantsArea">
-      {plants
-        ? plants.map((plant) => {
+      <div className="allPlantsArea">
+        {plants
+          ? plants.map((plant) => {
             return (
               <div className="singlePlant" key={plant.id}>
-                <div className="singlePlantName">{plant.name} </div>
-                <div className="singlePlantName">{plant.life} </div>
-                <div className="singlePlantName">{plant.transplantTo} </div>
-                <div><img src={plant.img} className="allPlantsImg" /></div>
+
+                <div className="singlePlantName">Species: {plant.name} </div>
+                <div className="singlePlantlife">Life: {plant.life} </div>
+                <div className="singlePlantTransportTo">Transplant to: {plant.transplantTo} </div>
+
+
                 {plant.type === "grain" ? (
-                  <>
-                   <Link to={`/development/${plant.id}`}> <img
+                  <div className="single-plant-container">
+                    <Link to={`/development/${plant.id}`}> <img
                       src="https://www.world-grain.com/ext/resources/2022/09/21/Wheat_photo-cred-Adobe-stock_E-2.jpg?t=1663769040&width=1080"
                       className="allPlantsImg"
                     /></Link>
+
                     <div>{userFavorites2.includes(plant.id) ? 
                       (<div onClick={()=>{removeFavorite(plant.id);}}><i className="fa fa-heart" aria-hidden="true"></i></div>
                       ) : (<div onClick={()=>{
@@ -217,14 +222,16 @@ const AllPlants = (props) => {
                         }}><i className="fa fa-heart-o" aria-hidden="true"></i></div>
                       )}
                     </div>
+
                     <div>"Grain"</div>
-                  </>
+                  </div>
                 ) : plant.type === "grass" ? (
-                  <>
+                  <div className="single-plant-container">
                     <Link to={`/development/${plant.id}`}><img
                       src="https://www.highcountrygardens.com/media/catalog/product/c/o/cortaderia_selloana_pumila_2.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=&width="
                       className="allPlantsImg"
                     /></Link>
+
                     <div>{userFavorites2.includes(plant.id) ? 
                       (<div onClick={()=>{removeFavorite(plant.id);}}><i className="fa fa-heart" aria-hidden="true"></i></div>
                       ) : (<div onClick={()=>{
@@ -233,14 +240,16 @@ const AllPlants = (props) => {
                         }}><i className="fa fa-heart-o" aria-hidden="true"></i></div>
                       )}
                     </div>
+
                     <div>"Grass"</div>
-                  </>
+                  </div>
                 ) : plant.type === "herb" ? (
-                  <>
-                  <Link to={`/development/${plant.id}`}> <img
+                  <div className="single-plant-container">
+                    <Link to={`/development/${plant.id}`}> <img
                       src="https://www.farmersalmanac.com/wp-content/uploads/2020/11/basil-plant-garden-as_245197176.jpeg"
                       className="allPlantsImg"
                     /></Link>
+
                     <div>{userFavorites2.includes(plant.id) ? 
                       (<div onClick={()=>{removeFavorite(plant.id);}}><i className="fa fa-heart" aria-hidden="true"></i></div>
                       ) : (<div onClick={()=>{
@@ -249,14 +258,16 @@ const AllPlants = (props) => {
                         }}><i className="fa fa-heart-o" aria-hidden="true"></i></div>
                       )}
                     </div>
+
                     <div>"Herb"</div>
-                  </>
+                  </div>
                 ) : plant.type === "house" ? (
-                  <>
-                  <Link to={`/development/${plant.id}`}> <img
+                  <div className="single-plant-container">
+                    <Link to={`/development/${plant.id}`}> <img
                       src="http://cdn.shopify.com/s/files/1/2528/3612/products/Philodendron_Monstera_black_round_1800x.jpg?v=1627692378"
                       className="allPlantsImg"
                     /></Link>
+
                     <div>{userFavorites2.includes(plant.id) ? 
                       (<div onClick={()=>{removeFavorite(plant.id);}}><i className="fa fa-heart" aria-hidden="true"></i></div>
                       ) : (<div onClick={()=>{
@@ -265,14 +276,16 @@ const AllPlants = (props) => {
                         }}><i className="fa fa-heart-o" aria-hidden="true"></i></div>
                       )}
                     </div>
+
                     <div>"House"</div>
-                  </>
+                  </div>
                 ) : plant.type === "orn" ? (
-                  <>
-                  <Link to={`/development/${plant.id}`}> <img
+                  <div className="single-plant-container">
+                    <Link to={`/development/${plant.id}`}> <img
                       src="https://bloomsz.com/wp-content/uploads/2018/08/09477_Bleeding-Hearts.jpg"
                       className="allPlantsImg"
                     /></Link>
+
                     <div>{userFavorites2.includes(plant.id) ? 
                       (<div onClick={()=>{removeFavorite(plant.id);}}><i className="fa fa-heart" aria-hidden="true"></i></div>
                       ) : (<div onClick={()=>{
@@ -281,14 +294,16 @@ const AllPlants = (props) => {
                         }}><i className="fa fa-heart-o" aria-hidden="true"></i></div>
                       )}
                     </div>
+
                     <div>"Ornamental"</div>
-                  </>
+                  </div>
                 ) : plant.type === "shrub" ? (
-                  <>
-                  <Link to={`/development/${plant.id}`}> <img
+                  <div className="single-plant-container">
+                    <Link to={`/development/${plant.id}`}> <img
                       src="https://i.pinimg.com/736x/a4/fa/d6/a4fad6f233cf74495f72f6ccc126f643.jpg"
                       className="allPlantsImg"
                     /></Link>
+
                     <div>{userFavorites2.includes(plant.id) ? 
                       (<div onClick={()=>{removeFavorite(plant.id);}}><i className="fa fa-heart" aria-hidden="true"></i></div>
                       ) : (<div onClick={()=>{
@@ -297,14 +312,16 @@ const AllPlants = (props) => {
                         }}><i className="fa fa-heart-o" aria-hidden="true"></i></div>
                       )}
                     </div>
+
                     <div>"Shrub"</div>
-                  </>
+                  </div>
                 ) : plant.type === "tree" ? (
-                  <>
-                  <Link to={`/development/${plant.id}`}>  <img
+                  <div className="single-plant-container">
+                    <Link to={`/development/${plant.id}`}>  <img
                       src="https://images.saymedia-content.com/.image/t_share/MTc0MzU0MTAwNDc2MzIzMTc2/smalltreesforasmallyardorgardentreesunderthirtyfeettall.jpg"
                       className="allPlantsImg"
                     /></Link>
+
                     <div>{userFavorites2.includes(plant.id) ? 
                       (<div onClick={()=>{removeFavorite(plant.id);}}><i className="fa fa-heart" aria-hidden="true"></i></div>
                       ) : (<div onClick={()=>{
@@ -313,14 +330,16 @@ const AllPlants = (props) => {
                         }}><i className="fa fa-heart-o" aria-hidden="true"></i></div>
                       )}
                     </div>
+
                     <div>"Tree"</div>
-                  </>
+                  </div>
                 ) : plant.type === "vege" ? (
-                  <>
-                  <Link to={`/development/${plant.id}`}> <img
+                  <div className="single-plant-container">
+                    <Link to={`/development/${plant.id}`}> <img
                       src="https://images.ctfassets.net/3s5io6mnxfqz/2BvZI3f3027FiiZ256sEOZ/b88803248178aa2d7c3d4901eac7992d/AdobeStock_291017406.jpeg"
                       className="allPlantsImg"
                     /></Link>
+
                     <div>{userFavorites2.includes(plant.id) ? 
                       (<div onClick={()=>{removeFavorite(plant.id);}}><i className="fa fa-heart" aria-hidden="true"></i></div>
                       ) : (<div onClick={()=>{
@@ -329,14 +348,16 @@ const AllPlants = (props) => {
                         }}><i className="fa fa-heart-o" aria-hidden="true"></i></div>
                       )}
                     </div>
+
                     <div>"Vegetable"</div>
-                  </>
+                  </div>
                 ) : plant.type === "vine" ? (
-                  <>
-                  <Link to={`/development/${plant.id}`}> <img
+                  <div className="single-plant-container">
+                    <Link to={`/development/${plant.id}`}> <img
                       src="https://www.bhg.com/thmb/EUBuVlZmTyIB2HihqbdqzhX55e8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/clematis-climbing-trellis-8c6f8c88-150967778d104724a5324ad08269c637.jpg"
                       className="allPlantsImg"
                     /></Link>
+
                     <div>{userFavorites2.includes(plant.id) ? 
                       (<div onClick={()=>{removeFavorite(plant.id);}}><i className="fa fa-heart" aria-hidden="true"></i></div>
                       ) : (<div onClick={()=>{
@@ -344,13 +365,15 @@ const AllPlants = (props) => {
                         getFavorites()
                         }}><i className="fa fa-heart-o" aria-hidden="true"></i></div>
                       )}
+
                     </div>
                     <div>"Vine"</div>
-                  </>
+                  </div>
                 ) : null}
               </div>
             )
-            {plant.life === "a" ? (
+            {
+              plant.life === "a" ? (
                 <div>"Annual"</div>
               ) : plant.life === "b" ? (
                 <div>Biennials</div>
@@ -358,11 +381,12 @@ const AllPlants = (props) => {
                 <div>Perennials</div>
               ) : (
                 <div>Other</div>
-              )}
+              )
+            }
           })
-        : null}
-    </div>
-    </>)
+          : null}
+      </div>
+    </div>)
 }
 
 export default AllPlants
