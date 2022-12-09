@@ -33,24 +33,29 @@ const Database = () => {
 
 const [image,setImage]=useState("")
 
-    function Images (plantName) {
-    }        
+    // function Images (plantName) {
+    // }        
     useEffect(() => {
-        Images()
-        
-        // const getPlants = async () => {
-        //     await flowers.map((flower) => {
-        //         // const client = createClient('563492ad6f91700001000001f640d146419b4a78aaa2af0160487147');
-        //         const client = createClient('563492ad6f91700001000001643b9f8dbfce4cadb7c2c17ac60d2339');
-                // const query = `${flower[2]} plant`;
-        //         // let imageURL
-        //         client.photos.search({ query, per_page: 1 }).then(photos => {
-        //             console.log("WORKING",photos)
-        //             addDoc(plantsCollection, { id: flower[0], species: flower[1], name: flower[2], color: flower[3], type: flower[4], method: flower[5], sowingMethod: flower[6], weeksBeforeLastFrost: flower[7], sowingDepth: flower[8], spaceInches: flower[9], life: flower[10], transplantTo: flower[11], comment1: flower[12],comment2: flower[13], img:photos.photos[0].src.original })
-        //         });
-        //     })
-        // }
-        // getPlants();
+        // Images()
+        console.log(flowers)
+        const getPlants = async () => {
+            await flowers.map((flower) => {
+                const client = createClient('563492ad6f91700001000001f640d146419b4a78aaa2af0160487147');
+                // const client = createClient('563492ad6f91700001000001643b9f8dbfce4cadb7c2c17ac60d2339');
+                const query = flower[1];
+                // let imageURL
+                client.photos.search({ query, per_page: 1 }).then(photos => {
+                    console.log("WORKING",photos.photos[0].src.original)
+                    console.log(flower)
+                    addDoc(plantsCollection, { 
+                        id: flower[0], 
+                        species: flower[1], name: flower[2], color: flower[3], type: flower[4], method: flower[5], sowingMethod: flower[6], weeksBeforeLastFrost: flower[7], sowingDepth: flower[8], spaceInches: flower[9], life: flower[10], transplantTo: flower[11], comment1: flower[12],comment2: flower[13], 
+                        img:photos.photos[0].src.original 
+                    })
+                });
+            })
+        }
+        getPlants();
 
         // const getHousePlants = async () => {
         //     await housePlantsData.map((plant) => {

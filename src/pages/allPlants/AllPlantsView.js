@@ -5,16 +5,26 @@ import { Link } from "react-router-dom";
 import Checkbox from "./checkboxes"
 import { flowers2 } from '../../database/plantDatabase'
 import Database from "../../database/Database";
+import AddFavorite from "../../components/AddFavorite";
+import DeleteFavorite from "../../components/DeleteFavorite";
 
 
-const AllPlants = () => {
+const AllPlants = (props) => {
   const [plants, setPlants] = useState([])
   const [plantsBackUp, setPlantsBackUp] = useState([])
   const [filterTypeOptions, setfilterTypeOptions] = useState([])
   const [filterLifeOptions, setfilterLifeOptions] = useState([])
   const [filterLightOptions, setfilterLightOptions] = useState([])
+  const [userFavorites, setUserFavorites] = useState([])
   const plantCollection = collection(db, "testPlants")
+  const {userId} = props
 
+  const userFavoritesCollection = collection(db, "worms", userId, "favorites")
+
+  async function getFavorites() {
+    const data = await getDocs(userFavoritesCollection)
+    await setUserFavorites(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+  }
 
   useEffect(() => {
     // setPlants(flowers2)
@@ -28,11 +38,28 @@ const AllPlants = () => {
     getPlants()
   }, [])
 
-  // THIS IS FN FOR SETTING THE TYPE (grass, herb, etc) CONDITION IN FILTER
-  function checkedBoxType(event) {
-    if (!document.getElementById(event).checked) {
-      let tempFilterOption = filterTypeOptions.filter((option) => option !== event)
-      setfilterTypeOptions(tempFilterOption)
+
+  console.log(userFavorites)
+
+
+  let userFavorites2 = []
+  userFavorites.forEach(plant => userFavorites2.push(plant.plantId))
+  console.log(userFavorites2)
+
+
+  const removeFavorite = (thisPlantsId) => {
+    let toBeDeletedData = userFavorites.filter(x => (x.plantId === thisPlantsId))
+    console.log(userFavorites)
+    DeleteFavorite(toBeDeletedData, userId)
+    let toBeNewFavorites = userFavorites.filter(x => (x.plantId !== thisPlantsId))
+    setUserFavorites(toBeNewFavorites)
+}
+
+// THIS IS FN FOR SETTING THE TYPE (grass, herb, etc) CONDITION IN FILTER
+  function checkedBoxType(event){
+    if(!document.getElementById(event).checked){
+      let tempFilterOption =  filterTypeOptions.filter((option) => option !== event)
+      setfilterTypeOptions(tempFilterOption) 
       console.log("filterTypeOptions", filterTypeOptions)
     }
     else {
@@ -69,15 +96,31 @@ const AllPlants = () => {
       let tempFilterLightOption = filterLightOptions
       tempFilterLightOption.push(event)
       setfilterLightOptions(tempFilterLightOption)
-      console.log(filterLightOptions)
+      // console.log(filterLightOptions)
     }
   }
 
+  function reset() {
+    console.log('clicked');
+    for (let i=0; i<filterLifeOptions.length;i++){
+      document.getElementById(filterLifeOptions[i]).checked=false;
+    }
+    for (let i=0; i<filterLightOptions.length;i++){
+      document.getElementById(filterLightOptions[i]).checked=false;
+    }
+    for (let i=0; i<filterTypeOptions.length;i++){
+      document.getElementById(filterTypeOptions[i]).checked=false;
+    }
+    setfilterLightOptions([])
+    setfilterLifeOptions([])
+    setfilterTypeOptions([])
+  }
 
   async function onSubmit(evt) {
-    console.log("light", filterLightOptions.length)
-    console.log("life", filterLifeOptions.length)
-    console.log("type", filterTypeOptions.length)
+
+    // console.log("light", filterLightOptions.length)
+    // console.log("life", filterLifeOptions.length)
+    // console.log("type", filterTypeOptions.length)
     if ((filterTypeOptions.length === 0) && (filterLifeOptions.length === 0) && (filterLightOptions.length === 0)) {
       setPlants(plantsBackUp)
     }
@@ -113,6 +156,8 @@ const AllPlants = () => {
       }
 
   }
+  
+
 
 
   const plantTypes = ["grain", "grass", "herb", "house", "orn", "shrub", "tree", "vege", "vine"]
@@ -121,7 +166,6 @@ const AllPlants = () => {
 
   return (
     <>
-      <Database />
       <div className="filterArea">
         <div><h4>Filter:</h4></div>
         <div className="filteringCon">
@@ -140,18 +184,19 @@ const AllPlants = () => {
             <h4>Light Conditions</h4>
             {transplantTo.map((light) => <Checkbox type={light} handleChange={checkedBoxLight} />)}
           </div>
+     </div>
+     <button onClick={(evt)=>{onSubmit(evt)}}>submit</button>
+     <button onClick={(evt)=>{reset(evt)}}>clear</button>
+    </div>
 
-        </div>
-        <button onClick={(evt) => { onSubmit(evt) }}>submit</button>
-        <button>clear</button>
-      </div>
+    
 
-      <div className="allPlantsArea">
-        {plants
-          ? plants.map((plant) => {
+    <div className="allPlantsArea">
+      {plants
+        ? plants.map((plant) => {
             return (
               <div className="singlePlant" key={plant.id}>
-                <div className="singlePlantName">{plant.name} </div>
+                <div className="singlePlantName">{plant.name} {plant.id}</div>
                 <div className="singlePlantName">{plant.life} </div>
                 <div className="singlePlantName">{plant.transplantTo} </div>
                 {/* <img src={plant.img} /> */}
@@ -160,6 +205,14 @@ const AllPlants = () => {
                     <Link to={`/development/${plant.id}`}> <img
                       src={plant.img} className="allPlantsImg"
                     /></Link>
+                    <div>{userFavorites2.includes(plant.id) ? 
+                      (<div onClick={()=>{removeFavorite(plant.id);}}><i className="fa fa-heart" aria-hidden="true"></i></div>
+                      ) : (<div onClick={()=>{
+                        AddFavorite(plant.id, userId)
+                        getFavorites()
+                        }}><i className="fa fa-heart-o" aria-hidden="true"></i></div>
+                      )}
+                    </div>
                     <div>"Grain"</div>
                   </>
                 ) : plant.type === "grass" ? (
@@ -168,6 +221,14 @@ const AllPlants = () => {
                       src={plant.img}
                       className="allPlantsImg"
                     /></Link>
+                    <div>{userFavorites2.includes(plant.id) ? 
+                      (<div onClick={()=>{removeFavorite(plant.id);}}><i className="fa fa-heart" aria-hidden="true"></i></div>
+                      ) : (<div onClick={()=>{
+                        AddFavorite(plant.id, userId)
+                        getFavorites()
+                        }}><i className="fa fa-heart-o" aria-hidden="true"></i></div>
+                      )}
+                    </div>
                     <div>"Grass"</div>
                   </>
                 ) : plant.type === "herb" ? (
@@ -176,6 +237,14 @@ const AllPlants = () => {
                       src={plant.img}
                       className="allPlantsImg"
                     /></Link>
+                    <div>{userFavorites2.includes(plant.id) ? 
+                      (<div onClick={()=>{removeFavorite(plant.id);}}><i className="fa fa-heart" aria-hidden="true"></i></div>
+                      ) : (<div onClick={()=>{
+                        AddFavorite(plant.id, userId)
+                        getFavorites()
+                        }}><i className="fa fa-heart-o" aria-hidden="true"></i></div>
+                      )}
+                    </div>
                     <div>"Herb"</div>
                   </>
                 ) : plant.type === "house" ? (
@@ -184,6 +253,14 @@ const AllPlants = () => {
                       src={plant.img}
                       className="allPlantsImg"
                     /></Link>
+                    <div>{userFavorites2.includes(plant.id) ? 
+                      (<div onClick={()=>{removeFavorite(plant.id);}}><i className="fa fa-heart" aria-hidden="true"></i></div>
+                      ) : (<div onClick={()=>{
+                        AddFavorite(plant.id, userId)
+                        getFavorites()
+                        }}><i className="fa fa-heart-o" aria-hidden="true"></i></div>
+                      )}
+                    </div>
                     <div>"House"</div>
                   </>
                 ) : plant.type === "orn" ? (
@@ -192,6 +269,14 @@ const AllPlants = () => {
                       src={plant.img}
                       className="allPlantsImg"
                     /></Link>
+                    <div>{userFavorites2.includes(plant.id) ? 
+                      (<div onClick={()=>{removeFavorite(plant.id);}}><i className="fa fa-heart" aria-hidden="true"></i></div>
+                      ) : (<div onClick={()=>{
+                        AddFavorite(plant.id, userId)
+                        getFavorites()
+                        }}><i className="fa fa-heart-o" aria-hidden="true"></i></div>
+                      )}
+                    </div>
                     <div>"Ornamental"</div>
                   </>
                 ) : plant.type === "shrub" ? (
@@ -200,6 +285,14 @@ const AllPlants = () => {
                       src={plant.img}
                       className="allPlantsImg"
                     /></Link>
+                    <div>{userFavorites2.includes(plant.id) ? 
+                      (<div onClick={()=>{removeFavorite(plant.id);}}><i className="fa fa-heart" aria-hidden="true"></i></div>
+                      ) : (<div onClick={()=>{
+                        AddFavorite(plant.id, userId)
+                        getFavorites()
+                        }}><i className="fa fa-heart-o" aria-hidden="true"></i></div>
+                      )}
+                    </div>
                     <div>"Shrub"</div>
                   </>
                 ) : plant.type === "tree" ? (
@@ -208,6 +301,14 @@ const AllPlants = () => {
                       src={plant.img}
                       className="allPlantsImg"
                     /></Link>
+                    <div>{userFavorites2.includes(plant.id) ? 
+                      (<div onClick={()=>{removeFavorite(plant.id);}}><i className="fa fa-heart" aria-hidden="true"></i></div>
+                      ) : (<div onClick={()=>{
+                        AddFavorite(plant.id, userId)
+                        getFavorites()
+                        }}><i className="fa fa-heart-o" aria-hidden="true"></i></div>
+                      )}
+                    </div>
                     <div>"Tree"</div>
                   </>
                 ) : plant.type === "vege" ? (
@@ -216,6 +317,14 @@ const AllPlants = () => {
                       src={plant.img}
                       className="allPlantsImg"
                     /></Link>
+                    <div>{userFavorites2.includes(plant.id) ? 
+                      (<div onClick={()=>{removeFavorite(plant.id);}}><i className="fa fa-heart" aria-hidden="true"></i></div>
+                      ) : (<div onClick={()=>{
+                        AddFavorite(plant.id, userId)
+                        getFavorites()
+                        }}><i className="fa fa-heart-o" aria-hidden="true"></i></div>
+                      )}
+                    </div>
                     <div>"Vegetable"</div>
                   </>
                 ) : plant.type === "vine" ? (
@@ -224,6 +333,14 @@ const AllPlants = () => {
                       src={plant.img}
                       className="allPlantsImg"
                     /></Link>
+                    <div>{userFavorites2.includes(plant.id) ? 
+                      (<div onClick={()=>{removeFavorite(plant.id);}}><i className="fa fa-heart" aria-hidden="true"></i></div>
+                      ) : (<div onClick={()=>{
+                        AddFavorite(plant.id, userId)
+                        getFavorites()
+                        }}><i className="fa fa-heart-o" aria-hidden="true"></i></div>
+                      )}
+                    </div>
                     <div>"Vine"</div>
                   </>
                 ) : null}

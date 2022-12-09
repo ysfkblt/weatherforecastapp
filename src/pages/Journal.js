@@ -10,6 +10,7 @@ import Calendar from "../components/Calendar"
 
 const Journal = (props) => {
   const [worms, setWorms] = useState([])
+  const [wormsBackup, setWormsBackup] = useState([])
   const [imageToUpload, setImageToUpload] = useState("")
   const [date, setDate] = useState()
   const [newNotes, setNewNotes] = useState('')
@@ -39,6 +40,7 @@ const Journal = (props) => {
       // const data1 = await getDocs(q)
       const datas = await getDocs(wormCollection)
       await setWorms((datas.docs.map((doc) => ({ ...doc.data(), id: doc.id }))))
+      await setWormsBackup((datas.docs.map((doc) => ({ ...doc.data(), id: doc.id }))))
     }
     getworms()
   }, [])
@@ -49,7 +51,9 @@ const Journal = (props) => {
     if (imageToUpload == null) {
       addDoc(wormCollection, { notes: newNotes, date: date })
       setWorms((prev) => [...prev, { notes: newNotes, date: date }])
+      setWormsBackup((prev) => [...prev, { notes: newNotes, date: date }])
       setWorms((datas.docs.map((doc) => ({ ...doc.data(), id: doc.id }))))
+      setWormsBackup((datas.docs.map((doc) => ({ ...doc.data(), id: doc.id }))))
       return
     }
     //ref is to get the specfic storage folder. first var is from the firebase-config and 2nd is the location/nameofphoto
@@ -59,6 +63,7 @@ const Journal = (props) => {
       getDownloadURL(snapshot.ref).then(async (url) => {
         const newDoc = await addDoc(wormCollection, { image: url, notes: newNotes, date: date })
         setWorms((prev) => [...prev, { id: newDoc.id, image: url, notes: newNotes, date: date }])
+        setWormsBackup((prev) => [...prev, { id: newDoc.id, image: url, notes: newNotes, date: date }])
       })
     })
   }
@@ -81,6 +86,7 @@ const Journal = (props) => {
     await updateDoc(data, { notes: updateNotes })
     const datas = await getDocs(wormCollection)
     await setWorms((datas.docs.map((doc) => ({ ...doc.data(), id: doc.id }))))
+    await setWormsBackup((datas.docs.map((doc) => ({ ...doc.data(), id: doc.id }))))
 
   }
 
@@ -88,6 +94,7 @@ const Journal = (props) => {
     const data = doc(db, "worms", props.userId, "journal", entry.id)
     await deleteDoc(data)
     await setWorms(worms.filter((worm => worm !== entry)))
+    await setWormsBackup(worms.filter((worm => worm !== entry)))
   }
 
   worms.sort((a, b) => {
@@ -103,14 +110,14 @@ const Journal = (props) => {
 
   async function searchPage(keyWord) {
     let result = []
-    const datas = await getDocs(wormCollection)
-    await setWorms((datas.docs.map((doc) => ({ ...doc.data(), id: doc.id }))))
     if (keyWord.length > 0) {
-      result = worms.filter((worm) => {
+      result = wormsBackup.filter((worm) => {
         if (worm.notes.includes(keyWord)) {
           return worm
         }
       })
+    } else {
+      setWorms(wormsBackup)
     }
     if (result.length > 0) {
       setWorms(result)
