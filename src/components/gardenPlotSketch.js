@@ -34,19 +34,54 @@ let shapeSpawnLocationX = 50
 let shapeSpawnLocationY = 50
 
 // UI Button
-let createPlantButtonX = 100
+let createPlantButtonX = 25
 let createPlantButtonY = plotWidth + 100
+let sel
+let dropDownListX = 250
+let dropDownListY = plotWidth + 100
 
+// PLANT OPTIONS
+let plantTypeListArr = [
+  "grain",
+  "grass",
+  "herb",
+  "house",
+  "orn",
+  "shrub",
+  "tree",
+  "vege",
+  "vine", //9 types
+]
+let selectedPlantType = plantTypeListArr[0]
 // ============ CONTROL VARIABLES END ===========
 // ============ CONTROL VARIABLES END ===========
 
 function gardenPlotSketch(p) {
-  let shape1
-  let shape2
-  let shape3
-
   p.setup = function () {
     p.createCanvas(plotLength, plotWidth)
+
+    // select plant dropdown
+    sel = p.createSelect()
+    sel.position(dropDownListX, dropDownListY)
+    sel.option(plantTypeListArr[0])
+    sel.option(plantTypeListArr[1])
+    sel.option(plantTypeListArr[2])
+    sel.option(plantTypeListArr[3])
+    sel.option(plantTypeListArr[4])
+    sel.option(plantTypeListArr[5])
+    sel.option(plantTypeListArr[6])
+    sel.option(plantTypeListArr[7])
+    sel.option(plantTypeListArr[8])
+
+    sel.selected(plantTypeListArr[0])
+    sel.changed(mySelectEvent)
+
+    function mySelectEvent() {
+      console.log("changed a select event")
+      selectedPlantType = sel.value()
+      //   console.log(item)
+      console.log(selectedPlantType)
+    }
 
     // add plant button
     p.button = p.createButton("add plant")
@@ -56,14 +91,14 @@ function gardenPlotSketch(p) {
 
   p.handleAddPlant = function () {
     console.log("clicked add button")
-    console.log(objArr)
     objCount++
     let tempAddObj = new Draggable(
       shapeSpawnLocationX,
       shapeSpawnLocationY,
       objSizeX,
       objSizeY,
-      objCount
+      objCount,
+      selectedPlantType
     )
     objArr.push(tempAddObj)
     console.log(objArr)
@@ -113,6 +148,7 @@ function gardenPlotSketch(p) {
       this.offsetX = 0
       this.offsetY = 0
       this.id = id
+      this.plantType = selectedPlantType
     }
 
     over() {
@@ -138,15 +174,54 @@ function gardenPlotSketch(p) {
     }
 
     show() {
+      //   if (selectedPlantType === "grain") {
+      //     p.fill(50)
+      //   }
       p.stroke(0)
+
+      // let plantTypeListArr = [
+      //   "grain",
+      //   "grass",
+      //   "herb",
+      //   "house",
+      //   "orn",
+      //   "shrub",
+      //   "tree",
+      //   "vege",
+      //   "vine", //9 types
+      // ]
+
       // Different fill based on state
-      if (this.dragging) {
-        p.fill(50)
-      } else if (this.rollover) {
-        p.fill(100)
-      } else {
-        p.fill(175, 200)
+      //   console.log("==============")
+      //   console.log(selectedPlantType)
+
+      if (this.plantType === "grain") {
+        p.fill(150, 0, 0)
+      } else if (this.plantType === "grass") {
+        p.fill(150, 150, 0)
+      } else if (this.plantType === "herb") {
+        p.fill(0, 150, 150)
+      } else if (this.plantType === "house") {
+        p.fill(50, 150, 50)
+      } else if (this.plantType === "orn") {
+        p.fill(150, 10, 200)
+      } else if (this.plantType === "shrub") {
+        p.fill(70, 10, 100)
+      } else if (this.plantType === "tree") {
+        p.fill(70, 90, 200)
+      } else if (this.plantType === "vege") {
+        p.fill(35, 1, 255)
+      } else if (this.plantType === "vine") {
+        p.fill(90, 100, 30)
       }
+
+      //   if (this.dragging) {
+      //     p.fill(50)
+      //   } else if (this.rollover) {
+      //     p.fill(100)
+      //   } else {
+      //     p.fill(175, 200)
+      //   }
       p.rect(this.x, this.y, this.w, this.h)
     }
 
