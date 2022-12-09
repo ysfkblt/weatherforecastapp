@@ -6,9 +6,10 @@ import PlantSuggestions from "../components/PlantSuggestions"
 import ToggleDark from "../components/toggleDark"
 import { ThemeContext, themes } from "../components/themeContext"
 import { onAuthStateChanged, signOut } from "firebase/auth"
-import { auth } from "../database/firebase-config"
+import { auth, db } from "../database/firebase-config"
 import { Link } from "react-router-dom"
 import Search from "../components/Search"
+import { collection, doc, getDocs } from "firebase/firestore"
 
 
 const Home = (props) => {
@@ -17,10 +18,11 @@ const Home = (props) => {
   const [grad, setgrad] = useState(null)
   const [zone, setZone] = useState("")
   const [zip, setZip] = useState("")
-  const [user, setUser] = useState("")
+  const [user, setUser] = useState(props.user)
   const [userId, setUserId] = useState("")
+  const [userZone, setuserZone] = useState("")
   const [darkMode, setDarkMode] = useState(true)
-
+  // console.log("THIS IS USER IN HOME JS", user)
   async function getData() {
     await fetch(
       `https://api.weatherapi.com/v1/forecast.json?key=f676e0d30686474d99b160351221104&q=${search}&days=1&aqi=no&alerts=no`
@@ -39,7 +41,6 @@ const Home = (props) => {
         })
       )
   }
-
   // ZONE API
 
   const fetchZone = async (search) => {
@@ -48,15 +49,7 @@ const Home = (props) => {
     return data
   }
 
-  // const wormIdCollection = collection(db, "worms")
-  // const q = query(wormIdCollection, where("id", "==", props.userId))
-  // const wormCollection = collection(db, "worms", currentChild, "journal")
-
   useEffect(() => {
-    onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser)
-    })
-
     async function getZone() {
       let zoneResults = await fetchZone(search)
       {
@@ -79,28 +72,37 @@ const Home = (props) => {
 
   // SEARCH
 
-  function handleButtonClick() {
-    getData()
-  }
-
   function handleKeyPress(e) {
-    if (e.key === "Enter") handleButtonClick()
+    if (e.key === "Enter") getData()
   }
 
   function handleSearch(e) {
+    console.log(e.target.value)
     setSearch(e.target.value)
     setZip(e.target.value)
-    handleButtonClick()
+    getData()
   }
+ 
 
   useEffect(() => {
     getData()
-  }, [])
+  }, [zip])
 
   useEffect(() => {
     setgrad(shuffle(gradient).pop())
   }, [])
 
+   useEffect(() => {
+
+    async function getData(){
+
+      const wormCollection = collection(db, "worms", user.uid, "personal")
+      let newData = await getDocs(wormCollection)
+  console.log("USERDATA IN HOMEJS",newData.docs[0].data().zone)
+  setuserZone(newData.docs[0].data().zone)
+    }
+getData()
+  }, [user])
 
   return (
     // Dynamic Background
@@ -124,10 +126,7 @@ const Home = (props) => {
       }
       className="home-view-container">
 
-
-
-
-      <div className="top-home-page-row">
+      <header className="top-home-page-row">
         <ThemeContext.Consumer>
           {({ changeTheme }) => (
             <ToggleDark
@@ -138,12 +137,9 @@ const Home = (props) => {
             />
           )}
         </ThemeContext.Consumer>
-
-
-
-
+<Link to="/allplants">View All</Link>
         {/* Update user */}
-        {userId && zip.length === 5 && zone ? (
+        {/* {userId && zip.length === 5 && zone ? (
           <>
             <UpdateZipCode
               userId={userId}
@@ -152,16 +148,91 @@ const Home = (props) => {
               coordinates={zone.coordinates}
             />
           </>
-        ) : null}
+        ) : null} */}
 
         {/* Search Bar */}
-        <div>
-          <Search
+        <section>
+          {/* <Search
             handleKeyPress={handleKeyPress}
             handleButtonClick={handleButtonClick}
             onChange={handleSearch}
+            function={handleSearch}
+          /> */}
+      <section className="search-container">
+        <article className="search-input-container">
+          <input
+            className="search-input"
+            type="text"
+            spellCheck="false"
+            value={search}
+            placeholder="please enter zip"
+            onChange={handleSearch}
+            onFocus={(e) => (e.target.placeholder = "")}
+            onBlur={(e) => (e.target.placeholder = "please enter location")}
+            onKeyPress={handleKeyPress}
           />
-        </div></div>
+        </article>
+
+        <article className="search-icon-container">
+          <button className="search-icon" onClick={getData}>
+            <i className="fa fa-search fa-2x" aria-hidden="true"></i>
+          </button>
+        </article>
+      </section>
+
+      {/* Hidden info display, reveals after search button click */}
+
+      <div className="search-results-container">
+        <div className="search-results-temp">
+          {info.temp ? (
+            <p className="search-results-temp-text">
+              {info.temp?.current}
+              <span className="search-results-temp-text-degrees">
+                °f
+              </span>
+
+            </p>
+          ) : null}
+        </div>
+
+
+        <div className="search-results-sub-container">
+          <p className="search-results-condition-text">
+            {info.condition}
+          </p>
+          {info.temp ? (
+            <p className="search-results-temp-range">
+
+              <div className="search-results-temp-range-icon" >
+                <i className="fa fa-arrow-up" aria-hidden="true"></i>
+              </div>
+              {info.temp?.max}
+
+              <span className="search-results-temp-range-degrees">
+                °
+              </span>{" "}
+              <div className="search-results-temp-range-icon">
+                <i class="fa fa-arrow-down" aria-hidden="true"></i>
+              </div>
+
+              {info.temp?.min}
+
+              <span className="search-results-temp-range-degrees">
+                °
+              </span>
+            </p>
+          ) : null}
+
+          <p className="search-results-location">
+            {info.country}
+          </p>
+          {zone.zone ? <p className="search-results-zone">
+            Hardiness Zone {zone.zone}</p> : null}
+        </div>
+      </div>
+        </section>
+      </header>
+
       <span className="welcome-user">
         {(user ? (<span>Welcome <Link to="/user">{user.displayName}!</Link></span>) :
           "Welcome!")}
@@ -169,10 +240,21 @@ const Home = (props) => {
 
       {/* Plant Suggestions */}
 
-      {props.userId ? (
-        <PlantSuggestions userId={props.userId} />
+      {props.userId && zip.length === 5 ? (
+        // <PlantSuggestions userId={props.userId} zone={zone}/>
+        <>
+          {console.log("SEARCHING NEW ZIP", search)}
+        </>
+      ) : props.userId ? (
+        // <PlantSuggestions userId={props.userId} zone={userZone}/>
+        <>
+          {console.log("LOOKING FOR USER SAVED ZIP", userZone)}
+        </>
       ) : (
-        <PlantSuggestions userId={"NA"} />
+        // <PlantSuggestions userId={"NA"} />
+        <>
+          {console.log("GETTING DEFAULT DATA?", search)}
+        </>
       )}
 
     </div>

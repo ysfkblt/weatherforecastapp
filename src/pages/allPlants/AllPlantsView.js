@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Checkbox from "./checkboxes"
 import flowers2 from '../../database/plantDatabase'
 import AddFavorite from "../../components/AddFavorite";
+import DeleteFavorite from "../../components/DeleteFavorite";
 
 
 const AllPlants = (props) => {
@@ -13,19 +14,44 @@ const AllPlants = (props) => {
   const [filterTypeOptions, setfilterTypeOptions] = useState([])
   const [filterLifeOptions, setfilterLifeOptions] = useState([])
   const [filterLightOptions, setfilterLightOptions] = useState([])
+  const [userFavorites, setUserFavorites] = useState([])
   const plantCollection = collection(db, "plants")
   const {userId} = props
 
+  const userFavoritesCollection = collection(db, "worms", userId, "favorites")
+
   useEffect(() => {
-    // setPlants(flowers2)
-    // setPlantsBackUp(flowers2)
-    async function getPlants() {
-      const data = await getDocs(plantCollection)
-      await setPlants(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
-      await setPlantsBackUp(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+    setPlants(flowers2)
+    setPlantsBackUp(flowers2)
+    // async function getPlants() {
+    //   const data = await getDocs(plantCollection)
+    //   await setPlants(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+    //   await setPlantsBackUp(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+    // }
+    // getPlants()
+
+    async function getFavorites() {
+      const data = await getDocs(userFavoritesCollection)
+      await setUserFavorites(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
     }
-    getPlants()
+    getFavorites()
   }, [])
+
+  console.log(userFavorites)
+
+
+  let userFavorites2 = []
+  userFavorites.forEach(plant => userFavorites2.push(plant.plantId))
+  console.log(userFavorites2)
+
+
+  const removeFavorite = (thisPlantsId) => {
+    let toBeDeletedData = userFavorites.filter(x => (x.plantId === thisPlantsId))
+    console.log(userFavorites)
+    DeleteFavorite(toBeDeletedData, userId)
+    let toBeNewFavorites = userFavorites.filter(x => (x.plantId !== thisPlantsId))
+    setUserFavorites(toBeNewFavorites)
+}
 
 // THIS IS FN FOR SETTING THE TYPE (grass, herb, etc) CONDITION IN FILTER
   function checkedBoxType(event){
@@ -133,8 +159,6 @@ const AllPlants = (props) => {
   }
 
 
-    
-
   const plantTypes=["grain", "grass", "herb", "house", "orn", "shrub", "tree", "vege", "vine"]
   const plantLife=["a", "b", "p", "other"]
   const transplantTo = ["fsun", "psun", "psha", "fsha"]
@@ -164,6 +188,8 @@ const AllPlants = (props) => {
      <button onClick={(evt)=>{onSubmit(evt)}}>submit</button>
      <button onClick={(evt)=>{reset(evt)}}>clear</button>
     </div>
+
+    
 
     <div className="allPlantsArea">
       {plants
@@ -252,7 +278,7 @@ const AllPlants = (props) => {
                       src="https://www.bhg.com/thmb/EUBuVlZmTyIB2HihqbdqzhX55e8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/clematis-climbing-trellis-8c6f8c88-150967778d104724a5324ad08269c637.jpg"
                       className="allPlantsImg"
                     /></Link>
-                    <button onClick={()=>{AddFavorite(plant.id, userId)}}>favorite</button>
+                    <div>{userFavorites2.includes(plant.id) ? (<div onClick={()=>{DeleteFavorite(plant.id, userId)}}><i clasName="fa fa-heart" aria-hidden="true"></i>A Favorite</div>) : (<div onClick={()=>{AddFavorite(plant.id, userId)}}><i className="fa fa-heart-o" aria-hidden="true"></i>Favorite in waiting</div>)}</div>
                     <div>"Vine"</div>
                   </>
                 ) : null}

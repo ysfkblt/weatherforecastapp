@@ -394,14 +394,15 @@ const PlantSuggestions = (props) => {
   // console.log("======= timing object: ", plantTimingObject)
   // console.log("suggested plants", suggestedPlantsData)
   // console.log("suggested house plants", suggestedHousePlantsData)
-
+  let max=18737
+  let min=89
   return (
 
     <div className="plant-suggestions-container">
       <h2 className="plant-suggestions-header">TODAY'S PLANT SUGGESTIONS</h2>
       {suggestedPlantsData.length > 0 ? (
         suggestedPlantsData.map((curPlant) => (
-          <div className="individual-plant-suggestion" key={curPlant.id}>
+          <div className="individual-plant-suggestion" key={Math.floor(Math.random() * (max - min + 1)) + min}>
             <div>
               <h3>Name: {curPlant.name},{" "}</h3>
               <h3 className="italics">({curPlant.species})</h3>
@@ -417,7 +418,7 @@ const PlantSuggestions = (props) => {
             <h3>If you are wanting to plant today, we suggest indoor plants:</h3>
             <div>
               {suggestedHousePlantsData.map((curPlant) => (
-                <div className="plant-suggestion" key={curPlant.id}>
+                <div className="plant-suggestion" key={Math.floor(Math.random() * (max - min + 1)) + min}>
                   <div>
                     <h3>Name: {curPlant.name}</h3>
                     <h3 className="italics">({curPlant.species})</h3>
