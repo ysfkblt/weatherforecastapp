@@ -10,10 +10,11 @@ import Auth from "../components/Auth"
 import User from "./User"
 
 import Favorites from "./Favorites"
+import GardenPlotViz from "./GardenPlotViz"
 
 const AppRoutes = () => {
   const [user, setUser] = useState("")
- 
+
   useEffect(() => {
     onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser)
@@ -27,14 +28,24 @@ const AppRoutes = () => {
         <Route path="/development" element={<AllPlantsView />} />
         <Route path="/development/:plantId" element={<SinglePlantView />} />
         <Route path="/user" element={<User />} />
-        <Route path="/development" element={<AllPlantsView userId={user.uid} />} />
-        <Route path="/development/:plantId" element={<SinglePlantView userId={user.uid} />} />
+        <Route
+          path="/development"
+          element={<AllPlantsView userId={user.uid} />}
+        />
+        <Route
+          path="/development/:plantId"
+          element={<SinglePlantView userId={user.uid} />}
+        />
+        <Route path="/dev-garden" element={<GardenPlotViz />} />
         {user ? (
           <>
             <Route path="/" element={<App userId={user.uid} />} />
             <Route path="/" element={<App userId={user.uid} />} />
             <Route path="/journal" element={<Journal userId={user.uid} />} />
-            <Route path="/favorites" element={<Favorites userId={user.uid} />} />
+            <Route
+              path="/favorites"
+              element={<Favorites userId={user.uid} />}
+            />
           </>
         ) : (
           <Route path="/" element={<App />} />
