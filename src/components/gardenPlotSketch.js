@@ -41,9 +41,9 @@ const plotDimensionConversionConstant = 80 // 1 ft = 100 px
 const plotLength = actualPlotLength * plotDimensionConversionConstant
 const plotWidth = actualPlotWidth * plotDimensionConversionConstant
 const plotSoilColor_R = 150
-const plotSoilColor_G = 90
+const plotSoilColor_G = 80
 const plotSoilColor_B = 0
-const plotOpacity = 100
+const plotOpacity = 90
 
 // **** GRID ****
 const gridSpacing = gridSpacingRule * plotDimensionConversionConstant
@@ -55,10 +55,10 @@ let shapeSpawnLocationX = 50
 let shapeSpawnLocationY = 50
 
 // UI Button
-let createPlantButtonX = 75
-let createPlantButtonY = plotWidth + 100
+let createPlantButtonX = plotLength - 300
+let createPlantButtonY = plotWidth + 90
 let sel
-let dropDownListX = 10
+let dropDownListX = plotLength - 310
 let dropDownListY = plotWidth + 50
 let plantInputTextValue = ""
 let plantInputBox
@@ -78,15 +78,16 @@ let plantTypeListArr = [
   "vine", //9 types
 ]
 let selectedPlantType = plantTypeListArr[0]
+
+// ============ CONTROL VARIABLES END ===========
 // ============ CONTROL VARIABLES END ===========
 // ============ CONTROL VARIABLES END ===========
 
 function gardenPlotSketch(p) {
   p.preload = function () {
     // console.log("before", img_grain)
-    img_grain = p.loadImage(img_grain_path)
+    // img_grain = p.loadImage(img_grain_path)
     // console.log("after", img_grain)
-
     // img_grass = p.loadImage(img_grass_path)
     //  img_herb = p.loadImage(img_herb_path)
     //  img_house = p.loadImage(img_house_path)
@@ -233,39 +234,39 @@ function gardenPlotSketch(p) {
         // p.noFill()
         // console.log(this)
 
-        p.fill(150, 0, 0)
+        p.fill(235, 189, 104)
         p.textSize(16)
         p.text(`grain: ${this.userPlantInput}`, this.x, this.y + 65)
       } else if (this.plantType === "grass") {
-        p.fill(150, 150, 0)
+        p.fill(0, 82, 33)
         p.textSize(16)
         p.text(`grass: ${this.userPlantInput}`, this.x, this.y + 65)
       } else if (this.plantType === "herb") {
-        p.fill(0, 150, 150)
+        p.fill(103, 133, 74)
         p.textSize(16)
         p.text(`herb: ${this.userPlantInput}`, this.x, this.y + 65)
       } else if (this.plantType === "house") {
-        p.fill(50, 150, 50)
+        p.fill(104, 70, 129)
         p.textSize(16)
         p.text(`house: ${this.userPlantInput}`, this.x, this.y + 65)
       } else if (this.plantType === "orn") {
-        p.fill(150, 10, 200)
+        p.fill(161, 49, 51)
         p.textSize(16)
         p.text(`orn: ${this.userPlantInput}`, this.x, this.y + 65)
       } else if (this.plantType === "shrub") {
-        p.fill(70, 10, 100)
+        p.fill(213, 184, 190)
         p.textSize(16)
         p.text(`shrub: ${this.userPlantInput}`, this.x, this.y + 65)
       } else if (this.plantType === "tree") {
-        p.fill(70, 90, 200)
+        p.fill(165, 100, 77)
         p.textSize(16)
         p.text(`tree: ${this.userPlantInput}`, this.x, this.y + 65)
       } else if (this.plantType === "vege") {
-        p.fill(35, 1, 255)
+        p.fill(231, 24, 55)
         p.textSize(16)
         p.text(`vege: ${this.userPlantInput}`, this.x, this.y + 65)
       } else if (this.plantType === "vine") {
-        p.fill(90, 100, 30)
+        p.fill(138, 205, 222)
         p.textSize(16)
         p.text(`vine: ${this.userPlantInput}`, this.x, this.y + 65)
       }
