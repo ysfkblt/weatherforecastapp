@@ -44,12 +44,17 @@ const AppRoutes = () => {
             />
             <Route path="/" element={<App userId={user.uid} user={user} />} />
             <Route path="/journal" element={<Journal userId={user.uid} />} />
+<<<<<<< HEAD
+            <Route path="/favorites" element={<Favorites userId={user.uid} />} />
+            <Route path="/user" element={<User user={user}/>} />
+=======
             <Route
               path="/favorites"
               element={<Favorites userId={user.uid} />}
             />
             <Route path="/user" element={<User />} />
             <Route path="/garden" element={<GardenPlotViz />} />
+>>>>>>> 2351f424b6238c35c9b008b6a88aee0b388ef473
           </>
         ) : (
           <>
