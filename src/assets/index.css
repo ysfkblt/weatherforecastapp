@@ -29,6 +29,10 @@ a {
 	text-decoration: none;
 }
 
+div {
+	border-radius: .3em;
+}
+
 button, input.button {
 	display: inline-block;
 	padding: 0.3em 1em;
@@ -605,6 +609,14 @@ div.journal {
 
 /* ALL PLANTS  */
 
+.all-plants-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1em;
+}
+
 .allPlantsImg {
 	height: 14vh;
 }
@@ -612,16 +624,28 @@ div.journal {
 .allPlantsArea {
 	display: flex;
 	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	flex-direction: row;
+	
 }
 
 .singlePlant {
 	display: flex;
 	flex-direction: column;
-	border: 1px solid white;
-	width: 23vw;
+	justify-content: center;
+	align-items: center;
+	border: 1px solid rgb(0, 0, 0);
+	width: 30vw;
 	height: 45vh;
 	margin: 1vw;
 	align-content: center;
+}
+
+.filterColumn {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .singlePlantName {
@@ -631,16 +655,36 @@ div.journal {
 .singlePlant img {
 	display: flex;
 	align-items: center;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 .filterArea{
-	width: 100vw;
-	display: block;
+	width: 90%;
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	border: 1px solid grey;
+	padding: 1em;
 }
 
 .filteringCon {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-evenly;
+}
+
+.checkbox-container {
+	border: 1px solid grey;
+	width: 100%;
+	gap: 1em;
+	display: flex;
+}
+
+.checkbox-container:hover {
+	background-color: #9b51e00f;
+}
+
+input[type="checkbox"] {
+	margin: 1em;
 }
 
 /* FOOTER NAV */
