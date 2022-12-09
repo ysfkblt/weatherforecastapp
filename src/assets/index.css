@@ -506,7 +506,8 @@ div.journal {
 	align-items: center;
 	width: 80%;
 	margin: 3em auto;
-	padding: 5vw 0vw;
+	/* margin-bottom: 5em; */
+	/* padding: 5vw 0vw; */
 	gap: 1em;
 	border: 2px solid grey;
 	border-radius: 10px;
@@ -547,13 +548,23 @@ div.journal {
 	height: 100%;
 	width: 100%;
 	position: relative;
+	background-color: #555;
 
 }
 
-/* CONTEXT THEMES */
+.toggle-dark-wrapper span {
+	border: 1px solid grey;
+}
 
-.white-content {
-	background: #e4e4e4;
+/* DARK MODE */
+
+.dark-mode-content div {
+	background: #000000;
+	color: rgba(255, 255, 255, 0.826);
+}
+
+.dark-mode-content img {
+	border-radius: 1em;
 }
 
 .zone7-content {

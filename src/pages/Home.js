@@ -9,8 +9,6 @@ import { onAuthStateChanged, signOut } from "firebase/auth"
 import { auth } from "../database/firebase-config"
 import { Link } from "react-router-dom"
 import Search from "../components/Search"
-import { handleButtonClick, handleKeyPress, handleSearch } from "../components/Search"
-import Journal from "./Journal"
 
 
 const Home = (props) => {
@@ -22,7 +20,7 @@ const Home = (props) => {
   const [user, setUser] = useState("")
   const [userId, setUserId] = useState("")
   const [darkMode, setDarkMode] = useState(true)
-  
+
   async function getData() {
     await fetch(
       `https://api.weatherapi.com/v1/forecast.json?key=f676e0d30686474d99b160351221104&q=${search}&days=1&aqi=no&alerts=no`
@@ -103,6 +101,7 @@ const Home = (props) => {
     setgrad(shuffle(gradient).pop())
   }, [])
 
+
   return (
     // Dynamic Background
     <div
@@ -125,47 +124,49 @@ const Home = (props) => {
       }
       className="home-view-container">
 
-        
+
+
+
       <div className="top-home-page-row">
-      <ThemeContext.Consumer>
-        {({ changeTheme }) => (
-          <ToggleDark
-            toggleDark={() => {
-              setDarkMode(!darkMode)
-              changeTheme(darkMode ? themes.light : themes.dark)
-            }}
+        <ThemeContext.Consumer>
+          {({ changeTheme }) => (
+            <ToggleDark
+              toggleDark={() => {
+                setDarkMode(!darkMode)
+                changeTheme(darkMode ? themes.light : themes.dark)
+              }}
+            />
+          )}
+        </ThemeContext.Consumer>
+
+
+
+
+        {/* Update user */}
+        {userId && zip.length === 5 && zone ? (
+          <>
+            <UpdateZipCode
+              userId={userId}
+              zip={zip}
+              zone={zone.zone}
+              coordinates={zone.coordinates}
+            />
+          </>
+        ) : null}
+
+        {/* Search Bar */}
+        <div>
+          <Search
+            handleKeyPress={handleKeyPress}
+            handleButtonClick={handleButtonClick}
+            onChange={handleSearch}
           />
-        )}
-      </ThemeContext.Consumer>
+        </div></div>
+      <span className="welcome-user">
+        {(user ? (<span>Welcome <Link to="/user">{user.displayName}!</Link></span>) :
+          "Welcome!")}
+      </span>
 
-      
-
-
-      {/* Update user */}
-      {userId && zip.length === 5 && zone ? (
-        <>
-          <UpdateZipCode
-            userId={userId}
-            zip={zip}
-            zone={zone.zone}
-            coordinates={zone.coordinates}
-          />
-        </>
-      ) : null}
-
-      {/* Search Bar */}
-      <div>
-        <Search
-          handleKeyPress={handleKeyPress}
-          handleButtonClick={handleButtonClick}
-          onChange={handleSearch}
-        />
-      </div></div>
-      <div className="welcome-user">
-      {(user ? (<div>Welcome <Link to="/user">{user.displayName}!</Link></div>) :
-        "Welcome!")}
-        </div>
-      
       {/* Plant Suggestions */}
 
       {props.userId ? (
