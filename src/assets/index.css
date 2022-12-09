@@ -29,6 +29,10 @@ a {
 	text-decoration: none;
 }
 
+div {
+	border-radius: .3em;
+}
+
 button, input.button {
 	display: inline-block;
 	padding: 0.3em 1em;
