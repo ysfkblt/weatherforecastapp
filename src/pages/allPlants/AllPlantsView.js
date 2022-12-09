@@ -20,6 +20,11 @@ const AllPlants = (props) => {
 
   const userFavoritesCollection = collection(db, "worms", userId, "favorites")
 
+  async function getFavorites() {
+    const data = await getDocs(userFavoritesCollection)
+    await setUserFavorites(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+  }
+
   useEffect(() => {
     setPlants(flowers2)
     setPlantsBackUp(flowers2)
@@ -30,10 +35,6 @@ const AllPlants = (props) => {
     // }
     // getPlants()
 
-    async function getFavorites() {
-      const data = await getDocs(userFavoritesCollection)
-      await setUserFavorites(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
-    }
     getFavorites()
   }, [])
 
@@ -206,7 +207,14 @@ const AllPlants = (props) => {
                       src="https://www.world-grain.com/ext/resources/2022/09/21/Wheat_photo-cred-Adobe-stock_E-2.jpg?t=1663769040&width=1080"
                       className="allPlantsImg"
                     /></Link>
-                    <button onClick={()=>{AddFavorite(plant.id, userId)}}>favorite</button>
+                    <div>{userFavorites2.includes(plant.id) ? 
+                      (<div onClick={()=>{removeFavorite(plant.id);}}><i className="fa fa-heart" aria-hidden="true"></i></div>
+                      ) : (<div onClick={()=>{
+                        AddFavorite(plant.id, userId)
+                        getFavorites()
+                        }}><i className="fa fa-heart-o" aria-hidden="true"></i></div>
+                      )}
+                    </div>
                     <div>"Grain"</div>
                   </>
                 ) : plant.type === "grass" ? (
@@ -215,7 +223,14 @@ const AllPlants = (props) => {
                       src="https://www.highcountrygardens.com/media/catalog/product/c/o/cortaderia_selloana_pumila_2.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=&width="
                       className="allPlantsImg"
                     /></Link>
-                    <button onClick={()=>{AddFavorite(plant.id, userId)}}>favorite</button>
+                    <div>{userFavorites2.includes(plant.id) ? 
+                      (<div onClick={()=>{removeFavorite(plant.id);}}><i className="fa fa-heart" aria-hidden="true"></i></div>
+                      ) : (<div onClick={()=>{
+                        AddFavorite(plant.id, userId)
+                        getFavorites()
+                        }}><i className="fa fa-heart-o" aria-hidden="true"></i></div>
+                      )}
+                    </div>
                     <div>"Grass"</div>
                   </>
                 ) : plant.type === "herb" ? (
@@ -224,7 +239,14 @@ const AllPlants = (props) => {
                       src="https://www.farmersalmanac.com/wp-content/uploads/2020/11/basil-plant-garden-as_245197176.jpeg"
                       className="allPlantsImg"
                     /></Link>
-                    <button onClick={()=>{AddFavorite(plant.id, userId)}}>favorite</button>
+                    <div>{userFavorites2.includes(plant.id) ? 
+                      (<div onClick={()=>{removeFavorite(plant.id);}}><i className="fa fa-heart" aria-hidden="true"></i></div>
+                      ) : (<div onClick={()=>{
+                        AddFavorite(plant.id, userId)
+                        getFavorites()
+                        }}><i className="fa fa-heart-o" aria-hidden="true"></i></div>
+                      )}
+                    </div>
                     <div>"Herb"</div>
                   </>
                 ) : plant.type === "house" ? (
@@ -233,7 +255,14 @@ const AllPlants = (props) => {
                       src="http://cdn.shopify.com/s/files/1/2528/3612/products/Philodendron_Monstera_black_round_1800x.jpg?v=1627692378"
                       className="allPlantsImg"
                     /></Link>
-                    <button onClick={()=>{AddFavorite(plant.id, userId)}}>favorite</button>
+                    <div>{userFavorites2.includes(plant.id) ? 
+                      (<div onClick={()=>{removeFavorite(plant.id);}}><i className="fa fa-heart" aria-hidden="true"></i></div>
+                      ) : (<div onClick={()=>{
+                        AddFavorite(plant.id, userId)
+                        getFavorites()
+                        }}><i className="fa fa-heart-o" aria-hidden="true"></i></div>
+                      )}
+                    </div>
                     <div>"House"</div>
                   </>
                 ) : plant.type === "orn" ? (
@@ -242,7 +271,14 @@ const AllPlants = (props) => {
                       src="https://bloomsz.com/wp-content/uploads/2018/08/09477_Bleeding-Hearts.jpg"
                       className="allPlantsImg"
                     /></Link>
-                    <button onClick={()=>{AddFavorite(plant.id, userId)}}>favorite</button>
+                    <div>{userFavorites2.includes(plant.id) ? 
+                      (<div onClick={()=>{removeFavorite(plant.id);}}><i className="fa fa-heart" aria-hidden="true"></i></div>
+                      ) : (<div onClick={()=>{
+                        AddFavorite(plant.id, userId)
+                        getFavorites()
+                        }}><i className="fa fa-heart-o" aria-hidden="true"></i></div>
+                      )}
+                    </div>
                     <div>"Ornamental"</div>
                   </>
                 ) : plant.type === "shrub" ? (
@@ -251,7 +287,14 @@ const AllPlants = (props) => {
                       src="https://i.pinimg.com/736x/a4/fa/d6/a4fad6f233cf74495f72f6ccc126f643.jpg"
                       className="allPlantsImg"
                     /></Link>
-                    <button onClick={()=>{AddFavorite(plant.id, userId)}}>favorite</button>
+                    <div>{userFavorites2.includes(plant.id) ? 
+                      (<div onClick={()=>{removeFavorite(plant.id);}}><i className="fa fa-heart" aria-hidden="true"></i></div>
+                      ) : (<div onClick={()=>{
+                        AddFavorite(plant.id, userId)
+                        getFavorites()
+                        }}><i className="fa fa-heart-o" aria-hidden="true"></i></div>
+                      )}
+                    </div>
                     <div>"Shrub"</div>
                   </>
                 ) : plant.type === "tree" ? (
@@ -260,7 +303,14 @@ const AllPlants = (props) => {
                       src="https://images.saymedia-content.com/.image/t_share/MTc0MzU0MTAwNDc2MzIzMTc2/smalltreesforasmallyardorgardentreesunderthirtyfeettall.jpg"
                       className="allPlantsImg"
                     /></Link>
-                    <button onClick={()=>{AddFavorite(plant.id, userId)}}>favorite</button>
+                    <div>{userFavorites2.includes(plant.id) ? 
+                      (<div onClick={()=>{removeFavorite(plant.id);}}><i className="fa fa-heart" aria-hidden="true"></i></div>
+                      ) : (<div onClick={()=>{
+                        AddFavorite(plant.id, userId)
+                        getFavorites()
+                        }}><i className="fa fa-heart-o" aria-hidden="true"></i></div>
+                      )}
+                    </div>
                     <div>"Tree"</div>
                   </>
                 ) : plant.type === "vege" ? (
@@ -269,7 +319,14 @@ const AllPlants = (props) => {
                       src="https://images.ctfassets.net/3s5io6mnxfqz/2BvZI3f3027FiiZ256sEOZ/b88803248178aa2d7c3d4901eac7992d/AdobeStock_291017406.jpeg"
                       className="allPlantsImg"
                     /></Link>
-                    <button onClick={()=>{AddFavorite(plant.id, userId)}}>favorite</button>
+                    <div>{userFavorites2.includes(plant.id) ? 
+                      (<div onClick={()=>{removeFavorite(plant.id);}}><i className="fa fa-heart" aria-hidden="true"></i></div>
+                      ) : (<div onClick={()=>{
+                        AddFavorite(plant.id, userId)
+                        getFavorites()
+                        }}><i className="fa fa-heart-o" aria-hidden="true"></i></div>
+                      )}
+                    </div>
                     <div>"Vegetable"</div>
                   </>
                 ) : plant.type === "vine" ? (
@@ -278,7 +335,14 @@ const AllPlants = (props) => {
                       src="https://www.bhg.com/thmb/EUBuVlZmTyIB2HihqbdqzhX55e8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/clematis-climbing-trellis-8c6f8c88-150967778d104724a5324ad08269c637.jpg"
                       className="allPlantsImg"
                     /></Link>
-                    <div>{userFavorites2.includes(plant.id) ? (<div onClick={()=>{DeleteFavorite(plant.id, userId)}}><i clasName="fa fa-heart" aria-hidden="true"></i>A Favorite</div>) : (<div onClick={()=>{AddFavorite(plant.id, userId)}}><i className="fa fa-heart-o" aria-hidden="true"></i>Favorite in waiting</div>)}</div>
+                    <div>{userFavorites2.includes(plant.id) ? 
+                      (<div onClick={()=>{removeFavorite(plant.id);}}><i className="fa fa-heart" aria-hidden="true"></i></div>
+                      ) : (<div onClick={()=>{
+                        AddFavorite(plant.id, userId)
+                        getFavorites()
+                        }}><i className="fa fa-heart-o" aria-hidden="true"></i></div>
+                      )}
+                    </div>
                     <div>"Vine"</div>
                   </>
                 ) : null}
