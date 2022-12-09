@@ -1,5 +1,7 @@
 import React from 'react';
 
+//If you want to want to use toggleDark to change the css of a component, here is how you do that: First you need to import the ThemeContext from themeContext.js. Then you need to wrap the component in the ThemeContext.Consumer. Then you need to pass the theme to the component as a prop. Then you need to use the theme to change the css of the component. 
+
 
 export default function ToggleDark(props) {
     return (

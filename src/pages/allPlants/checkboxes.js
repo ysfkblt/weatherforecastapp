@@ -6,6 +6,7 @@ const Checkbox = (props) => {
     return (
       <div>
         <input
+          className="box"
           id={type}
           type="checkbox"
           value={type}

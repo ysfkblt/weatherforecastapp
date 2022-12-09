@@ -50,7 +50,7 @@ const Favorites = (props) => {
           {(favoritePlantData.length > 0) ?
           
           (favoritePlantData.map((curPlant) => (
-              <div className="plant-suggestion" key={curPlant.id}>
+              <div className="plant-list-favorites" key={curPlant.id}>
                 <div>
                   <h3>
                     Name: {curPlant.name},
