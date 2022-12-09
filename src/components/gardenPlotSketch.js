@@ -1,8 +1,28 @@
-// todo figure out how to import/get props in order to work with the data in this sketch
+// ============ CONTROL VARIABLES HERE ===========
+// ============ CONTROL VARIABLES HERE ===========
+// ============ CONTROL VARIABLES HERE ===========
 
-// ============ CONTROL VARIABLES HERE ===========
-// ============ CONTROL VARIABLES HERE ===========
-// ============ CONTROL VARIABLES HERE ===========
+// **** PLANT IMAGES ****
+const img_grain_path = "https://picsum.photos/100"
+// const img_grain_path = "../assets/gardenPlotImg/tree.jpg"
+const img_grass_path = "../assets/gardenPlotImg/tree.jpg"
+const img_herb_path = "../assets/gardenPlotImg/tree.jpg"
+const img_house_path = "../assets/gardenPlotImg/tree.jpg"
+const img_orn_path = "../assets/gardenPlotImg/tree.jpg"
+const img_shrub_path = "../assets/gardenPlotImg/tree.jpg"
+const img_tree_path = "../assets/gardenPlotImg/tree.jpg"
+const img_vege_path = "../assets/gardenPlotImg/tree.jpg"
+const img_vine_path = "../assets/gardenPlotImg/tree.jpg"
+
+let img_grain
+let img_grass
+let img_herb
+let img_house
+let img_orn
+let img_shrub
+let img_tree
+let img_vege
+let img_vine
 
 // **** OBJECT ****
 let objArr = []
@@ -23,6 +43,7 @@ const plotWidth = actualPlotWidth * plotDimensionConversionConstant
 const plotSoilColor_R = 150
 const plotSoilColor_G = 90
 const plotSoilColor_B = 0
+const plotOpacity = 100
 
 // **** GRID ****
 const gridSpacing = gridSpacingRule * plotDimensionConversionConstant
@@ -57,6 +78,21 @@ let selectedPlantType = plantTypeListArr[0]
 // ============ CONTROL VARIABLES END ===========
 
 function gardenPlotSketch(p) {
+  p.preload = function () {
+    // console.log("before", img_grain)
+    img_grain = p.loadImage(img_grain_path)
+    // console.log("after", img_grain)
+
+    // img_grass = p.loadImage(img_grass_path)
+    //  img_herb = p.loadImage(img_herb_path)
+    //  img_house = p.loadImage(img_house_path)
+    //  img_orn = p.loadImage(img_orn_path)
+    //  img_shrub = p.loadImage(img_shrub_path)
+    //  img_tree = p.loadImage(img_tree_path)
+    //  img_vege = p.loadImage(img_vege_path)
+    //  img_vine = p.loadImage(img_vine_path)
+  }
+
   p.setup = function () {
     p.createCanvas(plotLength, plotWidth)
 
@@ -79,7 +115,6 @@ function gardenPlotSketch(p) {
     function mySelectEvent() {
       console.log("changed a select event")
       selectedPlantType = sel.value()
-      //   console.log(item)
       console.log(selectedPlantType)
     }
 
@@ -174,28 +209,15 @@ function gardenPlotSketch(p) {
     }
 
     show() {
-      //   if (selectedPlantType === "grain") {
-      //     p.fill(50)
-      //   }
-      p.stroke(0)
-
-      // let plantTypeListArr = [
-      //   "grain",
-      //   "grass",
-      //   "herb",
-      //   "house",
-      //   "orn",
-      //   "shrub",
-      //   "tree",
-      //   "vege",
-      //   "vine", //9 types
-      // ]
-
-      // Different fill based on state
-      //   console.log("==============")
-      //   console.log(selectedPlantType)
-
+      p.stroke(50)
       if (this.plantType === "grain") {
+        // this.mask(img_grain)
+        // console.log(this)
+        //   p.image(img_grain, 0, 0)
+        // img_grain.mask(this)
+        // p.image(img_grain, 0, 0)
+        // p.noFill()
+        // p.text("fowefrsdwedqasfewo", 0, 0)
         p.fill(150, 0, 0)
       } else if (this.plantType === "grass") {
         p.fill(150, 150, 0)
@@ -215,14 +237,9 @@ function gardenPlotSketch(p) {
         p.fill(90, 100, 30)
       }
 
-      //   if (this.dragging) {
-      //     p.fill(50)
-      //   } else if (this.rollover) {
-      //     p.fill(100)
-      //   } else {
-      //     p.fill(175, 200)
-      //   }
       p.rect(this.x, this.y, this.w, this.h)
+      //   p.circle(this.x, this.y, this.w)
+      //   p.image(img_grain, 0, 0)
     }
 
     pressed() {
