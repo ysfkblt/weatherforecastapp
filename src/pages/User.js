@@ -60,7 +60,9 @@ const User = (props) => {
             updateProfile(currentUser,{
                 photoURL:downloadUrl
             })
-            console.log("CURRENT USER",currentUser)
+            const editInputArea = document.querySelectorAll(".profileEdit")
+            const currentEditInputArea = editInputArea[0]
+            currentEditInputArea.classList.toggle("show")        
         } catch (error) {
             console.log(error)
         }
@@ -71,8 +73,9 @@ async function updateDisplayName(){
         updateProfile(currentUser,{
             displayName:newDisplayName
         })
-        console.log("CURRENT USER",currentUser)
-    } catch (error) {
+        const editInputArea = document.querySelectorAll(".displayNameEdit")
+        const currentEditInputArea = editInputArea[0]
+        currentEditInputArea.classList.toggle("show")    } catch (error) {
         console.log(error)
     }
 }
@@ -97,9 +100,6 @@ async function updateZip(){
         let newData = await getDocs(wormCollection)
         let personalId=newData.docs[0].id
         await getZone(newZip)
-        console.log("ZIPPPP",zone)
-        console.log("PERSONAL ID", personalId)
-        console.log("PROPS ID", props.user.uid)
         const data = doc(db, "worms", props.user.uid, "personal", personalId)
         if(newData.docs[0].data().zone===zone.zone){
 
@@ -109,7 +109,9 @@ async function updateZip(){
 
         }
         setCurrentZip(newZip)
-        // let newData = await getDocs(wormCollection)
+        const editInputArea = document.querySelectorAll(".ZipEdit")
+        const currentEditInputArea = editInputArea[0]
+        currentEditInputArea.classList.toggle("show")
     } catch (error) {
         console.log(error)
     }
@@ -136,25 +138,44 @@ async function getDatas() {
     }
      
   }
+
+  function edit(evt, name){
+    console.log(evt.target.test)
+    const editInputArea = document.querySelectorAll(`.${name}`)
+    const currentEditInputArea = editInputArea[0]
+    currentEditInputArea.classList.toggle("show")
+
+  }
 //   console.log(props.user)
 //   getDatas()
     return (
         <div className="user-container">
             <div className="user-profile-container">
-                <h1>{updatedDisplayName===""?currentUser.displayName: updatedDisplayName}'s Profile</h1>
+                <h1><i className="fa fa-pencil" aria-hidden="true" onClick={(evt)=>{edit(evt, "displayNameEdit")}}></i>{updatedDisplayName===""?currentUser.displayName: updatedDisplayName}'s Profile</h1>
+                <div className="displayNameEdit">
                 <input  value={newDisplayName} onChange={(event) => { setNewDisplayName(event.target.value) }} placeholder="Update Display Name" size={90} style={{ height: "7vh" }} />
                 <button onClick={(event)=>updateDisplayName()}>Update Display Name</button>
+                </div>
                 {/* <div>{currentUser.email}</div>
                 <input value={newEmail} onChange={(event) => { setNewEmail(event.target.value) }} placeholder="Update Email" size={90} style={{ height: "7vh" }} />
                 <button onClick={(event)=>updateNewEmail()}>Update Email</button> */}
-                <div>ZIP:{currentZip}</div>
+                <div><i className="fa fa-pencil" aria-hidden="true"  onClick={(evt)=>{edit(evt, "ZipEdit")}}></i>ZIP:{currentZip}</div>
+                <div className="ZipEdit">
+
                 <input value={newZip} onChange={(event) => { setNewZip(event.target.value) }} placeholder="Update Zipcode" size={90} style={{ height: "7vh" }} />
                 <button onClick={(event)=>updateZip()}>Update Zipcode</button>
+                </div>
+                <div>
+                    <i className="fa fa-pencil" aria-hidden="true" onClick={(evt)=>{edit(evt, "profileEdit")}}></i>
                 <img src={profilePictureUrl} width={90}/>
+                    </div>
                 <div className="user-profile-picture-container">
                     {/* <img src={profilePictureUrl} alt="profile picture" /> */}
+                    <div className="profileEdit">
+
                     <input type="file" onChange={(event) => { setProfilePicture(event.target.files[0]) }} />
                     <button onClick={uploadProfilePicture}>Upload Profile Picture</button>
+                    </div>
                 </div>
             </div>
             <button className="nav-bar-link nav-bar-link-signout" onClick={logout}>Sign out</button>
