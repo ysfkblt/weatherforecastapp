@@ -55,13 +55,15 @@ let shapeSpawnLocationX = 50
 let shapeSpawnLocationY = 50
 
 // UI Button
-let createPlantButtonX = 25
+let createPlantButtonX = 75
 let createPlantButtonY = plotWidth + 100
 let sel
-let dropDownListX = 250
-let dropDownListY = plotWidth + 100
+let dropDownListX = 10
+let dropDownListY = plotWidth + 50
 let plantInputTextValue = ""
 let plantInputBox
+let inputPositionX = dropDownListX + 65
+let inputPositionY = plotWidth + 35
 
 // PLANT OPTIONS
 let plantTypeListArr = [
@@ -122,6 +124,7 @@ function gardenPlotSketch(p) {
 
     // add plant button \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     p.button = p.createButton("add plant")
+    p.button.size(250, 75)
     p.button.position(createPlantButtonX, createPlantButtonY)
     p.button.mousePressed(p.handleAddPlant)
   }
@@ -146,7 +149,8 @@ function gardenPlotSketch(p) {
 
   // plant type input \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
   plantInputBox = p.createInput()
-  plantInputBox.position(createPlantButtonX, createPlantButtonY + 50)
+  plantInputBox.position(inputPositionX, inputPositionY)
+  plantInputBox.attribute("placeholder", "enter your plant name")
 
   p.draw = function () {
     // clear out old frames
