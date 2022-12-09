@@ -36,7 +36,7 @@ const AppRoutes = () => {
           path="/development/:plantId"
           element={<SinglePlantView userId={user.uid} />}
         />
-        <Route path="/dev-garden" element={<GardenPlotViz />} />
+        <Route path="/garden" element={<GardenPlotViz />} />
         {user ? (
           <>
             <Route path="/" element={<App userId={user.uid} />} />
