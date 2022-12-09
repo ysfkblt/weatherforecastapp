@@ -25,6 +25,7 @@ const Auth = () => {
       setCurrentUser(currentUser)
     })
   }, [])
+  console.log(registerDisplayName)
   const register = async () => {
     try {
       let result=await createUserWithEmailAndPassword(auth, registerEmail, registerPassword)
@@ -44,15 +45,17 @@ const Auth = () => {
 
           // const data = doc(db, "worms", result.user.uid, "personal")
 
+          navigate('/')
           return updateProfile(result.user, {
-            displayName: document.getElementById("name").value,
+            displayName: registerDisplayName,
             photoURL: "https://img.freepik.com/premium-vector/cute-little-worm-cartoon-character_188253-3950.jpg?w=2000",
           }
-
+          
           ).catch(function (error) {
             console.log(error);
           });
         // })
+
     } catch (error) {
       console.log(error.message)
 

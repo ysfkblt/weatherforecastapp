@@ -16,7 +16,8 @@ const PlantSuggestions = (props) => {
   const [plantsDbData, setPlantsDbData] = useState([])
   const [housePlantsDbData, setHousePlantsDbData] = useState([])
 
-  const { userId } = props
+    const { userId } = props
+  
 
   const wormCollection = collection(db, "worms", userId, "personal")
 
@@ -52,9 +53,6 @@ const PlantSuggestions = (props) => {
 
   useEffect(() => {
     if (props.userId !== "NA") {
-
-
-
       async function getworms() {
         const data = await getDocs(wormCollection)
         let pre_zone = data.docs[0].data().zone
@@ -63,31 +61,6 @@ const PlantSuggestions = (props) => {
       }
       getworms()
     }
-
-    //getting image
-    // const fetchImage = async(search)=>{
-    //   const res=await fetch(`https://serpapi.com/playground?q=${"house"}&tbs=itp%3Aphotos%2Cisz%3Al&tbm=isch&device=desktop`)
-    //  const {images_results}= await res.json()
-    // return images_results
-    // }
-
-
-    //getting image 
-    // const fetchImage = async(search)=>{
-    //   const res=await fetch(`https://serpapi.com/playground?q=${"house"}&tbs=itp%3Aphotos%2Cisz%3Al&tbm=isch&device=desktop`)
-    //  const {images_results}= await res.json()
-    // return images_results
-    // }
-
-
-    // console.log(fetchImage("rose"))
-
-    const fetchZone = async (search) => {
-      const response = await fetch(`https://phzmapi.org/${search}.json`)
-      const data = await response.json()
-      return data
-    }
-
     plantData()
     housePlantData()
   }, [])

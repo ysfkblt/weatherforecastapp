@@ -23,6 +23,18 @@ const Home = (props) => {
   const [userZone, setuserZone] = useState("")
   const [darkMode, setDarkMode] = useState(true)
   // console.log("THIS IS USER IN HOME JS", user)
+  useEffect(() => {
+    async function getDatas() {
+      console.log(user.uid)
+      const wormCollection = collection(db, "worms", user.uid, "personal")
+      console.log("PASSING WORMCOLLECTION")
+      let newData = await getDocs(wormCollection)
+      console.log("USERDATA IN HOMEJS", newData.docs[0].data().zone)
+      setuserZone(newData.docs[0].data().zone)
+    }
+    getDatas()
+  }, [])
+
   async function getData() {
     await fetch(
       `https://api.weatherapi.com/v1/forecast.json?key=f676e0d30686474d99b160351221104&q=${search}&days=1&aqi=no&alerts=no`
@@ -82,7 +94,7 @@ const Home = (props) => {
     setZip(e.target.value)
     getData()
   }
- 
+
 
   useEffect(() => {
     getData()
@@ -92,17 +104,7 @@ const Home = (props) => {
     setgrad(shuffle(gradient).pop())
   }, [])
 
-   useEffect(() => {
 
-    async function getData(){
-
-      const wormCollection = collection(db, "worms", user.uid, "personal")
-      let newData = await getDocs(wormCollection)
-  console.log("USERDATA IN HOMEJS",newData.docs[0].data().zone)
-  setuserZone(newData.docs[0].data().zone)
-    }
-getData()
-  }, [user])
 
   return (
     // Dynamic Background
@@ -137,7 +139,7 @@ getData()
             />
           )}
         </ThemeContext.Consumer>
-<Link to="/allplants">View All</Link>
+        <Link to="/allplants">View All</Link>
         {/* Update user */}
         {/* {userId && zip.length === 5 && zone ? (
           <>
@@ -158,78 +160,78 @@ getData()
             onChange={handleSearch}
             function={handleSearch}
           /> */}
-      <section className="search-container">
-        <article className="search-input-container">
-          <input
-            className="search-input"
-            type="text"
-            spellCheck="false"
-            value={search}
-            placeholder="please enter zip"
-            onChange={handleSearch}
-            onFocus={(e) => (e.target.placeholder = "")}
-            onBlur={(e) => (e.target.placeholder = "please enter location")}
-            onKeyPress={handleKeyPress}
-          />
-        </article>
+          <section className="search-container">
+            <article className="search-input-container">
+              <input
+                className="search-input"
+                type="text"
+                spellCheck="false"
+                value={search}
+                placeholder="please enter zip"
+                onChange={handleSearch}
+                onFocus={(e) => (e.target.placeholder = "")}
+                onBlur={(e) => (e.target.placeholder = "please enter location")}
+                onKeyPress={handleKeyPress}
+              />
+            </article>
 
-        <article className="search-icon-container">
-          <button className="search-icon" onClick={getData}>
-            <i className="fa fa-search fa-2x" aria-hidden="true"></i>
-          </button>
-        </article>
-      </section>
+            <article className="search-icon-container">
+              <button className="search-icon" onClick={getData}>
+                <i className="fa fa-search fa-2x" aria-hidden="true"></i>
+              </button>
+            </article>
+          </section>
 
-      {/* Hidden info display, reveals after search button click */}
+          {/* Hidden info display, reveals after search button click */}
 
-      <div className="search-results-container">
-        <div className="search-results-temp">
-          {info.temp ? (
-            <p className="search-results-temp-text">
-              {info.temp?.current}
-              <span className="search-results-temp-text-degrees">
-                °f
-              </span>
+          <div className="search-results-container">
+            <div className="search-results-temp">
+              {info.temp ? (
+                <p className="search-results-temp-text">
+                  {info.temp?.current}
+                  <span className="search-results-temp-text-degrees">
+                    °f
+                  </span>
 
-            </p>
-          ) : null}
-        </div>
+                </p>
+              ) : null}
+            </div>
 
 
-        <div className="search-results-sub-container">
-          <p className="search-results-condition-text">
-            {info.condition}
-          </p>
-          {info.temp ? (
-            <p className="search-results-temp-range">
+            <div className="search-results-sub-container">
+              <p className="search-results-condition-text">
+                {info.condition}
+              </p>
+              {info.temp ? (
+                <p className="search-results-temp-range">
 
-              <div className="search-results-temp-range-icon" >
-                <i className="fa fa-arrow-up" aria-hidden="true"></i>
-              </div>
-              {info.temp?.max}
+                  <div className="search-results-temp-range-icon" >
+                    <i className="fa fa-arrow-up" aria-hidden="true"></i>
+                  </div>
+                  {info.temp?.max}
 
-              <span className="search-results-temp-range-degrees">
-                °
-              </span>{" "}
-              <div className="search-results-temp-range-icon">
-                <i class="fa fa-arrow-down" aria-hidden="true"></i>
-              </div>
+                  <span className="search-results-temp-range-degrees">
+                    °
+                  </span>{" "}
+                  <div className="search-results-temp-range-icon">
+                    <i class="fa fa-arrow-down" aria-hidden="true"></i>
+                  </div>
 
-              {info.temp?.min}
+                  {info.temp?.min}
 
-              <span className="search-results-temp-range-degrees">
-                °
-              </span>
-            </p>
-          ) : null}
+                  <span className="search-results-temp-range-degrees">
+                    °
+                  </span>
+                </p>
+              ) : null}
 
-          <p className="search-results-location">
-            {info.country}
-          </p>
-          {zone.zone ? <p className="search-results-zone">
-            Hardiness Zone {zone.zone}</p> : null}
-        </div>
-      </div>
+              <p className="search-results-location">
+                {info.country}
+              </p>
+              {zone.zone ? <p className="search-results-zone">
+                Hardiness Zone {zone.zone}</p> : null}
+            </div>
+          </div>
         </section>
       </header>
 
@@ -241,18 +243,21 @@ getData()
       {/* Plant Suggestions */}
 
       {props.userId && zip.length === 5 ? (
-        // <PlantSuggestions userId={props.userId} zone={zone}/>
         <>
-          {console.log("SEARCHING NEW ZIP", search)}
+          <PlantSuggestions userId={props.userId} zone={zone} />
+          <div>NEW ZIP {zone.zone}</div>
+          {console.log("SEARCHING NEW ZIP", zone)}
         </>
       ) : props.userId ? (
-        // <PlantSuggestions userId={props.userId} zone={userZone}/>
         <>
+        <div>USER'S ZONE {userZone}</div>
+          <PlantSuggestions userId={props.userId} zone={userZone} />
           {console.log("LOOKING FOR USER SAVED ZIP", userZone)}
         </>
       ) : (
-        // <PlantSuggestions userId={"NA"} />
         <>
+          <PlantSuggestions userId={"NA"} />
+          <div>DEFAULT DATA</div>
           {console.log("GETTING DEFAULT DATA?", search)}
         </>
       )}
