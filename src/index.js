@@ -18,7 +18,7 @@ root.render(
     <ThemeContextWrapper>
         <React.StrictMode>
             <Router>
-                <Navbar />
+                {/* <Navbar /> */}
                 {/* <h1>test this is in index.js. components should be below</h1> */}
                 {/* <ImageUpload /> */}
                 <AppRoutes />

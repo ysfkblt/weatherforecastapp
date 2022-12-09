@@ -4,8 +4,9 @@ const Checkbox = (props) => {
     const { type, handleChange } = props;
 
     return (
-      <div>
+      <div className="checkbox-container">
         <input
+          className="box"
           id={type}
           type="checkbox"
           value={type}
