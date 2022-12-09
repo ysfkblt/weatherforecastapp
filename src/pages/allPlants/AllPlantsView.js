@@ -15,8 +15,10 @@ const AllPlants = (props) => {
   const [filterLifeOptions, setfilterLifeOptions] = useState([])
   const [filterLightOptions, setfilterLightOptions] = useState([])
   const [userFavorites, setUserFavorites] = useState([])
-  const plantCollection = collection(db, "plants")
+  const plantCollection = collection(db, "testPlants")
   const {userId} = props
+
+  console.log(plants)
 
   const userFavoritesCollection = collection(db, "worms", userId, "favorites")
 
@@ -26,14 +28,14 @@ const AllPlants = (props) => {
   }
 
   useEffect(() => {
-    setPlants(flowers2)
-    setPlantsBackUp(flowers2)
-    // async function getPlants() {
-    //   const data = await getDocs(plantCollection)
-    //   await setPlants(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
-    //   await setPlantsBackUp(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
-    // }
-    // getPlants()
+    // setPlants(flowers2)
+    // setPlantsBackUp(flowers2)
+    async function getPlants() {
+      const data = await getDocs(plantCollection)
+      await setPlants(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+      await setPlantsBackUp(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+    }
+    getPlants()
 
     getFavorites()
   }, [])
@@ -200,7 +202,7 @@ const AllPlants = (props) => {
                 <div className="singlePlantName">{plant.name} </div>
                 <div className="singlePlantName">{plant.life} </div>
                 <div className="singlePlantName">{plant.transplantTo} </div>
-               
+                <div><img src={plant.img} className="allPlantsImg" /></div>
                 {plant.type === "grain" ? (
                   <>
                    <Link to={`/development/${plant.id}`}> <img
