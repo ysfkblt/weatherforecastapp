@@ -898,5 +898,5 @@ const flowers2 = [
     },
 ]
 
-
-export default flowers2
+export {flowers2}
+export default flowers

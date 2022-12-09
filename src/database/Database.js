@@ -1,14 +1,16 @@
 import { useState, useEffect } from "react"
-import { collection } from "firebase/firestore"
+import { addDoc, collection, getDocs } from "firebase/firestore"
 import { db } from "./firebase-config"
 import { getDatabase } from "firebase/database"
-import { flowers } from "./plantDatabase"
-
+import  flowers  from "./plantDatabase"
+import Images from "./images"
+import { createClient } from "pexels"
+import { flowers2 } from "./plantDatabase"
 const Database = () => {
     const database = getDatabase()
     const [plants, setPlants] = useState([])
     const [housePlants, setHousePlants] = useState([])
-    const plantsCollection = collection(db, "plants")
+    const plantsCollection = collection(db, "testPlants")
     const housePlantsCollection = collection(db, "housePlants")
 
     const housePlantsData = [
@@ -29,15 +31,28 @@ const Database = () => {
         [15, "Oregano", "Origanum vulgare", "Bright direct light", "https://cf.ltkcdn.net/garden/images/std/164696-425x282r1-Oregano.jpg"]
     ]
 
+const [image,setImage]=useState("")
+
+    function Images (plantName) {
+    }        
     useEffect(() => {
-        // const getPlants = async () => {
-            // await flowers.map((flower) => {
-            //    addDoc(plantsCollection, { id: flower[0], species: flower[1], name: flower[2], color: flower[3], type: flower[4], method: flower[5], sowingMethod: flower[6], weeksBeforeLastFrost: flower[7], sowingDepth: flower[8], spaceInches: flower[9], life: flower[10], transplantTo: flower[11], comment1: flower[12],comment2: flower[13]})
-            // })
+        Images()
+        
+        const getPlants = async () => {
+            await flowers.map((flower) => {
+                const client = createClient('563492ad6f91700001000001f640d146419b4a78aaa2af0160487147');
+                const query = flower[1];
+                // let imageURL
+                client.photos.search({ query, per_page: 1 }).then(photos => {
+                    console.log("WORKING",photos)
+                    addDoc(plantsCollection, { id: flower[0], species: flower[1], name: flower[2], color: flower[3], type: flower[4], method: flower[5], sowingMethod: flower[6], weeksBeforeLastFrost: flower[7], sowingDepth: flower[8], spaceInches: flower[9], life: flower[10], transplantTo: flower[11], comment1: flower[12],comment2: flower[13], img:photos.photos[0].src.original })
+                });
+            })
+
             //   const data = await getDocs(plantsCollection)
             //   setPlants((data.docs.map((doc) => ({ ...doc.data(), id:flowers[0], Species:flowers[1], Name:flowers[2]}))))
-        // }
-        // getPlants();
+        }
+        getPlants();
 
         // const getHousePlants = async () => {
         //     await housePlantsData.map((plant) => {

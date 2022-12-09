@@ -4,14 +4,15 @@ import { createClient } from 'pexels';
 
 
 
-function Images () {
-    const [image, setImage]= useState("")
+function Images (plantName) {
+let image
     const client = createClient('563492ad6f91700001000001f640d146419b4a78aaa2af0160487147');
-    const query = 'Nature';
+    const query = plantName;
     
-    client.photos.search({ query, per_page: 1 }).then(photos => {console.log(photos) });
-
-    // const [images, setImages]=useState([])
+        client.photos.search({ query, per_page: 1 }).then(photos => {image=photos });
+   
+   
+        // const [images, setImages]=useState([])
     // async function image(){
     //    let images2= await client.photos.search({ query, per_page: 1 }).then(photos => {...})
     // }
@@ -37,10 +38,10 @@ function Images () {
     //     useEffect(() => {
     //         getPhotos()
     //     }, [])
+    console.log(image)
         return (
-            <>
-
-            </>
+            
+image.photos[0].src.original 
         )
     
 }
