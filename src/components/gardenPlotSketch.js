@@ -30,7 +30,7 @@ let objCount = 0
 const objSizeX = 50
 const objSizeY = 50
 
-// **** ACTUAL PLOT DETAILS ****
+// **** ACTUAL PLOT DETAILS ****z
 const actualPlotLength = 4 //ft
 const actualPlotWidth = 8 //ft
 const gridSpacingRule = 1 //ft how far apart plants should be
