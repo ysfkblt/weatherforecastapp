@@ -620,14 +620,19 @@ div.journal {
 .allPlantsArea {
 	display: flex;
 	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	flex-direction: row;
 	
 }
 
 .singlePlant {
 	display: flex;
 	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 	border: 1px solid rgb(0, 0, 0);
-	width: 23vw;
+	width: 30vw;
 	height: 45vh;
 	margin: 1vw;
 	align-content: center;
@@ -646,6 +651,7 @@ div.journal {
 .singlePlant img {
 	display: flex;
 	align-items: center;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 .filterArea{
 	width: 90%;
@@ -653,6 +659,7 @@ div.journal {
 	flex-direction: column;
 	align-items: stretch;
 	border: 1px solid grey;
+	padding: 1em;
 }
 
 .filteringCon {
@@ -666,6 +673,14 @@ div.journal {
 	width: 100%;
 	gap: 1em;
 	display: flex;
+}
+
+.checkbox-container:hover {
+	background-color: #9b51e00f;
+}
+
+input[type="checkbox"] {
+	margin: 1em;
 }
 
 /* FOOTER NAV */
