@@ -605,6 +605,14 @@ div.journal {
 
 /* ALL PLANTS  */
 
+.all-plants-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1em;
+}
+
 .allPlantsImg {
 	height: 14vh;
 }
@@ -612,16 +620,23 @@ div.journal {
 .allPlantsArea {
 	display: flex;
 	flex-wrap: wrap;
+	
 }
 
 .singlePlant {
 	display: flex;
 	flex-direction: column;
-	border: 1px solid white;
+	border: 1px solid rgb(0, 0, 0);
 	width: 23vw;
 	height: 45vh;
 	margin: 1vw;
 	align-content: center;
+}
+
+.filterColumn {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .singlePlantName {
@@ -633,14 +648,24 @@ div.journal {
 	align-items: center;
 }
 .filterArea{
-	width: 100vw;
-	display: block;
+	width: 90%;
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	border: 1px solid grey;
 }
 
 .filteringCon {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-evenly;
+}
+
+.checkbox-container {
+	border: 1px solid grey;
+	width: 100%;
+	gap: 1em;
+	display: flex;
 }
 
 /* FOOTER NAV */
