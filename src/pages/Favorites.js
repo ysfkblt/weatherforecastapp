@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom"
 import { db } from "../database/firebase-config"
 import { forceWebSockets } from "firebase/database"
 import DeleteFavorite from "../components/DeleteFavorite"
+import AddFavorite from "../components/AddFavorite"
 
 const Favorites = (props) => {
     const [plants, setPlants] = useState([])
@@ -14,21 +15,28 @@ const Favorites = (props) => {
     const {userId} = props
     const userFavoritesCollection = collection(db, "worms", userId, "favorites")
 
+    
+    async function getFavorites() {
+        const data = await getDocs(userFavoritesCollection)
+        await setUserFavorites(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+    }
+
     useEffect(() => {
         async function getPlants() {
             const data = await getDocs(plantCollection)
             await setPlants(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
         }
         getPlants()
-        async function getFavorites() {
-            const data = await getDocs(userFavoritesCollection)
-            await setUserFavorites(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
-        }
         getFavorites()
 
     }, [])
 
     let favoritePlantData = []
+    let userFavorites2 = []
+    userFavorites.forEach(plant => userFavorites2.push(plant.plantId))
+    console.log(userFavorites2)
+    console.log("this is userfav", userFavorites)
+
     const matchFavorites = () => {
         let userFavorites2 = []
         userFavorites.forEach(plant => userFavorites2.push(plant.plantId))
@@ -61,7 +69,13 @@ const Favorites = (props) => {
                   <img src="https://watchandlearn.scholastic.com/content/dam/classroom-magazines/watchandlearn/videos/animals-and-plants/plants/what-are-plants-/What-Are-Plants.jpg" className="favoritePlant" />
                 </div>
                 <div>
-                    <button onClick={()=>{removeFavorite(curPlant.id)}}>remove</button>
+                {userFavorites2.includes(curPlant.id) ? 
+                      (<div onClick={()=>{removeFavorite(curPlant.id);}}><i className="fa fa-heart" aria-hidden="true"></i></div>
+                      ) : (<div onClick={()=>{
+                        AddFavorite(curPlant.id, userId)
+                        getFavorites()
+                        }}><i className="fa fa-heart-o" aria-hidden="true"></i></div>
+                      )}
                 </div>
               </div>))) :
               (

@@ -18,6 +18,9 @@ const AllPlants = (props) => {
   const plantCollection = collection(db, "plants")
   const { userId } = props
 
+
+  console.log(plants)
+
   const userFavoritesCollection = collection(db, "worms", userId, "favorites")
 
   async function getFavorites() {
@@ -26,14 +29,14 @@ const AllPlants = (props) => {
   }
 
   useEffect(() => {
-    setPlants(flowers2)
-    setPlantsBackUp(flowers2)
-    // async function getPlants() {
-    //   const data = await getDocs(plantCollection)
-    //   await setPlants(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
-    //   await setPlantsBackUp(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
-    // }
-    // getPlants()
+    // setPlants(flowers2)
+    // setPlantsBackUp(flowers2)
+    async function getPlants() {
+      const data = await getDocs(plantCollection)
+      await setPlants(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+      await setPlantsBackUp(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+    }
+    getPlants()
 
     getFavorites()
   }, [])
@@ -198,9 +201,11 @@ const AllPlants = (props) => {
           ? plants.map((plant) => {
             return (
               <div className="singlePlant" key={plant.id}>
+
                 <div className="singlePlantName">Species: {plant.name} </div>
                 <div className="singlePlantlife">Life: {plant.life} </div>
                 <div className="singlePlantTransportTo">Transplant to: {plant.transplantTo} </div>
+
 
                 {plant.type === "grain" ? (
                   <div className="single-plant-container">
