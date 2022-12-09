@@ -1,266 +1,394 @@
-// ============ CONTROL VARIABLES HERE ===========
-// ============ CONTROL VARIABLES HERE ===========
-// ============ CONTROL VARIABLES HERE ===========
+// // ============ CONTROL VARIABLES HERE ===========
+// // ============ CONTROL VARIABLES HERE ===========
+// // ============ CONTROL VARIABLES HERE ===========
 
-// **** PLANT IMAGES ****
-const img_grain_path = "https://picsum.photos/100"
-// const img_grain_path = "../assets/gardenPlotImg/tree.jpg"
-const img_grass_path = "../assets/gardenPlotImg/tree.jpg"
-const img_herb_path = "../assets/gardenPlotImg/tree.jpg"
-const img_house_path = "../assets/gardenPlotImg/tree.jpg"
-const img_orn_path = "../assets/gardenPlotImg/tree.jpg"
-const img_shrub_path = "../assets/gardenPlotImg/tree.jpg"
-const img_tree_path = "../assets/gardenPlotImg/tree.jpg"
-const img_vege_path = "../assets/gardenPlotImg/tree.jpg"
-const img_vine_path = "../assets/gardenPlotImg/tree.jpg"
+// // **** PLANT IMAGES ****
+// const img_grain_path = "https://picsum.photos/100"
+// // const img_grain_path = "../assets/gardenPlotImg/tree.jpg"
+// const img_grass_path = "../assets/gardenPlotImg/tree.jpg"
+// const img_herb_path = "../assets/gardenPlotImg/tree.jpg"
+// const img_house_path = "../assets/gardenPlotImg/tree.jpg"
+// const img_orn_path = "../assets/gardenPlotImg/tree.jpg"
+// const img_shrub_path = "../assets/gardenPlotImg/tree.jpg"
+// const img_tree_path = "../assets/gardenPlotImg/tree.jpg"
+// const img_vege_path = "../assets/gardenPlotImg/tree.jpg"
+// const img_vine_path = "../assets/gardenPlotImg/tree.jpg"
 
-let img_grain
-let img_grass
-let img_herb
-let img_house
-let img_orn
-let img_shrub
-let img_tree
-let img_vege
-let img_vine
+// let img_grain
+// let img_grass
+// let img_herb
+// let img_house
+// let img_orn
+// let img_shrub
+// let img_tree
+// let img_vege
+// let img_vine
 
-// **** OBJECT ****
-let objArr = []
-let objCount = 0
-const objSizeX = 50
-const objSizeY = 50
+// // **** OBJECT ****
+// let objArr = []
+// let objCount = 0
+// const objSizeX = 50
+// const objSizeY = 50
 
-// **** ACTUAL PLOT DETAILS ****
-const actualPlotLength = 4 //ft
-const actualPlotWidth = 8 //ft
-const gridSpacingRule = 1 //ft how far apart plants should be
+// // **** ACTUAL PLOT DETAILS ****
+// const actualPlotLength = 4 //ft
+// const actualPlotWidth = 8 //ft
+// const gridSpacingRule = 1 //ft how far apart plants should be
 
-const plotDimensionConversionConstant = 80 // 1 ft = 100 px
+// const plotDimensionConversionConstant = 80 // 1 ft = 100 px
 
-// **** PLOT ****
-const plotLength = actualPlotLength * plotDimensionConversionConstant
-const plotWidth = actualPlotWidth * plotDimensionConversionConstant
-const plotSoilColor_R = 150
-const plotSoilColor_G = 90
-const plotSoilColor_B = 0
-const plotOpacity = 100
+// // **** PLOT ****
+// const plotLength = actualPlotLength * plotDimensionConversionConstant
+// const plotWidth = actualPlotWidth * plotDimensionConversionConstant
+// const plotSoilColor_R = 150
+// const plotSoilColor_G = 90
+// const plotSoilColor_B = 0
+// const plotOpacity = 100
 
-// **** GRID ****
-const gridSpacing = gridSpacingRule * plotDimensionConversionConstant
-const plotColumns = plotLength / gridSpacing
-const plotRows = plotWidth / gridSpacing
+// // **** GRID ****
+// const gridSpacing = gridSpacingRule * plotDimensionConversionConstant
+// const plotColumns = plotLength / gridSpacing
+// const plotRows = plotWidth / gridSpacing
 
-// SHAPES
-let shapeSpawnLocationX = 50
-let shapeSpawnLocationY = 50
+// // SHAPES
+// let shapeSpawnLocationX = 50
+// let shapeSpawnLocationY = 50
 
-// UI Button
-let createPlantButtonX = 25
-let createPlantButtonY = plotWidth + 100
-let sel
-let dropDownListX = 250
-let dropDownListY = plotWidth + 100
+// // UI Button
+// let createPlantButtonX = 25
+// let createPlantButtonY = plotWidth + 100
+// let sel
+// let dropDownListX = 250
+// let dropDownListY = plotWidth + 100
 
-// PLANT OPTIONS
-let plantTypeListArr = [
-  "grain",
-  "grass",
-  "herb",
-  "house",
-  "orn",
-  "shrub",
-  "tree",
-  "vege",
-  "vine", //9 types
-]
-let selectedPlantType = plantTypeListArr[0]
-// ============ CONTROL VARIABLES END ===========
-// ============ CONTROL VARIABLES END ===========
+// // PLANT OPTIONS
+// let plantTypeListArr = [
+//   "grain",
+//   "grass",
+//   "herb",
+//   "house",
+//   "orn",
+//   "shrub",
+//   "tree",
+//   "vege",
+//   "vine", //9 types
+// ]
+// let selectedPlantType = plantTypeListArr[0]
+// // ============ CONTROL VARIABLES END ===========
+// // ============ CONTROL VARIABLES END ===========
+
+// function gardenPlotSketch(p) {
+//   p.preload = function () {
+//     // console.log("before", img_grain)
+//     img_grain = p.loadImage(img_grain_path)
+//     // console.log("after", img_grain)
+
+//     // img_grass = p.loadImage(img_grass_path)
+//     //  img_herb = p.loadImage(img_herb_path)
+//     //  img_house = p.loadImage(img_house_path)
+//     //  img_orn = p.loadImage(img_orn_path)
+//     //  img_shrub = p.loadImage(img_shrub_path)
+//     //  img_tree = p.loadImage(img_tree_path)
+//     //  img_vege = p.loadImage(img_vege_path)
+//     //  img_vine = p.loadImage(img_vine_path)
+//   }
+
+//   p.setup = function () {
+//     p.createCanvas(plotLength, plotWidth)
+
+//     // select plant dropdown
+//     sel = p.createSelect()
+//     sel.position(dropDownListX, dropDownListY)
+//     sel.option(plantTypeListArr[0])
+//     sel.option(plantTypeListArr[1])
+//     sel.option(plantTypeListArr[2])
+//     sel.option(plantTypeListArr[3])
+//     sel.option(plantTypeListArr[4])
+//     sel.option(plantTypeListArr[5])
+//     sel.option(plantTypeListArr[6])
+//     sel.option(plantTypeListArr[7])
+//     sel.option(plantTypeListArr[8])
+
+//     sel.selected(plantTypeListArr[0])
+//     sel.changed(mySelectEvent)
+
+//     function mySelectEvent() {
+//       console.log("changed a select event")
+//       selectedPlantType = sel.value()
+//       console.log(selectedPlantType)
+//     }
+
+//     // add plant button
+//     p.button = p.createButton("add plant")
+//     p.button.position(createPlantButtonX, createPlantButtonY)
+//     p.button.mousePressed(p.handleAddPlant)
+//   }
+
+//   p.handleAddPlant = function () {
+//     console.log("clicked add button")
+//     objCount++
+//     let tempAddObj = new Draggable(
+//       shapeSpawnLocationX,
+//       shapeSpawnLocationY,
+//       objSizeX,
+//       objSizeY,
+//       objCount,
+//       selectedPlantType
+//     )
+//     objArr.push(tempAddObj)
+//     console.log(objArr)
+//   }
+
+//   p.draw = function () {
+//     // clear out old frames
+//     p.background(plotSoilColor_R, plotSoilColor_G, plotSoilColor_B)
+//     for (let x = 0; x < p.width; x += p.width / plotColumns) {
+//       for (let y = 0; y < p.height; y += p.height / plotRows) {
+//         p.stroke(0)
+//         p.strokeWeight(1)
+//         p.line(x, 0, x, p.height)
+//         p.line(0, y, p.width, y)
+//       }
+//     }
+
+//     objArr.forEach((curElem) => {
+//       curElem.over()
+//       curElem.update()
+//       curElem.show()
+//     })
+
+//     console.log("hi")
+//   }
+
+//   p.mousePressed = function () {
+//     objArr.forEach((curElem) => {
+//       curElem.pressed()
+//     })
+//   }
+
+//   p.mouseReleased = function () {
+//     objArr.forEach((curElem) => {
+//       curElem.released()
+//     })
+//   }
+
+//   class Draggable {
+//     constructor(x, y, w, h, id) {
+//       this.dragging = false // Is the object being dragged?
+//       this.rollover = false // Is the mouse over the ellipse?
+//       this.x = x
+//       this.y = y
+//       this.w = w
+//       this.h = h
+//       this.offsetX = 0
+//       this.offsetY = 0
+//       this.id = id
+//       this.plantType = selectedPlantType
+//     }
+
+//     over() {
+//       // Is mouse over object
+//       if (
+//         p.mouseX > this.x &&
+//         p.mouseX < this.x + this.w &&
+//         p.mouseY > this.y &&
+//         p.mouseY < this.y + this.h
+//       ) {
+//         this.rollover = true
+//       } else {
+//         this.rollover = false
+//       }
+//     }
+
+//     update() {
+//       // Adjust location if being dragged
+//       if (this.dragging) {
+//         this.x = p.mouseX + this.offsetX
+//         this.y = p.mouseY + this.offsetY
+//       }
+//     }
+
+//     show() {
+//       p.stroke(50)
+//       if (this.plantType === "grain") {
+//         // this.mask(img_grain)
+//         // console.log(this)
+//         //   p.image(img_grain, 0, 0)
+//         // img_grain.mask(this)
+//         // p.image(img_grain, 0, 0)
+//         // p.noFill()
+//         // p.text("fowefrsdwedqasfewo", 0, 0)
+//         p.fill(150, 0, 0)
+//       } else if (this.plantType === "grass") {
+//         p.fill(150, 150, 0)
+//       } else if (this.plantType === "herb") {
+//         p.fill(0, 150, 150)
+//       } else if (this.plantType === "house") {
+//         p.fill(50, 150, 50)
+//       } else if (this.plantType === "orn") {
+//         p.fill(150, 10, 200)
+//       } else if (this.plantType === "shrub") {
+//         p.fill(70, 10, 100)
+//       } else if (this.plantType === "tree") {
+//         p.fill(70, 90, 200)
+//       } else if (this.plantType === "vege") {
+//         p.fill(35, 1, 255)
+//       } else if (this.plantType === "vine") {
+//         p.fill(90, 100, 30)
+//       }
+
+//       p.rect(this.x, this.y, this.w, this.h)
+//       //   p.circle(this.x, this.y, this.w)
+//       //   p.image(img_grain, 0, 0)
+//     }
+
+//     pressed() {
+//       // Did I click on the rectangle?
+//       if (
+//         p.mouseX > this.x &&
+//         p.mouseX < this.x + this.w &&
+//         p.mouseY > this.y &&
+//         p.mouseY < this.y + this.h
+//       ) {
+//         this.dragging = true
+//         // If so, keep track of relative location of click to corner of rectangle
+//         this.offsetX = this.x - p.mouseX
+//         this.offsetY = this.y - p.mouseY
+//       }
+//     }
+
+//     released() {
+//       // Quit dragging
+//       this.dragging = false
+//     }
+//   }
+// }
+
+// export default gardenPlotSketch
+
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 function gardenPlotSketch(p) {
-  p.preload = function () {
-    // console.log("before", img_grain)
-    img_grain = p.loadImage(img_grain_path)
-    // console.log("after", img_grain)
+  class RectangleImage {
+    constructor(pos, img) {
+      this.pos = pos // vector with x and y
+      this.img = img
+      this.width = img.width
+      this.height = img.height
+    }
 
-    // img_grass = p.loadImage(img_grass_path)
-    //  img_herb = p.loadImage(img_herb_path)
-    //  img_house = p.loadImage(img_house_path)
-    //  img_orn = p.loadImage(img_orn_path)
-    //  img_shrub = p.loadImage(img_shrub_path)
-    //  img_tree = p.loadImage(img_tree_path)
-    //  img_vege = p.loadImage(img_vege_path)
-    //  img_vine = p.loadImage(img_vine_path)
+    // OKAY
+    draw() {
+      p.image(this.img, this.pos.x, this.pos.y)
+    }
+
+    // OKAY
+    hits(hitpos) {
+      if (
+        hitpos.x > this.pos.x &&
+        hitpos.x < this.pos.x + this.width &&
+        hitpos.y > this.pos.y &&
+        hitpos.y < this.pos.y + this.height
+      ) {
+        return true
+      }
+      return false
+    }
+  }
+
+  let rects
+  let dragRec
+  let isDragging
+  let clickOffset
+  let imgCb
+
+  p.preload = function () {
+    imgCb = p.loadImage(
+      "https://s3-us-west-2.amazonaws.com/s.cdpn.io/254249/Exit_planet_dust_album_cover.jpg"
+    )
   }
 
   p.setup = function () {
-    p.createCanvas(plotLength, plotWidth)
+    rects = []
+    placeImages()
 
-    // select plant dropdown
-    sel = p.createSelect()
-    sel.position(dropDownListX, dropDownListY)
-    sel.option(plantTypeListArr[0])
-    sel.option(plantTypeListArr[1])
-    sel.option(plantTypeListArr[2])
-    sel.option(plantTypeListArr[3])
-    sel.option(plantTypeListArr[4])
-    sel.option(plantTypeListArr[5])
-    sel.option(plantTypeListArr[6])
-    sel.option(plantTypeListArr[7])
-    sel.option(plantTypeListArr[8])
+    console.log(rects)
 
-    sel.selected(plantTypeListArr[0])
-    sel.changed(mySelectEvent)
-
-    function mySelectEvent() {
-      console.log("changed a select event")
-      selectedPlantType = sel.value()
-      console.log(selectedPlantType)
-    }
-
-    // add plant button
-    p.button = p.createButton("add plant")
-    p.button.position(createPlantButtonX, createPlantButtonY)
-    p.button.mousePressed(p.handleAddPlant)
+    isDragging = false
+    p.createCanvas(p.windowWidth, p.windowHeight)
   }
 
-  p.handleAddPlant = function () {
-    console.log("clicked add button")
-    objCount++
-    let tempAddObj = new Draggable(
-      shapeSpawnLocationX,
-      shapeSpawnLocationY,
-      objSizeX,
-      objSizeY,
-      objCount,
-      selectedPlantType
+  function placeImages() {
+    var numImage = 5
+    for (var i = 0; i < numImage; i++) {
+      let pos = randomPos()
+      rects.push(new RectangleImage(pos, imgCb))
+    }
+  }
+
+  // OKAY
+  function randomPos() {
+    return p.createVector(
+      p.random(0, p.windowWidth),
+      p.random(0, p.windowHeight)
     )
-    objArr.push(tempAddObj)
-    console.log(objArr)
   }
 
+  function manualVectorSub(v1, v2) {
+    let v3_x = v1.x - v2.x
+    let v3_y = v1.y - v2.y
+    let v3 = p.createVector(v3_x, v3_y)
+    return v3
+  }
+
+  // OKAY
   p.draw = function () {
-    // clear out old frames
-    p.background(plotSoilColor_R, plotSoilColor_G, plotSoilColor_B)
-    for (let x = 0; x < p.width; x += p.width / plotColumns) {
-      for (let y = 0; y < p.height; y += p.height / plotRows) {
-        p.stroke(0)
-        p.strokeWeight(1)
-        p.line(x, 0, x, p.height)
-        p.line(0, y, p.width, y)
-      }
-    }
-
-    objArr.forEach((curElem) => {
-      curElem.over()
-      curElem.update()
-      curElem.show()
-    })
-
-    console.log("hi")
+    p.clear()
+    rects.forEach((r) => r.draw())
   }
 
   p.mousePressed = function () {
-    objArr.forEach((curElem) => {
-      curElem.pressed()
+    let m = p.createVector(p.mouseX, p.mouseY)
+    let index
+    console.log("in mouse pressed =====================")
+    console.log("rects", rects)
+
+    rects.forEach((r, i) => {
+      if (r.hits(m)) {
+        clickOffset = manualVectorSub(r.pos, m)
+        isDragging = true
+        dragRec = r
+        index = i
+      }
     })
+    if (isDragging) {
+      putOnTop(index)
+    }
+  }
+
+  function putOnTop(index) {
+    rects.splice(index, 1)
+    rects.push(dragRec)
+  }
+
+  p.mouseDragged = function () {
+    if (isDragging) {
+      let m = p.createVector(p.mouseX, p.mouseY)
+      dragRec.pos.set(m).add(clickOffset)
+    }
   }
 
   p.mouseReleased = function () {
-    objArr.forEach((curElem) => {
-      curElem.released()
-    })
+    isDragging = false
   }
 
-  class Draggable {
-    constructor(x, y, w, h, id) {
-      this.dragging = false // Is the object being dragged?
-      this.rollover = false // Is the mouse over the ellipse?
-      this.x = x
-      this.y = y
-      this.w = w
-      this.h = h
-      this.offsetX = 0
-      this.offsetY = 0
-      this.id = id
-      this.plantType = selectedPlantType
-    }
-
-    over() {
-      // Is mouse over object
-      if (
-        p.mouseX > this.x &&
-        p.mouseX < this.x + this.w &&
-        p.mouseY > this.y &&
-        p.mouseY < this.y + this.h
-      ) {
-        this.rollover = true
-      } else {
-        this.rollover = false
-      }
-    }
-
-    update() {
-      // Adjust location if being dragged
-      if (this.dragging) {
-        this.x = p.mouseX + this.offsetX
-        this.y = p.mouseY + this.offsetY
-      }
-    }
-
-    show() {
-      p.stroke(50)
-      if (this.plantType === "grain") {
-        // this.mask(img_grain)
-        // console.log(this)
-        //   p.image(img_grain, 0, 0)
-        // img_grain.mask(this)
-        // p.image(img_grain, 0, 0)
-        // p.noFill()
-        // p.text("fowefrsdwedqasfewo", 0, 0)
-        p.fill(150, 0, 0)
-      } else if (this.plantType === "grass") {
-        p.fill(150, 150, 0)
-      } else if (this.plantType === "herb") {
-        p.fill(0, 150, 150)
-      } else if (this.plantType === "house") {
-        p.fill(50, 150, 50)
-      } else if (this.plantType === "orn") {
-        p.fill(150, 10, 200)
-      } else if (this.plantType === "shrub") {
-        p.fill(70, 10, 100)
-      } else if (this.plantType === "tree") {
-        p.fill(70, 90, 200)
-      } else if (this.plantType === "vege") {
-        p.fill(35, 1, 255)
-      } else if (this.plantType === "vine") {
-        p.fill(90, 100, 30)
-      }
-
-      p.rect(this.x, this.y, this.w, this.h)
-      //   p.circle(this.x, this.y, this.w)
-      //   p.image(img_grain, 0, 0)
-    }
-
-    pressed() {
-      // Did I click on the rectangle?
-      if (
-        p.mouseX > this.x &&
-        p.mouseX < this.x + this.w &&
-        p.mouseY > this.y &&
-        p.mouseY < this.y + this.h
-      ) {
-        this.dragging = true
-        // If so, keep track of relative location of click to corner of rectangle
-        this.offsetX = this.x - p.mouseX
-        this.offsetY = this.y - p.mouseY
-      }
-    }
-
-    released() {
-      // Quit dragging
-      this.dragging = false
-    }
+  p.windowResized = function () {
+    p.resizeCanvas(p.windowWidth, p.windowHeight)
   }
 }
 
