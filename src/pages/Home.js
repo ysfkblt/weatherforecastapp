@@ -244,19 +244,19 @@ const Home = (props) => {
 
       {props.userId && zip.length === 5 ? (
         <>
-          {/* <PlantSuggestions userId={props.userId} zone={zone} /> */}
+          <PlantSuggestions userId={props.userId} zone={zone} />
           <div>NEW ZIP {zone.zone}</div>
           {console.log("SEARCHING NEW ZIP", zone)}
         </>
       ) : props.userId ? (
         <>
         <div>USER'S ZONE {userZone}</div>
-          {/* <PlantSuggestions userId={props.userId} zone={userZone} /> */}
+          <PlantSuggestions userId={props.userId} zone={userZone} />
           {console.log("LOOKING FOR USER SAVED ZIP", userZone)}
         </>
       ) : (
         <>
-          {/* <PlantSuggestions userId={"NA"} /> */}
+          <PlantSuggestions userId={"NA"} />
           <div>DEFAULT DATA</div>
           {console.log("GETTING DEFAULT DATA?", search)}
         </>
