@@ -34,16 +34,16 @@ let centerPetalColor = [50, 100, 75]
 
 // **** ACTUAL PLOT DETAILS ****z
 const actualPlotLength = 4 //ft
-const actualPlotWidth = 8 //ft
+const actualPlotWidth = 6 //ft
 const gridSpacingRule = 1 //ft how far apart plants should be
 
-const plotDimensionConversionConstant = 80 // 1 ft = 100 px
+const plotDimensionConversionConstant = 85 // 1 ft = 100 px
 
 // **** PLOT ****
 const plotLength = actualPlotLength * plotDimensionConversionConstant
 const plotWidth = actualPlotWidth * plotDimensionConversionConstant
-const plotSoilColor_R = 150
-const plotSoilColor_G = 80
+const plotSoilColor_R = 170
+const plotSoilColor_G = 120
 const plotSoilColor_B = 0
 const plotOpacity = 90
 
@@ -55,18 +55,7 @@ const plotRows = plotWidth / gridSpacing
 // SHAPES
 let shapeSpawnLocationX = 50
 let shapeSpawnLocationY = 50
-let textSizeForPlant = 12
-
-// UI Button
-let createPlantButtonX = plotLength - 300
-let createPlantButtonY = plotWidth + 90
-let sel
-let dropDownListX = plotLength - 310
-let dropDownListY = plotWidth + 50
-let plantInputTextValue = ""
-let plantInputBox
-let inputPositionX = dropDownListX + 65
-let inputPositionY = plotWidth + 35
+let textSizeForPlant = 14
 
 // PLANT OPTIONS
 let plantTypeListArr = [
@@ -87,6 +76,19 @@ let selectedPlantType = plantTypeListArr[0]
 // ============ CONTROL VARIABLES END ===========
 
 function gardenPlotSketch(p) {
+  // UI Button
+  let createPlantButtonX = plotLength - 275
+  let createPlantButtonY = plotWidth + 140
+  // let createPlantButtonX = p.windowWidth / 2
+  // let createPlantButtonY = (p.windowHeight * 3) / 4
+  let sel
+  let dropDownListX = plotLength - 300
+  let dropDownListY = plotWidth + 100
+  let plantInputTextValue = ""
+  let plantInputBox
+  let inputPositionX = dropDownListX + 70
+  let inputPositionY = plotWidth + 85
+
   p.preload = function () {
     // console.log("before", img_grain)
     // img_grain = p.loadImage(img_grain_path)
@@ -154,9 +156,15 @@ function gardenPlotSketch(p) {
   // plant type input \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
   plantInputBox = p.createInput()
   plantInputBox.position(inputPositionX, inputPositionY)
-  plantInputBox.attribute("placeholder", "enter your plant name")
+  plantInputBox.size(200, 30)
+  plantInputBox.attribute("placeholder", "enter plant name")
 
   p.draw = function () {
+    // p.button = p.createButton("add plant")
+    // p.button.size(250, 75)
+    // p.button.position(createPlantButtonX, createPlantButtonY)
+    // p.button.mousePressed(p.handleAddPlant)
+
     // clear out old frames
     p.background(plotSoilColor_R, plotSoilColor_G, plotSoilColor_B)
     for (let x = 0; x < p.width; x += p.width / plotColumns) {
