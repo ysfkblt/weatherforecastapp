@@ -29,6 +29,8 @@ let objArr = []
 let objCount = 0
 const objSizeX = 50
 const objSizeY = 50
+let petalColor = [150, 10, 50]
+let centerPetalColor = [50, 100, 75]
 
 // **** ACTUAL PLOT DETAILS ****z
 const actualPlotLength = 4 //ft
@@ -186,6 +188,34 @@ function gardenPlotSketch(p) {
       curElem.released()
     })
   }
+  p.drawFlower = function (
+    flowerX,
+    flowerY,
+    petalSize,
+    petalColor,
+    centerPetalColor
+  ) {
+    let petalDistance = petalSize / 2
+
+    // petal color
+    p.fill(petalColor[0], petalColor[1], petalColor[2])
+
+    // upper-left petal
+    p.circle(flowerX - petalDistance, flowerY - petalDistance, petalSize)
+
+    // upper-right petal
+    p.circle(flowerX + petalDistance, flowerY - petalDistance, petalSize)
+
+    // lower-left petal
+    p.circle(flowerX - petalDistance, flowerY + petalDistance, petalSize)
+
+    // lower-right petal
+    p.circle(flowerX + petalDistance, flowerY + petalDistance, petalSize)
+
+    // center petal
+    p.fill(centerPetalColor[0], centerPetalColor[1], centerPetalColor[2])
+    p.circle(flowerX, flowerY, petalSize)
+  }
 
   class Draggable {
     constructor(x, y, w, h, id, selectedPlantType, userPlantInput) {
@@ -236,43 +266,64 @@ function gardenPlotSketch(p) {
         // console.log(this)
 
         p.fill(235, 189, 104)
+        petalColor = [235, 189, 104]
+        centerPetalColor = [235, 189, 104]
         p.textSize(textSizeForPlant)
-        p.text(`grain: ${this.userPlantInput}`, this.x, this.y + 65)
+        p.text(`grain: ${this.userPlantInput}`, this.x - 25, this.y + 45)
       } else if (this.plantType === "grass") {
         p.fill(0, 82, 33)
+        petalColor = [0, 82, 33]
+        centerPetalColor = [0, 82, 33]
         p.textSize(textSizeForPlant)
-        p.text(`grass: ${this.userPlantInput}`, this.x, this.y + 65)
+        p.text(`grass: ${this.userPlantInput}`, this.x - 25, this.y + 45)
       } else if (this.plantType === "herb") {
         p.fill(103, 133, 74)
+        petalColor = [103, 133, 74]
+        centerPetalColor = [103, 133, 74]
         p.textSize(textSizeForPlant)
-        p.text(`herb: ${this.userPlantInput}`, this.x, this.y + 65)
+        p.text(`herb: ${this.userPlantInput}`, this.x - 25, this.y + 45)
       } else if (this.plantType === "house") {
         p.fill(104, 70, 129)
+        petalColor = [104, 70, 129]
+        centerPetalColor = [104, 70, 129]
         p.textSize(textSizeForPlant)
-        p.text(`house: ${this.userPlantInput}`, this.x, this.y + 65)
+        p.text(`house: ${this.userPlantInput}`, this.x - 25, this.y + 45)
       } else if (this.plantType === "orn") {
         p.fill(161, 49, 51)
+        petalColor = [161, 49, 51]
+        centerPetalColor = [161, 49, 51]
         p.textSize(textSizeForPlant)
-        p.text(`orn: ${this.userPlantInput}`, this.x, this.y + 65)
+        p.text(`orn: ${this.userPlantInput}`, this.x - 25, this.y + 45)
       } else if (this.plantType === "shrub") {
         p.fill(213, 184, 190)
+        petalColor = [213, 184, 190]
+        centerPetalColor = [213, 184, 190]
         p.textSize(textSizeForPlant)
-        p.text(`shrub: ${this.userPlantInput}`, this.x, this.y + 65)
+        p.text(`shrub: ${this.userPlantInput}`, this.x - 25, this.y + 45)
       } else if (this.plantType === "tree") {
         p.fill(165, 100, 77)
+        petalColor = [165, 100, 77]
+        centerPetalColor = [165, 100, 77]
         p.textSize(textSizeForPlant)
-        p.text(`tree: ${this.userPlantInput}`, this.x, this.y + 65)
+        p.text(`tree: ${this.userPlantInput}`, this.x - 25, this.y + 45)
       } else if (this.plantType === "vege") {
         p.fill(231, 24, 55)
+        petalColor = [231, 24, 55]
+        centerPetalColor = [231, 24, 55]
         p.textSize(textSizeForPlant)
-        p.text(`vege: ${this.userPlantInput}`, this.x, this.y + 65)
+        p.text(`vege: ${this.userPlantInput}`, this.x - 25, this.y + 45)
       } else if (this.plantType === "vine") {
         p.fill(138, 205, 222)
+        petalColor = [138, 205, 22]
+        centerPetalColor = [138, 205, 22]
         p.textSize(textSizeForPlant)
-        p.text(`vine: ${this.userPlantInput}`, this.x, this.y + 65)
+        p.text(`vine: ${this.userPlantInput}`, this.x - 25, this.y + 45)
       }
 
-      p.rect(this.x, this.y, this.w, this.h)
+      // console.log(p.drawFlower)
+
+      // p.rect(this.x, this.y, this.w, this.h)
+      p.drawFlower(this.x, this.y, 25, petalColor, centerPetalColor)
       //   p.circle(this.x, this.y, this.w)
       //   p.image(img_grain, 0, 0)
     }
