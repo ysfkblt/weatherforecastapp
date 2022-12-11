@@ -80,7 +80,10 @@ const Journal = (props) => {
     const editInputArea = document.querySelectorAll(".editArea")
     const currentEditInputArea = editInputArea[index]
     currentEditInputArea.classList.toggle("show")
-
+    // const editInputArea1 = document.querySelectorAll(".editButton")
+    // const currentEditInputArea1 = editInputArea1[index]
+    // currentEditInputArea1.classList.toggle("show")
+    
   }
 
   async function submitEdit(entry, index) {
@@ -138,7 +141,7 @@ const Journal = (props) => {
   return (
 
     <div className="journal-container">
-      <input className="journal-search" value={search} onChange={(event) => { setSearch(event.target.value); searchPage(event.target.value) }} placeholder="Search..." size={50} />
+      <h1>Plant Journal</h1>
       {/* <button onClick={(event)=> searchPage(search)}>Search</button> */}
       <div className="journal-form">
         <h1 className="journal-form-heading" onClick={(evt)=>addnotes()}> Add new entry</h1>
@@ -149,17 +152,23 @@ const Journal = (props) => {
             <input className="journal-form-file-input button" type="file" onChange={(event) => { setImageToUpload(event.target.files[0]) }} />
           </div>
           <div className="journal-notes-container">
+          <div>
+
             <label className="journal-notes-label">Notes:</label>
             <textarea className="journal-notes-input" maxLength={1000} autoFocus={true} value={newNotes} onChange={(event) => { setNewNotes(event.target.value) }} placeholder="Add notes here"></textarea>
-          
+            </div>
+
+            <div>
           <button className="journal-notes-image-upload-button" onClick={uploadEntry}> Upload Entry
           </button>
+            </div>
         </div>
           </div>
         </div>
       </div>
 
       <div className="journal-previous-entries-container">
+      <input className="journal-search" value={search} onChange={(event) => { setSearch(event.target.value); searchPage(event.target.value) }} placeholder="Search..." size={50} />
         <p className="journal-previous-entries-heading"> Previous entries: </p>
         <div>
           {worms
@@ -167,18 +176,20 @@ const Journal = (props) => {
             worms.map((entryData, index) => {
               return (
                 <div className="journal-previous-entries" key={index}>
+                  <h2 className="journal-previous-entries-date"> {entryData.date} </h2>
                   <img src={entryData.image} className="journal-previous-entries-image" />
                   
-                  <h2 className="journal-previous-entries-date"> {entryData.date} </h2>
                   <div className="journal-previous-entries-notes">
                     {entryData.notes} 
                   </div>
-                  <button onClick={(event) => editNotes(entryData, index)} >Edit</button>
+                  <div>
+                  <button onClick={(event) => editNotes(entryData, index)} className="editButton">Edit</button>
                   <span className="editArea">
-                    <input className="edit" value={updateNotes} onChange={(event) => { setUpdateNotes(event.target.value) }} placeholder="Update notes here" size={50} style={{ height: "7vh" }} />
+                    <input className="journal-notes-edit" value={updateNotes} onChange={(event) => { setUpdateNotes(event.target.value) }} placeholder="Update notes here"  />
                     <button onClick={(event) => submitEdit(entryData, index)}>Submit</button>
                   </span>
                   <button onClick={(event) => deleteNotes(entryData)}>Delete</button>
+                    </div>
                 </div>)
             }
             ) : "No entries"
