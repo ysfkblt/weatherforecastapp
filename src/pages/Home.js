@@ -10,6 +10,7 @@ import { auth, db } from "../database/firebase-config"
 import { Link } from "react-router-dom"
 import Search from "../components/Search"
 import { collection, doc, getDocs } from "firebase/firestore"
+import { connectStorageEmulator } from "firebase/storage"
 
 
 const Home = (props) => {
@@ -244,19 +245,22 @@ const Home = (props) => {
 
       {props.userId && zip.length === 5 ? (
         <>
-          <PlantSuggestions userId={props.userId} zone={zone} />
+        {console.log("USING SEARCHED ZONE")}
+          <PlantSuggestions userId={props.userId} zone={zone.zone} />
           <div>NEW ZIP {zone.zone}</div>
           {console.log("SEARCHING NEW ZIP", zone)}
         </>
       ) : props.userId ? (
         <>
         <div>USER'S ZONE {userZone}</div>
+        {console.log("USING SAVED ZONE")}
           <PlantSuggestions userId={props.userId} zone={userZone} />
           {console.log("LOOKING FOR USER SAVED ZIP", userZone)}
         </>
       ) : (
         <>
-          <PlantSuggestions userId={"NA"} />
+        {console.log("USING DEFAULT ZONE 8")}
+          <PlantSuggestions userId={"NA"} zone={8}/>
           <div>DEFAULT DATA</div>
           {console.log("GETTING DEFAULT DATA?", search)}
         </>

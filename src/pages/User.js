@@ -105,6 +105,7 @@ async function updateZip(){
 
             await updateDoc(data, { zipcode: newZip, coordinates:zone.coordinates })
         } else {
+            console.log(zone.zone)
             await updateDoc(data, { zipcode: newZip, zone:zone.zone, coordinates:zone.coordinates })
 
         }

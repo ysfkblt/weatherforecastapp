@@ -12,11 +12,12 @@ import { db } from "../database/firebase-config"
 
 const PlantSuggestions = (props) => {
   // const userZoneNumber = 8 // ! PLACEHOLDER
+  console.log("THIS IS THE CURRENT ZONE", props.zone)
   const [userZoneNumber, setUserZoneNumber] = useState(8)
   const [plantsDbData, setPlantsDbData] = useState([])
   const [housePlantsDbData, setHousePlantsDbData] = useState([])
 
-    const { userId } = props
+    const { userId, zone} = props
   
 
   const wormCollection = collection(db, "worms", userId, "personal")
@@ -63,7 +64,17 @@ const PlantSuggestions = (props) => {
     }
     plantData()
     housePlantData()
-  }, [])
+    // if(props.zone){
+
+      // setUserZoneNumber(zone)
+    // }
+    }, [])
+
+  //   useEffect(()=>{
+  // if(zone){
+  //     setUserZoneNumber(zone)
+  //   }
+  //   },[zone])
 
   // initializezzz
   let firstFrostDate = null
@@ -372,6 +383,7 @@ const PlantSuggestions = (props) => {
   return (
 
     <div className="plant-suggestions-container">
+      <div>{userZoneNumber}</div>
       <h2 className="plant-suggestions-header">TODAY'S PLANT SUGGESTIONS</h2>
       {suggestedPlantsData.length > 0 ? (
         suggestedPlantsData.map((curPlant) => (
