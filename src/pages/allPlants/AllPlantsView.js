@@ -186,12 +186,7 @@ const AllPlants = (props) => {
     currentEditInputArea3.classList.toggle("show")
     currentEditInputArea4.classList.toggle("show")
   }
-  function showFilter(className) {
-    console.log("WORKING")
-    const editInputArea = document.querySelectorAll(`.${className}`)
-    const currentEditInputArea1 = editInputArea[0]
-    currentEditInputArea1.classList.toggle("show")
-  }
+ 
 
   const plantTypes = ["grain", "grass", "herb", "house", "orn", "shrub", "tree", "vege", "vine"]
   const plantLife = ["a", "b", "p", "other"]
@@ -205,7 +200,7 @@ const AllPlants = (props) => {
           <div className="hide">
 
             <div className="filtering filterPlantType">
-              <h4 className="filteringTitle" onClick={(evt) => showFilter("filterType")}>Plant Type</h4>
+              <h4 className="filteringTitle" >Plant Type</h4>
               <div className="filterColumn ">
                 <span className="filterType">
 
@@ -218,7 +213,7 @@ const AllPlants = (props) => {
           <div className="hide">
 
             <div className="filtering filterPlantLife">
-              <h4 className="filteringTitle" onClick={(evt) => showFilter("filterLife")}>Plant Life</h4>
+              <h4 className="filteringTitle" >Plant Life</h4>
               <div className="filterColumn ">
                 <span className="filterLife">
                   {plantLife.map((life) => <Checkbox type={life} handleChange={checkedBoxLife} />)}
@@ -230,7 +225,7 @@ const AllPlants = (props) => {
           <div className="hide">
 
             <div className="filtering filterPlantLight">
-              <h4 className="filteringTitle" onClick={(evt) => showFilter("filterLight")}>Transplant To</h4>
+              <h4 className="filteringTitle">Transplant To</h4>
               <div className="filterColumn ">
                 <span className="filterLight">
 
