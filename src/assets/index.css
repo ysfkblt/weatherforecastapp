@@ -481,6 +481,9 @@ input.journal-form-file-input {
 }
 
 
+.hide, .filterType, .filterLife, .filterLight {
+	display: none;
+}
 
 div.journal {
 	margin: 2em;
@@ -667,8 +670,9 @@ div.journal {
 }
 
 .filteringCon {
-	display: flex;
-	flex-direction: row;
+	
+	display: flex; 
+	 flex-direction: row;
 	justify-content: space-evenly;
 }
 
@@ -689,9 +693,8 @@ input[type="checkbox"] {
 	margin: 1em;
 }
 
-.filteringCon {
-	display: none;
-}
+
+
 /* FOOTER NAV */
 
 .footer-container {
@@ -830,11 +833,7 @@ input[type="checkbox"] {
 		border: 1px solid grey;
 		padding: 1em;
 	}
-	.filteringCon {
-		display: flex;
-		flex-direction: column;
-		justify-content: space-evenly;
-	}
+	
 
 	.checkbox-container {
 		border: 1px solid grey;
