@@ -4,6 +4,7 @@
 import { collection, getDocs } from "firebase/firestore"
 import { useEffect, useState } from "react"
 import { db } from "../database/firebase-config"
+import { Link } from "react-router-dom"
 
 // ! TODO, integrate getting actual user zone number
 // ! take out dummy plant data, and connect to real firestore database
@@ -397,6 +398,7 @@ const PlantSuggestions = (props) => {
   return (
     <div className="plant-suggestions-container">
       <h2 className="plant-suggestions-header">TODAY'S PLANT SUGGESTIONS</h2>
+      <Link to="/allplants">View All Plants</Link>
       {suggestedPlantsData.length > 0 ? (
         suggestedPlantsData.map((curPlant) => (
           <div
@@ -418,6 +420,7 @@ const PlantSuggestions = (props) => {
             <h3>
               If you are wanting to plant today, we suggest indoor plants:
             </h3>
+            {/* <Link to="/allplants">View All Plants</Link> */}
             <div>
               {suggestedHousePlantsData.map((curPlant) => (
                 <div
