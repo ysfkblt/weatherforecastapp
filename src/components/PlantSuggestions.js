@@ -5,7 +5,6 @@ import { collection, getDocs } from "firebase/firestore"
 import { useEffect, useState } from "react"
 import { db } from "../database/firebase-config"
 
-
 // ! TODO, integrate getting actual user zone number
 // ! take out dummy plant data, and connect to real firestore database
 // ! style JSX return
@@ -16,8 +15,7 @@ const PlantSuggestions = (props) => {
   const [plantsDbData, setPlantsDbData] = useState([])
   const [housePlantsDbData, setHousePlantsDbData] = useState([])
 
-    const { userId } = props
-  
+  const { userId } = props
 
   const wormCollection = collection(db, "worms", userId, "personal")
 
@@ -30,8 +28,7 @@ const PlantSuggestions = (props) => {
         return plantsDbData
       })
 
-      .catch(err => {
-
+      .catch((err) => {
         console.log(err.message)
       })
   }
@@ -45,8 +42,7 @@ const PlantSuggestions = (props) => {
         return housePlantsDbData
       })
 
-      .catch(err => {
-
+      .catch((err) => {
         console.log(err.message)
       })
   }
@@ -281,10 +277,7 @@ const PlantSuggestions = (props) => {
     }
     // This is during non-frost season
     else {
-
-
       // if two months less than... from first frost
-
 
       if (obj.weeksToFirstFrost < 9) {
         if (obj.weeksToFirstFrost < 9 && obj.weeksToFirstFrost > 4) {
@@ -367,17 +360,19 @@ const PlantSuggestions = (props) => {
   // console.log("======= timing object: ", plantTimingObject)
   // console.log("suggested plants", suggestedPlantsData)
   // console.log("suggested house plants", suggestedHousePlantsData)
-  let max=18737
-  let min=89
+  let max = 18737
+  let min = 89
   return (
-
     <div className="plant-suggestions-container">
       <h2 className="plant-suggestions-header">TODAY'S PLANT SUGGESTIONS</h2>
       {suggestedPlantsData.length > 0 ? (
         suggestedPlantsData.map((curPlant) => (
-          <div className="individual-plant-suggestion" key={Math.floor(Math.random() * (max - min + 1)) + min}>
+          <div
+            className="individual-plant-suggestion"
+            key={Math.floor(Math.random() * (max - min + 1)) + min}
+          >
             <div>
-              <h3>Name: {curPlant.name},{" "}</h3>
+              <h3>Name: {curPlant.name}, </h3>
               <h3 className="italics">({curPlant.species})</h3>
             </div>
             <div>
@@ -388,10 +383,15 @@ const PlantSuggestions = (props) => {
       ) : (
         <>
           <div>
-            <h3>If you are wanting to plant today, we suggest indoor plants:</h3>
+            <h3>
+              If you are wanting to plant today, we suggest indoor plants:
+            </h3>
             <div>
               {suggestedHousePlantsData.map((curPlant) => (
-                <div className="plant-suggestion" key={Math.floor(Math.random() * (max - min + 1)) + min}>
+                <div
+                  className="plant-suggestion"
+                  key={Math.floor(Math.random() * (max - min + 1)) + min}
+                >
                   <div>
                     <h3>Name: {curPlant.name}</h3>
                     <h3 className="italics">({curPlant.species})</h3>
@@ -405,7 +405,6 @@ const PlantSuggestions = (props) => {
           </div>
         </>
       )}
-
     </div>
   )
 }
