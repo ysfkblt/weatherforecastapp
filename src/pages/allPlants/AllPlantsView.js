@@ -157,6 +157,23 @@ const AllPlants = (props) => {
       }
   }
 
+  function show(className) {
+    const editInputArea = document.querySelectorAll(`.${className}`)
+    const currentEditInputArea1 = editInputArea[0]
+    const currentEditInputArea2 = editInputArea[1]
+    const currentEditInputArea3 = editInputArea[2]
+    const currentEditInputArea4 = editInputArea[3]
+    currentEditInputArea1.classList.toggle("show")
+    currentEditInputArea2.classList.toggle("show")
+    currentEditInputArea3.classList.toggle("show")
+    currentEditInputArea4.classList.toggle("show")
+  }
+  function showFilter(className) {
+    console.log("WORKING")
+    const editInputArea = document.querySelectorAll(`.${className}`)
+    const currentEditInputArea1 = editInputArea[0]
+    currentEditInputArea1.classList.toggle("show")
+  }
 
   const plantTypes = ["grain", "grass", "herb", "house", "orn", "shrub", "tree", "vege", "vine"]
   const plantLife = ["a", "b", "p", "other"]
@@ -165,33 +182,54 @@ const AllPlants = (props) => {
   return (
     <div className="all-plants-container">
       <div className="filterArea">
-        <h4 className="filterTitle">Filter</h4>
+        <i className="fa fa-filter" aria-hidden="true" onClick={(evt) => show("hide")}></i>
         <div className="filteringCon">
+          <div className="hide">
 
-          <div className="filtering">
-            <h4 className="filteringTitle">Plant Type</h4>
-            <div className="filterColumn">
-              {plantTypes.map((type) => <Checkbox type={type} handleChange={checkedBoxType} />)}
+            <div className="filtering filterPlantType">
+              <h4 className="filteringTitle" onClick={(evt) => showFilter("filterType")}>Plant Type</h4>
+              <div className="filterColumn ">
+                <span className="filterType">
+
+                  {plantTypes.map((type) => <Checkbox type={type} handleChange={checkedBoxType} />)}
+                </span>
+              </div>
+            </div>
+
+          </div>
+          <div className="hide">
+
+            <div className="filtering filterPlantLife">
+              <h4 className="filteringTitle" onClick={(evt) => showFilter("filterLife")}>Plant Life</h4>
+              <div className="filterColumn ">
+                <span className="filterLife">
+                  {plantLife.map((life) => <Checkbox type={life} handleChange={checkedBoxLife} />)}
+                </span>
+              </div>
             </div>
           </div>
 
-          <div className="filtering">
-            <h4 className="filteringTitle">Plant Life</h4>
-            <div className="filterColumn">
-              {plantLife.map((life) => <Checkbox type={life} handleChange={checkedBoxLife} />)}
+          <div className="hide">
+
+            <div className="filtering filterPlantLight">
+              <h4 className="filteringTitle" onClick={(evt) => showFilter("filterLight")}>Transplant To</h4>
+              <div className="filterColumn ">
+                <span className="filterLight">
+
+                  {transplantTo.map((light) => <Checkbox type={light} handleChange={checkedBoxLight} />)}
+                </span>
+              </div>
             </div>
           </div>
-
-          <div className="filtering">
-            <h4 className="filteringTitle">Transplant To</h4>
-            <div className="filterColumn">
-              {transplantTo.map((light) => <Checkbox type={light} handleChange={checkedBoxLight} />)}
-            </div>
-          </div>
-
         </div>
-        <button className="all-plants-button" onClick={(evt) => { onSubmit(evt) }}>submit</button>
-        <button className="all-plants-button" onClick={(evt) => { reset(evt) }}>clear</button>
+        <div className="hide">
+
+          <button className="all-plants-button" onClick={(evt) => { onSubmit(evt) }}>submit</button>
+          <button className="all-plants-button" onClick={(evt) => { reset(evt) }}>clear</button>
+        </div>
+
+
+
       </div>
 
 
@@ -209,17 +247,18 @@ const AllPlants = (props) => {
 
                 {plant.type === "grain" ? (
                   <div className="single-plant-container">
-                    <Link to={`/development/${plant.id}`}> <img
+                    <Link to={`/allplants/${plant.id}`}> <img
+                      // src={plant.img}
                       src="https://www.world-grain.com/ext/resources/2022/09/21/Wheat_photo-cred-Adobe-stock_E-2.jpg?t=1663769040&width=1080"
                       className="allPlantsImg"
                     /></Link>
 
-                    <div>{userFavorites2.includes(plant.id) ? 
-                      (<div onClick={()=>{removeFavorite(plant.id);}}><i className="fa fa-heart" aria-hidden="true"></i></div>
-                      ) : (<div onClick={()=>{
+                    <div>{userFavorites2.includes(plant.id) ?
+                      (<div onClick={() => { removeFavorite(plant.id); }}><i className="fa fa-heart" aria-hidden="true"></i></div>
+                      ) : (<div onClick={() => {
                         AddFavorite(plant.id, userId)
                         getFavorites()
-                        }}><i className="fa fa-heart-o" aria-hidden="true"></i></div>
+                      }}><i className="fa fa-heart-o" aria-hidden="true"></i></div>
                       )}
                     </div>
 
@@ -227,17 +266,18 @@ const AllPlants = (props) => {
                   </div>
                 ) : plant.type === "grass" ? (
                   <div className="single-plant-container">
-                    <Link to={`/development/${plant.id}`}><img
+                    <Link to={`/allplants/${plant.id}`}><img
+                      // src={plant.img}
                       src="https://www.highcountrygardens.com/media/catalog/product/c/o/cortaderia_selloana_pumila_2.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=&width="
                       className="allPlantsImg"
                     /></Link>
 
-                    <div>{userFavorites2.includes(plant.id) ? 
-                      (<div onClick={()=>{removeFavorite(plant.id);}}><i className="fa fa-heart" aria-hidden="true"></i></div>
-                      ) : (<div onClick={()=>{
+                    <div>{userFavorites2.includes(plant.id) ?
+                      (<div onClick={() => { removeFavorite(plant.id); }}><i className="fa fa-heart" aria-hidden="true"></i></div>
+                      ) : (<div onClick={() => {
                         AddFavorite(plant.id, userId)
                         getFavorites()
-                        }}><i className="fa fa-heart-o" aria-hidden="true"></i></div>
+                      }}><i className="fa fa-heart-o" aria-hidden="true"></i></div>
                       )}
                     </div>
 
@@ -245,17 +285,18 @@ const AllPlants = (props) => {
                   </div>
                 ) : plant.type === "herb" ? (
                   <div className="single-plant-container">
-                    <Link to={`/development/${plant.id}`}> <img
+                    <Link to={`/allplants/${plant.id}`}> <img
+                      // src={plant.img}
                       src="https://www.farmersalmanac.com/wp-content/uploads/2020/11/basil-plant-garden-as_245197176.jpeg"
                       className="allPlantsImg"
                     /></Link>
 
-                    <div>{userFavorites2.includes(plant.id) ? 
-                      (<div onClick={()=>{removeFavorite(plant.id);}}><i className="fa fa-heart" aria-hidden="true"></i></div>
-                      ) : (<div onClick={()=>{
+                    <div>{userFavorites2.includes(plant.id) ?
+                      (<div onClick={() => { removeFavorite(plant.id); }}><i className="fa fa-heart" aria-hidden="true"></i></div>
+                      ) : (<div onClick={() => {
                         AddFavorite(plant.id, userId)
                         getFavorites()
-                        }}><i className="fa fa-heart-o" aria-hidden="true"></i></div>
+                      }}><i className="fa fa-heart-o" aria-hidden="true"></i></div>
                       )}
                     </div>
 
@@ -263,17 +304,18 @@ const AllPlants = (props) => {
                   </div>
                 ) : plant.type === "house" ? (
                   <div className="single-plant-container">
-                    <Link to={`/development/${plant.id}`}> <img
+                    <Link to={`/allplants/${plant.id}`}> <img
+                      // src={plant.img}
                       src="http://cdn.shopify.com/s/files/1/2528/3612/products/Philodendron_Monstera_black_round_1800x.jpg?v=1627692378"
                       className="allPlantsImg"
                     /></Link>
 
-                    <div>{userFavorites2.includes(plant.id) ? 
-                      (<div onClick={()=>{removeFavorite(plant.id);}}><i className="fa fa-heart" aria-hidden="true"></i></div>
-                      ) : (<div onClick={()=>{
+                    <div>{userFavorites2.includes(plant.id) ?
+                      (<div onClick={() => { removeFavorite(plant.id); }}><i className="fa fa-heart" aria-hidden="true"></i></div>
+                      ) : (<div onClick={() => {
                         AddFavorite(plant.id, userId)
                         getFavorites()
-                        }}><i className="fa fa-heart-o" aria-hidden="true"></i></div>
+                      }}><i className="fa fa-heart-o" aria-hidden="true"></i></div>
                       )}
                     </div>
 
@@ -281,17 +323,18 @@ const AllPlants = (props) => {
                   </div>
                 ) : plant.type === "orn" ? (
                   <div className="single-plant-container">
-                    <Link to={`/development/${plant.id}`}> <img
+                    <Link to={`/allplants/${plant.id}`}> <img
+                      // src={plant.img}
                       src="https://bloomsz.com/wp-content/uploads/2018/08/09477_Bleeding-Hearts.jpg"
                       className="allPlantsImg"
                     /></Link>
 
-                    <div>{userFavorites2.includes(plant.id) ? 
-                      (<div onClick={()=>{removeFavorite(plant.id);}}><i className="fa fa-heart" aria-hidden="true"></i></div>
-                      ) : (<div onClick={()=>{
+                    <div>{userFavorites2.includes(plant.id) ?
+                      (<div onClick={() => { removeFavorite(plant.id); }}><i className="fa fa-heart" aria-hidden="true"></i></div>
+                      ) : (<div onClick={() => {
                         AddFavorite(plant.id, userId)
                         getFavorites()
-                        }}><i className="fa fa-heart-o" aria-hidden="true"></i></div>
+                      }}><i className="fa fa-heart-o" aria-hidden="true"></i></div>
                       )}
                     </div>
 
@@ -299,17 +342,18 @@ const AllPlants = (props) => {
                   </div>
                 ) : plant.type === "shrub" ? (
                   <div className="single-plant-container">
-                    <Link to={`/development/${plant.id}`}> <img
+                    <Link to={`/allplants/${plant.id}`}> <img
+                      // src={plant.img}
                       src="https://i.pinimg.com/736x/a4/fa/d6/a4fad6f233cf74495f72f6ccc126f643.jpg"
                       className="allPlantsImg"
                     /></Link>
 
-                    <div>{userFavorites2.includes(plant.id) ? 
-                      (<div onClick={()=>{removeFavorite(plant.id);}}><i className="fa fa-heart" aria-hidden="true"></i></div>
-                      ) : (<div onClick={()=>{
+                    <div>{userFavorites2.includes(plant.id) ?
+                      (<div onClick={() => { removeFavorite(plant.id); }}><i className="fa fa-heart" aria-hidden="true"></i></div>
+                      ) : (<div onClick={() => {
                         AddFavorite(plant.id, userId)
                         getFavorites()
-                        }}><i className="fa fa-heart-o" aria-hidden="true"></i></div>
+                      }}><i className="fa fa-heart-o" aria-hidden="true"></i></div>
                       )}
                     </div>
 
@@ -317,17 +361,18 @@ const AllPlants = (props) => {
                   </div>
                 ) : plant.type === "tree" ? (
                   <div className="single-plant-container">
-                    <Link to={`/development/${plant.id}`}>  <img
+                    <Link to={`/allplants/${plant.id}`}>  <img
+                      // src={plant.img}
                       src="https://images.saymedia-content.com/.image/t_share/MTc0MzU0MTAwNDc2MzIzMTc2/smalltreesforasmallyardorgardentreesunderthirtyfeettall.jpg"
                       className="allPlantsImg"
                     /></Link>
 
-                    <div>{userFavorites2.includes(plant.id) ? 
-                      (<div onClick={()=>{removeFavorite(plant.id);}}><i className="fa fa-heart" aria-hidden="true"></i></div>
-                      ) : (<div onClick={()=>{
+                    <div>{userFavorites2.includes(plant.id) ?
+                      (<div onClick={() => { removeFavorite(plant.id); }}><i className="fa fa-heart" aria-hidden="true"></i></div>
+                      ) : (<div onClick={() => {
                         AddFavorite(plant.id, userId)
                         getFavorites()
-                        }}><i className="fa fa-heart-o" aria-hidden="true"></i></div>
+                      }}><i className="fa fa-heart-o" aria-hidden="true"></i></div>
                       )}
                     </div>
 
@@ -335,17 +380,18 @@ const AllPlants = (props) => {
                   </div>
                 ) : plant.type === "vege" ? (
                   <div className="single-plant-container">
-                    <Link to={`/development/${plant.id}`}> <img
+                    <Link to={`/allplants/${plant.id}`}> <img
+                      // src={plant.img}
                       src="https://images.ctfassets.net/3s5io6mnxfqz/2BvZI3f3027FiiZ256sEOZ/b88803248178aa2d7c3d4901eac7992d/AdobeStock_291017406.jpeg"
                       className="allPlantsImg"
                     /></Link>
 
-                    <div>{userFavorites2.includes(plant.id) ? 
-                      (<div onClick={()=>{removeFavorite(plant.id);}}><i className="fa fa-heart" aria-hidden="true"></i></div>
-                      ) : (<div onClick={()=>{
+                    <div>{userFavorites2.includes(plant.id) ?
+                      (<div onClick={() => { removeFavorite(plant.id); }}><i className="fa fa-heart" aria-hidden="true"></i></div>
+                      ) : (<div onClick={() => {
                         AddFavorite(plant.id, userId)
                         getFavorites()
-                        }}><i className="fa fa-heart-o" aria-hidden="true"></i></div>
+                      }}><i className="fa fa-heart-o" aria-hidden="true"></i></div>
                       )}
                     </div>
 
@@ -353,17 +399,18 @@ const AllPlants = (props) => {
                   </div>
                 ) : plant.type === "vine" ? (
                   <div className="single-plant-container">
-                    <Link to={`/development/${plant.id}`}> <img
+                    <Link to={`/allplants/${plant.id}`}> <img
+                      // src={plant.img}
                       src="https://www.bhg.com/thmb/EUBuVlZmTyIB2HihqbdqzhX55e8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/clematis-climbing-trellis-8c6f8c88-150967778d104724a5324ad08269c637.jpg"
                       className="allPlantsImg"
                     /></Link>
 
-                    <div>{userFavorites2.includes(plant.id) ? 
-                      (<div onClick={()=>{removeFavorite(plant.id);}}><i className="fa fa-heart" aria-hidden="true"></i></div>
-                      ) : (<div onClick={()=>{
+                    <div>{userFavorites2.includes(plant.id) ?
+                      (<div onClick={() => { removeFavorite(plant.id); }}><i className="fa fa-heart" aria-hidden="true"></i></div>
+                      ) : (<div onClick={() => {
                         AddFavorite(plant.id, userId)
                         getFavorites()
-                        }}><i className="fa fa-heart-o" aria-hidden="true"></i></div>
+                      }}><i className="fa fa-heart-o" aria-hidden="true"></i></div>
                       )}
 
                     </div>

@@ -153,7 +153,7 @@ li.nav-bar-link {
   align-items: center;
   margin: 20px;
   width: 60%;
-  height: 40%;
+  height: 50%;
   gap: 1em;
   border: 2px solid grey;
   border-radius: 10px;
@@ -472,11 +472,22 @@ input.journal-form-file-input {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
+.hide,
+.filterType,
+.filterLife,
+.filterLight {
+  display: none;
+}
+
 div.journal {
   margin: 2em;
 }
 
-.editArea {
+.editArea,
+.displayNameEdit,
+.ZipEdit,
+.profileEdit,
+.add-entry-area {
   display: none;
 }
 
@@ -805,11 +816,6 @@ input[type="checkbox"] {
     align-items: stretch;
     border: 1px solid grey;
     padding: 1em;
-  }
-  .filteringCon {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
   }
 
   .checkbox-container {
