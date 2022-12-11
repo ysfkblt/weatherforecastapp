@@ -146,6 +146,12 @@ li.nav-bar-link {
   position: relative;
 }
 
+.user-top {
+  display: flex;
+  flex-direction: wrap;
+  justify-content: flex-start;
+  gap: 10vw;
+}
 .user-profile-container {
   display: flex;
   flex-direction: column;
@@ -153,7 +159,7 @@ li.nav-bar-link {
   align-items: center;
   margin: 20px;
   width: 60%;
-  height: 50%;
+  height: 30%;
   gap: 1em;
   border: 2px solid grey;
   border-radius: 10px;
@@ -370,6 +376,7 @@ h3.auth-header {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
 .imgUpload {
@@ -383,6 +390,8 @@ h3.auth-header {
   padding: 0.5em;
   display: flex;
   align-items: center;
+  /* flex-wrap: wrap; */
+  flex-direction: column;
 }
 
 .journal-notes-image-upload-button {
@@ -393,6 +402,9 @@ h3.auth-header {
   display: flex;
   flex-direction: column;
   align-items: center;
+  border: 1px solid grey;
+  border-radius: 0.5em;
+  width: 550px;
 }
 
 input.journal-notes-input {
@@ -446,8 +458,8 @@ input.journal-form-file-input {
   justify-content: space-evenly;
   align-items: center;
   border: 2px solid grey;
-  margin: 1em;
   border-radius: 0.5em;
+  margin: 1em;
   width: 50vw;
   background-color: #72c17b16;
 }
@@ -471,7 +483,10 @@ input.journal-form-file-input {
   max-height: 800px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
-
+.journal-notes-edit {
+  width: 40vw;
+  height: 15vh;
+}
 .hide {
   display: none;
 }
