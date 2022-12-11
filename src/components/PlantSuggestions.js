@@ -12,7 +12,7 @@ import { db } from "../database/firebase-config"
 
 const PlantSuggestions = (props) => {
   // const userZoneNumber = 8 // ! PLACEHOLDER
-  console.log("PLANT SUGGESTIONS START");
+  // console.log("PLANT SUGGESTIONS START");
   
   // console.log("*****THIS IS THE CURRENT ZONE", props.zone)
   const [userZoneNumber, setUserZoneNumber] = useState(8)
@@ -24,17 +24,17 @@ const PlantSuggestions = (props) => {
 // zone from props is working OKAY
  let temp_zone = 8
 if (zone) {
-    console.log("inside the if zone", zone)
+    // console.log("inside the if zone", zone)
     temp_zone = parseInt(zone)
-    console.log(temp_zone)
+    // console.log(temp_zone)
   }
 
 
 
 
 
-console.log("userId from props",userId);
-console.log("zone from props",zone);
+// console.log("userId from props",userId);
+// console.log("zone from props",zone);
 
 
   const wormCollection = collection(db, "worms", userId, "personal")
@@ -70,14 +70,16 @@ console.log("zone from props",zone);
   }
 
 useEffect(() => {
-    console.log("===== plant suggestions use effect")
+    // console.log("===== plant suggestions use effect")
     // console.log("user zone number", userZoneNumber)
     // setUserZoneNumber(7)
     setUserZoneNumber(temp_zone)
     // console.log("user zone number STATE after set", userZoneNumber)
+    //  plantData()
+    // housePlantData()
   }, [temp_zone])
 
-  useEffect(() => {
+  // useEffect(() => {
     // if (props.userId !== "NA") {
     //   async function getworms() {
     //     const data = await getDocs(wormCollection)
@@ -90,13 +92,7 @@ useEffect(() => {
     // setUserZoneNumber(parseInt(zone))
     // plantData()
     // housePlantData()
-    }, [])
-
-  //   useEffect(()=>{
-  // if(zone){
-  //     setUserZoneNumber(zone)
-  //   }
-  //   },[zone])
+    // }, [])
 
   // initializezzz
   let firstFrostDate = null
@@ -137,7 +133,7 @@ useEffect(() => {
   }
 
   function getFrostDates(zoneNum, frostZoneMap) {
-    console.log("zoneNum final ================", zoneNum);
+    // console.log("zoneNum final ================", zoneNum);
     
     if (frostZoneMap[zoneNum]) {
       // console.log(
@@ -166,9 +162,10 @@ useEffect(() => {
 
     // date control
     // const date = new Date(+year1, month1 - 1, +day1) // ! toggle this for TODAYS DATE
-    // const date = new Date(+year1, 0, 2)              // ! WINTER JAN 2
+    const date = new Date(+year1, 0, 2)              // ! WINTER JAN 2 - HOUSEPLANTS
+    // const date = new Date(+year1, 2, 1)              // ! WINTER MAR 2 - SOWING SEEDS
     // const date = new Date(+year1, 3, 1)              // ! SPRING APR 1
-    const date = new Date(+year1, 6, 1) // ! SUMMER JUL 1
+    // const date = new Date(+year1, 6, 1) // ! SUMMER JUL 1
     // const date = new Date(+year1, 9, 1)              // ! FALL   OCT 1
 
     plantTimingObject.currentDate = date
@@ -212,7 +209,7 @@ useEffect(() => {
 
       // is the date in a frost season
     } else {
-      console.log(`🧊 today is in the frost season for your zone🧊`)
+      // console.log(`🧊 today is in the frost season for your zone🧊`)
       daysToLastFrost = Math.round(-(lfDateNextYear - date) / MS_IN_A_DAY)
       weeksToLastFrost = Math.round(daysToLastFrost / 7) //rounding to nearest INT
       // console.log(
@@ -287,7 +284,7 @@ useEffect(() => {
   ]
 
   // ! ======== collection reference
-  const colRef = collection(db, "plants")
+  const colRef = collection(db, "testPlants")
   const colRef2 = collection(db, "housePlants")
   // get collection data
 
@@ -304,7 +301,7 @@ useEffect(() => {
   const getPlantSug = (obj, array) => {
     let viablePlantSug = array.filter((x) => x.life === "a" || x.life === "b")
     // console.log("======== HERE ======")
-    // console.log("this is the array!! ======== ", array)
+    // console.log("this is the full plant database array!! ======== ", array)
     // console.log("viable plant suggestions: ", viablePlantSug)
 
     // This is during frost season
@@ -317,28 +314,30 @@ useEffect(() => {
     // This is during non-frost season
     else {
 
-
+      
       // if two months less than... from first frost
+      // !!!!!! AUTUMN AUTUMN AUTUMN AUTUMN AUTUMN
       if (obj.weeksToFirstFrost < 9) {
+        // console.log("less than 9 weeks from first frost IF");
         if (obj.weeksToFirstFrost < 9 && obj.weeksToFirstFrost > 4) {
           let twoMonthTillFrost = viablePlantSug.filter((x) => x.method === 1)
-          console.log("WHERE AM I ????? IF 1")
+          // console.log("WHERE AM I ????? IF 1")
 
           return filterSug(twoMonthTillFrost)
         }
         if (obj.weeksToFirstFrost <= 4 && obj.zone === 9) {
           let oneMonthTillFrost = viablePlantSug.filter((x) => x.method === 8)
-          console.log("WHERE AM I ????? IF 2")
+          // console.log("WHERE AM I ????? IF 2")
           return filterSug(oneMonthTillFrost)
         }
         if (obj.weeksToFirstFrost <= 4 && obj.zone === 8) {
           let oneMonthTillFrost = viablePlantSug.filter((x) => x.method === 9)
-          console.log("WHERE AM I ????? IF 3")
+          // console.log("WHERE AM I ????? IF 3")
           return filterSug(oneMonthTillFrost)
         }
         if (obj.weeksToFirstFrost <= 4 && obj.zone <= 7) {
           let oneMonthTillFrost = viablePlantSug.filter((x) => x.method === 10)
-          console.log("WHERE AM I ????? IF 4")
+          // console.log("WHERE AM I ????? IF 4")
           return filterSug(oneMonthTillFrost)
         }
       }
@@ -353,7 +352,9 @@ useEffect(() => {
       // if target > 25, then suggest the 25wblf plants
 
       // Suggestions of plants for non-frost period
+      // !!!!! SPRING AND SUMMER
       else {
+        // !!!!! SUMMER-ish
         if (
           obj.zone >= 8 &&
           obj.weeksToLastFrost > 10 &&
@@ -365,6 +366,7 @@ useEffect(() => {
           // console.log("obj weeks to last frost ", obj.weeksToLastFrost)
           // console.log("plantsNonFrost", plantsNonFrost)
           return filterSug(plantsNonFrost)
+          // !!!!!! SPTING-ish
         } else if (
           obj.zone >= 8 &&
           obj.weeksToLastFrost > 28 &&
@@ -405,8 +407,6 @@ useEffect(() => {
   return (
 
     <div className="plant-suggestions-container">
-      <div>USING ZONE:{userZoneNumber}</div>
-      <div>Should be Zone:{props.zone}</div>
       <h2 className="plant-suggestions-header">TODAY'S PLANT SUGGESTIONS</h2>
       {suggestedPlantsData.length > 0 ? (
         suggestedPlantsData.map((curPlant) => (
@@ -416,7 +416,7 @@ useEffect(() => {
               <h3 className="italics">({curPlant.species})</h3>
             </div>
             <div>
-              <img src={curPlant.name} className="plantSugImg" />
+            <img src={curPlant.img} className="plantSugImg" />
             </div>
           </div>
         ))
@@ -432,7 +432,7 @@ useEffect(() => {
                     <h3 className="italics">({curPlant.species})</h3>
                   </div>
                   <div>
-                    <img src={curPlant.id} className="plantSugImg" />
+                    <img src={curPlant.img} className="plantSugImg" />
                   </div>
                 </div>
               ))}

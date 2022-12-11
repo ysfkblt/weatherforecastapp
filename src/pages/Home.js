@@ -26,11 +26,8 @@ const Home = (props) => {
   // console.log("THIS IS USER IN HOME JS", user)
   useEffect(() => {
     async function getDatas() {
-      console.log(user.uid)
       const wormCollection = collection(db, "worms", user.uid, "personal")
-      console.log("PASSING WORMCOLLECTION")
       let newData = await getDocs(wormCollection)
-      console.log("USERDATA IN HOMEJS", newData.docs[0].data().zone)
       setuserZone(newData.docs[0].data().zone)
     }
     getDatas()
@@ -246,20 +243,14 @@ const Home = (props) => {
       {props.userId && zip.length === 5 ? (
         <>
           <PlantSuggestions userId={props.userId} zone={zone.zone} />
-          <div>NEW ZIP {zone.zone}</div>
-          {console.log("USING SEARCHED ZONE SEARCHING NEW ZIP", zone)}
         </>
       ) : props.userId ? (
         <>
-        <div>USER'S ZONE {userZone}</div>
           <PlantSuggestions userId={props.userId} zone={userZone} />
-          {console.log("USING SAVED ZONE LOOKING FOR USER SAVED ZIP", userZone)}
         </>
       ) : (
         <>
           <PlantSuggestions userId={"NA"} zone={8}/>
-          <div>DEFAULT DATA</div>
-          {console.log("USING DEFAULT ZONE 8", search)}
         </>
       )}
 
