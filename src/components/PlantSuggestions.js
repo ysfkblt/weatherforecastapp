@@ -12,13 +12,30 @@ import { db } from "../database/firebase-config"
 
 const PlantSuggestions = (props) => {
   // const userZoneNumber = 8 // ! PLACEHOLDER
-  console.log("*****THIS IS THE CURRENT ZONE", props.zone)
+  console.log("PLANT SUGGESTIONS START");
+  
+  // console.log("*****THIS IS THE CURRENT ZONE", props.zone)
   const [userZoneNumber, setUserZoneNumber] = useState(8)
   const [plantsDbData, setPlantsDbData] = useState([])
   const [housePlantsDbData, setHousePlantsDbData] = useState([])
 
     const { userId, zone} = props
   
+// zone from props is working OKAY
+ let temp_zone = 8
+if (zone) {
+    console.log("inside the if zone", zone)
+    temp_zone = parseInt(zone)
+    console.log(temp_zone)
+  }
+
+
+
+
+
+console.log("userId from props",userId);
+console.log("zone from props",zone);
+
 
   const wormCollection = collection(db, "worms", userId, "personal")
 
@@ -52,22 +69,27 @@ const PlantSuggestions = (props) => {
       })
   }
 
-  useEffect(() => {
-    if (props.userId !== "NA") {
-      async function getworms() {
-        const data = await getDocs(wormCollection)
-        let pre_zone = data.docs[0].data().zone
-        let zone = parseInt(pre_zone)
-        setUserZoneNumber(zone)
-      }
-      getworms()
-    }
-    plantData()
-    housePlantData()
-    // if(props.zone){
+useEffect(() => {
+    console.log("===== plant suggestions use effect")
+    // console.log("user zone number", userZoneNumber)
+    // setUserZoneNumber(7)
+    setUserZoneNumber(temp_zone)
+    // console.log("user zone number STATE after set", userZoneNumber)
+  }, [temp_zone])
 
-      // setUserZoneNumber(zone)
+  useEffect(() => {
+    // if (props.userId !== "NA") {
+    //   async function getworms() {
+    //     const data = await getDocs(wormCollection)
+    //     let pre_zone = data.docs[0].data().zone
+    //     let zone = parseInt(pre_zone)
+    //     setUserZoneNumber(zone)
+    //   }
+    //   getworms()
     // }
+    // setUserZoneNumber(parseInt(zone))
+    // plantData()
+    // housePlantData()
     }, [])
 
   //   useEffect(()=>{
@@ -115,6 +137,8 @@ const PlantSuggestions = (props) => {
   }
 
   function getFrostDates(zoneNum, frostZoneMap) {
+    console.log("zoneNum final ================", zoneNum);
+    
     if (frostZoneMap[zoneNum]) {
       // console.log(
       //   "user zone and last and first frosts >>> ",
@@ -188,7 +212,7 @@ const PlantSuggestions = (props) => {
 
       // is the date in a frost season
     } else {
-      // console.log(`🧊 today is in the frost season for your zone🧊`)
+      console.log(`🧊 today is in the frost season for your zone🧊`)
       daysToLastFrost = Math.round(-(lfDateNextYear - date) / MS_IN_A_DAY)
       weeksToLastFrost = Math.round(daysToLastFrost / 7) //rounding to nearest INT
       // console.log(
@@ -295,8 +319,6 @@ const PlantSuggestions = (props) => {
 
 
       // if two months less than... from first frost
-
-
       if (obj.weeksToFirstFrost < 9) {
         if (obj.weeksToFirstFrost < 9 && obj.weeksToFirstFrost > 4) {
           let twoMonthTillFrost = viablePlantSug.filter((x) => x.method === 1)

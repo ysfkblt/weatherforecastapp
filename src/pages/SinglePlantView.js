@@ -17,7 +17,7 @@ import AddFavorite from "../components/AddFavorite"
 const SinglePlantView = (props) => {
   const [singlePlant, setSinglePlant] = useState([])
   const { plantId } = useParams() // STEP 2
-  const plantCollection = collection(db, "plants") //STEP 3
+  const plantCollection = collection(db, "testPlants") //STEP 3
   const {userId} = props
 
   // STEP 4
@@ -53,11 +53,12 @@ const SinglePlantView = (props) => {
           <h5>{singlePlant[0].species}</h5>
           <div>
             <img
-              src="https://www.world-grain.com/ext/resources/2022/09/21/Wheat_photo-cred-Adobe-stock_E-2.jpg?t=1663769040&width=1080"
+            src={singlePlant[0].img}
+              // src="https://www.world-grain.com/ext/resources/2022/09/21/Wheat_photo-cred-Adobe-stock_E-2.jpg?t=1663769040&width=1080"
               className="allPlantsImg"
               alt="plant"
             />{" "}
-            IMAGE IS JUST HARDCODED - TEMPORARY
+            {/* IMAGE IS JUST HARDCODED - TEMPORARY */}
           </div>{" "}
           <br />
           <div>
