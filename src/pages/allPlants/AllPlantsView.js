@@ -18,8 +18,6 @@ const AllPlants = (props) => {
   const [docsLast, setDocsLast] = useState(0)
   const { userId } = props
 
-  // let filterIdNum = 12 + docsLast;
-
   const plantCollection = collection(db, "testPlants")
   const userFavoritesCollection = collection(db, "worms", userId, "favorites")
   const q = query(plantCollection, orderBy("flowerId", "asc"), limit(12));
@@ -38,16 +36,12 @@ const AllPlants = (props) => {
     const docsLength = data.docs.length - 1
     const lastPlantId = plantData[docsLength].flowerId
     setDocsLast(lastPlantId)
-    // console.log('clicked')
-    // console.log(lastPlantId)
   }
 
   useEffect(() => {
     // setPlants(flowers2)
     // setPlantsBackUp(flowers2)
     async function getPlants() {
-      // 
-      // where("flowerId", "<=", `${rows}`),
       const data = await getDocs(q)
       const plantData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
       await setPlants(plantData)
@@ -61,15 +55,12 @@ const AllPlants = (props) => {
     getFavorites()
   }, [])
 
-  console.log(plants)
-  console.log(docsLast)
   let userFavorites2 = []
   userFavorites.forEach(plant => userFavorites2.push(plant.plantId))
 
 
   const removeFavorite = (thisPlantsId) => {
     let toBeDeletedData = userFavorites.filter(x => (x.plantId === thisPlantsId))
-    console.log(userFavorites)
     DeleteFavorite(toBeDeletedData, userId)
     let toBeNewFavorites = userFavorites.filter(x => (x.plantId !== thisPlantsId))
     setUserFavorites(toBeNewFavorites)
@@ -80,13 +71,11 @@ const AllPlants = (props) => {
     if (!document.getElementById(event).checked) {
       let tempFilterOption = filterTypeOptions.filter((option) => option !== event)
       setfilterTypeOptions(tempFilterOption)
-      console.log("filterTypeOptions", filterTypeOptions)
     }
     else {
       let tempFilteredOption = filterTypeOptions
       tempFilteredOption.push(event)
       setfilterTypeOptions(tempFilteredOption)
-      console.log("filterTypeOptions", filterTypeOptions)
     }
   }
 
@@ -137,9 +126,6 @@ const AllPlants = (props) => {
   }
 
   async function onSubmit(evt) {
-    // console.log("light", filterLightOptions.length)
-    // console.log("life", filterLifeOptions.length)
-    // console.log("type", filterTypeOptions.length)
     if ((filterTypeOptions.length === 0) && (filterLifeOptions.length === 0) && (filterLightOptions.length === 0)) {
       setPlants(plantsBackUp)
     }
@@ -251,15 +237,9 @@ const AllPlants = (props) => {
         {(plants) ? (plants.map((plant) => {
 
           return (<div className="singlePlant" key={plant.id}>
-            <div className="singlePlantName">Species: {plant.name}</div>
-            <div>{plant.type}</div>
-            <div className="singlePlantlife">Life: {plant.life}</div>
-            <div className="singlePlantTransportTo">Light: {plant.transplantTo}</div>
-            <Link to={`/allplants/${plant.id}`}>
-              <img src={plant.img} className="allPlantsImg" />
-            </Link>
-            {/* <div><i className="fa fa-heart" aria-hidden="true"></i></div> */}
-            <div>{userFavorites2.includes(plant.id) ? 
+            <div className="singlePlant-title-container">
+            <div>
+              {userFavorites2.includes(plant.id) ? 
                       (<div onClick={()=>{removeFavorite(plant.id);}}><i className="fa fa-heart" aria-hidden="true"></i></div>
                       ) : (<div onClick={()=>{
                         AddFavorite(plant.id, userId)
@@ -267,6 +247,23 @@ const AllPlants = (props) => {
                       }}><i className="fa fa-heart-o" aria-hidden="true"></i></div>
                       )}
             </div>
+            <div className="singlePlantName"><h3>{plant.name}</h3></div>
+            </div>
+
+            <div>
+              <Link to={`/allplants/${plant.id}`}>
+                <img src={plant.img} className="allPlantsImg" />
+              </Link>
+            </div>
+
+            <div>Type: {plant.type}</div>
+            <div className="singlePlantlife">Life: {(plant.life === 'a') ? ("annual") : 
+              ((plant.life === 'p') ? ('perennial') :
+                ((plant.life === 'b' ? ("biannual") : ("other"))))}</div>
+            <div className="singlePlantTransportTo">Light: {(plant.transplantTo === 'psha') ? ("partial shade") : 
+                  ((plant.transplantTo === 'fsha') ? ("full shade") : 
+                      ((plant.transplantTo === 'fsun') ? ("full sun") : ("partial sun")))}</div>
+
 
           </div>)
 

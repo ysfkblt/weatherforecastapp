@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom"
 import { db } from "../database/firebase-config" // STEP 1
 import { forceWebSockets } from "firebase/database"
 import AddFavorite from "../components/AddFavorite"
+import DeleteFavorite from "../components/DeleteFavorite"
 
 /** ========= firestore DB querying for one item in a collection =====================
 // 1. import the db connection to the firestore as configured earlier
@@ -36,6 +37,13 @@ const SinglePlantView = (props) => {
     getSinglePlant()
   }, [])
 
+  // if (userFavorites2.includes(plantId)) {
+  //   setIsFavorite(true)
+  // }
+  // if (!userFavorites2.includes(plantId)) {
+  //   setIsFavorite(false)
+  // }
+
   if (singlePlant.length) {
     console.log(singlePlant.length)
     console.log("above is truthy")
@@ -49,18 +57,13 @@ const SinglePlantView = (props) => {
     <div>
       {singlePlant.length ? (
         <div className="single-plant-view-main-container">
-          <h2>{singlePlant[0].name}</h2>
-          <h5>{singlePlant[0].species}</h5>
-          <div>
-            <img
-            src={singlePlant[0].img}
-              // src="https://www.world-grain.com/ext/resources/2022/09/21/Wheat_photo-cred-Adobe-stock_E-2.jpg?t=1663769040&width=1080"
-              className="allPlantsImg"
-              alt="plant"
-            />{" "}
-            {/* IMAGE IS JUST HARDCODED - TEMPORARY */}
-          </div>{" "}
-          <br />
+          <div className="singlePlant-title-container">
+            <div><button onClick={()=>{AddFavorite(plantId, userId)}}>favorite</button></div>
+            <div><h2>{singlePlant[0].name}</h2></div>
+          </div>
+          <div className="singlePlantImageContainer">
+            <img src={singlePlant[0].img} className="singlePlantImg" alt="plant" />
+          </div>
           <div>
             <h4>Growing Care</h4>
             <ul>
@@ -86,7 +89,6 @@ const SinglePlantView = (props) => {
                                   (((singlePlant[0].weeksBeforeLastFrost >= 19) && (singlePlant[0].weeksBeforeLastFrost <= 24)) ? 
                                     "Late Summer" : "Fall"))))))
               }</li>
-              <li><button onClick={()=>{AddFavorite(plantId, userId)}}>favorite</button></li>
             </ul>
           </div>
         </div>
