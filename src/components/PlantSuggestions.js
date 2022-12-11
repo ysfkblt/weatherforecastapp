@@ -417,9 +417,8 @@ const PlantSuggestions = (props) => {
       ) : (
         <>
           <div>
-            <h3>
-              If you are wanting to plant today, we suggest indoor plants:
-            </h3>
+            <h3>Today, we suggest indoor plants</h3>
+            <br></br>
             {/* <Link to="/allplants">View All Plants</Link> */}
             <div>
               {suggestedHousePlantsData.map((curPlant) => (
@@ -428,7 +427,7 @@ const PlantSuggestions = (props) => {
                   key={Math.floor(Math.random() * (max - min + 1)) + min}
                 >
                   <div>
-                    <h3>Name: {curPlant.name}</h3>
+                    <h3>{curPlant.name}</h3>
                     <h3 className="italics">({curPlant.species})</h3>
                   </div>
                   <div>

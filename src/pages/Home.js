@@ -147,6 +147,21 @@ const Home = (props) => {
         ) : null} */}
 
         {/* Search Bar */}
+
+        <span className="welcome-user">
+          {user ? (
+            <span>
+              Welcome <Link to="/user">{user.displayName}!</Link>
+            </span>
+          ) : (
+            "Welcome!"
+          )}
+        </span>
+
+        <span>PUT ICON HERE</span>
+      </header>
+
+      <div className="home-below-header-container-search">
         <section>
           {/* <Search
             handleKeyPress={handleKeyPress}
@@ -216,9 +231,8 @@ const Home = (props) => {
             </div>
           </div>
         </section>
-      </header>
-
-      <span className="welcome-user">
+      </div>
+      {/* <span className="welcome-user">
         {user ? (
           <span>
             Welcome <Link to="/user">{user.displayName}!</Link>
@@ -226,7 +240,7 @@ const Home = (props) => {
         ) : (
           "Welcome!"
         )}
-      </span>
+      </span> */}
 
       {/* Plant Suggestions */}
 
