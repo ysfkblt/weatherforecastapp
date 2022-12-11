@@ -5,7 +5,6 @@ import { collection, getDocs } from "firebase/firestore"
 import { useEffect, useState } from "react"
 import { db } from "../database/firebase-config"
 
-
 // ! TODO, integrate getting actual user zone number
 // ! take out dummy plant data, and connect to real firestore database
 // ! style JSX return
@@ -13,29 +12,24 @@ import { db } from "../database/firebase-config"
 const PlantSuggestions = (props) => {
   // const userZoneNumber = 8 // ! PLACEHOLDER
   // console.log("PLANT SUGGESTIONS START");
-  
+
   // console.log("*****THIS IS THE CURRENT ZONE", props.zone)
   const [userZoneNumber, setUserZoneNumber] = useState(8)
   const [plantsDbData, setPlantsDbData] = useState([])
   const [housePlantsDbData, setHousePlantsDbData] = useState([])
 
-    const { userId, zone} = props
-  
-// zone from props is working OKAY
- let temp_zone = 8
-if (zone) {
+  const { userId, zone } = props
+
+  // zone from props is working OKAY
+  let temp_zone = 8
+  if (zone) {
     // console.log("inside the if zone", zone)
     temp_zone = parseInt(zone)
     // console.log(temp_zone)
   }
 
-
-
-
-
-// console.log("userId from props",userId);
-// console.log("zone from props",zone);
-
+  // console.log("userId from props",userId);
+  // console.log("zone from props",zone);
 
   const wormCollection = collection(db, "worms", userId, "personal")
 
@@ -48,8 +42,7 @@ if (zone) {
         return plantsDbData
       })
 
-      .catch(err => {
-
+      .catch((err) => {
         console.log(err.message)
       })
   }
@@ -63,13 +56,12 @@ if (zone) {
         return housePlantsDbData
       })
 
-      .catch(err => {
-
+      .catch((err) => {
         console.log(err.message)
       })
   }
 
-useEffect(() => {
+  useEffect(() => {
     // console.log("===== plant suggestions use effect")
     // console.log("user zone number", userZoneNumber)
     // setUserZoneNumber(7)
@@ -80,19 +72,19 @@ useEffect(() => {
   }, [temp_zone])
 
   // useEffect(() => {
-    // if (props.userId !== "NA") {
-    //   async function getworms() {
-    //     const data = await getDocs(wormCollection)
-    //     let pre_zone = data.docs[0].data().zone
-    //     let zone = parseInt(pre_zone)
-    //     setUserZoneNumber(zone)
-    //   }
-    //   getworms()
-    // }
-    // setUserZoneNumber(parseInt(zone))
-    // plantData()
-    // housePlantData()
-    // }, [])
+  // if (props.userId !== "NA") {
+  //   async function getworms() {
+  //     const data = await getDocs(wormCollection)
+  //     let pre_zone = data.docs[0].data().zone
+  //     let zone = parseInt(pre_zone)
+  //     setUserZoneNumber(zone)
+  //   }
+  //   getworms()
+  // }
+  // setUserZoneNumber(parseInt(zone))
+  // plantData()
+  // housePlantData()
+  // }, [])
 
   // initializezzz
   let firstFrostDate = null
@@ -134,7 +126,7 @@ useEffect(() => {
 
   function getFrostDates(zoneNum, frostZoneMap) {
     // console.log("zoneNum final ================", zoneNum);
-    
+
     if (frostZoneMap[zoneNum]) {
       // console.log(
       //   "user zone and last and first frosts >>> ",
@@ -162,7 +154,7 @@ useEffect(() => {
 
     // date control
     // const date = new Date(+year1, month1 - 1, +day1) // ! toggle this for TODAYS DATE
-    const date = new Date(+year1, 0, 2)              // ! WINTER JAN 2 - HOUSEPLANTS
+    const date = new Date(+year1, 0, 2) // ! WINTER JAN 2 - HOUSEPLANTS
     // const date = new Date(+year1, 2, 1)              // ! WINTER MAR 2 - SOWING SEEDS
     // const date = new Date(+year1, 3, 1)              // ! SPRING APR 1
     // const date = new Date(+year1, 6, 1) // ! SUMMER JUL 1
@@ -313,8 +305,6 @@ useEffect(() => {
     }
     // This is during non-frost season
     else {
-
-      
       // if two months less than... from first frost
       // !!!!!! AUTUMN AUTUMN AUTUMN AUTUMN AUTUMN
       if (obj.weeksToFirstFrost < 9) {
@@ -402,31 +392,38 @@ useEffect(() => {
   // console.log("======= timing object: ", plantTimingObject)
   // console.log("suggested plants", suggestedPlantsData)
   // console.log("suggested house plants", suggestedHousePlantsData)
-  let max=18737
-  let min=89
+  let max = 18737
+  let min = 89
   return (
-
     <div className="plant-suggestions-container">
       <h2 className="plant-suggestions-header">TODAY'S PLANT SUGGESTIONS</h2>
       {suggestedPlantsData.length > 0 ? (
         suggestedPlantsData.map((curPlant) => (
-          <div className="individual-plant-suggestion" key={Math.floor(Math.random() * (max - min + 1)) + min}>
+          <div
+            className="individual-plant-suggestion"
+            key={Math.floor(Math.random() * (max - min + 1)) + min}
+          >
             <div>
-              <h3>Name: {curPlant.name},{" "}</h3>
+              <h3>Name: {curPlant.name}, </h3>
               <h3 className="italics">({curPlant.species})</h3>
             </div>
             <div>
-            <img src={curPlant.img} className="plantSugImg" />
+              <img src={curPlant.img} className="plantSugImg" />
             </div>
           </div>
         ))
       ) : (
         <>
           <div>
-            <h3>If you are wanting to plant today, we suggest indoor plants:</h3>
+            <h3>
+              If you are wanting to plant today, we suggest indoor plants:
+            </h3>
             <div>
               {suggestedHousePlantsData.map((curPlant) => (
-                <div className="plant-suggestion" key={Math.floor(Math.random() * (max - min + 1)) + min}>
+                <div
+                  className="plant-suggestion"
+                  key={Math.floor(Math.random() * (max - min + 1)) + min}
+                >
                   <div>
                     <h3>Name: {curPlant.name}</h3>
                     <h3 className="italics">({curPlant.species})</h3>
@@ -440,7 +437,6 @@ useEffect(() => {
           </div>
         </>
       )}
-
     </div>
   )
 }

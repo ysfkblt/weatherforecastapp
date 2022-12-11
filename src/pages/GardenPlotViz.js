@@ -7,10 +7,9 @@ function GardenPlotViz() {
 
   return (
     <div className="garden-plot-viz-container">
-      <h1>This holds the garden plot visualization</h1>
-      <>
-        <ReactP5Wrapper sketch={gardenPlotSketch} />
-      </>
+      <h1>Garden Planner</h1>
+      <ReactP5Wrapper sketch={gardenPlotSketch} />
+      <div className="garden-plot-hacky-ui-container"></div>
     </div>
   )
 }
