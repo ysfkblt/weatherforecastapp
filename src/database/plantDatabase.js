@@ -818,6 +818,7 @@ const flowers2 = [
         type: "vine",
         life: "a",
         transplantTo: "fsun",
+        img: "https://media.istockphoto.com/id/500613911/photo/leaf.jpg?b=1&s=170667a&w=0&k=20&c=LJ5J1ga4Z0vjDWnexkplZKWdpoaSe5nIhDqhv_6oqIk="
     },
     {   id: 2,
         species: "Abrus precatorius",
@@ -825,6 +826,7 @@ const flowers2 = [
         type: "tree",
         life: "p",
         transplantTo: "fsun",
+        img: "https://media.istockphoto.com/id/500613911/photo/leaf.jpg?b=1&s=170667a&w=0&k=20&c=LJ5J1ga4Z0vjDWnexkplZKWdpoaSe5nIhDqhv_6oqIk="
     },
     {   id: 3,
         species: "Abrus precatorius",
@@ -832,6 +834,7 @@ const flowers2 = [
         type: "grass",
         life: "p",
         transplantTo: "psun",
+        img: "https://media.istockphoto.com/id/500613911/photo/leaf.jpg?b=1&s=170667a&w=0&k=20&c=LJ5J1ga4Z0vjDWnexkplZKWdpoaSe5nIhDqhv_6oqIk="
     },
     {   id: 4,
         species: "Rosemary",
@@ -839,6 +842,7 @@ const flowers2 = [
         type: "herb",
         life: "a",
         transplantTo: "fsun",
+        img: "https://media.istockphoto.com/id/500613911/photo/leaf.jpg?b=1&s=170667a&w=0&k=20&c=LJ5J1ga4Z0vjDWnexkplZKWdpoaSe5nIhDqhv_6oqIk="
     },
     {   id: 5,
         species: "Abrus precatorius",
@@ -846,6 +850,7 @@ const flowers2 = [
         type: "shrub",
         life: "p",
         transplantTo: "fsun",
+        img: "https://media.istockphoto.com/id/500613911/photo/leaf.jpg?b=1&s=170667a&w=0&k=20&c=LJ5J1ga4Z0vjDWnexkplZKWdpoaSe5nIhDqhv_6oqIk="
     },
     {   id: 6,
         species: "Abrus precatorius",
@@ -853,6 +858,7 @@ const flowers2 = [
         type: "grain",
         life: "a",
         transplantTo: "psun",
+        img: "https://media.istockphoto.com/id/500613911/photo/leaf.jpg?b=1&s=170667a&w=0&k=20&c=LJ5J1ga4Z0vjDWnexkplZKWdpoaSe5nIhDqhv_6oqIk="
     },
     {   id: 7,
         species: "Abrus precatorius",
@@ -860,6 +866,7 @@ const flowers2 = [
         type: "house",
         life: "b",
         transplantTo: "psun",
+        img: "https://media.istockphoto.com/id/500613911/photo/leaf.jpg?b=1&s=170667a&w=0&k=20&c=LJ5J1ga4Z0vjDWnexkplZKWdpoaSe5nIhDqhv_6oqIk="
     },
     {   id: 8,
         species: "Abrus precatorius",
@@ -867,6 +874,7 @@ const flowers2 = [
         type: "orn",
         life: "p",
         transplantTo: "fsun",
+        img: "https://media.istockphoto.com/id/500613911/photo/leaf.jpg?b=1&s=170667a&w=0&k=20&c=LJ5J1ga4Z0vjDWnexkplZKWdpoaSe5nIhDqhv_6oqIk="
     },
     {   id: 9,
         species: "Abrus precatorius",
@@ -874,6 +882,7 @@ const flowers2 = [
         type: "vege",
         life: "p",
         transplantTo: "fsha",
+        img: "https://media.istockphoto.com/id/500613911/photo/leaf.jpg?b=1&s=170667a&w=0&k=20&c=LJ5J1ga4Z0vjDWnexkplZKWdpoaSe5nIhDqhv_6oqIk="
     },
     {   id: 12,
         species: "Abrus precatorius",
@@ -881,6 +890,7 @@ const flowers2 = [
         type: "vege",
         life: "a",
         transplantTo: "psun",
+        img: "https://media.istockphoto.com/id/500613911/photo/leaf.jpg?b=1&s=170667a&w=0&k=20&c=LJ5J1ga4Z0vjDWnexkplZKWdpoaSe5nIhDqhv_6oqIk="
     },
     {   id: 10,
         species: "Abrus precatorius",
@@ -888,6 +898,7 @@ const flowers2 = [
         type: "shrub",
         life: "a",
         transplantTo: "fsun",
+        img: "https://media.istockphoto.com/id/500613911/photo/leaf.jpg?b=1&s=170667a&w=0&k=20&c=LJ5J1ga4Z0vjDWnexkplZKWdpoaSe5nIhDqhv_6oqIk="
     },
     {   id: 11,
         species: "Abrus precatorius",
@@ -895,6 +906,7 @@ const flowers2 = [
         type: "shrub",
         life: "b",
         transplantTo: "psha",
+        img: "https://media.istockphoto.com/id/500613911/photo/leaf.jpg?b=1&s=170667a&w=0&k=20&c=LJ5J1ga4Z0vjDWnexkplZKWdpoaSe5nIhDqhv_6oqIk="
     },
 ]
 

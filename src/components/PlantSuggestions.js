@@ -15,10 +15,8 @@ const PlantSuggestions = (props) => {
   const [userZoneNumber, setUserZoneNumber] = useState(8)
   const [plantsDbData, setPlantsDbData] = useState([])
   const [housePlantsDbData, setHousePlantsDbData] = useState([])
-
-    const { userId } = props
+  const { userId } = props
   
-
   const wormCollection = collection(db, "worms", userId, "personal")
 
   function plantData() {
@@ -29,9 +27,7 @@ const PlantSuggestions = (props) => {
         })
         return plantsDbData
       })
-
       .catch(err => {
-
         console.log(err.message)
       })
   }
@@ -44,9 +40,7 @@ const PlantSuggestions = (props) => {
         })
         return housePlantsDbData
       })
-
       .catch(err => {
-
         console.log(err.message)
       })
   }

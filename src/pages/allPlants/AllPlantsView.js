@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { collection, getDocs } from "firebase/firestore"
+import { collection, getDocs, query, where, orderBy, limit, startAfter } from "firebase/firestore"
 import { db } from "../../database/firebase-config"
 import { Link } from "react-router-dom";
 import Checkbox from "./checkboxes"
@@ -15,38 +15,56 @@ const AllPlants = (props) => {
   const [filterLifeOptions, setfilterLifeOptions] = useState([])
   const [filterLightOptions, setfilterLightOptions] = useState([])
   const [userFavorites, setUserFavorites] = useState([])
-  const plantCollection = collection(db, "plants")
+  const [docsLast, setDocsLast] = useState(0)
   const { userId } = props
 
+  // let filterIdNum = 12 + docsLast;
 
-  console.log(plants)
-
+  const plantCollection = collection(db, "testPlants")
   const userFavoritesCollection = collection(db, "worms", userId, "favorites")
+  const q = query(plantCollection, orderBy("flowerId", "asc"), limit(12));
 
   async function getFavorites() {
     const data = await getDocs(userFavoritesCollection)
     await setUserFavorites(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
   }
 
+  const fetchMore = async () => {
+    const q = query(plantCollection, orderBy("flowerId", "asc"), limit(12), startAfter(docsLast));
+    const data = await getDocs(q)
+    const plantData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+    await setPlants((plants) => [...plants, ...plantData])
+    await setPlantsBackUp((plants) => [...plants, ...plantData])
+    const docsLength = data.docs.length - 1
+    const lastPlantId = plantData[docsLength].flowerId
+    setDocsLast(lastPlantId)
+    // console.log('clicked')
+    // console.log(lastPlantId)
+  }
+
   useEffect(() => {
     // setPlants(flowers2)
     // setPlantsBackUp(flowers2)
     async function getPlants() {
-      const data = await getDocs(plantCollection)
-      await setPlants(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
-      await setPlantsBackUp(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+      // 
+      // where("flowerId", "<=", `${rows}`),
+      const data = await getDocs(q)
+      const plantData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+      await setPlants(plantData)
+      await setPlantsBackUp(plantData)
+      const docsLength = data.docs.length - 1
+      const lastPlantId = plantData[docsLength].flowerId
+      setDocsLast(lastPlantId)
     }
     getPlants()
 
     getFavorites()
   }, [])
 
-  console.log(userFavorites)
-
-
+  console.log(plants)
+  console.log(docsLast)
   let userFavorites2 = []
   userFavorites.forEach(plant => userFavorites2.push(plant.plantId))
-  console.log(userFavorites2)
 
 
   const removeFavorite = (thisPlantsId) => {
@@ -194,199 +212,63 @@ const AllPlants = (props) => {
         <button className="all-plants-button" onClick={(evt) => { reset(evt) }}>clear</button>
       </div>
 
-
-
       <div className="allPlantsArea">
-        {plants
-          ? plants.map((plant) => {
-            return (
-              <div className="singlePlant" key={plant.id}>
+        {(plants) ? (plants.map((plant) => {
 
-                <div className="singlePlantName">Species: {plant.name} </div>
-                <div className="singlePlantlife">Life: {plant.life} </div>
-                <div className="singlePlantTransportTo">Transplant to: {plant.transplantTo} </div>
-
-
-                {plant.type === "grain" ? (
-                  <div className="single-plant-container">
-                    <Link to={`/development/${plant.id}`}> <img
-                      src="https://www.world-grain.com/ext/resources/2022/09/21/Wheat_photo-cred-Adobe-stock_E-2.jpg?t=1663769040&width=1080"
-                      className="allPlantsImg"
-                    /></Link>
-
-                    <div>{userFavorites2.includes(plant.id) ? 
+          return (<div className="singlePlant" key={plant.id}>
+            <div className="singlePlantName">Species: {plant.name}</div>
+            <div>{plant.type}</div>
+            <div className="singlePlantlife">Life: {plant.life}</div>
+            <div className="singlePlantTransportTo">Light: {plant.transplantTo}</div>
+            <Link to={`/allplants/${plant.id}`}>
+              <img src={plant.img} className="allPlantsImg" />
+            </Link>
+            {/* <div><i className="fa fa-heart" aria-hidden="true"></i></div> */}
+            <div>{userFavorites2.includes(plant.id) ? 
                       (<div onClick={()=>{removeFavorite(plant.id);}}><i className="fa fa-heart" aria-hidden="true"></i></div>
                       ) : (<div onClick={()=>{
                         AddFavorite(plant.id, userId)
                         getFavorites()
                         }}><i className="fa fa-heart-o" aria-hidden="true"></i></div>
                       )}
-                    </div>
+            </div>
 
-                    <div>"Grain"</div>
-                  </div>
-                ) : plant.type === "grass" ? (
-                  <div className="single-plant-container">
-                    <Link to={`/development/${plant.id}`}><img
-                      src="https://www.highcountrygardens.com/media/catalog/product/c/o/cortaderia_selloana_pumila_2.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=&width="
-                      className="allPlantsImg"
-                    /></Link>
+          </div>)
 
-                    <div>{userFavorites2.includes(plant.id) ? 
-                      (<div onClick={()=>{removeFavorite(plant.id);}}><i className="fa fa-heart" aria-hidden="true"></i></div>
-                      ) : (<div onClick={()=>{
-                        AddFavorite(plant.id, userId)
-                        getFavorites()
-                        }}><i className="fa fa-heart-o" aria-hidden="true"></i></div>
-                      )}
-                    </div>
-
-                    <div>"Grass"</div>
-                  </div>
-                ) : plant.type === "herb" ? (
-                  <div className="single-plant-container">
-                    <Link to={`/development/${plant.id}`}> <img
-                      src="https://www.farmersalmanac.com/wp-content/uploads/2020/11/basil-plant-garden-as_245197176.jpeg"
-                      className="allPlantsImg"
-                    /></Link>
-
-                    <div>{userFavorites2.includes(plant.id) ? 
-                      (<div onClick={()=>{removeFavorite(plant.id);}}><i className="fa fa-heart" aria-hidden="true"></i></div>
-                      ) : (<div onClick={()=>{
-                        AddFavorite(plant.id, userId)
-                        getFavorites()
-                        }}><i className="fa fa-heart-o" aria-hidden="true"></i></div>
-                      )}
-                    </div>
-
-                    <div>"Herb"</div>
-                  </div>
-                ) : plant.type === "house" ? (
-                  <div className="single-plant-container">
-                    <Link to={`/development/${plant.id}`}> <img
-                      src="http://cdn.shopify.com/s/files/1/2528/3612/products/Philodendron_Monstera_black_round_1800x.jpg?v=1627692378"
-                      className="allPlantsImg"
-                    /></Link>
-
-                    <div>{userFavorites2.includes(plant.id) ? 
-                      (<div onClick={()=>{removeFavorite(plant.id);}}><i className="fa fa-heart" aria-hidden="true"></i></div>
-                      ) : (<div onClick={()=>{
-                        AddFavorite(plant.id, userId)
-                        getFavorites()
-                        }}><i className="fa fa-heart-o" aria-hidden="true"></i></div>
-                      )}
-                    </div>
-
-                    <div>"House"</div>
-                  </div>
-                ) : plant.type === "orn" ? (
-                  <div className="single-plant-container">
-                    <Link to={`/development/${plant.id}`}> <img
-                      src="https://bloomsz.com/wp-content/uploads/2018/08/09477_Bleeding-Hearts.jpg"
-                      className="allPlantsImg"
-                    /></Link>
-
-                    <div>{userFavorites2.includes(plant.id) ? 
-                      (<div onClick={()=>{removeFavorite(plant.id);}}><i className="fa fa-heart" aria-hidden="true"></i></div>
-                      ) : (<div onClick={()=>{
-                        AddFavorite(plant.id, userId)
-                        getFavorites()
-                        }}><i className="fa fa-heart-o" aria-hidden="true"></i></div>
-                      )}
-                    </div>
-
-                    <div>"Ornamental"</div>
-                  </div>
-                ) : plant.type === "shrub" ? (
-                  <div className="single-plant-container">
-                    <Link to={`/development/${plant.id}`}> <img
-                      src="https://i.pinimg.com/736x/a4/fa/d6/a4fad6f233cf74495f72f6ccc126f643.jpg"
-                      className="allPlantsImg"
-                    /></Link>
-
-                    <div>{userFavorites2.includes(plant.id) ? 
-                      (<div onClick={()=>{removeFavorite(plant.id);}}><i className="fa fa-heart" aria-hidden="true"></i></div>
-                      ) : (<div onClick={()=>{
-                        AddFavorite(plant.id, userId)
-                        getFavorites()
-                        }}><i className="fa fa-heart-o" aria-hidden="true"></i></div>
-                      )}
-                    </div>
-
-                    <div>"Shrub"</div>
-                  </div>
-                ) : plant.type === "tree" ? (
-                  <div className="single-plant-container">
-                    <Link to={`/development/${plant.id}`}>  <img
-                      src="https://images.saymedia-content.com/.image/t_share/MTc0MzU0MTAwNDc2MzIzMTc2/smalltreesforasmallyardorgardentreesunderthirtyfeettall.jpg"
-                      className="allPlantsImg"
-                    /></Link>
-
-                    <div>{userFavorites2.includes(plant.id) ? 
-                      (<div onClick={()=>{removeFavorite(plant.id);}}><i className="fa fa-heart" aria-hidden="true"></i></div>
-                      ) : (<div onClick={()=>{
-                        AddFavorite(plant.id, userId)
-                        getFavorites()
-                        }}><i className="fa fa-heart-o" aria-hidden="true"></i></div>
-                      )}
-                    </div>
-
-                    <div>"Tree"</div>
-                  </div>
-                ) : plant.type === "vege" ? (
-                  <div className="single-plant-container">
-                    <Link to={`/development/${plant.id}`}> <img
-                      src="https://images.ctfassets.net/3s5io6mnxfqz/2BvZI3f3027FiiZ256sEOZ/b88803248178aa2d7c3d4901eac7992d/AdobeStock_291017406.jpeg"
-                      className="allPlantsImg"
-                    /></Link>
-
-                    <div>{userFavorites2.includes(plant.id) ? 
-                      (<div onClick={()=>{removeFavorite(plant.id);}}><i className="fa fa-heart" aria-hidden="true"></i></div>
-                      ) : (<div onClick={()=>{
-                        AddFavorite(plant.id, userId)
-                        getFavorites()
-                        }}><i className="fa fa-heart-o" aria-hidden="true"></i></div>
-                      )}
-                    </div>
-
-                    <div>"Vegetable"</div>
-                  </div>
-                ) : plant.type === "vine" ? (
-                  <div className="single-plant-container">
-                    <Link to={`/development/${plant.id}`}> <img
-                      src="https://www.bhg.com/thmb/EUBuVlZmTyIB2HihqbdqzhX55e8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/clematis-climbing-trellis-8c6f8c88-150967778d104724a5324ad08269c637.jpg"
-                      className="allPlantsImg"
-                    /></Link>
-
-                    <div>{userFavorites2.includes(plant.id) ? 
-                      (<div onClick={()=>{removeFavorite(plant.id);}}><i className="fa fa-heart" aria-hidden="true"></i></div>
-                      ) : (<div onClick={()=>{
-                        AddFavorite(plant.id, userId)
-                        getFavorites()
-                        }}><i className="fa fa-heart-o" aria-hidden="true"></i></div>
-                      )}
-
-                    </div>
-                    <div>"Vine"</div>
-                  </div>
-                ) : null}
-              </div>
-            )
-            {
-              plant.life === "a" ? (
-                <div>"Annual"</div>
-              ) : plant.life === "b" ? (
-                <div>Biennials</div>
-              ) : plant.life === "p" ? (
-                <div>Perennials</div>
-              ) : (
-                <div>Other</div>
-              )
-            }
-          })
-          : null}
+        })) : (<div>Sorry, no plant data available</div>)}
       </div>
-    </div>)
+      <div className="loadMoreButtonDiv"><button onClick={()=>{fetchMore()}}>Load More Plants</button></div>
+    </div>
+  )
 }
+
+
+
+    //     {(plants
+    //       ? (plants.map((plant) => {
+    //         (
+    //           <div className="singlePlant" key={plant.id}>
+    //             <div className="singlePlantName">Species: {plant.name}</div>
+    //             <div className="singlePlantlife">Life: {plant.life}</div>
+    //             <div className="singlePlantTransportTo">Light: {plant.transplantTo}</div>
+    //             <Link to={`/development/${plant.id}`}>
+    //               <img src={plant.img} className="allPlantsImg" />
+    //             </Link>
+                // <div>{userFavorites2.includes(plant.id) ? 
+                //       (<div onClick={()=>{removeFavorite(plant.id);}}><i className="fa fa-heart" aria-hidden="true"></i></div>
+                //       ) : (<div onClick={()=>{
+                //         AddFavorite(plant.id, userId)
+                //         getFavorites()
+                //         }}><i className="fa fa-heart-o" aria-hidden="true"></i></div>
+                //       )}
+                // </div>
+    //             <div>{plant.type}</div>
+    //           </div>
+    //         )}) : (<div>"No plants to display"</div>) }
+    //       }))}
+    //   </div>
+    // </div>)
+
+// }
 
 export default AllPlants
