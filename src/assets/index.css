@@ -266,7 +266,7 @@ h3.auth-header {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 20vh;
+  /* height: 20vh; */
   /* border: 1px solid blue; */
 }
 
@@ -367,7 +367,11 @@ h3.auth-header {
 }
 
 .welcome-user {
-  margin: 20px;
+  margin: 25px;
+}
+
+.home-user-account-icon a {
+  color: #000000;
 }
 
 /* JOURNAL */
@@ -561,7 +565,6 @@ div.journal {
   align-items: center;
   top: 12px;
   height: 100%;
-  width: 100%;
   position: relative;
   background-color: #555;
 }

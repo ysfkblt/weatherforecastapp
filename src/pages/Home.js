@@ -158,7 +158,11 @@ const Home = (props) => {
           )}
         </span>
 
-        <span>PUT ICON HERE</span>
+        <span className="home-user-account-icon">
+          <Link to="/user">
+            <i class="fa fa-regular fa-user"> </i>
+          </Link>
+        </span>
       </header>
 
       <div className="home-below-header-container-search">
