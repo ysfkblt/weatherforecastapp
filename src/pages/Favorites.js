@@ -59,23 +59,35 @@ const Favorites = (props) => {
           
           (favoritePlantData.map((curPlant) => (
               <div className="plant-list-favorites" key={curPlant.id}>
-                <div>
-                  <h3>
-                    Name: {curPlant.name},
-                  </h3>
-                  <h3 className="italics">({curPlant.species})</h3>
+                <div className="singlePlant-title-container">
+                  <div>
+                  {userFavorites2.includes(curPlant.id) ? 
+                        (<div onClick={()=>{removeFavorite(curPlant.id);}}><i className="fa fa-heart" aria-hidden="true"></i></div>
+                        ) : (<div onClick={()=>{
+                          AddFavorite(curPlant.id, userId)
+                          getFavorites()
+                          }}><i className="fa fa-heart-o" aria-hidden="true"></i></div>
+                        )}
+                  </div>
+                  <div>
+                    <h3>
+                      {curPlant.name},
+                    </h3>
+                  </div>
+                  
                 </div>
                 <div>
                   <img src="https://watchandlearn.scholastic.com/content/dam/classroom-magazines/watchandlearn/videos/animals-and-plants/plants/what-are-plants-/What-Are-Plants.jpg" className="favoritePlant" />
                 </div>
-                <div>
-                {userFavorites2.includes(curPlant.id) ? 
-                      (<div onClick={()=>{removeFavorite(curPlant.id);}}><i className="fa fa-heart" aria-hidden="true"></i></div>
-                      ) : (<div onClick={()=>{
-                        AddFavorite(curPlant.id, userId)
-                        getFavorites()
-                        }}><i className="fa fa-heart-o" aria-hidden="true"></i></div>
-                      )}
+                <div className="italics">({curPlant.species})</div>
+                <div>Type: {curPlant.type}</div>
+                <div className="singlePlantlife">Life: {(curPlant.life === 'a') ? ("annual") : 
+                ((curPlant.life === 'p') ? ('perennial') :
+                  ((curPlant.life === 'b' ? ("biannual") : ("other"))))}
+                </div>
+                <div className="singlePlantTransportTo">Light: {(curPlant.transplantTo === 'psha') ? ("partial shade") : 
+                    ((curPlant.transplantTo === 'fsha') ? ("full shade") : 
+                        ((curPlant.transplantTo === 'fsun') ? ("full sun") : ("partial sun")))}
                 </div>
               </div>))) :
               (
