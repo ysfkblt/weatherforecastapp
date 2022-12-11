@@ -44,6 +44,12 @@ const Journal = (props) => {
     getworms()
   }, [])
 
+  const addnotes=()=>{
+    
+    const editInputArea = document.querySelectorAll(".add-entry-area")
+        const currentEditInputArea = editInputArea[0]
+        currentEditInputArea.classList.toggle("show")
+  }
   const uploadEntry = async () => {
     let datas = await getDocs(wormCollection)
     //use addDoc to add data to the table; first var is the table name, 2nd is the data you want to add
@@ -135,7 +141,8 @@ const Journal = (props) => {
       <input className="journal-search" value={search} onChange={(event) => { setSearch(event.target.value); searchPage(event.target.value) }} placeholder="Search..." size={50} />
       {/* <button onClick={(event)=> searchPage(search)}>Search</button> */}
       <div className="journal-form">
-        <h1 className="journal-form-heading"> Add new entry:</h1>
+        <h1 className="journal-form-heading" onClick={(evt)=>addnotes()}> Add new entry</h1>
+        <div className="add-entry-area">
         <div className="imgUpload">
           <input className="journal-form-date-input" type="date" value={date} defaultValue={defaultDate} onChange={(event) => { setDate(event.target.value) }} />
           <div>
@@ -147,6 +154,7 @@ const Journal = (props) => {
           
           <button className="journal-notes-image-upload-button" onClick={uploadEntry}> Upload Entry
           </button>
+        </div>
           </div>
         </div>
       </div>

@@ -12,7 +12,7 @@ import { db } from "../database/firebase-config"
 
 const PlantSuggestions = (props) => {
   // const userZoneNumber = 8 // ! PLACEHOLDER
-  console.log("THIS IS THE CURRENT ZONE", props.zone)
+  console.log("*****THIS IS THE CURRENT ZONE", props.zone)
   const [userZoneNumber, setUserZoneNumber] = useState(8)
   const [plantsDbData, setPlantsDbData] = useState([])
   const [housePlantsDbData, setHousePlantsDbData] = useState([])
@@ -383,7 +383,8 @@ const PlantSuggestions = (props) => {
   return (
 
     <div className="plant-suggestions-container">
-      <div>{userZoneNumber}</div>
+      <div>USING ZONE:{userZoneNumber}</div>
+      <div>Should be Zone:{props.zone}</div>
       <h2 className="plant-suggestions-header">TODAY'S PLANT SUGGESTIONS</h2>
       {suggestedPlantsData.length > 0 ? (
         suggestedPlantsData.map((curPlant) => (

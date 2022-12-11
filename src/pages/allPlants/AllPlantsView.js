@@ -157,6 +157,12 @@ const AllPlants = (props) => {
       }
   }
 
+  function show(className){
+    console.log("WORKING")
+    const editInputArea = document.querySelectorAll(`.${className}`)
+    const currentEditInputArea = editInputArea[0]
+    currentEditInputArea.classList.toggle("show")
+  }
 
   const plantTypes = ["grain", "grass", "herb", "house", "orn", "shrub", "tree", "vege", "vine"]
   const plantLife = ["a", "b", "p", "other"]
@@ -165,33 +171,35 @@ const AllPlants = (props) => {
   return (
     <div className="all-plants-container">
       <div className="filterArea">
-        <h4 className="filterTitle">Filter</h4>
+        <h4 className="filterTitle" onClick={(evt)=>show("filteringCon")}>Filter</h4>
+        
         <div className="filteringCon">
 
-          <div className="filtering">
+          <div className="filtering filterPlantType">
             <h4 className="filteringTitle">Plant Type</h4>
             <div className="filterColumn">
               {plantTypes.map((type) => <Checkbox type={type} handleChange={checkedBoxType} />)}
             </div>
           </div>
 
-          <div className="filtering">
+          <div className="filtering filterPlantLife">
             <h4 className="filteringTitle">Plant Life</h4>
             <div className="filterColumn">
               {plantLife.map((life) => <Checkbox type={life} handleChange={checkedBoxLife} />)}
             </div>
           </div>
 
-          <div className="filtering">
+          <div className="filtering filterPlantLight">
             <h4 className="filteringTitle">Transplant To</h4>
             <div className="filterColumn">
               {transplantTo.map((light) => <Checkbox type={light} handleChange={checkedBoxLight} />)}
             </div>
           </div>
 
-        </div>
         <button className="all-plants-button" onClick={(evt) => { onSubmit(evt) }}>submit</button>
         <button className="all-plants-button" onClick={(evt) => { reset(evt) }}>clear</button>
+        </div>
+        
       </div>
 
 
