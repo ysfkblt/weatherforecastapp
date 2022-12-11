@@ -46,10 +46,7 @@ const AppRoutes = () => {
             <Route path="/journal" element={<Journal userId={user.uid} />} />
             <Route path="/favorites" element={<Favorites userId={user.uid} />} />
             <Route path="/user" element={<User user={user}/>} />
-            <Route
-              path="/favorites"
-              element={<Favorites userId={user.uid} />}
-            />
+
             <Route path="/garden" element={<GardenPlotViz />} />
           </>
         ) : (

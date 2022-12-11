@@ -29,21 +29,23 @@ let objArr = []
 let objCount = 0
 const objSizeX = 50
 const objSizeY = 50
+let petalColor = [150, 10, 50]
+let centerPetalColor = [50, 100, 75]
 
 // **** ACTUAL PLOT DETAILS ****z
 const actualPlotLength = 4 //ft
-const actualPlotWidth = 8 //ft
+const actualPlotWidth = 6 //ft
 const gridSpacingRule = 1 //ft how far apart plants should be
 
-const plotDimensionConversionConstant = 80 // 1 ft = 100 px
+const plotDimensionConversionConstant = 85 // 1 ft = 100 px
 
 // **** PLOT ****
 const plotLength = actualPlotLength * plotDimensionConversionConstant
 const plotWidth = actualPlotWidth * plotDimensionConversionConstant
-const plotSoilColor_R = 150
-const plotSoilColor_G = 90
+const plotSoilColor_R = 170
+const plotSoilColor_G = 120
 const plotSoilColor_B = 0
-const plotOpacity = 100
+const plotOpacity = 90
 
 // **** GRID ****
 const gridSpacing = gridSpacingRule * plotDimensionConversionConstant
@@ -53,15 +55,7 @@ const plotRows = plotWidth / gridSpacing
 // SHAPES
 let shapeSpawnLocationX = 50
 let shapeSpawnLocationY = 50
-
-// UI Button
-let createPlantButtonX = 25
-let createPlantButtonY = plotWidth + 100
-let sel
-let dropDownListX = 250
-let dropDownListY = plotWidth + 100
-let plantInputTextValue = ""
-let plantInputBox
+let textSizeForPlant = 14
 
 // PLANT OPTIONS
 let plantTypeListArr = [
@@ -76,15 +70,29 @@ let plantTypeListArr = [
   "vine", //9 types
 ]
 let selectedPlantType = plantTypeListArr[0]
+
+// ============ CONTROL VARIABLES END ===========
 // ============ CONTROL VARIABLES END ===========
 // ============ CONTROL VARIABLES END ===========
 
 function gardenPlotSketch(p) {
+  // UI Button
+  let createPlantButtonX = plotLength - 275
+  let createPlantButtonY = plotWidth + 140
+  // let createPlantButtonX = p.windowWidth / 2
+  // let createPlantButtonY = (p.windowHeight * 3) / 4
+  let sel
+  let dropDownListX = plotLength - 300
+  let dropDownListY = plotWidth + 100
+  let plantInputTextValue = ""
+  let plantInputBox
+  let inputPositionX = dropDownListX + 70
+  let inputPositionY = plotWidth + 85
+
   p.preload = function () {
     // console.log("before", img_grain)
-    img_grain = p.loadImage(img_grain_path)
+    // img_grain = p.loadImage(img_grain_path)
     // console.log("after", img_grain)
-
     // img_grass = p.loadImage(img_grass_path)
     //  img_herb = p.loadImage(img_herb_path)
     //  img_house = p.loadImage(img_house_path)
@@ -122,6 +130,7 @@ function gardenPlotSketch(p) {
 
     // add plant button \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     p.button = p.createButton("add plant")
+    p.button.size(250, 75)
     p.button.position(createPlantButtonX, createPlantButtonY)
     p.button.mousePressed(p.handleAddPlant)
   }
@@ -146,9 +155,16 @@ function gardenPlotSketch(p) {
 
   // plant type input \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
   plantInputBox = p.createInput()
-  plantInputBox.position(createPlantButtonX, createPlantButtonY + 50)
+  plantInputBox.position(inputPositionX, inputPositionY)
+  plantInputBox.size(200, 30)
+  plantInputBox.attribute("placeholder", "enter plant name")
 
   p.draw = function () {
+    // p.button = p.createButton("add plant")
+    // p.button.size(250, 75)
+    // p.button.position(createPlantButtonX, createPlantButtonY)
+    // p.button.mousePressed(p.handleAddPlant)
+
     // clear out old frames
     p.background(plotSoilColor_R, plotSoilColor_G, plotSoilColor_B)
     for (let x = 0; x < p.width; x += p.width / plotColumns) {
@@ -179,6 +195,34 @@ function gardenPlotSketch(p) {
     objArr.forEach((curElem) => {
       curElem.released()
     })
+  }
+  p.drawFlower = function (
+    flowerX,
+    flowerY,
+    petalSize,
+    petalColor,
+    centerPetalColor
+  ) {
+    let petalDistance = petalSize / 2
+
+    // petal color
+    p.fill(petalColor[0], petalColor[1], petalColor[2])
+
+    // upper-left petal
+    p.circle(flowerX - petalDistance, flowerY - petalDistance, petalSize)
+
+    // upper-right petal
+    p.circle(flowerX + petalDistance, flowerY - petalDistance, petalSize)
+
+    // lower-left petal
+    p.circle(flowerX - petalDistance, flowerY + petalDistance, petalSize)
+
+    // lower-right petal
+    p.circle(flowerX + petalDistance, flowerY + petalDistance, petalSize)
+
+    // center petal
+    p.fill(centerPetalColor[0], centerPetalColor[1], centerPetalColor[2])
+    p.circle(flowerX, flowerY, petalSize)
   }
 
   class Draggable {
@@ -229,44 +273,65 @@ function gardenPlotSketch(p) {
         // p.noFill()
         // console.log(this)
 
-        p.fill(150, 0, 0)
-        p.textSize(16)
-        p.text(`grain: ${this.userPlantInput}`, this.x, this.y + 65)
+        p.fill(235, 189, 104)
+        petalColor = [235, 189, 104]
+        centerPetalColor = [235, 189, 104]
+        p.textSize(textSizeForPlant)
+        p.text(`grain: ${this.userPlantInput}`, this.x - 25, this.y + 45)
       } else if (this.plantType === "grass") {
-        p.fill(150, 150, 0)
-        p.textSize(16)
-        p.text(`grass: ${this.userPlantInput}`, this.x, this.y + 65)
+        p.fill(0, 82, 33)
+        petalColor = [0, 82, 33]
+        centerPetalColor = [0, 82, 33]
+        p.textSize(textSizeForPlant)
+        p.text(`grass: ${this.userPlantInput}`, this.x - 25, this.y + 45)
       } else if (this.plantType === "herb") {
-        p.fill(0, 150, 150)
-        p.textSize(16)
-        p.text(`herb: ${this.userPlantInput}`, this.x, this.y + 65)
+        p.fill(103, 133, 74)
+        petalColor = [103, 133, 74]
+        centerPetalColor = [103, 133, 74]
+        p.textSize(textSizeForPlant)
+        p.text(`herb: ${this.userPlantInput}`, this.x - 25, this.y + 45)
       } else if (this.plantType === "house") {
-        p.fill(50, 150, 50)
-        p.textSize(16)
-        p.text(`house: ${this.userPlantInput}`, this.x, this.y + 65)
+        p.fill(104, 70, 129)
+        petalColor = [104, 70, 129]
+        centerPetalColor = [104, 70, 129]
+        p.textSize(textSizeForPlant)
+        p.text(`house: ${this.userPlantInput}`, this.x - 25, this.y + 45)
       } else if (this.plantType === "orn") {
-        p.fill(150, 10, 200)
-        p.textSize(16)
-        p.text(`orn: ${this.userPlantInput}`, this.x, this.y + 65)
+        p.fill(161, 49, 51)
+        petalColor = [161, 49, 51]
+        centerPetalColor = [161, 49, 51]
+        p.textSize(textSizeForPlant)
+        p.text(`orn: ${this.userPlantInput}`, this.x - 25, this.y + 45)
       } else if (this.plantType === "shrub") {
-        p.fill(70, 10, 100)
-        p.textSize(16)
-        p.text(`shrub: ${this.userPlantInput}`, this.x, this.y + 65)
+        p.fill(213, 184, 190)
+        petalColor = [213, 184, 190]
+        centerPetalColor = [213, 184, 190]
+        p.textSize(textSizeForPlant)
+        p.text(`shrub: ${this.userPlantInput}`, this.x - 25, this.y + 45)
       } else if (this.plantType === "tree") {
-        p.fill(70, 90, 200)
-        p.textSize(16)
-        p.text(`tree: ${this.userPlantInput}`, this.x, this.y + 65)
+        p.fill(165, 100, 77)
+        petalColor = [165, 100, 77]
+        centerPetalColor = [165, 100, 77]
+        p.textSize(textSizeForPlant)
+        p.text(`tree: ${this.userPlantInput}`, this.x - 25, this.y + 45)
       } else if (this.plantType === "vege") {
-        p.fill(35, 1, 255)
-        p.textSize(16)
-        p.text(`vege: ${this.userPlantInput}`, this.x, this.y + 65)
+        p.fill(231, 24, 55)
+        petalColor = [231, 24, 55]
+        centerPetalColor = [231, 24, 55]
+        p.textSize(textSizeForPlant)
+        p.text(`vege: ${this.userPlantInput}`, this.x - 25, this.y + 45)
       } else if (this.plantType === "vine") {
-        p.fill(90, 100, 30)
-        p.textSize(16)
-        p.text(`vine: ${this.userPlantInput}`, this.x, this.y + 65)
+        p.fill(138, 205, 222)
+        petalColor = [138, 205, 22]
+        centerPetalColor = [138, 205, 22]
+        p.textSize(textSizeForPlant)
+        p.text(`vine: ${this.userPlantInput}`, this.x - 25, this.y + 45)
       }
 
-      p.rect(this.x, this.y, this.w, this.h)
+      // console.log(p.drawFlower)
+
+      // p.rect(this.x, this.y, this.w, this.h)
+      p.drawFlower(this.x, this.y, 25, petalColor, centerPetalColor)
       //   p.circle(this.x, this.y, this.w)
       //   p.image(img_grain, 0, 0)
     }

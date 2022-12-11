@@ -175,6 +175,23 @@ const AllPlants = (props) => {
       }
   }
 
+  function show(className) {
+    const editInputArea = document.querySelectorAll(`.${className}`)
+    const currentEditInputArea1 = editInputArea[0]
+    const currentEditInputArea2 = editInputArea[1]
+    const currentEditInputArea3 = editInputArea[2]
+    const currentEditInputArea4 = editInputArea[3]
+    currentEditInputArea1.classList.toggle("show")
+    currentEditInputArea2.classList.toggle("show")
+    currentEditInputArea3.classList.toggle("show")
+    currentEditInputArea4.classList.toggle("show")
+  }
+  function showFilter(className) {
+    console.log("WORKING")
+    const editInputArea = document.querySelectorAll(`.${className}`)
+    const currentEditInputArea1 = editInputArea[0]
+    currentEditInputArea1.classList.toggle("show")
+  }
 
   const plantTypes = ["grain", "grass", "herb", "house", "orn", "shrub", "tree", "vege", "vine"]
   const plantLife = ["a", "b", "p", "other"]
@@ -183,34 +200,57 @@ const AllPlants = (props) => {
   return (
     <div className="all-plants-container">
       <div className="filterArea">
-        <h4 className="filterTitle">Filter</h4>
+        <i className="fa fa-filter" aria-hidden="true" onClick={(evt) => show("hide")}></i>
         <div className="filteringCon">
+          <div className="hide">
 
-          <div className="filtering">
-            <h4 className="filteringTitle">Plant Type</h4>
-            <div className="filterColumn">
-              {plantTypes.map((type) => <Checkbox type={type} handleChange={checkedBoxType} />)}
+            <div className="filtering filterPlantType">
+              <h4 className="filteringTitle" onClick={(evt) => showFilter("filterType")}>Plant Type</h4>
+              <div className="filterColumn ">
+                <span className="filterType">
+
+                  {plantTypes.map((type) => <Checkbox type={type} handleChange={checkedBoxType} />)}
+                </span>
+              </div>
+            </div>
+
+          </div>
+          <div className="hide">
+
+            <div className="filtering filterPlantLife">
+              <h4 className="filteringTitle" onClick={(evt) => showFilter("filterLife")}>Plant Life</h4>
+              <div className="filterColumn ">
+                <span className="filterLife">
+                  {plantLife.map((life) => <Checkbox type={life} handleChange={checkedBoxLife} />)}
+                </span>
+              </div>
             </div>
           </div>
 
-          <div className="filtering">
-            <h4 className="filteringTitle">Plant Life</h4>
-            <div className="filterColumn">
-              {plantLife.map((life) => <Checkbox type={life} handleChange={checkedBoxLife} />)}
+          <div className="hide">
+
+            <div className="filtering filterPlantLight">
+              <h4 className="filteringTitle" onClick={(evt) => showFilter("filterLight")}>Transplant To</h4>
+              <div className="filterColumn ">
+                <span className="filterLight">
+
+                  {transplantTo.map((light) => <Checkbox type={light} handleChange={checkedBoxLight} />)}
+                </span>
+              </div>
             </div>
           </div>
-
-          <div className="filtering">
-            <h4 className="filteringTitle">Transplant To</h4>
-            <div className="filterColumn">
-              {transplantTo.map((light) => <Checkbox type={light} handleChange={checkedBoxLight} />)}
-            </div>
-          </div>
-
         </div>
-        <button className="all-plants-button" onClick={(evt) => { onSubmit(evt) }}>submit</button>
-        <button className="all-plants-button" onClick={(evt) => { reset(evt) }}>clear</button>
+        <div className="hide">
+
+          <button className="all-plants-button" onClick={(evt) => { onSubmit(evt) }}>submit</button>
+          <button className="all-plants-button" onClick={(evt) => { reset(evt) }}>clear</button>
+        </div>
+
+
+
       </div>
+
+
 
       <div className="allPlantsArea">
         {(plants) ? (plants.map((plant) => {
@@ -229,7 +269,7 @@ const AllPlants = (props) => {
                       ) : (<div onClick={()=>{
                         AddFavorite(plant.id, userId)
                         getFavorites()
-                        }}><i className="fa fa-heart-o" aria-hidden="true"></i></div>
+                      }}><i className="fa fa-heart-o" aria-hidden="true"></i></div>
                       )}
             </div>
 

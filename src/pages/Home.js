@@ -10,6 +10,7 @@ import { auth, db } from "../database/firebase-config"
 import { Link } from "react-router-dom"
 import Search from "../components/Search"
 import { collection, doc, getDocs } from "firebase/firestore"
+import { connectStorageEmulator } from "firebase/storage"
 
 
 const Home = (props) => {
@@ -25,11 +26,8 @@ const Home = (props) => {
   // console.log("THIS IS USER IN HOME JS", user)
   useEffect(() => {
     async function getDatas() {
-      console.log(user.uid)
       const wormCollection = collection(db, "worms", user.uid, "personal")
-      console.log("PASSING WORMCOLLECTION")
       let newData = await getDocs(wormCollection)
-      console.log("USERDATA IN HOMEJS", newData.docs[0].data().zone)
       setuserZone(newData.docs[0].data().zone)
     }
     getDatas()
@@ -244,21 +242,15 @@ const Home = (props) => {
 
       {props.userId && zip.length === 5 ? (
         <>
-          <PlantSuggestions userId={props.userId} zone={zone} />
-          <div>NEW ZIP {zone.zone}</div>
-          {console.log("SEARCHING NEW ZIP", zone)}
+          <PlantSuggestions userId={props.userId} zone={zone.zone} />
         </>
       ) : props.userId ? (
         <>
-        <div>USER'S ZONE {userZone}</div>
           <PlantSuggestions userId={props.userId} zone={userZone} />
-          {console.log("LOOKING FOR USER SAVED ZIP", userZone)}
         </>
       ) : (
         <>
-          <PlantSuggestions userId={"NA"} />
-          <div>DEFAULT DATA</div>
-          {console.log("GETTING DEFAULT DATA?", search)}
+          <PlantSuggestions userId={"NA"} zone={8}/>
         </>
       )}
 
