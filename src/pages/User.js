@@ -151,8 +151,31 @@ async function getDatas() {
 //   getDatas()
     return (
         <div className="user-container">
+            <div className="user-top">
+
+            <div>
+                    <i className="fa fa-pencil" aria-hidden="true" onClick={(evt)=>{edit(evt, "profileEdit")}}></i>
+                <img src={profilePictureUrl} width={90}/>
+                <div className="user-profile-picture-container">
+                    {/* <img src={profilePictureUrl} alt="profile picture" /> */}
+                    <div className="profileEdit">
+                    <input type="file" onChange={(event) => { setProfilePicture(event.target.files[0]) }} />
+                    <button onClick={uploadProfilePicture}>Upload Profile Picture</button>
+                    </div>
+                </div>
+            </div>
+             
+             <div>
+            <h1>{updatedDisplayName===""?currentUser.displayName: updatedDisplayName}'s Profile</h1>
+                <div>{currentUser.email}</div>
+             </div>
+        <div>
+            
+        </div>
+            </div>
             <div className="user-profile-container">
-                <h1><i className="fa fa-pencil" aria-hidden="true" onClick={(evt)=>{edit(evt, "displayNameEdit")}}></i>{updatedDisplayName===""?currentUser.displayName: updatedDisplayName}'s Profile</h1>
+                <div> Edit Account Info:</div>
+                <div><i className="fa fa-pencil" aria-hidden="true" onClick={(evt)=>{edit(evt, "displayNameEdit")}}></i>User Name:{updatedDisplayName===""?currentUser.displayName: updatedDisplayName}</div>
                 <div className="displayNameEdit">
                 <input  value={newDisplayName} onChange={(event) => { setNewDisplayName(event.target.value) }} placeholder="Update Display Name" size={90} style={{ height: "7vh" }} />
                 <button onClick={(event)=>updateDisplayName()}>Update Display Name</button>
@@ -166,18 +189,7 @@ async function getDatas() {
                 <input value={newZip} onChange={(event) => { setNewZip(event.target.value) }} placeholder="Update Zipcode" size={90} style={{ height: "7vh" }} />
                 <button onClick={(event)=>updateZip()}>Update Zipcode</button>
                 </div>
-                <div>
-                    <i className="fa fa-pencil" aria-hidden="true" onClick={(evt)=>{edit(evt, "profileEdit")}}></i>
-                <img src={profilePictureUrl} width={90}/>
-                    </div>
-                <div className="user-profile-picture-container">
-                    {/* <img src={profilePictureUrl} alt="profile picture" /> */}
-                    <div className="profileEdit">
-
-                    <input type="file" onChange={(event) => { setProfilePicture(event.target.files[0]) }} />
-                    <button onClick={uploadProfilePicture}>Upload Profile Picture</button>
-                    </div>
-                </div>
+               
             </div>
             <button className="nav-bar-link nav-bar-link-signout" onClick={logout}>Sign out</button>
 
