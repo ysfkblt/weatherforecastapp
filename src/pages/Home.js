@@ -11,6 +11,7 @@ import { Link } from "react-router-dom"
 import Search from "../components/Search"
 import { collection, doc, getDocs } from "firebase/firestore"
 import { connectStorageEmulator } from "firebase/storage"
+import logo from "../assets/logos/logo.png"
 
 
 const Home = (props) => {
@@ -158,6 +159,12 @@ const Home = (props) => {
             onChange={handleSearch}
             function={handleSearch}
           /> */}
+
+       
+
+
+          
+
           <section className="search-container">
             <article className="search-input-container">
               <input
@@ -233,9 +240,14 @@ const Home = (props) => {
         </section>
       </header>
 
+
+      <div className="logo-container">
+            <img src={logo} alt="logo" className="logo" />
+          </div>
+
       <span className="welcome-user">
-        {(user ? (<span>Welcome <Link to="/user">{user.displayName}!</Link></span>) :
-          "Welcome!")}
+        {(user ? (<span>Welcome to Worm's Eye View <Link to="/user">{user.displayName}!</Link></span>) :
+          <span>Welcome to Worm's Eye View!</span>)}
       </span>
 
       {/* Plant Suggestions */}
