@@ -9,9 +9,14 @@ import { onAuthStateChanged, signOut } from "firebase/auth"
 import { auth, db } from "../database/firebase-config"
 import { Link } from "react-router-dom"
 import Search from "../components/Search"
-import { collection, doc, getDocs } from "firebase/firestore"
+import { collection, getDocs } from "firebase/firestore"
 import { connectStorageEmulator } from "firebase/storage"
 import logo from "../assets/logos/worm-logo-3.png"
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth"
+
+
+
+
 
 const Home = (props) => {
   const [search, setSearch] = useState("")

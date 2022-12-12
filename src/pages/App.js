@@ -3,6 +3,7 @@ import Home from "./Home.js"
 
 export default function App(props) {
   const [userId, setUserId] = useState("")
+  const [grad, setGrad] = useState(false)
 
   useEffect(() => {
     setUserId(props.userId)
