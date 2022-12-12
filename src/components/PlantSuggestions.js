@@ -7,7 +7,7 @@ import { db } from "../database/firebase-config"
 import { Link } from "react-router-dom"
 
 const PlantSuggestions = (props) => {
-  // console.log("PLANT SUGGESTIONS START");
+  // console.log("PLANT SUGGESTIONS STARTz");
   const [userZoneNumber, setUserZoneNumber] = useState(8)
   const [plantsDbData, setPlantsDbData] = useState([])
   const [housePlantsDbData, setHousePlantsDbData] = useState([])

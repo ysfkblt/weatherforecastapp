@@ -3,26 +3,26 @@
 // ============ CONTROL VARIABLES HERE ===========
 
 // **** PLANT IMAGES ****
-const img_grain_path = "https://picsum.photos/100"
-// const img_grain_path = "../assets/gardenPlotImg/tree.jpg"
-const img_grass_path = "../assets/gardenPlotImg/tree.jpg"
-const img_herb_path = "../assets/gardenPlotImg/tree.jpg"
-const img_house_path = "../assets/gardenPlotImg/tree.jpg"
-const img_orn_path = "../assets/gardenPlotImg/tree.jpg"
-const img_shrub_path = "../assets/gardenPlotImg/tree.jpg"
-const img_tree_path = "../assets/gardenPlotImg/tree.jpg"
-const img_vege_path = "../assets/gardenPlotImg/tree.jpg"
-const img_vine_path = "../assets/gardenPlotImg/tree.jpg"
+// const img_grain_path = "https://picsum.photos/100"
+// // const img_grain_path = "../assets/gardenPlotImg/tree.jpg"
+// const img_grass_path = "../assets/gardenPlotImg/tree.jpg"
+// const img_herb_path = "../assets/gardenPlotImg/tree.jpg"
+// const img_house_path = "../assets/gardenPlotImg/tree.jpg"
+// const img_orn_path = "../assets/gardenPlotImg/tree.jpg"
+// const img_shrub_path = "../assets/gardenPlotImg/tree.jpg"
+// const img_tree_path = "../assets/gardenPlotImg/tree.jpg"
+// const img_vege_path = "../assets/gardenPlotImg/tree.jpg"
+// const img_vine_path = "../assets/gardenPlotImg/tree.jpg"
 
-let img_grain
-let img_grass
-let img_herb
-let img_house
-let img_orn
-let img_shrub
-let img_tree
-let img_vege
-let img_vine
+// let img_grain
+// let img_grass
+// let img_herb
+// let img_house
+// let img_orn
+// let img_shrub
+// let img_tree
+// let img_vege
+// let img_vine
 
 // **** OBJECT ****
 let objArr = []
