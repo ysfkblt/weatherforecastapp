@@ -392,6 +392,15 @@ h3.auth-header {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 80%;
+  margin: 4em auto;
+  /* margin-bottom: 5em; */
+  padding: 2em;
+  gap: 1em;
+  border: 2px solid grey;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .imgUpload {
@@ -537,7 +546,7 @@ div.journal {
   justify-content: center;
   align-items: center;
   width: 80%;
-  margin: 3em auto;
+  margin: 4em auto;
   /* margin-bottom: 5em; */
   padding: 2em;
   gap: 1em;
@@ -566,9 +575,9 @@ div.journal {
 }
 
 .plantSugImg {
-  width: 100%;
+  width: 30vw;
   /* width: 30vw; */
-  height: 20vh;
+  height: 100%;
   /* border: 1px solid black; */
 }
 
@@ -970,7 +979,7 @@ input[type="checkbox"] {
   justify-content: center;
   align-items: center;
   padding: 1em;
-  margin: 3em auto;
+  margin: 4em auto;
   width: 60%;
   height: 40%;
   gap: 1em;
@@ -999,9 +1008,22 @@ input[type="checkbox"] {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid black;
-  margin: 1rem;
+  /* border: 1px solid black;
+  margin: 1rem; */
+  width: 80%;
+  margin: 4em auto;
+  /* margin-bottom: 5em; */
+  padding: 2em 2em 10em 2em;
+  gap: 1em;
+  border: 2px solid grey;
+  border-radius: 10px;
+  /* background-color: white; */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
+/* 
+.garden-plot-viz-container-inside {
+	padding: 4em;
+} */
 
 .garden-plot-viz-container h1 {
   margin: 1rem;
