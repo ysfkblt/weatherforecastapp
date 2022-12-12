@@ -998,6 +998,8 @@ input[type="checkbox"] {
 }
 
 .plant-input-box {
+  position: relative !important;
+  left: 0px !important;
   margin: 1rem;
   width: 30vw;
   height: 2rem;

@@ -78,6 +78,7 @@ let selectedPlantType = plantTypeListArr[0]
 function gardenPlotSketch(p) {
   // UI Button
   let createPlantButtonX = plotLength - 210
+  // let createPlantButtonX = 0
   let createPlantButtonY = plotWidth + 140
   // let createPlantButtonX = p.windowWidth / 2
   // let createPlantButtonY = (p.windowHeight * 3) / 4
