@@ -108,18 +108,18 @@ const Home = (props) => {
         info.condition?.toLowerCase() === "clear"
           ? { backgroundImage: background.clear }
           : info.condition?.toLowerCase() === "sunny"
-          ? { backgroundImage: background.sunny }
-          : info.condition?.toLowerCase().includes("cloudy")
-          ? { backgroundImage: background.cloudy }
-          : info.condition?.toLowerCase().includes("rain") ||
-            info.condition?.toLowerCase().includes("drizzle")
-          ? { backgroundImage: background.rainy }
-          : info.condition?.toLowerCase().includes("snow") ||
-            info.condition?.toLowerCase().includes("sleet")
-          ? { backgroundImage: background.snow }
-          : info.condition?.toLowerCase().includes("overcast")
-          ? { backgroundImage: background.overcast }
-          : { backgroundImage: grad }
+            ? { backgroundImage: background.sunny }
+            : info.condition?.toLowerCase().includes("cloudy")
+              ? { backgroundImage: background.cloudy }
+              : info.condition?.toLowerCase().includes("rain") ||
+                info.condition?.toLowerCase().includes("drizzle")
+                ? { backgroundImage: background.rainy }
+                : info.condition?.toLowerCase().includes("snow") ||
+                  info.condition?.toLowerCase().includes("sleet")
+                  ? { backgroundImage: background.snow }
+                  : info.condition?.toLowerCase().includes("overcast")
+                    ? { backgroundImage: background.overcast }
+                    : { backgroundImage: grad }
       }
       className="home-view-container"
     >
@@ -246,19 +246,25 @@ const Home = (props) => {
 
       {/* Plant Suggestions */}
 
-      {props.userId && zip.length === 5 ? (
-        <>
-          <PlantSuggestions userId={props.userId} zone={zone.zone} />
-        </>
-      ) : props.userId ? (
-        <>
-          <PlantSuggestions userId={props.userId} zone={userZone} />
-        </>
-      ) : (
-        <>
-          <PlantSuggestions userId={"NA"} zone={8} />
-        </>
-      )}
+
+      <div className="component-container">
+        
+        {props.userId && zip.length === 5 ? (
+          <>
+            <PlantSuggestions userId={props.userId} zone={zone.zone} />
+          </>
+        ) : props.userId ? (
+          <>
+            <PlantSuggestions userId={props.userId} zone={userZone} />
+          </>
+        ) : (
+          <>
+            <PlantSuggestions userId={"NA"} zone={8} />
+          </>
+        )}
+
+      </div>
+
     </div>
   )
 }

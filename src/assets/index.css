@@ -529,9 +529,9 @@ div.journal {
   margin-top: 10px;
 }
 
-/* PLANT SUGGESTIONS */
+/* COMPONENT CONTAINER */
 
-.plant-suggestions-container {
+.component-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -545,6 +545,24 @@ div.journal {
   border-radius: 10px;
   background-color: white;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* PLANT SUGGESTIONS */
+
+.plant-suggestions-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  margin: 3em auto;
+  /* margin-bottom: 5em; */
+  padding: 2em;
+  gap: 1em;
+  /* border: 2px solid grey;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); */
 }
 
 .plant-suggestions-header {
