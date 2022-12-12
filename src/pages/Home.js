@@ -11,6 +11,8 @@ import { Link } from "react-router-dom"
 import Search from "../components/Search"
 import { collection, doc, getDocs } from "firebase/firestore"
 import { connectStorageEmulator } from "firebase/storage"
+import logo from "../assets/logos/worm-logo-1.png"
+
 
 const Home = (props) => {
   const [search, setSearch] = useState("")
@@ -133,7 +135,7 @@ const Home = (props) => {
             />
           )}
         </ThemeContext.Consumer>
-        {/* <Link to="/allplants">View All</Link> */}
+
         {/* Update user */}
         {/* {userId && zip.length === 5 && zone ? (
           <>
@@ -173,7 +175,18 @@ const Home = (props) => {
             onChange={handleSearch}
             function={handleSearch}
           /> */}
+
+
+
+
+
+
           <section className="search-container">
+
+            <div className="logo-container">
+              <img src={logo} alt="logo" className="logo" />
+            </div>
+
             <article className="search-input-container">
               <input
                 className="search-input"
@@ -235,16 +248,15 @@ const Home = (props) => {
             </div>
           </div>
         </section>
-      </div>
-      {/* <span className="welcome-user">
-        {user ? (
-          <span>
-            Welcome <Link to="/user">{user.displayName}!</Link>
-          </span>
-        ) : (
-          "Welcome!"
-        )}
-      </span> */}
+      </header>
+
+
+
+
+      <span className="welcome-user">
+        {(user ? (<span>Welcome to Worm's Eye View <Link to="/user">{user.displayName}!</Link></span>) :
+          <span>Welcome to Worm's Eye View!</span>)}
+      </span>
 
       {/* Plant Suggestions */}
 
