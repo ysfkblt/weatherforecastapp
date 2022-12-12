@@ -11,7 +11,7 @@ const Favorites = (props) => {
     const [userFavorites, setUserFavorites] = useState([])
     const [userFavoritesData, setUserFavoritesData] = useState([])
 
-    const plantCollection = collection(db, "plants")
+    const plantCollection = collection(db, "testPlants")
     const {userId} = props
     const userFavoritesCollection = collection(db, "worms", userId, "favorites")
 
@@ -71,13 +71,13 @@ const Favorites = (props) => {
                   </div>
                   <div>
                     <h3>
-                      {curPlant.name},
+                      {curPlant.name}
                     </h3>
                   </div>
                   
                 </div>
                 <div>
-                  <img src="https://watchandlearn.scholastic.com/content/dam/classroom-magazines/watchandlearn/videos/animals-and-plants/plants/what-are-plants-/What-Are-Plants.jpg" className="favoritePlant" />
+                  <img src={curPlant.img} className="favoritePlant" />
                 </div>
                 <div className="italics">({curPlant.species})</div>
                 <div>Type: {curPlant.type}</div>
