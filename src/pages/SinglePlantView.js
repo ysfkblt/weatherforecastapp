@@ -75,6 +75,7 @@ const SinglePlantView = (props) => {
   //   console.log("ending single plant", singlePlant[0].name)
 
   return (
+    <div className="page-container">
     <div>
       {singlePlant.length ? (
         <div className="single-plant-view-main-container">
@@ -126,6 +127,7 @@ const SinglePlantView = (props) => {
           </div>
         </div>
       ) : null}
+    </div>
     </div>
   )
 }

@@ -179,6 +179,7 @@ const AllPlants = (props) => {
   const transplantTo = ["fsun", "psun", "psha", "fsha"]
 
   return (
+    <div className="page-container">
     <div className="all-plants-container">
       <div className="filterArea">
         <i className="fa fa-filter" aria-hidden="true" onClick={(evt) => show("hide")}></i>
@@ -270,6 +271,7 @@ const AllPlants = (props) => {
         })) : (<div>Sorry, no plant data available</div>)}
       </div>
       <div className="loadMoreButtonDiv"><button onClick={()=>{fetchMore()}}>Load More Plants</button></div>
+    </div>
     </div>
   )
 }
