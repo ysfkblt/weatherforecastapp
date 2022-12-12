@@ -5,33 +5,19 @@ import { collection, getDocs } from "firebase/firestore"
 import { useEffect, useState } from "react"
 import { db } from "../database/firebase-config"
 import { Link } from "react-router-dom"
-import { Link } from "react-router-dom"
-
-// ! TODO, integrate getting actual user zone number
-// ! take out dummy plant data, and connect to real firestore database
-// ! style JSX return
 
 const PlantSuggestions = (props) => {
-  // const userZoneNumber = 8 // ! PLACEHOLDER
   // console.log("PLANT SUGGESTIONS START");
-
-  // console.log("*****THIS IS THE CURRENT ZONE", props.zone)
   const [userZoneNumber, setUserZoneNumber] = useState(8)
   const [plantsDbData, setPlantsDbData] = useState([])
   const [housePlantsDbData, setHousePlantsDbData] = useState([])
 
   const { userId, zone } = props
 
-  // zone from props is working OKAY
   let temp_zone = 8
   if (zone) {
-    // console.log("inside the if zone", zone)
     temp_zone = parseInt(zone)
-    // console.log(temp_zone)
   }
-
-  // console.log("userId from props",userId);
-  // console.log("zone from props",zone);
 
   const wormCollection = collection(db, "worms", userId, "personal")
 
@@ -334,16 +320,6 @@ const PlantSuggestions = (props) => {
         }
       }
 
-      // summer
-      // PLANTS
-      // weeksBeforelastFrost target is +15. +17/+13
-
-      // in or greater than zone 8
-      // and between 10 and 23 weeks to last frost
-
-      // if target > 25, then suggest the 25wblf plants
-
-      // Suggestions of plants for non-frost period
       // !!!!! SPRING AND SUMMER
       else {
         // !!!!! SUMMER-ish
