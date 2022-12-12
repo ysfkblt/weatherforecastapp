@@ -11,7 +11,7 @@ import { Link } from "react-router-dom"
 import Search from "../components/Search"
 import { collection, doc, getDocs } from "firebase/firestore"
 import { connectStorageEmulator } from "firebase/storage"
-import logo from "../assets/logos/worm-logo-1.png"
+import logo from "../assets/logos/worm-logo-3.png"
 
 
 const Home = (props) => {
