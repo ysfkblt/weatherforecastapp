@@ -590,7 +590,7 @@ div.journal {
 /* DARK MODE */
 
 .dark-mode-content div {
-  background: #000000;
+  background: #474646;
   color: rgb(255, 255, 255);
 }
 
@@ -603,7 +603,7 @@ div.journal {
 }
 
 .dark-mode-screen .dark-mode-content {
-  background-color: #000000;
+  background-color: #5e5e5e;
   height: 100%;
   width: 100%;
 }
