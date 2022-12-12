@@ -13,7 +13,6 @@ import { collection, doc, getDocs } from "firebase/firestore"
 import { connectStorageEmulator } from "firebase/storage"
 import logo from "../assets/logos/worm-logo-3.png"
 
-
 const Home = (props) => {
   const [search, setSearch] = useState("")
   const [info, setInfo] = useState({})
@@ -94,7 +93,6 @@ const Home = (props) => {
     getData()
   }
 
-
   useEffect(() => {
     getData()
   }, [zip])
@@ -103,8 +101,6 @@ const Home = (props) => {
     setgrad(shuffle(gradient).pop())
   }, [])
 
-
-
   return (
     // Dynamic Background
     <div
@@ -112,21 +108,21 @@ const Home = (props) => {
         info.condition?.toLowerCase() === "clear"
           ? { backgroundImage: background.clear }
           : info.condition?.toLowerCase() === "sunny"
-            ? { backgroundImage: background.sunny }
-            : info.condition?.toLowerCase().includes("cloudy")
-              ? { backgroundImage: background.cloudy }
-              : info.condition?.toLowerCase().includes("rain") ||
-                info.condition?.toLowerCase().includes("drizzle")
-                ? { backgroundImage: background.rainy }
-                : info.condition?.toLowerCase().includes("snow") ||
-                  info.condition?.toLowerCase().includes("sleet")
-                  ? { backgroundImage: background.snow }
-                  : info.condition?.toLowerCase().includes("overcast")
-                    ? { backgroundImage: background.overcast }
-                    : { backgroundImage: grad }
+          ? { backgroundImage: background.sunny }
+          : info.condition?.toLowerCase().includes("cloudy")
+          ? { backgroundImage: background.cloudy }
+          : info.condition?.toLowerCase().includes("rain") ||
+            info.condition?.toLowerCase().includes("drizzle")
+          ? { backgroundImage: background.rainy }
+          : info.condition?.toLowerCase().includes("snow") ||
+            info.condition?.toLowerCase().includes("sleet")
+          ? { backgroundImage: background.snow }
+          : info.condition?.toLowerCase().includes("overcast")
+          ? { backgroundImage: background.overcast }
+          : { backgroundImage: grad }
       }
-      className="home-view-container">
-
+      className="home-view-container"
+    >
       <header className="top-home-page-row">
         <ThemeContext.Consumer>
           {({ changeTheme }) => (
@@ -152,6 +148,26 @@ const Home = (props) => {
         ) : null} */}
 
         {/* Search Bar */}
+
+        <span className="welcome-user">
+          {user ? (
+            <span>
+              Welcome to Worm's Eye View{" "}
+              <Link to="/user">{user.displayName}!</Link>
+            </span>
+          ) : (
+            <span>Welcome to Worm's Eye View!</span>
+          )}
+        </span>
+
+        <span className="home-user-account-icon">
+          <Link to="/user">
+            <i class="fa fa-regular fa-user"> </i>
+          </Link>
+        </span>
+      </header>
+
+      <div className="home-below-header-container-search">
         <section>
           {/* <Search
             handleKeyPress={handleKeyPress}
@@ -160,13 +176,7 @@ const Home = (props) => {
             function={handleSearch}
           /> */}
 
-
-
-
-
-
           <section className="search-container">
-
             <div className="logo-container">
               <img src={logo} alt="logo" className="logo" />
             </div>
@@ -180,7 +190,7 @@ const Home = (props) => {
                 placeholder="please enter zip"
                 onChange={handleSearch}
                 onFocus={(e) => (e.target.placeholder = "")}
-                onBlur={(e) => (e.target.placeholder = "please enter location")}
+                onBlur={(e) => (e.target.placeholder = "please enter zip")}
                 onKeyPress={handleKeyPress}
               />
             </article>
@@ -199,59 +209,40 @@ const Home = (props) => {
               {info.temp ? (
                 <p className="search-results-temp-text">
                   {info.temp?.current}
-                  <span className="search-results-temp-text-degrees">
-                    °f
-                  </span>
-
+                  <span className="search-results-temp-text-degrees">°f</span>
                 </p>
               ) : null}
             </div>
 
-
             <div className="search-results-sub-container">
-              <p className="search-results-condition-text">
-                {info.condition}
-              </p>
+              <p className="search-results-condition-text">{info.condition}</p>
               {info.temp ? (
                 <p className="search-results-temp-range">
-
-                  <div className="search-results-temp-range-icon" >
+                  <div className="search-results-temp-range-icon">
                     <i className="fa fa-arrow-up" aria-hidden="true"></i>
                   </div>
                   {info.temp?.max}
-
                   <span className="search-results-temp-range-degrees">
                     °
                   </span>{" "}
                   <div className="search-results-temp-range-icon">
                     <i class="fa fa-arrow-down" aria-hidden="true"></i>
                   </div>
-
                   {info.temp?.min}
-
-                  <span className="search-results-temp-range-degrees">
-                    °
-                  </span>
+                  <span className="search-results-temp-range-degrees">°</span>
                 </p>
               ) : null}
 
-              <p className="search-results-location">
-                {info.country}
-              </p>
-              {zone.zone ? <p className="search-results-zone">
-                Hardiness Zone {zone.zone}</p> : null}
+              <p className="search-results-location">{info.country}</p>
+              {zone.zone ? (
+                <p className="search-results-zone">
+                  Hardiness Zone {zone.zone}
+                </p>
+              ) : null}
             </div>
           </div>
         </section>
-      </header>
-
-
-
-
-      <span className="welcome-user">
-        {(user ? (<span>Welcome to Worm's Eye View <Link to="/user">{user.displayName}!</Link></span>) :
-          <span>Welcome to Worm's Eye View!</span>)}
-      </span>
+      </div>
 
       {/* Plant Suggestions */}
 
@@ -268,9 +259,7 @@ const Home = (props) => {
           <PlantSuggestions userId={"NA"} zone={8} />
         </>
       )}
-
     </div>
-
   )
 }
 

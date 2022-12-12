@@ -129,6 +129,10 @@ li.nav-bar-link {
   height: 4em;
 }
 
+.switch {
+  /* border: 1px solid black; */
+}
+
 /* USER */
 
 .user-container {
@@ -263,7 +267,8 @@ h3.auth-header {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 20vh;
+  /* justify-content: space-evenly; */
+  /* height: 20vh; */
   /* border: 1px solid blue; */
 }
 
@@ -272,6 +277,7 @@ h3.auth-header {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  /* border: 1px solid black; */
 }
 
 .search-input {
@@ -361,10 +367,22 @@ h3.auth-header {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  /* background-color: rgb(255, 255, 255); */
 }
 
 .welcome-user {
-  margin: 20px;
+  margin: 6px;
+  /* padding-top: 1rem; */
+}
+
+.home-user-account-icon {
+  /* border: 1px solid black; */
+  padding-top: 1rem;
+}
+
+.home-user-account-icon a {
+  color: #000000;
+  /* margin-top: 5px; */
 }
 
 /* JOURNAL */
@@ -374,7 +392,6 @@ h3.auth-header {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
 }
 
 .imgUpload {
@@ -390,7 +407,6 @@ h3.auth-header {
   align-items: center;
   /* flex-wrap: wrap; */
   flex-direction: column;
-
 }
 
 .journal-notes-image-upload-button {
@@ -540,7 +556,8 @@ div.journal {
 }
 
 .individual-plant-suggestion {
-  border-bottom: 1px solid black;
+  border: 1px solid black;
+  padding: 1rem;
   margin: 1em;
 }
 
@@ -549,9 +566,21 @@ div.journal {
 }
 
 .plantSugImg {
-  width: 20vw;
-  height: 20vw;
-  border: 1px solid black;
+  width: 100%;
+  /* width: 30vw; */
+  height: 20vh;
+  /* border: 1px solid black; */
+}
+
+.plant-suggestions-heading-container {
+  /* border: 1px solid black; */
+  width: 100%;
+  border-bottom: 1px solid black;
+  border-radius: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
 }
 
 /* SINGLE PLANT VIEW */
@@ -689,7 +718,7 @@ div.journal {
 }
 
 .singlePlantImg {
-  width: 100%
+  width: 100%;
 }
 
 .singlePlant img {
@@ -719,8 +748,6 @@ div.journal {
   margin: 0px 0px 30px 0px;
   padding: 0px 0px 30px 0px;
 }
-
-
 
 .checkbox-container {
   border: 1px solid grey;
@@ -778,8 +805,6 @@ input[type="checkbox"] {
   border-radius: 2%;
 }
 
-
-
 /* RESPONSIVE */
 
 @media screen and (max-width: 768px) {
@@ -800,8 +825,15 @@ input[type="checkbox"] {
   }
 
   .plantSugImg {
-    width: 40vw;
-    height: 40vw;
+    width: 100%;
+    height: 20vh;
+  }
+
+  .singlePlantImg {
+    height: 25px;
+    width: 25px;
+    /* object-fit:cover;
+	object-position:50% 50%; */
   }
 
   .singlePlantImg {
@@ -884,7 +916,9 @@ input[type="checkbox"] {
     width: 40vw;
     height: 40vw;
   }
-
+  */ .allPlantsImg {
+    height: 20vh;
+  }
   .singlePlant {
     width: 80vw;
     margin: 1vw;
@@ -961,14 +995,18 @@ input[type="checkbox"] {
 /* GARDEN PLOT VIZ */
 .garden-plot-viz-container {
   /* border: 1px solid black; */
-  /* background-color: #72c17b; */
+  background-color: #72c17b;
   display: flex;
   flex-direction: column;
   align-items: center;
+  border: 1px solid black;
+  margin: 1rem;
 }
 
 .garden-plot-viz-container h1 {
   margin: 1rem;
+  /* background-color: #72c17b; */
+  /* padding: 0.1rem; */
 }
 
 /* Dropdown styling */
@@ -989,6 +1027,8 @@ input[type="checkbox"] {
 }
 
 .plant-input-box {
+  position: relative !important;
+  left: 0px !important;
   margin: 1rem;
   width: 30vw;
   height: 2rem;
@@ -999,7 +1039,6 @@ input[type="checkbox"] {
   top: 60px !important;
   left: 0px !important;
 }
-
 
 #defaultCanvas0 {
   border-radius: 0.777rem;

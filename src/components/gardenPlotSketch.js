@@ -3,26 +3,26 @@
 // ============ CONTROL VARIABLES HERE ===========
 
 // **** PLANT IMAGES ****
-const img_grain_path = "https://picsum.photos/100"
-// const img_grain_path = "../assets/gardenPlotImg/tree.jpg"
-const img_grass_path = "../assets/gardenPlotImg/tree.jpg"
-const img_herb_path = "../assets/gardenPlotImg/tree.jpg"
-const img_house_path = "../assets/gardenPlotImg/tree.jpg"
-const img_orn_path = "../assets/gardenPlotImg/tree.jpg"
-const img_shrub_path = "../assets/gardenPlotImg/tree.jpg"
-const img_tree_path = "../assets/gardenPlotImg/tree.jpg"
-const img_vege_path = "../assets/gardenPlotImg/tree.jpg"
-const img_vine_path = "../assets/gardenPlotImg/tree.jpg"
+// const img_grain_path = "https://picsum.photos/100"
+// // const img_grain_path = "../assets/gardenPlotImg/tree.jpg"
+// const img_grass_path = "../assets/gardenPlotImg/tree.jpg"
+// const img_herb_path = "../assets/gardenPlotImg/tree.jpg"
+// const img_house_path = "../assets/gardenPlotImg/tree.jpg"
+// const img_orn_path = "../assets/gardenPlotImg/tree.jpg"
+// const img_shrub_path = "../assets/gardenPlotImg/tree.jpg"
+// const img_tree_path = "../assets/gardenPlotImg/tree.jpg"
+// const img_vege_path = "../assets/gardenPlotImg/tree.jpg"
+// const img_vine_path = "../assets/gardenPlotImg/tree.jpg"
 
-let img_grain
-let img_grass
-let img_herb
-let img_house
-let img_orn
-let img_shrub
-let img_tree
-let img_vege
-let img_vine
+// let img_grain
+// let img_grass
+// let img_herb
+// let img_house
+// let img_orn
+// let img_shrub
+// let img_tree
+// let img_vege
+// let img_vine
 
 // **** OBJECT ****
 let objArr = []
@@ -77,12 +77,13 @@ let selectedPlantType = plantTypeListArr[0]
 
 function gardenPlotSketch(p) {
   // UI Button
-  let createPlantButtonX = plotLength - 275
+  let createPlantButtonX = plotLength - 210
+  // let createPlantButtonX = 0
   let createPlantButtonY = plotWidth + 140
   // let createPlantButtonX = p.windowWidth / 2
   // let createPlantButtonY = (p.windowHeight * 3) / 4
   let sel
-  let dropDownListX = plotLength - 300
+  let dropDownListX = plotLength - 230
   let dropDownListY = plotWidth + 100
   let plantInputTextValue = ""
   let plantInputBox
@@ -118,7 +119,6 @@ function gardenPlotSketch(p) {
     sel.option(plantTypeListArr[6])
     sel.option(plantTypeListArr[7])
     sel.option(plantTypeListArr[8])
-    
 
     sel.selected(plantTypeListArr[0])
     sel.changed(mySelectEvent)
@@ -131,7 +131,7 @@ function gardenPlotSketch(p) {
 
     // add plant button \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     p.button = p.createButton("add plant")
-    p.button.size(250, 35)
+    p.button.size(210, 50)
     p.button.position(createPlantButtonX, createPlantButtonY)
     p.button.mousePressed(p.handleAddPlant)
     p.button.class("add-plant-button")
@@ -362,270 +362,3 @@ function gardenPlotSketch(p) {
 }
 
 export default gardenPlotSketch
-
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-// ! try adding text to color version
-// ! icons
-
-// // ============ CONTROL VARIABLES HERE ===========
-// // ============ CONTROL VARIABLES HERE ===========
-// // ============ CONTROL VARIABLES HERE ===========
-
-// // // **** PLANT IMAGES ****
-// // const img_grain_path = "https://picsum.photos/100"
-// // // const img_grain_path = "../assets/gardenPlotImg/tree.jpg"
-// // const img_grass_path = "../assets/gardenPlotImg/tree.jpg"
-// // const img_herb_path = "../assets/gardenPlotImg/tree.jpg"
-// // const img_house_path = "../assets/gardenPlotImg/tree.jpg"
-// // const img_orn_path = "../assets/gardenPlotImg/tree.jpg"
-// // const img_shrub_path = "../assets/gardenPlotImg/tree.jpg"
-// // const img_tree_path = "../assets/gardenPlotImg/tree.jpg"
-// // const img_vege_path = "../assets/gardenPlotImg/tree.jpg"
-// // const img_vine_path = "../assets/gardenPlotImg/tree.jpg"
-
-// let img_grain
-// let img_grass
-// let img_herb
-// let img_house
-// let img_orn
-// let img_shrub
-// let img_tree
-// let img_vege
-// let img_vine
-
-// // **** OBJECT ****
-// let objArr = []
-// let objCount = 0
-// const objSizeX = 50
-// const objSizeY = 50
-
-// // **** ACTUAL PLOT DETAILS ****
-// const actualPlotLength = 4 //ft
-// const actualPlotWidth = 8 //ft
-// const gridSpacingRule = 1 //ft how far apart plants should be
-
-// const plotDimensionConversionConstant = 80 // 1 ft = 100 px
-
-// // **** PLOT ****
-// const plotLength = actualPlotLength * plotDimensionConversionConstant
-// const plotWidth = actualPlotWidth * plotDimensionConversionConstant
-// const plotSoilColor_R = 150
-// const plotSoilColor_G = 90
-// const plotSoilColor_B = 0
-// const plotOpacity = 100
-
-// // **** GRID ****
-// const gridSpacing = gridSpacingRule * plotDimensionConversionConstant
-// const plotColumns = plotLength / gridSpacing
-// const plotRows = plotWidth / gridSpacing
-
-// // SHAPES
-// let shapeSpawnLocationX = 50
-// let shapeSpawnLocationY = 50
-
-// // UI Button
-// let createPlantButtonX = 25
-// let createPlantButtonY = plotWidth + 100
-// let sel
-// let dropDownListX = 250
-// let dropDownListY = plotWidth + 100
-
-// // PLANT OPTIONS
-// let plantTypeListArr = [
-//   "grain",
-//   "grass",
-//   "herb",
-//   "house",
-//   "orn",
-//   "shrub",
-//   "tree",
-//   "vege",
-//   "vine", //9 types
-// ]
-// let selectedPlantType = plantTypeListArr[0]
-
-// function gardenPlotSketch(p) {
-//   let rects
-//   let dragRec
-//   let isDragging
-//   let clickOffset
-//   let imgCb
-
-//   p.preload = function () {
-//     imgCb = p.loadImage("https://picsum.photos/100")
-//   }
-
-//   p.setup = function () {
-//     p.createCanvas(plotLength, plotWidth)
-
-//     rects = []
-
-//     // select plant dropdown
-//     sel = p.createSelect()
-//     sel.position(dropDownListX, dropDownListY)
-//     sel.option(plantTypeListArr[0])
-//     sel.option(plantTypeListArr[1])
-//     sel.option(plantTypeListArr[2])
-//     sel.option(plantTypeListArr[3])
-//     sel.option(plantTypeListArr[4])
-//     sel.option(plantTypeListArr[5])
-//     sel.option(plantTypeListArr[6])
-//     sel.option(plantTypeListArr[7])
-//     sel.option(plantTypeListArr[8])
-
-//     sel.selected(plantTypeListArr[0])
-//     sel.changed(mySelectEvent)
-
-//     function mySelectEvent() {
-//       console.log("changed a select event")
-//       selectedPlantType = sel.value()
-//       console.log(selectedPlantType)
-//     }
-
-//     // add plant button
-//     p.button = p.createButton("add plant")
-//     p.button.position(createPlantButtonX, createPlantButtonY)
-//     console.log("hi @@@@@@@@@@@@@@@@@@@@@@ ")
-//     // p.button.mousePressed(p.handleAddPlant)
-//     p.button.mousePressed(p.tempHandle)
-
-//     p.tempHandle = function () {
-//       console.log("basic button handle")
-//     }
-
-//     p.handleAddPlant = function () {
-//       console.log("clicked add button")
-//       objCount++
-//       let pos = randomPos()
-//       let tempAddObj = new RectangleImage(
-//         pos,
-//         imgCb,
-//         shapeSpawnLocationX,
-//         shapeSpawnLocationY,
-//         objSizeX,
-//         objSizeY,
-//         objCount,
-//         selectedPlantType
-//       )
-//       objArr.push(tempAddObj)
-//       console.log(objArr)
-//     }
-
-//     placeImages()
-//     console.log(rects)
-
-//     isDragging = false
-//   }
-
-//   function placeImages() {
-//     var numImage = 5
-//     for (var i = 0; i < numImage; i++) {
-//       let pos = randomPos()
-//       rects.push(new RectangleImage(pos, imgCb))
-//     }
-//   }
-
-//   class RectangleImage {
-//     constructor(pos, img) {
-//       this.pos = pos // vector with x and y
-//       this.img = img
-//       this.width = img.width
-//       this.height = img.height
-//     }
-
-//     draw() {
-//       p.image(this.img, this.pos.x, this.pos.y)
-//     }
-
-//     hits(hitpos) {
-//       if (
-//         hitpos.x > this.pos.x &&
-//         hitpos.x < this.pos.x + this.width &&
-//         hitpos.y > this.pos.y &&
-//         hitpos.y < this.pos.y + this.height
-//       ) {
-//         return true
-//       }
-//       return false
-//     }
-//   }
-
-//   function randomPos() {
-//     return p.createVector(
-//       p.random(0, p.windowWidth),
-//       p.random(0, p.windowHeight)
-//     )
-//   }
-
-//   function manualVectorSub(v1, v2) {
-//     let v3_x = v1.x - v2.x
-//     let v3_y = v1.y - v2.y
-//     let v3 = p.createVector(v3_x, v3_y)
-//     return v3
-//   }
-
-//   p.draw = function () {
-//     // p.clear()
-//     p.background(plotSoilColor_R, plotSoilColor_G, plotSoilColor_B)
-//     for (let x = 0; x < p.width; x += p.width / plotColumns) {
-//       for (let y = 0; y < p.height; y += p.height / plotRows) {
-//         p.stroke(0)
-//         p.strokeWeight(1)
-//         p.line(x, 0, x, p.height)
-//         p.line(0, y, p.width, y)
-//       }
-//     }
-
-//     rects.forEach((r) => r.draw())
-//   }
-
-//   p.mousePressed = function () {
-//     let m = p.createVector(p.mouseX, p.mouseY)
-//     let index
-//     console.log("in mouse pressed =====================")
-//     console.log("rects", rects)
-
-//     if (rects) {
-//       rects.forEach((r, i) => {
-//         if (r.hits(m)) {
-//           clickOffset = manualVectorSub(r.pos, m)
-//           isDragging = true
-//           dragRec = r
-//           index = i
-//         }
-//       })
-//     }
-
-//     if (isDragging) {
-//       putOnTop(index)
-//     }
-//   }
-
-//   function putOnTop(index) {
-//     rects.splice(index, 1)
-//     rects.push(dragRec)
-//   }
-
-//   p.mouseDragged = function () {
-//     if (isDragging) {
-//       let m = p.createVector(p.mouseX, p.mouseY)
-//       dragRec.pos.set(m).add(clickOffset)
-//     }
-//   }
-
-//   p.mouseReleased = function () {
-//     isDragging = false
-//   }
-
-//   // p.windowResized = function () {
-//   //   p.resizeCanvas(p.windowWidth, p.windowHeight)
-//   // }
-// }
-
-// export default gardenPlotSketch
