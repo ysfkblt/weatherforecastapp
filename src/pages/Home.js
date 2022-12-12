@@ -183,7 +183,7 @@ const Home = (props) => {
                 placeholder="please enter zip"
                 onChange={handleSearch}
                 onFocus={(e) => (e.target.placeholder = "")}
-                onBlur={(e) => (e.target.placeholder = "please enter location")}
+                onBlur={(e) => (e.target.placeholder = "please enter zip")}
                 onKeyPress={handleKeyPress}
               />
             </article>

@@ -397,8 +397,11 @@ const PlantSuggestions = (props) => {
   let min = 89
   return (
     <div className="plant-suggestions-container">
-      <h2 className="plant-suggestions-header">TODAY'S PLANT SUGGESTIONS</h2>
-      <Link to="/allplants">View All Plants</Link>
+      <div className="plant-suggestions-heading-container">
+        <h2 className="plant-suggestions-header">YOUR PLANT SUGGESTIONS</h2>
+        <Link to="/allplants">View All Plants</Link>
+      </div>
+
       {suggestedPlantsData.length > 0 ? (
         suggestedPlantsData.map((curPlant) => (
           <div
@@ -417,13 +420,11 @@ const PlantSuggestions = (props) => {
       ) : (
         <>
           <div>
-            <h3>Today, we suggest indoor plants</h3>
-            <br></br>
-            {/* <Link to="/allplants">View All Plants</Link> */}
+            <h3>Today we suggest indoor plants</h3>
             <div>
               {suggestedHousePlantsData.map((curPlant) => (
                 <div
-                  className="plant-suggestion"
+                  className="individual-plant-suggestion"
                   key={Math.floor(Math.random() * (max - min + 1)) + min}
                 >
                   <div>
