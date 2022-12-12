@@ -137,7 +137,7 @@ const Home = (props) => {
             />
           )}
         </ThemeContext.Consumer>
-        <Link to="/allplants">View All</Link>
+      
         {/* Update user */}
         {/* {userId && zip.length === 5 && zone ? (
           <>
