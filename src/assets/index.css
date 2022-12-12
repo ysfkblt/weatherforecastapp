@@ -29,10 +29,6 @@ a {
   text-decoration: none;
 }
 
-div {
-  border-radius: 0.3em;
-}
-
 button,
 input.button {
   display: inline-block;
