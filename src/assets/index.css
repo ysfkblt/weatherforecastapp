@@ -142,12 +142,13 @@ li.nav-bar-link {
   position: relative;
 }
 
-.user-top{
-	display: flex;
-	flex-direction: wrap;
-justify-content:flex-start;
-gap: 10vw;
+.user-top {
+  display: flex;
+  flex-direction: wrap;
+  justify-content: flex-start;
+  gap: 10vw;
 }
+
 .user-profile-container {
   display: flex;
   flex-direction: column;
@@ -481,11 +482,13 @@ input.journal-form-file-input {
   max-height: 800px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
-.journal-notes-edit{
-	width: 40vw;
-	height: 15vh;
+
+.journal-notes-edit {
+  width: 40vw;
+  height: 15vh;
 }
-.hide{
+
+.hide {
   display: none;
 }
 
@@ -552,7 +555,7 @@ div.journal {
 }
 
 /* SINGLE PLANT VIEW */
-.single-plant-view-main-container{
+.single-plant-view-main-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -569,7 +572,7 @@ div.journal {
 }
 
 .SinglePlant-ViewAllLink {
-	margin: 15px 0px 30px 0px;
+  margin: 15px 0px 30px 0px;
 }
 
 /* DARKMODE */
@@ -589,12 +592,14 @@ div.journal {
 
 /* DARK MODE */
 
-.dark-mode-content div,.dark-mode-content footer {
+.dark-mode-content div,
+.dark-mode-content footer {
   background: #5a5a5a;
   color: rgb(255, 255, 255);
 }
 
-.dark-mode-content input, .dark-mode-content i {
+.dark-mode-content input,
+.dark-mode-content i {
   color: whitesmoke;
 }
 
@@ -673,26 +678,26 @@ div.journal {
 }
 
 .singlePlant-title-container {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .singlePlantImageContainer {
-	width: 100%;
+  width: 100%;
 }
 
 .singlePlantImg {
-	width: 100%
+  width: 100%
 }
 
 .singlePlant img {
-	width:100%;
-	height:100%;
-	object-fit:cover;
-	object-position:50% 50%;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .filterArea {
@@ -711,8 +716,8 @@ div.journal {
 }
 
 .loadMoreButtonDiv {
-	margin: 0px 0px 30px 0px;
-	padding: 0px 0px 30px 0px;
+  margin: 0px 0px 30px 0px;
+  padding: 0px 0px 30px 0px;
 }
 
 
@@ -762,9 +767,9 @@ input[type="checkbox"] {
 .logo-container {
   display: flex;
   flex-direction: row;
-  justify-content: baseline;
-  margin-left: 2em;
-
+  position: relative;
+  top: 1em;
+  right: 1em;
 }
 
 .logo-container img {
@@ -782,24 +787,28 @@ input[type="checkbox"] {
   .plant-suggestions-container {
     width: 90%;
   }
+
   .plant-suggestions-header {
     font-size: 1.5em;
   }
+
   .plant-suggestions-subheading {
     font-size: 1em;
   }
+
   .individual-plant-suggestion {
     margin: 1em;
   }
+
   .plantSugImg {
     width: 40vw;
     height: 40vw;
   }
 
   .singlePlantImg {
-	height: 25px;
-	width: 25px;
-	/* object-fit:cover;
+    height: 25px;
+    width: 25px;
+    /* object-fit:cover;
 	object-position:50% 50%; */
   }
 
@@ -825,6 +834,7 @@ input[type="checkbox"] {
     align-items: center;
     flex-direction: row;
   }
+
   .filterArea {
     width: 90%;
     display: flex;
@@ -833,35 +843,44 @@ input[type="checkbox"] {
     border: 1px solid grey;
     padding: 1em;
   }
+
   .filteringCon {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
   }
+
   .checkbox-container {
     border: 1px solid grey;
     width: 100%;
     gap: 1em;
     display: flex;
   }
+
   .checkbox-container:hover {
     background-color: #9b51e00f;
   }
+
   .singlePlantName {
     font-size: 1.5rem;
   }
+
   .plant-suggestions-container {
     width: 90%;
   }
+
   .plant-suggestions-header {
     font-size: 1.5em;
   }
+
   .plant-suggestions-subheading {
     font-size: 1em;
   }
+
   .individual-plant-suggestion {
     margin: 1em;
   }
+
   .plantSugImg {
     width: 40vw;
     height: 40vw;
@@ -879,6 +898,7 @@ input[type="checkbox"] {
     align-items: center;
     flex-direction: row;
   }
+
   .filterArea {
     width: 90%;
     display: flex;
@@ -958,6 +978,7 @@ input[type="checkbox"] {
   flex-direction: column;
   align-items: center;
 }
+
 .select-plant-type {
   margin: 1rem;
   width: 100px;
@@ -975,9 +996,9 @@ input[type="checkbox"] {
 }
 
 .add-plant-button {
- position: relative!important;
- top: 60px!important;
- left: 0px!important;
+  position: relative !important;
+  top: 60px !important;
+  left: 0px !important;
 }
 
 

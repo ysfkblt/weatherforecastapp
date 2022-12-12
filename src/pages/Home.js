@@ -138,7 +138,7 @@ const Home = (props) => {
             />
           )}
         </ThemeContext.Consumer>
-      
+
         {/* Update user */}
         {/* {userId && zip.length === 5 && zone ? (
           <>
@@ -160,12 +160,17 @@ const Home = (props) => {
             function={handleSearch}
           /> */}
 
-       
 
 
-          
+
+
 
           <section className="search-container">
+
+            <div className="logo-container">
+              <img src={logo} alt="logo" className="logo" />
+            </div>
+
             <article className="search-input-container">
               <input
                 className="search-input"
@@ -241,9 +246,7 @@ const Home = (props) => {
       </header>
 
 
-      <div className="logo-container">
-            <img src={logo} alt="logo" className="logo" />
-          </div>
+
 
       <span className="welcome-user">
         {(user ? (<span>Welcome to Worm's Eye View <Link to="/user">{user.displayName}!</Link></span>) :
@@ -262,7 +265,7 @@ const Home = (props) => {
         </>
       ) : (
         <>
-          <PlantSuggestions userId={"NA"} zone={8}/>
+          <PlantSuggestions userId={"NA"} zone={8} />
         </>
       )}
 
