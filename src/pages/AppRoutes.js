@@ -9,7 +9,6 @@ import SinglePlantView from "./SinglePlantView"
 import Auth from "../components/Auth"
 import User from "./User"
 import { addDoc, collection, doc } from "firebase/firestore"
-import PlantSuggestions from "../components/PlantSuggestions"
 
 import Favorites from "./Favorites"
 import GardenPlotViz from "./GardenPlotViz"
@@ -45,8 +44,11 @@ const AppRoutes = () => {
             />
             <Route path="/" element={<App userId={user.uid} user={user} />} />
             <Route path="/journal" element={<Journal userId={user.uid} />} />
-            <Route path="/favorites" element={<Favorites userId={user.uid} />} />
-            <Route path="/user" element={<User user={user}/>} />
+            <Route
+              path="/favorites"
+              element={<Favorites userId={user.uid} />}
+            />
+            <Route path="/user" element={<User user={user} />} />
 
             <Route path="/garden" element={<GardenPlotViz />} />
           </>
