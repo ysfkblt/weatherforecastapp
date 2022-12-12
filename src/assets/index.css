@@ -441,7 +441,7 @@ h3.auth-header {
   align-items: center;
   border: 1px solid grey;
   border-radius: 0.5em;
-  width: 550px;
+  width: 75%;
 }
 
 input.journal-notes-input {
@@ -452,14 +452,18 @@ input.journal-notes-input {
   margin-bottom: 4em;
   border: 1px solid grey;
 }
-
+.journal-form-heading{
+  width: 80%;
+}
+.journal-search{
+  width: 100%;
+}
 input.journal-form-date-input {
   border: 1px solid grey;
   border-radius: 0.3em;
   margin: 1em 0;
   padding: 0.3em;
 }
-
 input.journal-form-file-input {
   padding: 0.3em 1em;
   border: 0.1em solid grey;
@@ -514,10 +518,11 @@ input.journal-form-file-input {
 
 .journal-previous-entries-image {
   margin: 1em;
-  min-width: 100px;
+  /* min-width: 100px;
   min-height: 100px;
   max-width: 800px;
-  max-height: 800px;
+  max-height: 800px; */
+  width: 90%;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
@@ -817,13 +822,13 @@ input[type="checkbox"] {
   display: flex;
   flex-direction: row;
   position: relative;
-  top: 1em;
   right: 1em;
+  padding: 0.5em;
 }
 
 .logo-container img {
-  width: 120px;
-  height: 120px;
+  width: 100px;
+  height: 100px;
   border-radius: 2%;
 }
 
@@ -887,7 +892,9 @@ input[type="checkbox"] {
     align-items: center;
     flex-direction: row;
   }
-
+  .journal-form-heading{
+    width: 30%;
+  }
   .filterArea {
     width: 90%;
     display: flex;
