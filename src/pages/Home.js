@@ -13,7 +13,6 @@ import { collection, doc, getDocs } from "firebase/firestore"
 import { connectStorageEmulator } from "firebase/storage"
 import logo from "../assets/logos/worm-logo-1.png"
 
-
 const Home = (props) => {
   const [search, setSearch] = useState("")
   const [info, setInfo] = useState({})
@@ -153,10 +152,11 @@ const Home = (props) => {
         <span className="welcome-user">
           {user ? (
             <span>
-              Welcome <Link to="/user">{user.displayName}!</Link>
+              Welcome to Worm's Eye View{" "}
+              <Link to="/user">{user.displayName}!</Link>
             </span>
           ) : (
-            "Welcome!"
+            <span>Welcome to Worm's Eye View!</span>
           )}
         </span>
 
@@ -176,13 +176,7 @@ const Home = (props) => {
             function={handleSearch}
           /> */}
 
-
-
-
-
-
           <section className="search-container">
-
             <div className="logo-container">
               <img src={logo} alt="logo" className="logo" />
             </div>
@@ -248,15 +242,7 @@ const Home = (props) => {
             </div>
           </div>
         </section>
-      </header>
-
-
-
-
-      <span className="welcome-user">
-        {(user ? (<span>Welcome to Worm's Eye View <Link to="/user">{user.displayName}!</Link></span>) :
-          <span>Welcome to Worm's Eye View!</span>)}
-      </span>
+      </div>
 
       {/* Plant Suggestions */}
 

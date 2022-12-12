@@ -151,11 +151,6 @@ li.nav-bar-link {
   flex-direction: wrap;
   justify-content: flex-start;
   gap: 10vw;
-.user-top {
-  display: flex;
-  flex-direction: wrap;
-  justify-content: flex-start;
-  gap: 10vw;
 }
 
 .user-profile-container {
@@ -723,7 +718,7 @@ div.journal {
 }
 
 .singlePlantImg {
-  width: 100%
+  width: 100%;
 }
 
 .singlePlant img {
@@ -810,8 +805,6 @@ input[type="checkbox"] {
   border: 1px solid rgb(255, 255, 255);
   border-radius: 2%;
 }
-
-
 
 /* RESPONSIVE */
 
@@ -923,8 +916,8 @@ input[type="checkbox"] {
   .plantSugImg {
     width: 40vw;
     height: 40vw;
-  } */
-  .allPlantsImg {
+  }
+  */ .allPlantsImg {
     height: 20vh;
   }
   .singlePlant {
