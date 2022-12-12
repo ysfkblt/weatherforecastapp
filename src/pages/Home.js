@@ -3,6 +3,7 @@ import background, { gradient } from "../components/background"
 import { shuffle } from "lodash"
 import UpdateZipCode from "../components/LocationUpdate"
 import PlantSuggestions from "../components/PlantSuggestions"
+import AppRoutes from "./AppRoutes"
 import ToggleDark from "../components/toggleDark"
 import { ThemeContext, themes } from "../components/themeContext"
 import { onAuthStateChanged, signOut } from "firebase/auth"
@@ -247,8 +248,10 @@ const Home = (props) => {
       {/* Plant Suggestions */}
 
 
-      <div className="component-container">
+      {/* <div className="component-container"> */}
+
         
+
         {props.userId && zip.length === 5 ? (
           <>
             <PlantSuggestions userId={props.userId} zone={zone.zone} />
@@ -262,8 +265,11 @@ const Home = (props) => {
             <PlantSuggestions userId={"NA"} zone={8} />
           </>
         )}
+        
+        <AppRoutes />
 
-      </div>
+
+      {/* </div> */}
 
     </div>
   )
