@@ -589,12 +589,12 @@ div.journal {
 
 /* DARK MODE */
 
-.dark-mode-content div {
-  background: #474646;
+.dark-mode-content div,.dark-mode-content footer {
+  background: #5a5a5a;
   color: rgb(255, 255, 255);
 }
 
-.dark-mode-content input {
+.dark-mode-content input, .dark-mode-content i {
   color: whitesmoke;
 }
 
