@@ -524,7 +524,7 @@ div.journal {
   width: 80%;
   margin: 3em auto;
   /* margin-bottom: 5em; */
-  /* padding: 5vw 0vw; */
+  padding: 2em;
   gap: 1em;
   border: 2px solid grey;
   border-radius: 10px;
@@ -579,8 +579,6 @@ div.journal {
   justify-content: baseline;
   align-items: center;
   top: 12px;
-  height: 100%;
-  width: 100%;
   position: relative;
   background-color: #555;
 }
