@@ -9,7 +9,6 @@ import SinglePlantView from "./SinglePlantView"
 import Auth from "../components/Auth"
 import User from "./User"
 import { addDoc, collection, doc } from "firebase/firestore"
-import PlantSuggestions from "../components/PlantSuggestions"
 
 import Favorites from "./Favorites"
 import GardenPlotViz from "./GardenPlotViz"
