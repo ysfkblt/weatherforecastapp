@@ -8,8 +8,9 @@ function GardenPlotViz() {
   return (
     <div className="garden-plot-viz-container">
       <h1>Garden Planner</h1>
-      <ReactP5Wrapper sketch={gardenPlotSketch} />
-      <div className="garden-plot-hacky-ui-container"></div>
+      
+        <ReactP5Wrapper sketch={gardenPlotSketch} />
+    
     </div>
   )
 }

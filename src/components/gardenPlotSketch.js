@@ -108,7 +108,7 @@ function gardenPlotSketch(p) {
 
     // select plant dropdown \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     sel = p.createSelect()
-    sel.position(dropDownListX, dropDownListY)
+    sel.class("select-plant-type")
     sel.option(plantTypeListArr[0])
     sel.option(plantTypeListArr[1])
     sel.option(plantTypeListArr[2])
@@ -118,6 +118,7 @@ function gardenPlotSketch(p) {
     sel.option(plantTypeListArr[6])
     sel.option(plantTypeListArr[7])
     sel.option(plantTypeListArr[8])
+    
 
     sel.selected(plantTypeListArr[0])
     sel.changed(mySelectEvent)
@@ -130,9 +131,10 @@ function gardenPlotSketch(p) {
 
     // add plant button \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     p.button = p.createButton("add plant")
-    p.button.size(250, 75)
+    p.button.size(250, 35)
     p.button.position(createPlantButtonX, createPlantButtonY)
     p.button.mousePressed(p.handleAddPlant)
+    p.button.class("add-plant-button")
   }
 
   p.handleAddPlant = function () {
@@ -158,6 +160,7 @@ function gardenPlotSketch(p) {
   plantInputBox.position(inputPositionX, inputPositionY)
   plantInputBox.size(200, 30)
   plantInputBox.attribute("placeholder", "enter plant name")
+  plantInputBox.class("plant-input-box")
 
   p.draw = function () {
     // p.button = p.createButton("add plant")
