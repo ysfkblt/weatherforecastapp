@@ -7,10 +7,11 @@ function GardenPlotViz() {
 
   return (
     <div className="garden-plot-viz-container">
+      <div className="garden-plot-viz-container-inside">
       <h1>Garden Planner</h1>
       
         <ReactP5Wrapper sketch={gardenPlotSketch} />
-    
+      </div>
     </div>
   )
 }

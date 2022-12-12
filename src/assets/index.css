@@ -392,6 +392,15 @@ h3.auth-header {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 80%;
+  margin: 4em auto;
+  /* margin-bottom: 5em; */
+  padding: 2em;
+  gap: 1em;
+  border: 2px solid grey;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .imgUpload {
@@ -419,7 +428,7 @@ h3.auth-header {
   align-items: center;
   border: 1px solid grey;
   border-radius: 0.5em;
-  width: 550px;
+  width: 75%;
 }
 
 input.journal-notes-input {
@@ -430,14 +439,18 @@ input.journal-notes-input {
   margin-bottom: 4em;
   border: 1px solid grey;
 }
-
+.journal-form-heading{
+  width: 80%;
+}
 input.journal-form-date-input {
   border: 1px solid grey;
   border-radius: 0.3em;
   margin: 1em 0;
   padding: 0.3em;
 }
-
+.journal-search{
+  width: 100%;
+}
 input.journal-form-file-input {
   padding: 0.3em 1em;
   border: 0.1em solid grey;
@@ -492,10 +505,11 @@ input.journal-form-file-input {
 
 .journal-previous-entries-image {
   margin: 1em;
-  min-width: 100px;
+  /* min-width: 100px;
   min-height: 100px;
   max-width: 800px;
-  max-height: 800px;
+  max-height: 800px; */
+  width: 90%;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
@@ -537,7 +551,7 @@ div.journal {
   justify-content: center;
   align-items: center;
   width: 80%;
-  margin: 3em auto;
+  margin: 4em auto;
   /* margin-bottom: 5em; */
   padding: 2em;
   gap: 1em;
@@ -566,9 +580,9 @@ div.journal {
 }
 
 .plantSugImg {
-  width: 100%;
+  width: 30vw;
   /* width: 30vw; */
-  height: 20vh;
+  height: 100%;
   /* border: 1px solid black; */
 }
 
@@ -865,7 +879,9 @@ input[type="checkbox"] {
     align-items: center;
     flex-direction: row;
   }
-
+  .journal-form-heading{
+    width: 30%;
+  }
   .filterArea {
     width: 90%;
     display: flex;
@@ -970,7 +986,7 @@ input[type="checkbox"] {
   justify-content: center;
   align-items: center;
   padding: 1em;
-  margin: 3em auto;
+  margin: 4em auto;
   width: 60%;
   height: 40%;
   gap: 1em;
@@ -999,9 +1015,22 @@ input[type="checkbox"] {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid black;
-  margin: 1rem;
+  /* border: 1px solid black;
+  margin: 1rem; */
+  width: 80%;
+  margin: 4em auto;
+  /* margin-bottom: 5em; */
+  padding: 2em 2em 10em 2em;
+  gap: 1em;
+  border: 2px solid grey;
+  border-radius: 10px;
+  /* background-color: white; */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
+/* 
+.garden-plot-viz-container-inside {
+	padding: 4em;
+} */
 
 .garden-plot-viz-container h1 {
   margin: 1rem;

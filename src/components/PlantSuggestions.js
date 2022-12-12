@@ -55,8 +55,8 @@ const PlantSuggestions = (props) => {
     // setUserZoneNumber(7)
     setUserZoneNumber(temp_zone)
     // console.log("user zone number STATE after set", userZoneNumber)
-    //  plantData()
-    // housePlantData()
+    plantData()
+    housePlantData()
   }, [temp_zone])
 
   // useEffect(() => {
@@ -142,10 +142,10 @@ const PlantSuggestions = (props) => {
 
     // date control
     // const date = new Date(+year1, month1 - 1, +day1) // ! toggle this for TODAYS DATE
-    const date = new Date(+year1, 0, 2) // ! WINTER JAN 2 - HOUSEPLANTS
+    // const date = new Date(+year1, 0, 2) // ! WINTER JAN 2 - HOUSEPLANTS
     // const date = new Date(+year1, 2, 1)              // ! WINTER MAR 2 - SOWING SEEDS
     // const date = new Date(+year1, 3, 1)              // ! SPRING APR 1
-    // const date = new Date(+year1, 6, 1) // ! SUMMER JUL 1
+    const date = new Date(+year1, 6, 1) // ! SUMMER JUL 1
     // const date = new Date(+year1, 9, 1)              // ! FALL   OCT 1
 
     plantTimingObject.currentDate = date
@@ -364,8 +364,8 @@ const PlantSuggestions = (props) => {
   // console.log(getPlantSug(plantTimingObject, plantsDatabaseData))
   // console.log("=======this is the plants DB data", plantsDbData)
   let suggestedPlantsData = getPlantSug(plantTimingObject, plantsDbData)
-  // let suggestedHousePlantsData = filterSug(housePlantsDbData)
-  let suggestedHousePlantsData = filterSug(housePlantDummyData)
+  let suggestedHousePlantsData = filterSug(housePlantsDbData)
+  // let suggestedHousePlantsData = filterSug(housePlantDummyData)
 
   // console.log("======= timing object: ", plantTimingObject)
   // console.log("suggested plants", suggestedPlantsData)
@@ -386,11 +386,10 @@ const PlantSuggestions = (props) => {
             key={Math.floor(Math.random() * (max - min + 1)) + min}
           >
             <div>
-              <h3>Name: {curPlant.name}, </h3>
-              <h3 className="italics">({curPlant.species})</h3>
+              <h3>{curPlant.name}</h3>
             </div>
             <div>
-              <img src={curPlant.img} className="plantSugImg" />
+              <Link to={`/allPlants/${curPlant.id}`}><img src={curPlant.img} className="plantSugImg" /></Link>
             </div>
           </div>
         ))
@@ -406,7 +405,6 @@ const PlantSuggestions = (props) => {
                 >
                   <div>
                     <h3>{curPlant.name}</h3>
-                    <h3 className="italics">({curPlant.species})</h3>
                   </div>
                   <div>
                     <img src={curPlant.img} className="plantSugImg" />
