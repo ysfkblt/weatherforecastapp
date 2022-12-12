@@ -5,6 +5,7 @@ import { db } from "../database/firebase-config" // STEP 1
 import { forceWebSockets } from "firebase/database"
 import AddFavorite from "../components/AddFavorite"
 import DeleteFavorite from "../components/DeleteFavorite"
+import { Link } from "react-router-dom"
 
 /** ========= firestore DB querying for one item in a collection =====================
 // 1. import the db connection to the firestore as configured earlier
@@ -17,9 +18,31 @@ import DeleteFavorite from "../components/DeleteFavorite"
  */
 const SinglePlantView = (props) => {
   const [singlePlant, setSinglePlant] = useState([])
+  const [isFavorite, setIsFavorite] = useState(false)
+  const [userFavorites, setUserFavorites] = useState([])
   const { plantId } = useParams() // STEP 2
-  const plantCollection = collection(db, "testPlants") //STEP 3
   const {userId} = props
+  const plantCollection = collection(db, "testPlants") //STEP 3
+  const userFavoritesCollection = collection(db, "worms", userId, "favorites")
+
+  async function getFavorites() {
+    const data = await getDocs(userFavoritesCollection)
+    const dataDocs = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+    let userFavorites = []
+    dataDocs.forEach(plant => userFavorites.push(plant.plantId))
+    if (userFavorites.includes(plantId)) {
+      setIsFavorite(true)
+    }
+    await setUserFavorites(dataDocs)
+  }
+
+  const removeFavorite = (thisPlantsId) => {
+    let toBeDeletedData = userFavorites.filter(x => (x.plantId === thisPlantsId))
+    console.log(userFavorites)
+    DeleteFavorite(toBeDeletedData, userId)
+    let toBeNewFavorites = userFavorites.filter(x => (x.plantId !== thisPlantsId))
+    setUserFavorites(toBeNewFavorites)
+  }
 
   // STEP 4
   // const fireStoreQuery = query(plantCollection, where("id", "==", plantId)) // this method is WRONG, it looks only IN the document. the id in the document is a number.
@@ -35,13 +58,11 @@ const SinglePlantView = (props) => {
       setSinglePlant(singlePlantData.docs.map((doc) => ({ ...doc.data() }))) // STEP 6
     }
     getSinglePlant()
+    getFavorites()
   }, [])
 
   // if (userFavorites2.includes(plantId)) {
   //   setIsFavorite(true)
-  // }
-  // if (!userFavorites2.includes(plantId)) {
-  //   setIsFavorite(false)
   // }
 
   if (singlePlant.length) {
@@ -58,7 +79,18 @@ const SinglePlantView = (props) => {
       {singlePlant.length ? (
         <div className="single-plant-view-main-container">
           <div className="singlePlant-title-container">
-            <div><button onClick={()=>{AddFavorite(plantId, userId)}}>favorite</button></div>
+            <div>{isFavorite ? (
+              <div onClick={() => {
+                setIsFavorite(false)
+                removeFavorite(plantId)
+              }}><i className="fa fa-heart" aria-hidden="true"></i></div>
+              ) : (
+              <div onClick={() => {
+                setIsFavorite(true)
+                AddFavorite(plantId, userId)
+              }}><i className="fa fa-heart-o" aria-hidden="true"></i></div>
+              )}
+            </div>
             <div><h2>{singlePlant[0].name}</h2></div>
           </div>
           <div className="singlePlantImageContainer">
@@ -90,6 +122,7 @@ const SinglePlantView = (props) => {
                                     "Late Summer" : "Fall"))))))
               }</li>
             </ul>
+            <div className="SinglePlant-ViewAllLink"><Link to="/allplants">Back to View All</Link></div>
           </div>
         </div>
       ) : null}
