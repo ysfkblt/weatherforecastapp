@@ -5,6 +5,7 @@ import { db } from "../database/firebase-config"
 import { forceWebSockets } from "firebase/database"
 import DeleteFavorite from "../components/DeleteFavorite"
 import AddFavorite from "../components/AddFavorite"
+import logo from "../assets/logos/worm-logo-3.png"
 
 const Favorites = (props) => {
     const [plants, setPlants] = useState([])
@@ -53,6 +54,12 @@ const Favorites = (props) => {
     }
 
     return (
+      <div className="page-container">
+        <div className="logo-container-position">
+        <div className="logo-container">
+              {/* <img src={logo} alt="logo" className="logo" /> */}
+            </div>
+        </div>
         <div className="favorites-container">
           <h2 className="plant-suggestions-header">FAVORITES</h2>
           {(favoritePlantData.length > 0) ?
@@ -95,6 +102,7 @@ const Favorites = (props) => {
               )
             
           }
+        </div>
         </div>
       )
 }

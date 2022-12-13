@@ -207,6 +207,19 @@ li.nav-bar-link {
   width: 13em;
 }
 
+.page-container {
+	margin: 15px;
+	padding: 10px;
+	background-image: url(./logos/worm-logo-3.png);
+	background-size: 120px;
+	background-repeat:no-repeat;
+	height: 100%;
+}
+
+.logo-container-position {
+	margin: 3em;
+}
+
 /* AUTH */
 
 .auth-container {

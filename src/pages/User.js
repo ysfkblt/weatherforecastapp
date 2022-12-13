@@ -150,6 +150,7 @@ async function getDatas() {
 //   console.log(props.user)
 //   getDatas()
     return (
+        <div className="page-container">
         <div className="user-container">
             <div className="user-top">
 
@@ -193,6 +194,7 @@ async function getDatas() {
             </div>
             <button className="nav-bar-link nav-bar-link-signout" onClick={logout}>Sign out</button>
 
+        </div>
         </div>
     )
 }
