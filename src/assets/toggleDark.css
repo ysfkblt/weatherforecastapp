@@ -1,294 +1,301 @@
 /* This file is being used to style the Dark Mode slider */
 
 .white-content {
-    background: #e4e4e4;
+  background: #e4e4e4;
 }
 
 .wrapper {
-    position: relative;
-    width: 10%;
-    height: 100%;
+  position: relative;
+  width: 10%;
+  height: 100%;
 }
 .wrapper .switch {
-    position: absolute;
- 
-    width: 60px;
-    height: 30px;
+  position: absolute;
+
+  width: 60px;
+  height: 30px;
 }
 .wrapper .switch input {
-    display: none;
+  display: none;
 }
 .wrapper .switch .wave {
-    position: absolute;
-    top: 0;
-    left: 0;
-    border-radius: 40px;
-    width: 42px;
-    height: 20px;
-    display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 40px;
+  width: 42px;
+  height: 20px;
+  display: none;
 }
 .wrapper .switch .wave:after {
-    width: 28px;
-    height: 3px;
-    top: 3px;
-    left: 4px;
-    opacity: 0.4;
+  width: 28px;
+  height: 3px;
+  top: 3px;
+  left: 4px;
+  opacity: 0.4;
 }
 .wrapper .switch .wave:after,
 .wrapper .switch .wave:before {
-    content: "";
-    border-radius: 100%;
-    background: #fff;
-    position: absolute;
+  content: "";
+  border-radius: 100%;
+  background: #fff;
+  position: absolute;
 }
 .wrapper .switch .wave:before {
-    width: 30px;
-    height: 2px;
-    top: 10px;
-    left: 30%;
-    opacity: 0.3;
+  width: 30px;
+  height: 2px;
+  top: 10px;
+  left: 30%;
+  opacity: 0.3;
 }
 .wrapper .switch .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #dfddd2;
-    transition: all 1.4s;
-    border-radius: 50px;
-    z-index: 100;
-    overflow: hidden;
-    height: 20px;
-    width: 45px;
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #dfddd2;
+  transition: all 1.4s;
+  border-radius: 50px;
+  z-index: 100;
+  overflow: hidden;
+  height: 20px;
+  width: 45px;
 }
 .wrapper .switch .slider:after,
 .wrapper .switch .slider:before {
-    position: absolute;
-    content: "";
-    height: 12px;
-    width: 12px;
-    left: 5px;
-    bottom: 2px;
-    border-radius: 30px;
-    background-color: #fff;
+  position: absolute;
+  content: "";
+  height: 12px;
+  width: 12px;
+  left: 5px;
+  bottom: 2px;
+  border-radius: 30px;
+  background-color: #fff;
 }
 .wrapper .switch .slider:before {
-    transition: 0.4s;
+  transition: 0.4s;
 }
 .wrapper .switch .slider:after {
-    transition: 0.5s;
+  transition: 0.5s;
 }
 .wrapper .switch .slider .fish {
-    position: absolute;
-    left: -40%;
-    top: 20%;
-    transition: all 1.5s;
+  position: absolute;
+  left: -40%;
+  top: 20%;
+  transition: all 1.5s;
 }
 .wrapper .switch .slider .fish .body {
-    width: 20px;
-    height: 20px;
-    background: repeating-linear-gradient(-45deg, #e79c2a, #e79c2a 5px, #fb7813 0, #fb7813 10px);
-    border-radius: 0 100% 20% 100%;
-    transform: rotate(-45deg);
-    position: relative;
+  width: 20px;
+  height: 20px;
+  background: repeating-linear-gradient(
+    -45deg,
+    #e79c2a,
+    #e79c2a 5px,
+    #fb7813 0,
+    #fb7813 10px
+  );
+  border-radius: 0 100% 20% 100%;
+  transform: rotate(-45deg);
+  position: relative;
 }
 .wrapper .switch .slider .fish .eye {
-    position: absolute;
-    top: 8px;
-    left: 15px;
-    width: 4px;
-    height: 4px;
-    background-color: #000;
-    border-radius: 100%;
+  position: absolute;
+  top: 8px;
+  left: 15px;
+  width: 4px;
+  height: 4px;
+  background-color: #000;
+  border-radius: 100%;
 }
 .wrapper .switch .slider .fish .eye:after {
-    content: "";
-    width: 1px;
-    height: 1px;
-    background-color: #fff;
-    border-radius: 100%;
-    position: absolute;
-    top: 25%;
-    left: 25%;
+  content: "";
+  width: 1px;
+  height: 1px;
+  background-color: #fff;
+  border-radius: 100%;
+  position: absolute;
+  top: 25%;
+  left: 25%;
 }
 .wrapper .switch .slider .fish .tail {
-    width: 5px;
-    height: 5px;
-    background: repeating-linear-gradient(-45deg, #e79c2a, #e79c2a 5px, #fb7813 0, #fb7813 10px);
-    border-radius: 100% 10% 0 10%;
-    transform: rotate(-45deg);
-    position: absolute;
-    left: -8px;
-    top: 40%;
+  width: 5px;
+  height: 5px;
+  background: repeating-linear-gradient(
+    -45deg,
+    #e79c2a,
+    #e79c2a 5px,
+    #fb7813 0,
+    #fb7813 10px
+  );
+  border-radius: 100% 10% 0 10%;
+  transform: rotate(-45deg);
+  position: absolute;
+  left: -8px;
+  top: 40%;
 }
 .wrapper .switch .sky {
-    position: absolute;
-    left: -40%;
-    top: -150px;
-    width: 100px;
-    height: 100px;
-    transform: scale(0);
-    opacity: 0;
-    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: absolute;
+  left: -40%;
+  top: -150px;
+  width: 100px;
+  height: 100px;
+  transform: scale(0);
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 .wrapper .switch .sky .sun .outer {
-    background: #f6f6f6;
-    width: 18px;
-    height: 18px;
-    position: absolute;
-    top: 135px;
-    right: 52px;
-    border-radius: 5px;
-    z-index: 1;
+  background: #f6f6f6;
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  top: 135px;
+  right: 52px;
+  border-radius: 5px;
+  z-index: 1;
 }
 .wrapper .switch .sky .sun .outer:after,
 .wrapper .switch .sky .sun .outer:before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 18px;
-    width: 18px;
-    background: #ffffff;
-    border-radius: 5px;
-    z-index: 1;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 18px;
+  width: 18px;
+  background: #ffffff;
+  border-radius: 5px;
+  z-index: 1;
 }
 .wrapper .switch .sky .sun .outer:before {
-    transform: rotate(30deg);
+  transform: rotate(30deg);
 }
 .wrapper .switch .sky .sun .outer:after {
-    transform: rotate(60deg);
+  transform: rotate(60deg);
 }
 .wrapper .switch .sky .sun .inner {
-    position: absolute;
-    width: 50px;
-    height: 50px;
-    border-radius: 100%;
-    background-color: #ffd65a;
-    top: -12px;
-    overflow: hidden;
-    z-index: 1;
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  background-color: #ffd65a;
+  top: -12px;
+  overflow: hidden;
+  z-index: 1;
 }
 .wrapper .switch .sky .sun .inner:before {
-    content: "";
-    width: 50px;
-    height: 50px;
-    border-radius: 100%;
-    position: absolute;
-    left: 3 px;
-    top: 15px;
-    background: #ffc631;
-    z-index: 1;
+  content: "";
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  position: absolute;
+  left: 3 px;
+  top: 15px;
+  background: #ffc631;
+  z-index: 1;
 }
 .wrapper .switch .sky .cloud {
-    position: absolute;
-    -webkit-filter: url(#cloud);
-    filter: url(#cloud);
-    z-index: -1;
+  position: absolute;
+  -webkit-filter: url(#cloud);
+  filter: url(#cloud);
+  z-index: -1;
 }
 .wrapper .switch .sky .cloud .rect {
-    width: 100px;
-    height: 30px;
-    background: #fff;
-    border-radius: 100px;
+  width: 100px;
+  height: 30px;
+  background: #fff;
+  border-radius: 100px;
 }
 .wrapper .switch .sky .cloud .circle {
-    border-radius: 100%;
-    background: #fff;
-    position: absolute;
+  border-radius: 100%;
+  background: #fff;
+  position: absolute;
 }
 .wrapper .switch .sky .cloud .circle-lg {
-    width: 50px;
-    height: 50px;
-    top: -55%;
-    left: 5%;
+  width: 50px;
+  height: 50px;
+  top: -55%;
+  left: 5%;
 }
 .wrapper .switch .sky .cloud .circle-sm {
-    width: 50px;
-    height: 50px;
-    border-radius: 100%;
-    left: 35%;
-    top: -50%;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  left: 35%;
+  top: -50%;
 }
 .wrapper .switch .sky .cloud1 {
-    left: -60%;
-    top: 20%;
+  left: -60%;
+  top: 20%;
 }
 .wrapper .switch .sky .cloud2 {
-    left: 150px;
-    top: 10%;
-    opacity: 0.8;
+  left: 150px;
+  top: 10%;
+  opacity: 0.8;
 }
 .wrapper .switch input:checked + .slider {
-    background-color: transparent;
+  background-color: transparent;
 }
 
 .wrapper .switch input:checked ~ .wave {
-    background-color: #010a0f;
-    display: block;
-    -webkit-filter: url(#wave);
-    filter: url(#wave);
+  background-color: #010a0f;
+  display: block;
+  -webkit-filter: url(#wave);
+  filter: url(#wave);
 }
 .wrapper .switch input:checked + .slider:after,
 .wrapper .switch input:checked + .slider:before {
-    transform: translateX(20px);
+  transform: translateX(20px);
 }
 
 .wrapper .switch input:checked ~ .sky {
-    transform: scale(1);
-    opacity: 1;
+  transform: scale(1);
+  opacity: 1;
 }
 .wrapper .switch input:checked ~ .sky .outer {
-    -webkit-animation: rotateSun 5s linear infinite;
-    animation: rotateSun 5s linear infinite;
+  -webkit-animation: rotateSun 5s linear infinite;
+  animation: rotateSun 5s linear infinite;
 }
 .wrapper .switch input:checked ~ .sky .cloud {
-    -webkit-animation: swingCloud 10s linear infinite;
-    animation: swingCloud 10s linear infinite;
+  -webkit-animation: swingCloud 10s linear infinite;
+  animation: swingCloud 10s linear infinite;
 }
-
 
 .wrapper a {
-    color: #fff;
-    padding: 15px;
-    display: block;
-    font-family: sans-serif;
-    font-size: 10px;
-    position: absolute;
+  color: #fff;
+  padding: 15px;
+  display: block;
+  font-family: sans-serif;
+  font-size: 10px;
+  position: absolute;
 }
 svg {
-    display: none;
+  display: none;
 }
-
-
 
 @-webkit-keyframes twinkling {
-    30% {
-        opacity: 0.4;
-    }
-    60% {
-        transform: scale(1.2);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
+  30% {
+    opacity: 0.4;
+  }
+  60% {
+    transform: scale(1.2);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 @keyframes twinkling {
-    30% {
-        opacity: 0.4;
-    }
-    60% {
-        transform: scale(1.2);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
+  30% {
+    opacity: 0.4;
+  }
+  60% {
+    transform: scale(1.2);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
-
 /*# sourceMappingURL=main.f030ba68.chunk.css.map */
-

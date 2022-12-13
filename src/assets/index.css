@@ -18,7 +18,6 @@
 
 body::-webkit-scrollbar {
   display: none;
-
 }
 
 body {
@@ -29,13 +28,12 @@ body {
 a {
   text-decoration: none;
 }
-.overallBackground{
+.overallBackground {
   position: absolute;
   top: -10px;
   width: 100vw;
   z-index: -1;
 }
-
 
 button,
 input.button {
@@ -182,7 +180,7 @@ li.nav-bar-link {
   align-items: center;
   margin: 20px;
   width: 60%;
-  height:15%;
+  height: 15%;
   gap: 1em;
   border: 2px solid grey;
   border-radius: 10px;
@@ -230,17 +228,17 @@ li.nav-bar-link {
 }
 
 .page-container {
-	margin: 15px;
-	padding: 10px;
-	background-image: url(./logos/worm-logo-3.png);
-	background-size: 120px;
-	background-repeat:no-repeat;
-	height: 100%;
+  margin: 15px;
+  padding: 10px;
+  background-image: url(./logos/worm-logo-3.png);
+  background-size: 120px;
+  background-repeat: no-repeat;
+  height: 100%;
   z-index: -1;
 }
 
 .logo-container-position {
-	margin: 3em;
+  margin: 3em;
 }
 
 /* AUTH */
@@ -475,10 +473,10 @@ input.journal-notes-input {
   margin-bottom: 4em;
   border: 1px solid grey;
 }
-.journal-form-heading{
+.journal-form-heading {
   width: 80%;
 }
-.journal-search{
+.journal-search {
   width: 100%;
 }
 input.journal-form-date-input {
@@ -792,7 +790,8 @@ div.journal {
   border: 2px solid grey;
   border-radius: 10px;
   background-color: white;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);  padding: 1em;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  padding: 1em;
   background-color: white;
 }
 
@@ -925,7 +924,7 @@ input[type="checkbox"] {
     align-items: center;
     flex-direction: row;
   }
-  .journal-form-heading{
+  .journal-form-heading {
     width: 30%;
   }
   .filterArea {
@@ -936,11 +935,20 @@ input[type="checkbox"] {
     border: 1px solid grey;
     padding: 1em;
   }
-
+  .user-profile-container-top {
+    height: 20vh;
+    width: 65vw;
+  }
+  .user-profile-container {
+    height: 40vh;
+  }
   .filteringCon {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+  }
+  .imgUpdate {
+    font-size: 12px;
   }
 
   .checkbox-container {

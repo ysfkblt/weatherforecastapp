@@ -1,46 +1,51 @@
-import { useState, useEffect } from "react"
-import { onAuthStateChanged, signOut } from "firebase/auth"
-import { auth } from "../database/firebase-config"
+import { useState, useEffect } from "react";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import { auth } from "../database/firebase-config";
 import { Link } from "react-router-dom";
-import ToggleDark from "./toggleDark"
-import { ThemeContext, themes } from "./themeContext"
-
 
 const Navbar = () => {
-  const [user, setUser] = useState("")
-  const [darkMode, setDarkMode] = useState(true)
+  const [user, setUser] = useState("");
 
-  useEffect(()=>{
+  useEffect(() => {
     onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser)
-    })
-  },[])
+      setUser(currentUser);
+    });
+  }, []);
 
   const logout = async () => {
-    await signOut(auth)
-  }
+    await signOut(auth);
+  };
 
-return (
+  return (
     <>
       <nav className="nav-bar-container">
-           {/* DARKMODE */}
-    
-       
-
+        {/* DARKMODE */}
         <ul className="nav-bar-list">
-          {user? 
-          <>
-              <li className="nav-bar-link nav-bar-link-home"> <Link to="/journal" > Journal </Link></li>
-              
+          {user ? (
+            <>
+              <li className="nav-bar-link nav-bar-link-home">
+                {" "}
+                <Link to="/journal"> Journal </Link>
+              </li>
+
               <li className="nav-bar-link nav-bar-link-email">{user.email}</li>
-              <button className="nav-bar-link nav-bar-link-signout" onClick={logout}>Sign out</button>
-          </> :
-              <li className="nav-bar-link nav-bar-link"> <Link to="/signUp"> Log In </Link></li>
-}
+              <button
+                className="nav-bar-link nav-bar-link-signout"
+                onClick={logout}
+              >
+                Sign out
+              </button>
+            </>
+          ) : (
+            <li className="nav-bar-link nav-bar-link">
+              {" "}
+              <Link to="/signUp"> Log In </Link>
+            </li>
+          )}
         </ul>
       </nav>
     </>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
