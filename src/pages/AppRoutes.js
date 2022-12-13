@@ -8,6 +8,8 @@ import AllPlantsView from "./allPlants/AllPlantsView"
 import SinglePlantView from "./SinglePlantView"
 import Auth from "../components/Auth"
 import User from "./User"
+import background, { gradient } from "../components/background"
+
 import { addDoc, collection, doc } from "firebase/firestore"
 
 import Favorites from "./Favorites"
@@ -31,6 +33,7 @@ const AppRoutes = () => {
 
   return (
     <>
+
       <Routes>
         {user ? (
           <>
@@ -61,6 +64,7 @@ const AppRoutes = () => {
           </>
         )}
       </Routes>
+
     </>
   )
 }

@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react"
 import { collection, getDocs, query, where } from "firebase/firestore"
 import { useParams } from "react-router-dom"
+import background, { gradient } from "../components/background"
+
 import { db } from "../database/firebase-config"
 import { forceWebSockets } from "firebase/database"
 import DeleteFavorite from "../components/DeleteFavorite"
@@ -9,6 +11,8 @@ import logo from "../assets/logos/worm-logo-3.png"
 
 const Favorites = (props) => {
     const [plants, setPlants] = useState([])
+    const [grad, setgrad] = useState(null)
+
     const [userFavorites, setUserFavorites] = useState([])
     const [userFavoritesData, setUserFavoritesData] = useState([])
 
@@ -54,7 +58,7 @@ const Favorites = (props) => {
     }
 
     return (
-      <div className="page-container">
+      <div className="page-container" >
         <div className="logo-container-position">
         <div className="logo-container">
               {/* <img src={logo} alt="logo" className="logo" /> */}
