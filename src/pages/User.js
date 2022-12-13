@@ -18,6 +18,7 @@ import { UserContext } from "../components/UserProvider"
 import { useUser } from "../components/UserProvider"
 import { set } from "firebase/database"
 import { collection, doc, getDocs, updateDoc } from "firebase/firestore"
+import background, { gradient } from "../components/background"
 
 
 const User = (props) => {
@@ -150,6 +151,8 @@ async function getDatas() {
 //   console.log(props.user)
 //   getDatas()
     return (
+        <div className="overallBackground" style={{ backgroundImage: background.sunny }}>
+
         <div className="page-container">
         <div className="user-container">
             <div className="user-top">
@@ -194,6 +197,7 @@ async function getDatas() {
             </div>
             <button className="nav-bar-link nav-bar-link-signout" onClick={logout}>Sign out</button>
 
+        </div>
         </div>
         </div>
     )

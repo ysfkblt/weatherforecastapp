@@ -58,6 +58,8 @@ const Favorites = (props) => {
     }
 
     return (
+      <div className="overallBackground" style={{ backgroundImage: background.sunny }}>
+
       <div className="page-container" >
         <div className="logo-container-position">
         <div className="logo-container">
@@ -106,6 +108,7 @@ const Favorites = (props) => {
               )
             
           }
+        </div>
         </div>
         </div>
       )

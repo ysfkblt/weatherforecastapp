@@ -8,6 +8,8 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage"
 import { onAuthStateChanged } from "firebase/auth"
 // import { Link, useParams } from "react-router-dom"
 // import Popup from 'reactjs-popup'
+import logo from "../assets/logos/worm-logo-3.png"
+
 
 const Journal = (props) => {
   const [worms, setWorms] = useState([])
@@ -141,7 +143,9 @@ const Journal = (props) => {
   let defaultDate = newDate.toISOString()
 
   return (
-
+    <div className="overallBackground" style={{ backgroundImage: background.sunny }}>
+    <div className="page-container"  >
+   
     <div className="journal-container" >
       <h1>Plant Journal</h1>
       {/* <button onClick={(event)=> searchPage(search)}>Search</button> */}
@@ -197,8 +201,9 @@ const Journal = (props) => {
             ) : "No entries"
           }
         </div>
+        </div>
       </div>
-
+      </div>
     </div>
   )
 }

@@ -1,11 +1,14 @@
 import React from "react"
 import { ReactP5Wrapper } from "react-p5-wrapper"
 import gardenPlotSketch from "../components/gardenPlotSketch.js"
+import background, { gradient } from "../components/background"
 
 function GardenPlotViz() {
   // stuff
 
   return (
+    <div className="overallBackground" style={{ backgroundImage: background.sunny }}>
+
     <div className="page-container">
     <div className="garden-plot-viz-container">
       <div className="garden-plot-viz-container-inside">
@@ -13,6 +16,7 @@ function GardenPlotViz() {
       
         <ReactP5Wrapper sketch={gardenPlotSketch} />
       </div>
+    </div>
     </div>
     </div>
   )

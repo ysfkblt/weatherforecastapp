@@ -6,6 +6,7 @@ import { forceWebSockets } from "firebase/database"
 import AddFavorite from "../components/AddFavorite"
 import DeleteFavorite from "../components/DeleteFavorite"
 import { Link } from "react-router-dom"
+import background, { gradient } from "../components/background"
 
 /** ========= firestore DB querying for one item in a collection =====================
 // 1. import the db connection to the firestore as configured earlier
@@ -75,6 +76,8 @@ const SinglePlantView = (props) => {
   //   console.log("ending single plant", singlePlant[0].name)
 
   return (
+    <div className="overallBackground" style={{ backgroundImage: background.sunny }}>
+
     <div className="page-container">
     <div>
       {singlePlant.length ? (
@@ -127,6 +130,7 @@ const SinglePlantView = (props) => {
           </div>
         </div>
       ) : null}
+    </div>
     </div>
     </div>
   )

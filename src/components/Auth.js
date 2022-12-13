@@ -5,6 +5,7 @@ import { auth, db } from "../database/firebase-config"
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage"
 import { storage } from "../database/firebase-config"
 import { useNavigate } from "react-router-dom"
+import background, { gradient } from "../components/background"
 
 const Auth = () => {
   const [registerEmail, setRegisterEmail] = useState("")
@@ -83,6 +84,8 @@ const Auth = () => {
 };
 
   return (
+    <div className="overallBackground" style={{ backgroundImage: background.sunny }}>
+
     <div className="auth-container">
       {currentUser ?
         <div className="auth-current-user-container">
@@ -117,6 +120,7 @@ const Auth = () => {
           <input className="email-password-input" placeholder="Password..." type="text" value={loginPassword} onChange={(event) => { setLoginPassword(event.target.value) }} />
           <button onClick={login}>Login</button>
         </div>
+      </div>
       </div>
 
 

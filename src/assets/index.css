@@ -18,6 +18,7 @@
 
 body::-webkit-scrollbar {
   display: none;
+
 }
 
 body {
@@ -28,6 +29,13 @@ body {
 a {
   text-decoration: none;
 }
+.overallBackground{
+  position: absolute;
+  top: -10px;
+  width: 100vw;
+  z-index: -1;
+}
+
 
 button,
 input.button {
@@ -214,6 +222,7 @@ li.nav-bar-link {
 	background-size: 120px;
 	background-repeat:no-repeat;
 	height: 100%;
+  z-index: -1;
 }
 
 .logo-container-position {
@@ -1004,7 +1013,7 @@ input[type="checkbox"] {
   padding: 1em;
   margin: 4em auto;
   width: 60%;
-  height: 40%;
+  height: 70%;
   gap: 1em;
   border: 2px solid grey;
   border-radius: 10px;

@@ -6,6 +6,7 @@ import Checkbox from "./checkboxes"
 import flowers2 from '../../database/plantDatabase'
 import AddFavorite from "../../components/AddFavorite";
 import DeleteFavorite from "../../components/DeleteFavorite";
+import background, { gradient } from "../../components/background"
 
 
 const AllPlants = (props) => {
@@ -179,6 +180,8 @@ const AllPlants = (props) => {
   const transplantTo = ["fsun", "psun", "psha", "fsha"]
 
   return (
+    <div className="overallBackground" style={{ backgroundImage: background.sunny }}>
+
     <div className="page-container">
     <div className="all-plants-container">
       <div className="filterArea">
@@ -271,6 +274,7 @@ const AllPlants = (props) => {
         })) : (<div>Sorry, no plant data available</div>)}
       </div>
       <div className="loadMoreButtonDiv"><button onClick={()=>{fetchMore()}}>Load More Plants</button></div>
+    </div>
     </div>
     </div>
   )
