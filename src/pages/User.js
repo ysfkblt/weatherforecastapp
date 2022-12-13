@@ -155,6 +155,7 @@ async function getDatas() {
 
         <div className="page-container">
         <div className="user-container">
+            <div className="user-profile-container-top">
             <div className="user-top">
 
             <div>
@@ -166,6 +167,7 @@ async function getDatas() {
                     <input type="file" onChange={(event) => { setProfilePicture(event.target.files[0]) }} />
                     <button onClick={uploadProfilePicture}>Upload Profile Picture</button>
                     </div>
+                </div>
                 </div>
             </div>
              

@@ -175,6 +175,20 @@ li.nav-bar-link {
   background-color: white;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
+.user-profile-container-top {
+  display: flex;
+  flex-direction: wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+  width: 60%;
+  height:15%;
+  gap: 1em;
+  border: 2px solid grey;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
 
 .user-profile-picture-container {
   display: flex;
@@ -731,6 +745,10 @@ div.journal {
   margin: 1vw;
   align-content: center;
   padding: 1em;
+  border: 2px solid grey;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .filterColumn {
@@ -771,8 +789,11 @@ div.journal {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  border: 1px solid grey;
-  padding: 1em;
+  border: 2px solid grey;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);  padding: 1em;
+  background-color: white;
 }
 
 .filteringCon {
