@@ -468,6 +468,7 @@ input.journal-form-file-input {
   padding: 0.3em 1em;
   border: 0.1em solid grey;
   margin: 0.3em;
+  width: 90%;
   border-radius: 0.12em;
   box-sizing: border-box;
   text-decoration: none;
@@ -869,7 +870,9 @@ input[type="checkbox"] {
     /* object-fit:cover;
 	object-position:50% 50%; */
   }
-
+  input.journal-form-file-input {
+    font-size: 17px;
+  }
   .singlePlant {
     width: 40vw;
     margin: 1vw;
